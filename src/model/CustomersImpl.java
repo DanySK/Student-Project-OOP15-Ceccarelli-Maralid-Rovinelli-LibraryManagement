@@ -4,20 +4,22 @@ public class CustomersImpl extends AbstractPerson implements Customers {
 
    
     
-    public CustomersImpl(String taxCode, String name, String surname, String email) {
-        super(taxCode, name, surname, email);
-        // TODO Auto-generated constructor stub
-    }
+   
 
     private static final long serialVersionUID = 1L;
     private long telefonCustomers;
+    
+    public CustomersImpl(String taxCode, String name, String surname, String email,long telefonCustomers) {
+        super(taxCode, name, surname, email);
+      this.telefonCustomers = telefonCustomers;
+    }
 
-    @Override
+    /** metodo per prelevare il numero di telefono*/
     public long getTelefonCustomers() {
         return telefonCustomers;
     }
 
-    @Override
+    /** metodo per settare un numero di telefono*/
     public void setTelefonCusomers(long telefon) {
        this.telefonCustomers = telefon;
 
