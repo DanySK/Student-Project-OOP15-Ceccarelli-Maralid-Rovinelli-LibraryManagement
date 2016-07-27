@@ -4,12 +4,19 @@ import java.io.Serializable;
 
 public abstract class AbstractPerson implements Serializable ,AbstractPersonInterface {
 
+    
     private static final long serialVersionUID = 1L;
     protected String taxCode;
     protected String name;
     protected String surname;
     protected String email;
     
+    public AbstractPerson(String taxCode,String name,String surname ,String email){
+        this.taxCode = taxCode;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+    }
     public String getTaxCode(){
         return taxCode;     
     }
