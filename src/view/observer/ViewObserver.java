@@ -1,4 +1,4 @@
-package view;
+package view.observer;
 
 public interface ViewObserver {
 	/**

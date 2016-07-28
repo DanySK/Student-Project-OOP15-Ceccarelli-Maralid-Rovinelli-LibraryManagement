@@ -3,6 +3,9 @@ package view;
  * @author Ceccarelli
  * */
 import javax.swing.*;
+
+import view.observer.ViewObserver;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

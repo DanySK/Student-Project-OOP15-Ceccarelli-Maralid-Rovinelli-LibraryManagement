@@ -3,7 +3,8 @@ package view;
  * @author Ceccarelli
  * */
 import javax.swing.JPanel;
-import view.ViewObserver;
+
+import view.observer.ViewObserver;
 
 
 public interface MainView {

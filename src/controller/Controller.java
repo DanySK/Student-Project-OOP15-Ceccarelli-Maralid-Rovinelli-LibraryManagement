@@ -1,7 +1,7 @@
 package controller;
 
 import view.MainView;
-import view.ViewObserver;
+import view.observer.ViewObserver;
 
 public class Controller implements ViewObserver{
 	//private IModel model;
