@@ -5,12 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RWMFImpl implements ReadWriteModificationFile {
 
     
     @Override
-    public ArrayList<String> readLineFile(String path) {
+    public Map<Integer, ArrayList<String>> readLineFile(String path) {
        FileReader f = null;
        try {
            f=new FileReader(path);
@@ -19,8 +21,11 @@ public class RWMFImpl implements ReadWriteModificationFile {
        }
        BufferedReader b;
        b=new BufferedReader(f);
+      
        String s = null;
-       ArrayList <String> rlFile = new ArrayList <>();
+       ArrayList <String> row = new ArrayList <>();
+       ArrayList<String> word = new ArrayList<>();
+       Map<Integer,ArrayList<String>> dbfile = new HashMap<>();
        while(true) {
            try {
              s=b.readLine();
@@ -31,10 +36,19 @@ public class RWMFImpl implements ReadWriteModificationFile {
            
            if(s==null)
              break;
-          rlFile.add(s);
+         row.add(s);
+         for(int i = 0;i <row.size()-1;i++){
+             String[] words = row.get(i).split(",");
+             word.clear();
+             for(int a = 0;a<words.length;a++){
+                 word.add(words[a]);
+             }
+             words = null;
+             dbfile.put(i, new ArrayList<String>(word));
+         }
           
          }
-        return rlFile;
+        return dbfile;
     }
 
   
