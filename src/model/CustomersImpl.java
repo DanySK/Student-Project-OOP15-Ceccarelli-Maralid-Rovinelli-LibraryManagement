@@ -14,12 +14,12 @@ public class CustomersImpl extends AbstractPerson implements Customers {
       this.telefonCustomers = telefonCustomers;
     }
 
-    /** metodo per prelevare il numero di telefono*/
+   
     public long getTelefonCustomers() {
         return telefonCustomers;
     }
 
-    /** metodo per settare un numero di telefono*/
+    
     public void setTelefonCusomers(long telefon) {
        this.telefonCustomers = telefon;
 
