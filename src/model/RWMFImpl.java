@@ -12,7 +12,7 @@ public class RWMFImpl implements ReadWriteModificationFile {
 
     
     @Override
-    public Map<Integer, ArrayList<String>> readLineFile(String path) {
+    public Map<Integer, ArrayList<String>> readLineFile(String path) throws IOException {
        FileReader f = null;
        try {
            f=new FileReader(path);
@@ -37,7 +37,7 @@ public class RWMFImpl implements ReadWriteModificationFile {
            if(s==null)
              break;
          row.add(s);
-         for(int i = 0;i <row.size()-1;i++){
+         for(int i = 0;i <row.size();i++){
              String[] words = row.get(i).split(",");
              word.clear();
              for(int a = 0;a<words.length;a++){
@@ -46,7 +46,8 @@ public class RWMFImpl implements ReadWriteModificationFile {
              words = null;
              dbfile.put(i, new ArrayList<String>(word));
          }
-          
+          b.close();
+          f.close();
          }
         return dbfile;
     }
