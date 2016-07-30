@@ -16,6 +16,7 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 	private JButton btnHome;
 	private JButton btnLog;
 	private JTextArea logTxt;
+	private static final long serialVersionUID = 1;
 
 	public NorthPanelImpl() {
 		super();

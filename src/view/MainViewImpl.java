@@ -20,6 +20,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	private JMenuBar menuBar;
 	private JFileChooser fileChoosen;
 	private JMenu menu;
+	private static final long serialVersionUID = 1L;
 
 	public MainViewImpl() {
 		this.getContentPane().setBackground(Color.WHITE);
@@ -38,7 +39,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 		Container c = this.getContentPane();
 		northPanel = new NorthPanelImpl();
-		c.add(northPanel,BorderLayout.NORTH);
+		c.add(northPanel, BorderLayout.NORTH);
 
 		/* 1a voce del menu */
 		menu = new JMenu("File");
@@ -54,23 +55,20 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		}
 		menuBar.add(menu);
 		/* 2a voce del menu */
-		/*menu = new JMenu("Libreria");
-		menuItem[0] = new JMenuItem("Cerca un Libro");
-		menuItem[1] = new JMenuItem("Carrello");
-		menuItem[2] = new JMenuItem("Gestione abbonamenti");
-		menuBar.add(menu);
-		for (int i = 0; i < 3; i++) {
-			menuItem[i].addActionListener(this);
-		}
-		for (int i = 0; i < 3; i++) {
-			menu.add(menuItem[i]);
-		}
-		menuBar.add(menu);
-		/* 3a voce del menu */
-		/*menu = new JMenu("Gestione magazzino");
-		menuItem[0] = new JMenuItem("Ordina scorte");
-		menuItem[0].addActionListener(this);
-		menuBar.add(menu);*/
+		/*
+		 * menu = new JMenu("Libreria"); menuItem[0] = new JMenuItem(
+		 * "Cerca un Libro"); menuItem[1] = new JMenuItem("Carrello");
+		 * menuItem[2] = new JMenuItem("Gestione abbonamenti");
+		 * menuBar.add(menu); for (int i = 0; i < 3; i++) {
+		 * menuItem[i].addActionListener(this); } for (int i = 0; i < 3;
+		 * i++) { menu.add(menuItem[i]); } menuBar.add(menu); /* 3a voce
+		 * del menu
+		 */
+		/*
+		 * menu = new JMenu("Gestione magazzino"); menuItem[0] = new
+		 * JMenuItem("Ordina scorte");
+		 * menuItem[0].addActionListener(this); menuBar.add(menu);
+		 */
 		this.setJMenuBar(menuBar);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addWindowListener(this);
@@ -124,13 +122,11 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		Object menuSource = arg0.getSource();
 		if (menuSource == menuItem[0]) {
 			if (this.fileChoosen.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-				this.observer.dataLoad(this.fileChoosen.getSelectedFile()
-						.getPath());
+				this.observer.dataLoad(this.fileChoosen.getSelectedFile().getPath());
 			}
 		} else if (menuSource == menuItem[1]) {
 			if (this.fileChoosen.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-				this.observer.saveData(this.fileChoosen.getSelectedFile()
-						.getPath());
+				this.observer.saveData(this.fileChoosen.getSelectedFile().getPath());
 			}
 		} else if (menuSource == menuItem[2]) {
 			this.observer.exitCommand();
