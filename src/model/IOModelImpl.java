@@ -1,9 +1,12 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +52,40 @@ public abstract class IOModelImpl {
              }
             return dbfile;
         }
+    public void writeNewLine(String pathWrite,ArrayList<String> line){
 
+        String path = pathWrite;
+        try{
+            File file = new File(path);
+            
+            if(file.exists()){
+               FileOutputStream fwos = new FileOutputStream(path,true);
+               PrintWriter fw = new PrintWriter(fwos);
+               writeTheLine(fw,line);
+               
+               fw.close();
+            }else if(file.createNewFile()){
+                PrintWriter fw = new PrintWriter(file);
+                writeTheLine(fw,line);
+            }
+           
+        
+            }catch(IOException e){
+                e.printStackTrace();
+        }
+        
+     
+    }
+    /**Scrittura di una riga di un file dato il dato da scrivere e il suo percorso*/
+    private void writeTheLine(PrintWriter fw,ArrayList<String>line2){
+                for(int a = 0;a<line2.size();a++){
+                    if(a+1 == line2.size()){
+                        fw.append(line2.get(a)+"\n");
+                    }else{
+                        fw.append(line2.get(a)+",");
+                    }
+                }
+            fw.close();
+    }
 
 }
