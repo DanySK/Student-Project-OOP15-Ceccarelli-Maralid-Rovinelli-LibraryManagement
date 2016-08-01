@@ -8,10 +8,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IOModelImpl implements IOModel {
+public abstract class IOModelImpl {
 
-    @Override
-  public Map<Integer, ArrayList<String>> readLineFile(String path) throws IOException {
+    public Map<Integer, ArrayList<String>> readFile(String path) throws IOException {
            FileReader f = null;
            try {
                f=new FileReader(path);
