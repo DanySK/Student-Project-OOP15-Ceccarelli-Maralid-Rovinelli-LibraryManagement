@@ -2,7 +2,7 @@ package view.observer;
 
 public interface LoginObserver {
 	/**
-	 * metodo per effettuare l'accesso coem dipendente tramite username e password
+	 * metodo per effettuare l'accesso come dipendente tramite username e password
 	 * 
 	 * @param username
 	 * @param password
