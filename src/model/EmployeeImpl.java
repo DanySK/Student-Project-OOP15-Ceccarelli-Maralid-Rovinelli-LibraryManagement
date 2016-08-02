@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class EmployeeImpl extends AbstractPerson implements Employee ,Serializable {
-  ArrayList<String> personalData = new ArrayList<>();
+  
    
 
     private static final long serialVersionUID = 1L;
@@ -24,7 +24,7 @@ public abstract class EmployeeImpl extends AbstractPerson implements Employee ,S
        this.address = address;
        this.username = username;
        this.password = password;
-       update();
+      ;
         
     }
   
@@ -60,8 +60,7 @@ public abstract class EmployeeImpl extends AbstractPerson implements Employee ,S
   
     public void setHireDate(Date hireDate) {
        this.hireDate = hireDate;
-
-    }
+}
 
  
     public void setAddress(String address) {
@@ -69,32 +68,16 @@ public abstract class EmployeeImpl extends AbstractPerson implements Employee ,S
 
        
     }
-    public ArrayList<String> allInformation(){
-        return this.personalData;
-    }
-  
+   
     public void setUsername(String username) {
         this.username = username;
-
     }
 
     
     public void setPassword(String password) {
      this.password = password;
     }
-   private void update(){
-       this.personalData.add(taxCode);
-       this.personalData.add(name); 
-       this.personalData.add(surname);
-       this.personalData.add(email);
-       this.personalData.add(dateOfBirth.toString());
-       this.personalData.add(hireDate.toString());
-       this.personalData.add(address);
-       this.personalData.add(username);
-       this.personalData.add(password);
-   }
-   public void setInformation(ArrayList<String> information){
-       this.personalData.clear();
-       this.personalData = information;
-   }
+  
+     
+   
 }
