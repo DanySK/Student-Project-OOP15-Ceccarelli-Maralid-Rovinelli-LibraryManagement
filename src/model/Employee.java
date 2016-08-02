@@ -1,8 +1,10 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public interface Employee {
+    
  
     /** metodo per leggere la data di nascita*/
     public Date getDateOfBirth();
@@ -19,8 +21,7 @@ public interface Employee {
     /**metodo che restituisce la password*/
     public String getPassword();
     
-    
-    /**metodo per settare la data di nascita */
+   /**metodo per settare la data di nascita */
     public void setDateOfBirth(Date date);
     
     /**metodo per settare la data di assunzione*/
@@ -34,4 +35,10 @@ public interface Employee {
     
     /**metodo per settare la password*/
     public void setPassword(String password);
+    
+    /**metodo che restituisce un arrayList con tutti i dati del dipendente*/
+    public ArrayList<String> allInformation();
+    
+    /**data un arraylist cambia i dati del cliente*/
+    public void setInformation(ArrayList<String> information);
 }

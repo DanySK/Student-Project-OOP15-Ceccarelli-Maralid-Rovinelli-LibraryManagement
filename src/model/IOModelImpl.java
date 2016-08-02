@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public abstract class IOModelImpl {
+public abstract class IOModelImpl implements IOModel{
 
     public Map<Integer, ArrayList<String>> readFile(String path) throws IOException {
            FileReader f = null;
@@ -77,17 +77,6 @@ public abstract class IOModelImpl {
         
      
     }
-    /**Scrittura di una riga di un file dato il dato da scrivere e il suo percorso*/
-    private void writeTheLine(PrintWriter fw,ArrayList<String>line2){
-                for(int a = 0;a<line2.size();a++){
-                    if(a+1 == line2.size()){
-                        fw.append(line2.get(a)+"\n");
-                    }else{
-                        fw.append(line2.get(a)+",");
-                    }
-                }
-            fw.close();
-    }
     public Map<Integer,ArrayList<String>> searchInFile(Map<Integer,ArrayList<String>> completeList,Integer idSearch,String nameSearch){
        completeList = new HashMap<>();
        Map<Integer,ArrayList<String>> newMap = new HashMap<>();
@@ -103,4 +92,16 @@ public abstract class IOModelImpl {
        }
         return newMap;
      }
+       /**Scrittura di una riga di un file dato il dato da scrivere e il suo percorso*/
+    private void writeTheLine(PrintWriter fw,ArrayList<String>line2){
+           for(int a = 0;a<line2.size();a++){
+               if(a+1 == line2.size()){
+                   fw.append(line2.get(a)+"\n");
+               }else{
+                   fw.append(line2.get(a)+",");
+               }
+           }
+       fw.close();
+}
+
 }
