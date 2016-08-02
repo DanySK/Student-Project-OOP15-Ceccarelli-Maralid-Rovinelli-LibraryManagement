@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public abstract class IOModelImpl {
@@ -87,5 +88,19 @@ public abstract class IOModelImpl {
                 }
             fw.close();
     }
-
+    public Map<Integer,ArrayList<String>> searchInFile(Map<Integer,ArrayList<String>> completeList,Integer idSearch,String nameSearch){
+       completeList = new HashMap<>();
+       Map<Integer,ArrayList<String>> newMap = new HashMap<>();
+       ArrayList<String> analyzedValue ;
+       Iterator<Integer> it = completeList.keySet().iterator();
+       int counter = 0;//contatore per rillevare quante array vengono inserite nel map
+       while(it.hasNext()){
+         analyzedValue = completeList.get(it.next());  
+         if(!nameSearch.equals(null)&& nameSearch.equals(analyzedValue.get(idSearch))){
+            newMap.put(counter, analyzedValue); 
+            counter++;
+         }
+       }
+        return newMap;
+     }
 }

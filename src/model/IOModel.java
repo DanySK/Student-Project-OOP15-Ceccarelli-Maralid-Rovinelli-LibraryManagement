@@ -15,4 +15,9 @@ public interface IOModel {
     * @param line
     */
    public void writeNewLine(String pathWrite,ArrayList<String> line);
+   /**restituisce una Map che contiente i valori corrispondenti alla ricerca 
+    * mappa in cui effettuare una ricerca
+    * colonna del dato da ricercare
+    * valore da ricercare*/
+   public Map<Integer,ArrayList<String>> searchInFile(Map<Integer,ArrayList<String>> completeList,Integer idSearch,String nameSearch);
 }
