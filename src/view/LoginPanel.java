@@ -1,6 +1,8 @@
 package view;
 import view.observer.LoginObserver;
-
+/**
+ * @author Ceccarelli
+ * */
 public interface LoginPanel {
 
 	/**
