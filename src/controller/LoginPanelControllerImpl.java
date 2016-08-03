@@ -1,12 +1,17 @@
 package controller;
 
+import greenKiosk.controller.insert.InsertDipendenteController;
+import greenKiosk.views.insert.InsertDipendenteView;
+import model.Employee;
+import view.BookshopPanel;
+import view.BookshopPanelImpl;
 import view.LoginPanel;
 import view.MainView;
 import view.observer.LoginObserver;
 
 public class LoginPanelControllerImpl implements LoginPanelController,LoginObserver{
 	
-	//private nomeImodel model;
+	private Employee em;
 	private MainView mainView; 
 	private LoginPanel view;
 	
@@ -35,7 +40,11 @@ public class LoginPanelControllerImpl implements LoginPanelController,LoginObser
 	
 	@Override
 	public void loginEmployee(String username, String password) {
-		
+		if(em.getUsername().equals(username) && em.getPassword().equals(password)){
+			System.out.println("loggato");
+		} else {
+			System.out.println("credenziali errate");
+		}
 	}
 	
 	/*public void doLoginUtente(String username, String password) {
@@ -70,5 +79,13 @@ public class LoginPanelControllerImpl implements LoginPanelController,LoginObser
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/*public void registerUser() {
+		InsertDipendenteController idc = new InsertDipendenteController(model);
+		InsertDipendenteView idview = new InsertDipendenteView();
+		idc.setView(idview);
+		mainView.replaceCentralPanel(idview);
+
+	}*/
 
 }
