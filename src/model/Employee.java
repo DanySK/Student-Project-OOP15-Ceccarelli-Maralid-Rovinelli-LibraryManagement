@@ -36,9 +36,5 @@ public interface Employee {
     /**metodo per settare la password*/
     public void setPassword(String password);
     
-    /**metodo che restituisce un arrayList con tutti i dati del dipendente*/
-    public ArrayList<String> allInformation();
-    
-    /**data un arraylist cambia i dati del cliente*/
-    public void setInformation(ArrayList<String> information);
+
 }

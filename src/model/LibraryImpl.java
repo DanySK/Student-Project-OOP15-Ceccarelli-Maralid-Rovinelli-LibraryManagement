@@ -6,6 +6,18 @@ import java.util.Map;
 
 public class LibraryImpl implements Library {
 
-    Map<Integer,ArrayList<String>>shop = new HashMap<Integer,ArrayList<String>>();
-    Map<Integer,ArrayList<String>>WareHouse = new HashMap<Integer,ArrayList<String>>();
+    Map<Integer,Object>shop = new HashMap<Integer,Object>();
+    Map<Integer,Object>WareHouse = new HashMap<Integer,Object>();
+    @Override
+    public void setNewBookInLibrary(Object obj) {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public void setNewBookInWareHouse(Object obj) {
+        // TODO Auto-generated method stub
+        
+    }
+    
+    
 }

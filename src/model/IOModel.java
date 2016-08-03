@@ -1,23 +1,43 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
-public interface IOModel {
-    /** datogli il file restituisce il contenuto del file suddiviso per righe
-     * @throws IOException */
-   public Map<Integer,ArrayList<String>> readFile(String path) throws IOException;
-   /**scrittura di un nuovo dato,dato il path da scrivere e il/i dati da scrivere
-    * il primo paragrafo è il nome del file.txt
-    * il secondo è l'ArrayList<String> che contiene le cose da scrivere.
-    * @param pathWrite
-    * @param line
-    */
-   public void writeNewLine(String pathWrite,ArrayList<String> line);
-   /**restituisce una Map che contiente i valori corrispondenti alla ricerca 
-    * mappa in cui effettuare una ricerca
-    * colonna del dato da ricercare
-    * valore da ricercare*/
-   public Map<Integer,ArrayList<String>> searchInFile(Map<Integer,ArrayList<String>> completeList,Integer idSearch,String nameSearch);
+public class IOModel<T> implements Model {
+
+  
+   
+   public Map<Integer,T> readFile(String path) throws IOException, ClassNotFoundException{
+       T t = null;
+       try
+       {
+          FileInputStream fileIn = new FileInputStream(path);
+          ObjectInputStream in = new ObjectInputStream(fileIn);
+          t = (T) in.readObject();
+          in.close();
+          fileIn.close();
+       }catch(IOException i)
+       {
+          i.printStackTrace();
+          throw i;
+       }catch(ClassNotFoundException c)
+       {
+          System.out.println("class not found");
+          c.printStackTrace();
+          throw c;
+       }
+       
+    return (Map<Integer, T>) t;
+       
+   }
 }

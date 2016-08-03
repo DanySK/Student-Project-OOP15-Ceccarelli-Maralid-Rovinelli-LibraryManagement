@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class EmployeeImpl extends AbstractPerson implements Employee ,Serializable {
+public class EmployeeImpl extends AbstractPerson implements Employee ,Serializable {
   
-   
+    
 
     private static final long serialVersionUID = 1L;
     private Date dateOfBirth ;
@@ -77,6 +77,8 @@ public abstract class EmployeeImpl extends AbstractPerson implements Employee ,S
     public void setPassword(String password) {
      this.password = password;
     }
+
+   
   
      
    
