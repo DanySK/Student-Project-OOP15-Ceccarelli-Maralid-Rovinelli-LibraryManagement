@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,14 +10,14 @@ public class EmployeeImpl extends AbstractPerson implements Employee ,Serializab
     
 
     private static final long serialVersionUID = 1L;
-    private Date dateOfBirth ;
-    private Date hireDate;
+    private SimpleDateFormat dateOfBirth ;
+    private SimpleDateFormat hireDate;
     private String address;
     private String username;
     private String password;
     
   
-    public EmployeeImpl(String taxCode, String name, String surname, String email, Date dateOfBirth, Date hireDate,String address ,String username,String password) {
+    public EmployeeImpl(String taxCode, String name, String surname, String email, SimpleDateFormat dateOfBirth,SimpleDateFormat hireDate,String address ,String username,String password) {
         super(taxCode, name, surname, email);
       
        this.dateOfBirth = dateOfBirth;
@@ -28,11 +29,11 @@ public class EmployeeImpl extends AbstractPerson implements Employee ,Serializab
         
     }
   
-    public Date getDateOfBirth() {
+    public SimpleDateFormat getDateOfBirth() {
        return dateOfBirth;
     }
    
-    public Date getHireDate() {
+    public SimpleDateFormat getHireDate() {
        return hireDate;
     }
    
@@ -52,13 +53,13 @@ public class EmployeeImpl extends AbstractPerson implements Employee ,Serializab
     }
 
    
-    public void setDateOfBirth(Date date) {
+    public void setDateOfBirth(SimpleDateFormat date) {
       this.dateOfBirth = date;
 
     }
 
   
-    public void setHireDate(Date hireDate) {
+    public void setHireDate(SimpleDateFormat hireDate) {
        this.hireDate = hireDate;
 }
 
@@ -78,8 +79,4 @@ public class EmployeeImpl extends AbstractPerson implements Employee ,Serializab
      this.password = password;
     }
 
-   
-  
-     
-   
-}
+ }

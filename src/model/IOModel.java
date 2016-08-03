@@ -11,13 +11,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
-public class IOModel<T> implements Model {
+public class IOModel<T,X> implements Model {
 
   
    
-   public Map<Integer,T> readFile(String path) throws IOException, ClassNotFoundException{
+public Map<Integer,T> readFile(String path) throws IOException, ClassNotFoundException{
        T t = null;
        try
        {
@@ -40,4 +41,36 @@ public class IOModel<T> implements Model {
     return (Map<Integer, T>) t;
        
    }
+
+@Override
+public void writeFile(String path, Object o) {
+    try
+    {
+       FileOutputStream fileOut = new FileOutputStream(path);
+       ObjectOutputStream out = new ObjectOutputStream(fileOut);
+       out.writeObject(o);
+       out.close();
+       fileOut.close();
+       System.out.printf("Serialized data is saved in "+path);
+    }catch(IOException i)
+    {
+        i.printStackTrace();
+    }  
+    
+}
+
+@Override
+public Object search(Map genericMap, Object field) {
+    Iterator<Integer> it = genericMap.keySet().iterator();
+    Object obj = null;
+   int counter = 0;
+    while(it.hasNext()){
+       if(genericMap.get(counter).equals(field)){
+           obj = genericMap.get(counter);
+       }
+       counter++;
+    }
+ return obj;
+}
+  
 }
