@@ -1,6 +1,8 @@
 package controller;
 
-
+import model.Employee;
+import model.IOModel;
+import model.Model;
 import view.LoginPanelImpl;
 import view.MainView;
 import view.NorthPanel;
@@ -9,7 +11,7 @@ import view.observer.NorthPanelObserver;
 import view.observer.ViewObserver;
 
 public class ControllerImpl implements Controller, NorthPanelObserver, ViewObserver{
-	//private IModel model;
+	private IOModel model;
 	private MainView mainView;
 	
 	/**
@@ -18,8 +20,8 @@ public class ControllerImpl implements Controller, NorthPanelObserver, ViewObser
 	 * @param model
 	 *            il model utilizzato per salvare i dati
 	 */
-	public ControllerImpl(/*Tipo Imodel model*/) {
-			//this.model = model;
+	public ControllerImpl(IOModel<Employee, Employee> model) {
+			this.model = model;
 	}
 
 	@Override
@@ -33,7 +35,7 @@ public class ControllerImpl implements Controller, NorthPanelObserver, ViewObser
 	@Override
 	public void createLoginPanel() {
 		LoginPanelImpl lp = new LoginPanelImpl();
-		LoginPanelControllerImpl lpc = new LoginPanelControllerImpl(this.mainView, model);
+		LoginPanelController lpc = new LoginPanelControllerImpl(this.mainView, model);
 		lpc.setView(lp);
 		this.mainView.replaceMainPanel(lp);
 	}

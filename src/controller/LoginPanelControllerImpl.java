@@ -1,8 +1,8 @@
 package controller;
 
-import greenKiosk.controller.insert.InsertDipendenteController;
-import greenKiosk.views.insert.InsertDipendenteView;
 import model.Employee;
+import model.IOModel;
+import model.Model;
 import view.BookshopPanel;
 import view.BookshopPanelImpl;
 import view.LoginPanel;
@@ -11,7 +11,7 @@ import view.observer.LoginObserver;
 
 public class LoginPanelControllerImpl implements LoginPanelController,LoginObserver{
 	
-	private Employee em;
+	private IOModel model;
 	private MainView mainView; 
 	private LoginPanel view;
 	
@@ -24,12 +24,13 @@ public class LoginPanelControllerImpl implements LoginPanelController,LoginObser
 	 * @param model
 	 *            il model da utilizzare
 	 *            per salvare i dati
+	 * @return 
 	 */
-	/*public LoginPanelController (MainViewInterface mainView, nomeImodel model) {
+	public LoginPanelControllerImpl (MainView mainView, IOModel<Employee, Employee> model) {
 		this.mainView = mainView;
 		this.model = model;
-	}*/
-	
+	}
+
 
 	@Override
 	public void setView(LoginPanel lp) {
@@ -40,11 +41,11 @@ public class LoginPanelControllerImpl implements LoginPanelController,LoginObser
 	
 	@Override
 	public void loginEmployee(String username, String password) {
-		if(em.getUsername().equals(username) && em.getPassword().equals(password)){
+		/*if(model(username) && em.getPassword().equals(password)){
 			System.out.println("loggato");
 		} else {
 			System.out.println("credenziali errate");
-		}
+		}*/
 	}
 	
 	/*public void doLoginUtente(String username, String password) {
