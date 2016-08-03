@@ -17,7 +17,7 @@ import java.util.Map;
 public class IOModel<T,X> implements Model {
 
   
-   
+ /**metodo che prende come input la path e crea una mappa di classi */  
 public Map<Integer,T> readFile(String path) throws IOException, ClassNotFoundException{
        T t = null;
        try
