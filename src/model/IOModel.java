@@ -10,8 +10,10 @@ import java.util.Iterator;
 import java.util.Map;
 public class IOModel<T,X> implements Model<T, X> {
 
+    private Employee user;
   
  /**metodo che prende come input la path e crea una mappa di classi */  
+
 public Map<Integer,T> readFile(String path) throws IOException, ClassNotFoundException{
        T t = null;
        try
@@ -66,5 +68,11 @@ public Object search(Map genericMap, Object field) {
     }
  return obj;
 }
-  
+ 
+public Employee getUser(){
+    return user;
+}
+public void setUser(Employee newUser){
+    user = newUser;
+}
 }
