@@ -2,8 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+
 
 public class EmployeeImpl extends AbstractPerson implements Employee ,Serializable {
   
