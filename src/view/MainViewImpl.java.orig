@@ -96,11 +96,13 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
-		
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void windowClosed(WindowEvent arg0) {
+		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -110,17 +112,20 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {
-		
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent arg0) {
-		
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void windowIconified(WindowEvent arg0) {
-		
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -148,30 +153,24 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	@Override
 	public void showMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);
+
 	}
 
 	@Override
 	public void replaceMainPanel(JPanel panel) {
-		this.resetFrame();
-		Container c = this.getContentPane();
-		c.add(panel, BorderLayout.CENTER);
-		this.repaint();
-		panel.updateUI();
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
-	public NorthPanel getNorthPanel() {		
-		return this.northPanel;
+	public NorthPanel getNorthPanel() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public void attachObserver(ViewObserver observer) {
 		this.observer = observer;
 
-	}
-	private void resetFrame() {
-		Container c = this.getContentPane();
-		c.removeAll();
-		c.add(northPanel, BorderLayout.NORTH);
 	}
 }

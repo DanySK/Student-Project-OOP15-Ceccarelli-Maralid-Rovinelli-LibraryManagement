@@ -19,7 +19,7 @@ public interface NorthPanel {
 	 * 
 	 * @param observer
 	 * */
-	void setObserver(NorthPanelObserver observer);
+	void attachObserver(NorthPanelObserver observer);
 	/**
 	 * Pulisce tutte le stringhe presenti nel panel
 	 * */

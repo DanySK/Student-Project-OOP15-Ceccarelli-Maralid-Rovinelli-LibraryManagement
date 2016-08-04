@@ -68,7 +68,8 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 	}
 
 	@Override
-	public void setObserver(NorthPanelObserver observer) {
+	public void attachObserver(NorthPanelObserver observer) {
+		this.observer = observer;
 	}
 
 	@Override
