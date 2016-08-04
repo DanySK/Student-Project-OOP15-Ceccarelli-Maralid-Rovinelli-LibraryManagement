@@ -1,6 +1,7 @@
 package view.observer;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public interface AddEmployeeObserver {
 	/**
@@ -18,8 +19,8 @@ public interface AddEmployeeObserver {
 	  * @param hireDate
 	  **/
 	void saveEmployee(String name, String surname, String address,
-			String username, String password, String email, 
-			int telephoneNumber, String taxCode, SimpleDateFormat birthDate,
+			String username, char [] password, String email, 
+			int telephoneNumber, String taxCode, Date birthDate,
 			SimpleDateFormat hireDate);
 	
 	/**
@@ -28,4 +29,6 @@ public interface AddEmployeeObserver {
 	 * @param message
 	 **/
 	void DisplayMessage(String message);
+
+	
 }
