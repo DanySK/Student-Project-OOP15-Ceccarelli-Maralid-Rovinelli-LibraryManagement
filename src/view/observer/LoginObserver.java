@@ -11,5 +11,5 @@ public interface LoginObserver {
 	/**
 	 *metodo utilizzato per caricare la view per la registrazione di un nuovo dipendete 
 	 * */
-	void regiterEmployee ();
+	void registerEmployee ();
 }

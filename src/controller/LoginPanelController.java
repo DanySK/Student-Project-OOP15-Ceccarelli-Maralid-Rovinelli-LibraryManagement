@@ -1,5 +1,9 @@
 package controller;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import model.Employee;
 import model.IOModel;
 import model.Model;
@@ -27,9 +31,17 @@ public class LoginPanelController implements LoginObserver{
 	}
 	
 	@Override
-	public void loginEmployee(String username, String password) {
+	public void loginEmployee(String username, String password){
+		System.out.println("prima");
+		/*try {
+			Employee em = (Employee) model.search( model.readFile("prova.txt"), "Prova");
+			System.out.println(em.getUsername());
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		/*if(model(username) && em.getPassword().equals(password)){
-			System.out.println("loggato");
+			System.out.printn("loggato");
 		} else {
 			System.out.println("credenziali errate");
 		}*/
@@ -63,7 +75,7 @@ public class LoginPanelController implements LoginObserver{
 	}*/
 
 	@Override
-	public void regiterEmployee() {
+	public void registerEmployee() {
 		// TODO Auto-generated method stub
 		
 	}

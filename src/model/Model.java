@@ -25,7 +25,7 @@ public interface Model<T,X> {
      * @param field
      * @return
      */
-    public Object search(Map<Integer,T> genericMap,X field);
+    public Object search(Map<Integer,T> genericMap,String field);
     /** metodo per gestire lo user corrente*/
     public void setUser(Employee newUser);//da rivedere dove mettere
     /**metodo per visualizzare l'utente corrente*/

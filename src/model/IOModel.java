@@ -56,7 +56,7 @@ public void writeFile(String path, Object o) {
 }
 
 @Override
-public Object search(Map genericMap, Object field) {
+public Object search(Map<Integer, T> genericMap, String field) {
     Iterator<Integer> it = genericMap.keySet().iterator();
     Object obj = null;
    int counter = 0;

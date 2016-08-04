@@ -33,12 +33,12 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		northpanel.attachObserver(this);
 	}
 	
-	public void createLoginPanel() {
+	/*public void createLoginPanel() {
 		LoginPanelImpl lp = new LoginPanelImpl();
 		LoginPanelController lpc = new LoginPanelController(this.mainView, model);
 		lpc.setView(lp);
 		this.mainView.replaceMainPanel(lp);
-	}
+	}*/
 	
 	@Override
 	public void changeLogStatus() {
