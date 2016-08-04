@@ -1,15 +1,16 @@
 package model;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public interface Employee {
     
  
     /** metodo per leggere la data di nascita*/
-    public SimpleDateFormat getDateOfBirth();
+    public Date getDateOfBirth();
     
     /**metodo per leggere la data di assunzione*/
-    public SimpleDateFormat getHireDate();
+    public Date getHireDate();
     
     /**metodo per leggere la via*/
     public String getAddress();
@@ -21,10 +22,10 @@ public interface Employee {
     public String getPassword();
     
    /**metodo per settare la data di nascita */
-    public void setDateOfBirth(SimpleDateFormat date);
+    public void setDateOfBirth(Date date);
     
     /**metodo per settare la data di assunzione*/
-    public void setHireDate(SimpleDateFormat hireDate);
+    public void setHireDate(Date hireDate);
    
     /**metodo per settare il suo indirizzo*/
     public void setAddress(String address);

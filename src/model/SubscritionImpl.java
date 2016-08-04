@@ -1,11 +1,55 @@
 package model;
 
-public class SubscritionImpl {
+import java.io.Serializable;
+import java.util.ArrayList;
 
-    private int id;
+public class SubscritionImpl implements Subscription {
+
+    private static final long serialVersionUID = 1L; 
     private String name;
     private String surname;
-    private String tipe;
-    private String books;
-    
+    private String type;
+    private int books;
+   
+    @Override
+    public Long getId() {
+        return this.serialVersionUID ;
+    }
+    @Override
+    public String getName() {
+       return this.name;
+    }
+    @Override
+    public String getSurname() {
+        return this.surname;
+    }
+    @Override
+    public String getType() {
+        return this.type;
+    }
+    @Override
+    public int getBook() {
+        return this.books;
+    }
+
+   
+    @Override
+    public void setName(String name) {
+        this.name = name;
+        
+    }
+    @Override
+    public void setSurname(String surname) {
+        this.surname = surname;
+        
+    }
+    @Override
+    public void setType(String type) {
+        this.type = type;
+        
+    }
+    @Override
+    public void setBook(int book) {
+       this.books = book;
+       }
 }
