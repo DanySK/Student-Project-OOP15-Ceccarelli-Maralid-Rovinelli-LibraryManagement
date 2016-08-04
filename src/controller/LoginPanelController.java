@@ -1,10 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import model.Employee;
+import model.EmployeeImpl;
 import model.IOModel;
 import model.Model;
 import view.BookshopPanel;
@@ -30,22 +32,52 @@ public class LoginPanelController implements LoginObserver{
 		
 	}
 	
-	@Override
+	/*@Override
 	public void loginEmployee(String username, String password){
-		System.out.println("prima");
+		System.out.println("prova");
 		/*try {
 			Employee em = (Employee) model.search( model.readFile("prova.txt"), "Prova");
 			System.out.println(em.getUsername());
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
-		/*if(model(username) && em.getPassword().equals(password)){
+		}
+		if(model(username) && em.getPassword().equals(password)){
 			System.out.printn("loggato");
 		} else {
 			System.out.println("credenziali errate");
-		}*/
+		}
+	}*/
+	
+	@Override
+	public void loginEmployee(String username, char[] password) {
+		// TODO Auto-generated method stub
+		System.out.println("Ciao");
+			Date prova = new Date(1993,12,13);
+			EmployeeImpl em = new EmployeeImpl("12","Erik","Maraldi","prova@email", prova, prova, "sadasdasd", "asdasd", "asdasd");
+			model.writeFile("prova.txt", em);
+			try {
+				Map <Integer, Employee> employee = new HashMap<>();
+				employee = model.readFile("prova.txt");
+				
+				System.out.println(employee.get(3));
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+		
 	}
+
+	@Override
+	public void regiterEmployee() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	/*public void doLoginUtente(String username, String password) {
 		try {
@@ -74,11 +106,7 @@ public class LoginPanelController implements LoginObserver{
 
 	}*/
 
-	@Override
-	public void registerEmployee() {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	/*public void registerUser() {
 		InsertDipendenteController idc = new InsertDipendenteController(model);

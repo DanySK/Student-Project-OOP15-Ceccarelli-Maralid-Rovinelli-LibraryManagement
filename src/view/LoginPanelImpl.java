@@ -29,6 +29,7 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		setBackground(Color.WHITE);
 		this.setLayout(null);
 		
+		
 		lblPassword = new JLabel("Password:");
 		lblPassword.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPassword.setFont(new Font("Calibri", Font.ITALIC, 14));
@@ -101,7 +102,7 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 
 	@Override
 	public void attachObserver(LoginObserver observer) {
-		this.observer=observer;
+		this.observer = observer;
 		
 	}
 }
