@@ -54,7 +54,10 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	
 	@Override
 	public void buttonLoginClicked() {
-		createLoginPanel();
+		LoginPanelImpl lp = new LoginPanelImpl();
+		LoginPanelController lpc = new LoginPanelController(this.mainView, model);
+		lpc.setView(lp);
+		this.mainView.replaceMainPanel(lp);
 	}
 
 	@Override

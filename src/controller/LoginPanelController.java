@@ -12,20 +12,9 @@ import view.observer.LoginObserver;
 public class LoginPanelController implements LoginObserver{
 	
 	private IOModel model;
-	private MainView mainView; 
+	public MainView mainView; 
 	private LoginPanel view;
-	
-	/**
-	 * Crea un nuovo LoginPanelConrtoller
-	 * 
-	 * @param mainView
-	 *            la view da usare per cambiare il
-	 *            display del pannello corrente
-	 * @param model
-	 *            il model da utilizzare
-	 *            per salvare i dati
-	 * @return 
-	 */
+
 	public LoginPanelController (MainView mainView, IOModel<Employee, Employee> model) {
 		this.mainView = mainView;
 		this.model = model;
