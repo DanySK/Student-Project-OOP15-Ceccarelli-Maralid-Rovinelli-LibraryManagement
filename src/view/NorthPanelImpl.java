@@ -87,7 +87,7 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 
 		Object buttonSelected = e.getSource();
 		if (buttonSelected == btnLog) {
-			this.observer.buttonLoginClicked();
+			this.observer.changeLogStatus();
 		} else if (buttonSelected == btnHome) {
 			this.observer.buttonHomeClicked();
 		}

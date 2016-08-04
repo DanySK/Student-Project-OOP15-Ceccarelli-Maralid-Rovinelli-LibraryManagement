@@ -86,7 +86,7 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		Object isPressed = e.getSource();
 
 		if (isPressed == btnLogin) {
-			this.observer.loginEmployee(txtUsername.getText(), new String(txtPassword.getPassword()));
+			this.observer.loginEmployee(txtUsername.getText(), txtPassword.getPassword());
 		} else if (isPressed == btnClear) {
 			this.clearLogin();
 		}		
