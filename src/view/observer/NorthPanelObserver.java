@@ -9,6 +9,10 @@ public interface NorthPanelObserver {
 	/**
 	 *ritorna nella home (il pannello di login) 
 	 * */
-	void buttomHomeClicked();
+	void buttonHomeClicked();
+	/**
+	 * effettua la login 
+	 * */
+	void buttonLoginClicked();
 
 }
