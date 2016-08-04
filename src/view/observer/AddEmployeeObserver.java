@@ -21,7 +21,7 @@ public interface AddEmployeeObserver {
 	void saveEmployee(String name, String surname, String address,
 			String username, char [] password, String email, 
 			int telephoneNumber, String taxCode, Date birthDate,
-			SimpleDateFormat hireDate);
+			Date hireDate);
 	
 	/**
 	 * metodo per creare un messaggio per il risultato del salvataggio di un dipendente nuovo

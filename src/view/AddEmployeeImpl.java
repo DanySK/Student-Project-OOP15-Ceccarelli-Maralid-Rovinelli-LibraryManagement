@@ -5,11 +5,14 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.AbstractMap.SimpleImmutableEntry;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JPanel;
 import view.observer.AddEmployeeObserver;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
@@ -170,77 +173,107 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 
 		lblBirthDay = new JLabel("Anno di nascita:");
 		lblBirthDay.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblBirthDay.setBounds(358, 151, 143, 14);
+		lblBirthDay.setBounds(358, 162, 143, 14);
 		add(lblBirthDay);
 
 		cmbDay = new JComboBox();
 		cmbDay.setToolTipText("");
-		cmbDay.setBounds(358, 171, 50, 20);
+		cmbDay.setBounds(520, 190, 50, 20);
+
 		add(cmbDay);
 
 		cmbMonth = new JComboBox();
-		cmbMonth.setBounds(418, 171, 50, 20);
-		
+		cmbMonth.setBounds(463, 190, 50, 20);
+
 		add(cmbMonth);
 
 		cmbYear = new JComboBox();
-		cmbYear.setBounds(475, 171, 95, 20);
+		cmbYear.setBounds(358, 190, 95, 20);
+		SimpleDateFormat actualYear = new SimpleDateFormat("yyyy");
 		add(cmbYear);
 
 		btnAddEmployee = new JButton("Aggiungi dipendente");
 		btnAddEmployee.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
-		btnAddEmployee.setBounds(358, 264, 170, 40);
+		btnAddEmployee.setBounds(359, 300, 170, 40);
+		btnAddEmployee.addActionListener(this);
 		add(btnAddEmployee);
 
 		btnClear = new JButton("Pulisci");
 		btnClear.setFont(new Font("Calibri", Font.ITALIC, 14));
 		btnClear.setBounds(475, 451, 115, 38);
+		btnClear.addActionListener(this);
 		add(btnClear);
-		
+
 		lblMessage = new JLabel("");
 		lblMessage.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMessage.setVerticalAlignment(SwingConstants.TOP);
 		lblMessage.setForeground(Color.RED);
 		lblMessage.setBackground(Color.BLACK);
 		lblMessage.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblMessage.setBounds(181, 348, 271, 141);
+		lblMessage.setBounds(181, 348, 285, 141);
 		add(lblMessage);
-		
+
 		lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblEmail.setBounds(358, 199, 212, 14);
+		lblEmail.setBounds(358, 237, 212, 14);
 		add(lblEmail);
-		
+
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("Calibri", Font.ITALIC, 10));
-		txtEmail.setBounds(358, 217, 212, 20);
+		txtEmail.setBounds(358, 255, 212, 20);
 		add(txtEmail);
 		txtEmail.setColumns(10);
+
+		JLabel lblYear = new JLabel("AAAA");
+		lblYear.setBounds(358, 178, 46, 14);
+		add(lblYear);
+
+		JLabel lblMonth = new JLabel("MM");
+		lblMonth.setBounds(464, 178, 46, 14);
+		add(lblMonth);
+
+		JLabel lblDay = new JLabel("GG");
+		lblDay.setFont(new Font("Calibri", Font.ITALIC, 12));
+		lblDay.setBounds(520, 178, 46, 14);
+		add(lblDay);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object btnIsPressed = e.getSource();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String address;
 		int telephoneNumber;
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		SimpleDateFormat hireDate = new SimpleDateFormat();
-				
+		
+		Date hireDate = null;
+		Date currentDate = Calendar.getInstance().getTime();		
+		try {
+			hireDate =(Date)dateFormat.parse((dateFormat.format(currentDate)));
+		} catch (ParseException e2) {
+			e2.printStackTrace();
+		}
+		
+		
+		//Date hireDate=(Date)DateFormat.parse(currentDate);
+		
 		Date birthDate;
 		if (btnIsPressed == btnAddEmployee) {
 			try {
 				this.observer.saveEmployee(txtName.getText(), txtSurname.getText(),
-						(address=txtCity.getText()+" "+ txtStreet.getText()+" "+txtHouseNumber.getText()),
-						txtUsername.getText(),txtPassword.getPassword(),txtEmail.getText(),
-						telephoneNumber=Integer.parseInt(txtTelephone.getText()),txtTaxCode.getText(),
-						birthDate=(Date)dateFormat.parse(cmbYear.getSelectedItem()+"/"+cmbMonth.getSelectedItem()+"/"+cmbDay.getSelectedItem()),hireDate);
-						
-						
+						(address = txtCity.getText() + " " + txtStreet.getText() + " "
+								+ txtHouseNumber.getText()),
+						txtUsername.getText(), txtPassword.getPassword(), txtEmail.getText(),
+						telephoneNumber = Integer.parseInt(txtTelephone.getText()),
+						txtTaxCode.getText(),
+						birthDate = (Date) dateFormat.parse(cmbYear.getSelectedItem() + "/"
+								+ cmbMonth.getSelectedItem() + "/"
+								+ cmbDay.getSelectedItem()), hireDate);
+
 			} catch (NumberFormatException | ParseException e1) {
 				this.displayMessage("Si prega di riempire in modo adeguato tutti i campi presenti ");
-				//implementare l'eccezione del parse
-						}
+				JOptionPane.showMessageDialog(btnAddEmployee, e1, "Error!", JOptionPane.ERROR_MESSAGE);
+			}
 		} else if (btnIsPressed == btnClear) {
 			this.cleanInterface();
 		}
