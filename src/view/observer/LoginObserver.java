@@ -9,7 +9,7 @@ public interface LoginObserver {
 	 * */
 	void loginEmployee (String username, char [] password );
 	/**
-	 *metodo utilizzato per caricare la view per la registrazione di un nuovo dipendete 
+	 * metodo utilizzato per caricare la view per la registrazione di un nuovo dipendete 
 	 * */
 	void regiterEmployee ();
 }

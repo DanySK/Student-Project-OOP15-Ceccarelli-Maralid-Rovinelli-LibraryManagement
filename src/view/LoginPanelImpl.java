@@ -24,10 +24,8 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 	private JButton btnRecorded;
 	private JLabel lblRecorded;
 
-	/**
-	 * Create the panel.
-	 */
 	public LoginPanelImpl() {
+		super();
 		setBackground(Color.WHITE);
 		this.setLayout(null);
 		
@@ -60,11 +58,13 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		btnLogin = new JButton("Accedi");
 		btnLogin.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 16));
 		btnLogin.setBounds(236, 36, 120, 40);
+		btnLogin.addActionListener(this);
 		add(btnLogin);
 		
 		btnClear = new JButton("Pulisci tutto");
 		btnClear.setFont(new Font("Calibri", Font.ITALIC, 13));
 		btnClear.setBounds(485, 424, 105, 30);
+		btnClear.addActionListener(this);
 		add(btnClear);
 		
 		btnRecorded = new JButton("Registrati");
