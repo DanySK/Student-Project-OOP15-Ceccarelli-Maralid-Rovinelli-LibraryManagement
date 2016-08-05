@@ -179,17 +179,37 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 		cmbDay = new JComboBox();
 		cmbDay.setToolTipText("");
 		cmbDay.setBounds(520, 190, 50, 20);
+		if (cmbMonth.getSelectedItem() == "2" && (Integer) cmbYear.getSelectedItem() % 4 == 0) {
+			for (int i = 1; i <= 29; i++) {
+				cmbDay.addItem(i);
+			}
+		} else if (cmbMonth.getSelectedItem() == "2" && (Integer) cmbYear.getSelectedItem() % 4 != 0) {
+			for (int i = 1; i <= 28; i++) {
+				cmbDay.addItem(i);
+			}
+		} else if (cmbMonth.getSelectedItem() == "4" || cmbMonth.getSelectedItem() == "6"
+				|| cmbMonth.getSelectedItem() == "9" || cmbMonth.getSelectedItem() == "11") {
 
-		add(cmbDay);
-
+			for (int i = 1; i <= 30; i++) {
+				cmbDay.addItem(i);
+			}
+		} else
+			for (int i = 1; i <= 31; i++) {
+				cmbDay.addItem(i);
+			}
 		cmbMonth = new JComboBox();
 		cmbMonth.setBounds(463, 190, 50, 20);
-
+		for (int i = 1; i <= 12; i++) {
+			cmbMonth.addItem(i);
+		}
 		add(cmbMonth);
 
 		cmbYear = new JComboBox();
 		cmbYear.setBounds(358, 190, 95, 20);
-		SimpleDateFormat actualYear = new SimpleDateFormat("yyyy");
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		for (int i = year; i >= year - 100; i--) {
+			cmbYear.addItem(i);
+		}
 		add(cmbYear);
 
 		btnAddEmployee = new JButton("Aggiungi dipendente");
@@ -245,18 +265,17 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String address;
 		int telephoneNumber;
-		
+
 		Date hireDate = null;
-		Date currentDate = Calendar.getInstance().getTime();		
+		Date currentDate = Calendar.getInstance().getTime();
 		try {
-			hireDate =(Date)dateFormat.parse((dateFormat.format(currentDate)));
+			hireDate = (Date) dateFormat.parse((dateFormat.format(currentDate)));
 		} catch (ParseException e2) {
 			e2.printStackTrace();
 		}
-		
-		
-		//Date hireDate=(Date)DateFormat.parse(currentDate);
-		
+
+		// Date hireDate=(Date)DateFormat.parse(currentDate);
+
 		Date birthDate;
 		if (btnIsPressed == btnAddEmployee) {
 			try {
@@ -268,7 +287,8 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 						txtTaxCode.getText(),
 						birthDate = (Date) dateFormat.parse(cmbYear.getSelectedItem() + "/"
 								+ cmbMonth.getSelectedItem() + "/"
-								+ cmbDay.getSelectedItem()), hireDate);
+								+ cmbDay.getSelectedItem()),
+						hireDate);
 
 			} catch (NumberFormatException | ParseException e1) {
 				this.displayMessage("Si prega di riempire in modo adeguato tutti i campi presenti ");
