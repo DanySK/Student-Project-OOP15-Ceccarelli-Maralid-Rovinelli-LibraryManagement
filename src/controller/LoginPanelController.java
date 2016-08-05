@@ -19,13 +19,13 @@ import view.observer.LoginObserver;
 
 public class LoginPanelController implements LoginObserver,Serializable{
 	
-	private IOModel model;
+	private IOModel<Employee, Employee> modelemployee;
 	public MainView mainView; 
 	private LoginPanel view;
 
 	public LoginPanelController (MainView mainView, IOModel<Employee, Employee> model) {
 		this.mainView = mainView;
-		this.model = model;
+		this.modelemployee = model;
 	}
 
 	public void setView(LoginPanel lp) {
@@ -59,7 +59,7 @@ public class LoginPanelController implements LoginObserver,Serializable{
 			Employee em = new EmployeeImpl("12","Erik","Maraldi","prova@email", prova, prova, "sadasdasd", "asdasd", "asdasd");
 			Map<Integer,Employee> m = new HashMap<Integer,Employee>();
 			m.put(0,em);
-			model.writeFile("prova.ser", m);
+			modelemployee.writeFile("prova.dat", m);
 			try {
 			/*	Iterator iterator =  model.readFile("prova.ser").entrySet().iterator();
 			    
@@ -69,7 +69,7 @@ public class LoginPanelController implements LoginObserver,Serializable{
 			    }*/
 			   
 			    Map <Integer, Employee> employee = new HashMap<>();
-				employee = model.readFile("prova.ser");
+				employee = modelemployee.readFile("prova.dat");
 				
 				System.out.println(employee.get(0).getUsername().toString());
 			} catch (ClassNotFoundException e) {

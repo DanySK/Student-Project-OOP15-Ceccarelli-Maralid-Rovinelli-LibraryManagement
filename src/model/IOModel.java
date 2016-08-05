@@ -29,19 +29,15 @@ public class IOModel<T,X> implements Model<T, X> ,Serializable {
 @SuppressWarnings("unchecked")
 public Map<Integer, T> readFile(String path) throws IOException, ClassNotFoundException{
 	 
-	   Map <Integer, T> map = new HashMap<Integer, T>();
+	  Map <Integer, T> map = new HashMap<Integer, T>();
        try
        {
           FileInputStream fis = new FileInputStream(path);
           BufferedInputStream bstream = new BufferedInputStream(fis);
           ObjectInputStream ois = new ObjectInputStream(bstream);
-          /*try (
-7 OutputStream file = new FileOutputStream ( UseFile . FILE_NAME );
-8 OutputStream bstream = new BufferedOutputStream ( file );
-9 ObjectOutputStream ostream = new ObjectOutputStream ( bstream );*/
-         
+     
           map = (Map<Integer, T>) ois.readObject();  
-          
+         
           ois.close();
           fis.close();
        }catch(IOException i)
@@ -64,7 +60,7 @@ public void writeFile(String path,Map<Integer,T> o) {
     {
        FileOutputStream fileOut = new FileOutputStream(path, true);
        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-       out.writeObject(o+" \n");
+       out.writeObject(o);
        out.close();
        fileOut.close();
        System.out.printf("Serialized data is saved in "+path);
