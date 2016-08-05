@@ -23,12 +23,4 @@ public interface AddEmployeeObserver {
 			int telephoneNumber, String taxCode, Date birthDate,
 			Date hireDate);
 	
-	/**
-	 * metodo per creare un messaggio per il risultato del salvataggio di un dipendente nuovo
-	 * 
-	 * @param message
-	 **/
-	void DisplayMessage(String message);
-
-	
 }

@@ -2,15 +2,12 @@ package controller;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 import model.Employee;
-import model.EmployeeImpl;
 import model.IOModel;
-import model.Model;
 import view.BookshopPanel;
 import view.BookshopPanelImpl;
 import view.LoginPanel;
@@ -19,13 +16,16 @@ import view.observer.LoginObserver;
 
 public class LoginPanelController implements LoginObserver,Serializable{
 	
-	private IOModel<Employee, Employee> modelemployee;
+	private IOModel<Employee, Employee> employeeModel;
 	public MainView mainView; 
 	private LoginPanel view;
+	private Map<Integer,Employee> employeeMap;
+	
 
-	public LoginPanelController (MainView mainView, IOModel<Employee, Employee> model) {
+	public LoginPanelController (MainView mainView, IOModel<Employee, Employee> employeeModel) {
 		this.mainView = mainView;
-		this.modelemployee = model;
+		this.employeeModel = employeeModel;
+		employeeMap = new HashMap<Integer,Employee>();
 	}
 
 	public void setView(LoginPanel lp) {
@@ -50,44 +50,6 @@ public class LoginPanelController implements LoginObserver,Serializable{
 			System.out.println("credenziali errate");
 		}
 	}*/
-	
-	@Override
-	public void loginEmployee(String username, char[] password) {
-		// TODO Auto-generated method stub
-		System.out.println("Ciao");
-			Date prova = new Date(1993,12,13);
-			Employee em = new EmployeeImpl("12","Erik","Maraldi","prova@email", prova, prova, "sadasdasd", "asdasd", "asdasd");
-			Map<Integer,Employee> m = new HashMap<Integer,Employee>();
-			m.put(0,em);
-			modelemployee.writeFile("prova.dat", m);
-			try {
-			/*	Iterator iterator =  model.readFile("prova.ser").entrySet().iterator();
-			    
-				while(iterator.hasNext()){
-				    Map.Entry<Integer,Employee> mentry =(Map.Entry<Integer,Employee>) iterator.next();
-				    System.out.println("key: "+mentry.getKey()+" value: "+mentry.getValue().getUsername());  
-			    }*/
-			   
-			    Map <Integer, Employee> employee = new HashMap<>();
-				employee = modelemployee.readFile("prova.dat");
-				
-				System.out.println(employee.get(0).getUsername().toString());
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	
-		
-	}
-
-	@Override
-	public void regiterEmployee() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	
 	/*public void doLoginUtente(String username, String password) {
@@ -116,6 +78,91 @@ public class LoginPanelController implements LoginObserver,Serializable{
 		}
 
 	}*/
+	@Override
+	public void loginEmployee(String username, char[] password) {
+	    Iterator iterator;
+		try {
+			iterator = employeeModel.readFile("prova.dat").entrySet().iterator();
+			Map.Entry<Integer,Employee> entryMap = null;
+			while(iterator.hasNext()){
+				entryMap =(Map.Entry<Integer,Employee>) iterator.next();
+			    //System.out.println("key: "+mentry.getKey()+" value: "+mentry.getValue().getUsername() + " pass:"+mentry.getValue().getPassword());  
+		    }
+			if(entryMap.getValue().getUsername().equals(username) && entryMap.getValue().getPassword().equals(String.valueOf(password)))
+		    {
+		    	System.out.println("Riuscito");
+		    	BookshopPanel bsp = new BookshopPanelImpl();
+		    	//Va implementato il controller della prima schermata da aprire (ancora da fare)
+		    } else {
+		    	System.out.println("Non riuscito");
+		    }
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+		
+		/*Map<Integer,Employee> employeeMap = new HashMap<>();
+		
+		
+		Date prova = new Date(1993,12,13);
+		Employee em = new EmployeeImpl("12","Erik","Maraldi","prova@email", prova, prova, "sadasdasd", "asdasd", "asdasd");
+		Map<Integer,Employee> m = new HashMap<Integer,Employee>();
+		m.put(0,em);
+		m.put(1,em);
+		employeeModel.writeFile("prova.dat", employeeMap);
+		try {
+			
+			employeeModel.search(employeeMap, field)
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(employeeMap);
+		*/
+		// TODO Auto-generated method stub
+		/*System.out.println("Ciao");
+			Date prova = new Date(1993,12,13);
+			Employee em = new EmployeeImpl("12","Erik","Maraldi","prova@email", prova, prova, "sadasdasd", "asdasd", "aaa");
+			m.put(0,em);
+			m.put(1, em);
+			employeeModel.writeFile("prova.dat", m);
+			try {
+				Iterator iterator =  model.readFile("prova.ser").entrySet().iterator();
+			    
+				while(iterator.hasNext()){
+				    Map.Entry<Integer,Employee> mentry =(Map.Entry<Integer,Employee>) iterator.next();
+				    System.out.println("key: "+mentry.getKey()+" value: "+mentry.getValue().getUsername());  
+			    }
+			   
+			    Map <Integer, Employee> employee = new HashMap<>();
+				try {
+					employee = employeeModel.readFile("prova.dat");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				System.out.println(employee.get(0).getUsername().toString());
+				System.out.println(employee.get(1).getAddress().toString());
+	*/
+		
+	}
+
+	@Override
+	public void regiterEmployee() {
+		InsertEmployeeController employeeController = new InsertEmployeeController(employeeModel);
+	}
 
 
 	
