@@ -1,15 +1,17 @@
 package model;
 
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-public class IOModel<T,X> implements Model<T, X> {
+public class IOModel<T,X> implements Model<T, X> ,Serializable {
 
     private Employee user;
   
@@ -26,18 +28,22 @@ public class IOModel<T,X> implements Model<T, X> {
      * */
 @SuppressWarnings("unchecked")
 public Map<Integer, T> readFile(String path) throws IOException, ClassNotFoundException{
-	   T t = null;
-	   int count = 0;
-	   Map <Integer, T> map = new HashMap<>();
+	 
+	   Map <Integer, T> map = new HashMap<Integer, T>();
        try
        {
-          FileInputStream fileIn = new FileInputStream(path);
-          ObjectInputStream in = new ObjectInputStream(fileIn);
-          t =  (T) in.readObject();
-          map.put(count, t);
-          count++;
-          in.close();
-          fileIn.close();
+          FileInputStream fis = new FileInputStream(path);
+          BufferedInputStream bstream = new BufferedInputStream(fis);
+          ObjectInputStream ois = new ObjectInputStream(bstream);
+          /*try (
+7 OutputStream file = new FileOutputStream ( UseFile . FILE_NAME );
+8 OutputStream bstream = new BufferedOutputStream ( file );
+9 ObjectOutputStream ostream = new ObjectOutputStream ( bstream );*/
+         
+          map = (Map<Integer, T>) ois.readObject();  
+          
+          ois.close();
+          fis.close();
        }catch(IOException i)
        {
           i.printStackTrace();
@@ -53,7 +59,7 @@ public Map<Integer, T> readFile(String path) throws IOException, ClassNotFoundEx
    }
 
 @Override
-public void writeFile(String path, T o) {
+public void writeFile(String path,Map<Integer,T> o) {
     try
     {
        FileOutputStream fileOut = new FileOutputStream(path, true);
@@ -72,7 +78,7 @@ public void writeFile(String path, T o) {
 @Override
 public Object search(Map<Integer, T> genericMap, String field) {
     Iterator<Integer> it = genericMap.keySet().iterator();
-    Object obj = null;
+    T obj = null;
    int counter = 0;
     while(it.hasNext()){
        if(genericMap.get(counter).equals(field)){

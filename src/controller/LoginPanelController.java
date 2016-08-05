@@ -1,8 +1,10 @@
 package controller;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import model.Employee;
@@ -15,7 +17,7 @@ import view.LoginPanel;
 import view.MainView;
 import view.observer.LoginObserver;
 
-public class LoginPanelController implements LoginObserver{
+public class LoginPanelController implements LoginObserver,Serializable{
 	
 	private IOModel model;
 	public MainView mainView; 
@@ -54,13 +56,22 @@ public class LoginPanelController implements LoginObserver{
 		// TODO Auto-generated method stub
 		System.out.println("Ciao");
 			Date prova = new Date(1993,12,13);
-			EmployeeImpl em = new EmployeeImpl("12","Erik","Maraldi","prova@email", prova, prova, "sadasdasd", "asdasd", "asdasd");
-			model.writeFile("prova.txt", em);
+			Employee em = new EmployeeImpl("12","Erik","Maraldi","prova@email", prova, prova, "sadasdasd", "asdasd", "asdasd");
+			Map<Integer,Employee> m = new HashMap<Integer,Employee>();
+			m.put(0,em);
+			model.writeFile("prova.ser", m);
 			try {
-				Map <Integer, Employee> employee = new HashMap<>();
-				employee = model.readFile("prova.txt");
+			/*	Iterator iterator =  model.readFile("prova.ser").entrySet().iterator();
+			    
+				while(iterator.hasNext()){
+				    Map.Entry<Integer,Employee> mentry =(Map.Entry<Integer,Employee>) iterator.next();
+				    System.out.println("key: "+mentry.getKey()+" value: "+mentry.getValue().getUsername());  
+			    }*/
+			   
+			    Map <Integer, Employee> employee = new HashMap<>();
+				employee = model.readFile("prova.ser");
 				
-				System.out.println(employee.get(3));
+				System.out.println(employee.get(0).getUsername().toString());
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

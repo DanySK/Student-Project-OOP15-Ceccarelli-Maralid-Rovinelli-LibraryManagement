@@ -18,7 +18,7 @@ public interface Model<T,X> {
      * @param path
      * @param o
      */
-    public void writeFile(String path,T o);
+    public void writeFile(String path,Map<Integer,T> o);
     /**metodo di ricerca di un dato tramite una mappa e il datoda ricercare
      * 
      * @param genericMap
