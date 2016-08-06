@@ -69,7 +69,7 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		add(btnClear);
 		
 		btnRecorded = new JButton("Registrati");
-		btnRecorded.setEnabled(false);
+		btnRecorded.setEnabled(true);
 		btnRecorded.setFont(new Font("Calibri", Font.ITALIC, 13));
 		btnRecorded.setBounds(10, 424, 89, 30);
 		add(btnRecorded);
@@ -87,9 +87,11 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		Object isPressed = e.getSource();
 
 		if (isPressed == btnLogin) {
-			this.observer.loginEmployee(txtUsername.getText().toString(), txtPassword.getPassword());
+			this.observer.loginEmployeeClicked(txtUsername.getText().toString(), txtPassword.getPassword());
 		} else if (isPressed == btnClear) {
 			this.clearLogin();
+		}else if (isPressed == btnRecorded){
+			this.observer.registerEmployeeClicked();
 		}		
 	}
 
