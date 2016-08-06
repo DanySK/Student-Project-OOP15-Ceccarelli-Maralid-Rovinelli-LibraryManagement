@@ -6,8 +6,7 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import greenKiosk.exceptions.AlreadyInsertException;
-import greenKiosk.model.StaticModel;
+
 import view.observer.BookshopObserver;
 
 import javax.swing.JList;

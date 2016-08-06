@@ -12,4 +12,5 @@ public interface LoginObserver {
 	 * metodo utilizzato per caricare la view per la registrazione di un nuovo dipendete 
 	 * */
 	void registerEmployeeClicked ();
+    void loginEmployee(String username, char[] password);
 }
