@@ -6,8 +6,6 @@ import java.util.Date;
 
 public class EmployeeImpl extends AbstractPerson implements Employee ,Serializable {
   
-    
-
     private static final long serialVersionUID = 1L;
     private Date dateOfBirth ;
     private Date hireDate;

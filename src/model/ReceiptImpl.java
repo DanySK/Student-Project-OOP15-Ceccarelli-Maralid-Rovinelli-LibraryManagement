@@ -8,10 +8,10 @@ import java.util.Map;
 
 public class ReceiptImpl implements Receipt {
     //primo campo della mappa è il nome dell'articolo comprato il secondo la quantità il 3 il prezzo
-    Map<Integer,ArrayList<Object>> receipt = new HashMap<Integer,ArrayList<Object>>();
+    private Map<Integer,ArrayList<Object>> receipt = new HashMap<Integer,ArrayList<Object>>();
     private double total = 0;
-    Date date ;
-    String address;
+    private Date date ;
+    private String address;
     
     
     

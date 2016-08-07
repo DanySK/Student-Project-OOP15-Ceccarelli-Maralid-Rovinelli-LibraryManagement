@@ -69,7 +69,6 @@ public void writeFile(String path,Map<Integer,T> o) {
 public Object search(Map<Integer, T> genericMap, String field) {
     Iterator<Integer> it = genericMap.keySet().iterator();
     T obj = null;
-  
     while(it.hasNext()){
        if(genericMap.get(it.next()).equals(field)){
            obj = genericMap.get(it.next());
