@@ -4,9 +4,9 @@ import view.observer.BookshopObserver;
 
 public interface BookshopPanel {
 	/**
-	 * metodo per pulire tutte le liste
+	 * metodo per pulire l'elenco dei libri selezionati
 	 * */
-	void clearAll();
+	void clearSelectedBooks();
 	/**
 	 * Attacca alla view il BookshopObserver
 	 * 

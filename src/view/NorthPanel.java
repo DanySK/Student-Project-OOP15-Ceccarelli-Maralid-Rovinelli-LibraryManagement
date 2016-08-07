@@ -31,5 +31,5 @@ public interface NorthPanel {
 	 * @param nome
 	 * @param cognome
 	 * */
-	void diaplayLoggedEmployee(String nome, String cognome);
+	void displayLoggedEmployee(String nome, String cognome);
 }

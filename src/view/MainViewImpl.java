@@ -45,7 +45,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		 * problemi nella visualizzazione della GUI
 		 */
 		this.setResizable(false);
-		this.setSize(600, 600);
+		this.setSize(610, 620);
 
 		fileChoosen = new JFileChooser();
 

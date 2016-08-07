@@ -6,15 +6,17 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+<<<<<<< working copy
+import model.Book;
+=======
 
+>>>>>>> destination
 import view.observer.BookshopObserver;
-
-import javax.swing.JList;
 import javax.swing.JButton;
-
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
@@ -38,6 +40,8 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	private JLabel lblTitle;
 	private JButton btnAdd;
 	private JButton btnRemove;
+	private JTextField txtTotalPrice;
+	private JLabel lblTotalPrice;
 
 	public BookshopPanelImpl() {
 		setBackground(SystemColor.inactiveCaptionBorder);
@@ -49,7 +53,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 				new String[] { "Titolo", "Autore", "Anno P.", "N#" });
 
 		scpAllBooks = new JScrollPane();
-		scpAllBooks.setBounds(10, 87, 230, 402);
+		scpAllBooks.setBounds(10, 87, 230, 379);
 		add(scpAllBooks);
 
 		allBooks = new JTable();
@@ -83,7 +87,9 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		add(lblTitle);
 
 		txtAmount = new JTextField();
-		txtAmount.setFont(new Font("Calibri", Font.ITALIC, 12));
+		txtAmount.setHorizontalAlignment(SwingConstants.CENTER);
+		txtAmount.setText("1");
+		txtAmount.setFont(new Font("Calibri", Font.ITALIC, 16));
 		txtAmount.setEnabled(false);
 		txtAmount.setEditable(false);
 		txtAmount.setBounds(254, 141, 43, 42);
@@ -91,11 +97,13 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		txtAmount.setColumns(10);
 
 		btnAdd = new JButton("+");
+		btnAdd.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
 		btnAdd.setBounds(307, 117, 43, 43);
 		btnAdd.addActionListener(this);
 		add(btnAdd);
 
 		btnRemove = new JButton("-");
+		btnRemove.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
 		btnRemove.setBounds(307, 171, 43, 43);
 		btnRemove.addActionListener(this);
 		add(btnRemove);
@@ -120,15 +128,36 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 
 		btnAddToCart = new JButton("Aggiungi al carrello");
 		btnAddToCart.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 16));
-		btnAddToCart.setBounds(360, 424, 230, 49);
+		btnAddToCart.setBounds(360, 417, 230, 49);
 		btnAddToCart.addActionListener(this);
 		add(btnAddToCart);
+
+		lblTotalPrice = new JLabel("Spesa totale:");
+		lblTotalPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
+		lblTotalPrice.setBounds(250, 357, 100, 14);
+		add(lblTotalPrice);
+
+		txtTotalPrice = new JTextField();
+		txtTotalPrice.setEnabled(false);
+		txtTotalPrice.setFont(new Font("Calibri", Font.ITALIC, 12));
+		txtTotalPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTotalPrice.setBounds(254, 372, 96, 20);
+		add(txtTotalPrice);
+		txtTotalPrice.setColumns(10);
+		
+		for (String elem : Book.getTitle()) {
+			((DefaultTableModel) modelAllBooks)
+					.addRow(new String[] { elem });
+			allBooks.repaint();
+		}
 	}
 
-	
 	@Override
-	public void clearAll() {
-
+	public void clearSelectedBooks() {
+		for (int i = modelSelectedBooks.getRowCount() - 1; i >= 0; i--) {
+			modelSelectedBooks.removeRow(i);
+		}
 	}
 
 	@Override
@@ -140,9 +169,42 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
 		if (isPressed == btnAddBook) {
-			double prezzo = -1;
-			String cella;
+			double price = -1;
+			String cell;
+			if (allBooks.getSelectedRow() == -1) {
+				cell = "";
+			} else {
+				cell = allBooks.getValueAt(allBooks.getSelectedRow(), 0).toString();
+			}
+			price = this.observer.uploadBooks(cell, Integer.parseInt(txtAmount.getText()));
+			txtTotalPrice.setText(Double.parseDouble(txtTotalPrice.getText()) + price + "");
+			int ammount = Integer.parseInt(txtAmount.getText());
+			String title = cell;
+			modelSelectedBooks.addRow(arg0);
+			selectedBooks.repaint();
+		} else {
+			if (isPressed == btnAdd && this.observer.stocksOfTheShop(
+					allBooks.getValueAt(allBooks.getSelectedRow(), 0).toString()) > Integer
+							.parseInt(txtAmount.getText())) {
+				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"Attenzione quantità massima disponibile già raggiunta!");
+			}
 			
+			if (isPressed == btnRemove) {
+				if (Integer.parseInt(txtAmount.getText()) > 1) {
+					txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) - 1));
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Attenzione quantità minima gia' impostata!");
+				}
+			}
+		}
+		if(isPressed==btnAddToCart ){
+			this.observer.ShopCartClicked();
+		}else if (isPressed==btnRemoveBook){
+			modelSelectedBooks.removeRow(selectedBooks.getSelectedRow());
 		}
 	}
 }

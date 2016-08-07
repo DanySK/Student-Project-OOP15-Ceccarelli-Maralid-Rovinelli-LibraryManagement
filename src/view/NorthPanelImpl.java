@@ -78,7 +78,7 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 	}
 
 	@Override
-	public void diaplayLoggedEmployee(String nome, String cognome) {
+	public void displayLoggedEmployee(String nome, String cognome) {
 		this.logTxt.setText("Benvenuto!\r\n" + nome + " " + cognome);
 	}
 

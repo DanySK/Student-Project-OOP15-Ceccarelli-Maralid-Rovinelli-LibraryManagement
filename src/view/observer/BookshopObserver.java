@@ -5,15 +5,20 @@ public interface BookshopObserver {
 	/**
 	 * metodo per caricare i libri in una lista
 	 * 
-	 * @param titolo
-	 * @param autore
-	 * @param annoPublicazione
-	 * @param prezzo
-	 * @param prezzoTotale
+	 * @param title
+	 * @param ammount
+	 * @return 
 	 * */
-	void uploadBooks(String titolo, String autore, String annoPublicazione, double prezzo, double prezzoTotale );
+	double uploadBooks(String title, int ammount);
 	/**
 	 * permette di aprire la view del carrello con i libri scelti
 	 * */
 	void ShopCartClicked();
+	/**
+	 *metodo per ottenere la quantità di libri rimanenti in negozio
+	 *
+	 * @param title
+	 * return BokStock
+	 **/
+	int stocksOfTheShop(String title);
 }
