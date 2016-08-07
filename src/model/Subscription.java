@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public interface Subscription {
       public Long getId();
       public String getName();

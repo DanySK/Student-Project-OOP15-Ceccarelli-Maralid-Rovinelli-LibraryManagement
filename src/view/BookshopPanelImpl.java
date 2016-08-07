@@ -6,11 +6,11 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-<<<<<<< working copy
+//working copy
 import model.Book;
-=======
 
->>>>>>> destination
+
+// destination
 import view.observer.BookshopObserver;
 import javax.swing.JButton;
 import java.awt.Color;

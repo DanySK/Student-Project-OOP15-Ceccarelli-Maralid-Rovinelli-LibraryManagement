@@ -1,8 +1,5 @@
 package model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 public class SubscritionImpl implements Subscription {
 
     private static final long serialVersionUID = 1L; 
@@ -13,7 +10,7 @@ public class SubscritionImpl implements Subscription {
    
     @Override
     public Long getId() {
-        return this.serialVersionUID ;
+        return SubscritionImpl.serialVersionUID ;
     }
     @Override
     public String getName() {
