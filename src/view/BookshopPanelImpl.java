@@ -6,6 +6,7 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import model.BookImpl;
 //working copy
 import model.BookModel;
 
@@ -146,7 +147,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		add(txtTotalPrice);
 		txtTotalPrice.setColumns(10);
 		
-		for (String elem : BookModel.getTitle()) {
+		for (String elem : BookImpl.getTitle()) {
 			((DefaultTableModel) modelAllBooks)
 					.addRow(new String[] { elem });
 			allBooks.repaint();

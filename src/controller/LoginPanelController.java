@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import model.EmployeeModel;
-import model.StreamImpl;
+import model.Model;
 import view.BookshopPanel;
 import view.BookshopPanelImpl;
 import view.LoginPanel;
@@ -16,16 +16,14 @@ import view.observer.LoginObserver;
 
 public class LoginPanelController implements LoginObserver,Serializable{
 	
-	private StreamImpl<EmployeeModel, EmployeeModel> employeeModel;
+	private Model model;
 	public MainView mainView; 
 	private LoginPanel view;
-	private Map<Integer,EmployeeModel> employeeMap;
 	
 
-	public LoginPanelController (MainView mainView, StreamImpl<EmployeeModel, EmployeeModel> employeeModel) {
+	public LoginPanelController (MainView mainView, Model model) {
 		this.mainView = mainView;
-		this.employeeModel = employeeModel;
-		employeeMap = new HashMap<Integer,EmployeeModel>();
+		this.model = model;
 	}
 
 	public void setView(LoginPanel lp) {
@@ -80,7 +78,12 @@ public class LoginPanelController implements LoginObserver,Serializable{
 	}*/
 	@Override
 	public void loginEmployee(String username, char[] password) {
-	    Iterator iterator;
+		BookshopPanelImpl bsp = new BookshopPanelImpl();
+    	BookshopController bsc = new BookshopController(this.mainView, model);
+    	bsc.setView(bsp);
+    	mainView.replaceMainPanel(bsp);
+    	//this.mainView.getNorthPanel().diaplayLoggedEmployee(entryMap.getValue().getName(), entryMap.getValue().getSurname());
+	    /*Iterator iterator;
 		try {
 			iterator = employeeModel.readFile("prova.dat").entrySet().iterator();
 			Map.Entry<Integer,EmployeeModel> entryMap = null;
@@ -102,7 +105,7 @@ public class LoginPanelController implements LoginObserver,Serializable{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	    
 		
 		/*Map<Integer,Employee> employeeMap = new HashMap<>();
@@ -160,10 +163,10 @@ public class LoginPanelController implements LoginObserver,Serializable{
 	}
 
 	@Override
-	public void regiterEmployee() {
-		InsertEmployeeController employeeController = new InsertEmployeeController(employeeModel);
+	public void registerEmployeeClicked() {
+		// TODO Auto-generated method stub
+		
 	}
-
 
 	
 	/*public void registerUser() {

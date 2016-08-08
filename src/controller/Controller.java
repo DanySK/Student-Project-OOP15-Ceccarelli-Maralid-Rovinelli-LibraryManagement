@@ -1,9 +1,6 @@
 package controller;
 
-import model.EmployeeModel;
-import model.StreamImpl;
-import model.StreamModel;
-import view.LoginPanel;
+import model.Model;
 import view.LoginPanelImpl;
 import view.MainView;
 import view.NorthPanel;
@@ -12,7 +9,7 @@ import view.observer.NorthPanelObserver;
 import view.observer.ViewObserver;
 
 public class Controller implements NorthPanelObserver, ViewObserver{
-	private StreamImpl<EmployeeModel, EmployeeModel> model;
+	private Model model;
 	private MainView mainView;
 	
 	/**
@@ -21,13 +18,13 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	 * @param model
 	 *            il model utilizzato per salvare i dati
 	 */
-	public Controller(StreamImpl<EmployeeModel, EmployeeModel> model) {
+	public Controller(Model model) {
 			this.model = model;
 	}
 
 
-	public void setView(MainView v) {
-		this.mainView = v;
+	public void setView(MainView mainView) {
+		this.mainView = mainView;
 		this.mainView.attachObserver(this);
 		NorthPanel northpanel = (NorthPanelImpl) this.mainView.getNorthPanel();
 		northpanel.attachObserver(this);

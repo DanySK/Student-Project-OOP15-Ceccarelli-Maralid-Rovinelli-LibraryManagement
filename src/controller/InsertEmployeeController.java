@@ -4,16 +4,15 @@ import java.util.Date;
 
 import view.AddEmployee;
 import view.observer.AddEmployeeObserver;
-import model.Employee;
-import model.IOModel;
+import model.Model;
 
 public class InsertEmployeeController implements AddEmployeeObserver{
 
-	private IOModel<Employee,Employee> employeeModel;
+	private Model model;
 	private AddEmployee view;
 	
-	public InsertEmployeeController(IOModel<Employee, Employee> employeeModel) {
-		this.employeeModel = employeeModel;
+	public InsertEmployeeController(Model model) {
+		this.model = model;
 	}
 	
 	public void setView(AddEmployee ae){
