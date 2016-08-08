@@ -1,6 +1,6 @@
 package model;
 
-public interface LibraryModel {
+public interface Model {
 
   
    

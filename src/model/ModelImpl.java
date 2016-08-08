@@ -8,7 +8,7 @@ import model.core.ShopAndWarehouseModel;
 import model.core.ShopImpl;
 import model.core.WarehouseImpl;
 
-public class LibraryImpl implements LibraryModel {
+public class ModelImpl implements Model {
     
     ShopAndWarehouseModel shop = new ShopImpl();
     ShopAndWarehouseModel warehouse = new WarehouseImpl();
