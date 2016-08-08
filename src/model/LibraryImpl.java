@@ -3,17 +3,18 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LibraryImpl implements Library {
+public class LibraryImpl implements LibraryModel {
 
-   private  Map<Integer,Object>shop = new HashMap<Integer,Object>();
-    private Map<Integer,Object>WareHouse = new HashMap<Integer,Object>();
+   private  Map<BookModel,Integer>shop = new HashMap<BookModel,Integer>();
+    private Map<BookModel,Integer>WareHouse = new HashMap<BookModel,Integer>();
+    
     @Override
-    public void setNewBookInLibrary(Object obj) {
+    public void addNewBookInLibrary(BookModel b) {
         // TODO Auto-generated method stub
         
     }
     @Override
-    public void setNewBookInWareHouse(Object obj) {
+    public void addNewBookInWareHouse(BookModel b) {
         // TODO Auto-generated method stub
         
     }

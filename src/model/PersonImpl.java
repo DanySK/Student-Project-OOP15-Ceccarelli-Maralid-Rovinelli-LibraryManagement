@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public abstract class AbstractPerson implements Serializable ,AbstractPersonInterface {
+public abstract class PersonImpl implements Serializable ,PersonModel {
 
     
     private static final long serialVersionUID = 1L;
@@ -11,7 +11,7 @@ public abstract class AbstractPerson implements Serializable ,AbstractPersonInte
     protected String surname;
     protected String email;
     /**costruttore astrato della classe persona */
-    public AbstractPerson(String taxCode,String name,String surname ,String email){
+    public PersonImpl(String taxCode,String name,String surname ,String email){
         this.taxCode = taxCode;
         this.name = name;
         this.surname = surname;

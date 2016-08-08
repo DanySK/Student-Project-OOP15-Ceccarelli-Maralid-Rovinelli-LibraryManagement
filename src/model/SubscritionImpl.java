@@ -1,6 +1,6 @@
 package model;
 
-public class SubscritionImpl implements Subscription {
+public class SubscritionImpl implements SubscriptionModel {
 
     private static final long serialVersionUID = 1L; 
     private String name;

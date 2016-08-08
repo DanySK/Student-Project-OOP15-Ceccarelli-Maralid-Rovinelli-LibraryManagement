@@ -1,6 +1,6 @@
 package model;
 
-public interface AbstractPersonInterface {
+public interface PersonModel {
     
     /**metodo per settare il codice fiscale*/ 
     public void setTaxCode(String taxCode);

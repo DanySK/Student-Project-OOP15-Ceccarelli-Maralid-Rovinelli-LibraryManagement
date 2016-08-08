@@ -1,8 +1,8 @@
 package controller;
 
-import model.Employee;
-import model.IOModel;
-import model.Model;
+import model.EmployeeModel;
+import model.StreamImpl;
+import model.StreamModel;
 import view.LoginPanel;
 import view.LoginPanelImpl;
 import view.MainView;
@@ -12,7 +12,7 @@ import view.observer.NorthPanelObserver;
 import view.observer.ViewObserver;
 
 public class Controller implements NorthPanelObserver, ViewObserver{
-	private IOModel<Employee, Employee> model;
+	private StreamImpl<EmployeeModel, EmployeeModel> model;
 	private MainView mainView;
 	
 	/**
@@ -21,7 +21,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	 * @param model
 	 *            il model utilizzato per salvare i dati
 	 */
-	public Controller(IOModel<Employee, Employee> model) {
+	public Controller(StreamImpl<EmployeeModel, EmployeeModel> model) {
 			this.model = model;
 	}
 

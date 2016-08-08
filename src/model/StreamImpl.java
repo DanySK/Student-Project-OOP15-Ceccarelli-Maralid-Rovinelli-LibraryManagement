@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-public class IOModel<T,X> implements Model<T, X>  {
+public class StreamImpl<T> implements StreamModel<T>  {
 
     /**
      * 

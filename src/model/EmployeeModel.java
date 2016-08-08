@@ -2,7 +2,7 @@ package model;
 import java.util.Date;
 
 
-public interface Employee {
+public interface EmployeeModel {
     
  
     /** metodo per leggere la data di nascita*/

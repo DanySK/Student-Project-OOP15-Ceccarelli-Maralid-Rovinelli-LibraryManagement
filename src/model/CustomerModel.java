@@ -1,6 +1,6 @@
 package model;
 
-public interface Customers {
+public interface CustomerModel {
  
     /** metodo per prelevare il numero di telefono*/
     public long getTelefonCustomers();

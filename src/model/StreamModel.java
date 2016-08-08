@@ -3,7 +3,7 @@ package model;
 import java.io.IOException;
 import java.util.Map;
 
-public interface Model<T,X> {
+public interface StreamModel<T> {
     /**metodo di lettura di un file
      * resituisce una mappa numerata con all'interno l'apposita classe
      * basta passargli il file di destinazione

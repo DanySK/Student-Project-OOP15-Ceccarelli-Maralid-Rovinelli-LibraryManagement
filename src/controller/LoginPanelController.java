@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import model.Employee;
-import model.IOModel;
+import model.EmployeeModel;
+import model.StreamImpl;
 import view.BookshopPanel;
 import view.BookshopPanelImpl;
 import view.LoginPanel;
@@ -16,16 +16,16 @@ import view.observer.LoginObserver;
 
 public class LoginPanelController implements LoginObserver,Serializable{
 	
-	private IOModel<Employee, Employee> employeeModel;
+	private StreamImpl<EmployeeModel, EmployeeModel> employeeModel;
 	public MainView mainView; 
 	private LoginPanel view;
-	private Map<Integer,Employee> employeeMap;
+	private Map<Integer,EmployeeModel> employeeMap;
 	
 
-	public LoginPanelController (MainView mainView, IOModel<Employee, Employee> employeeModel) {
+	public LoginPanelController (MainView mainView, StreamImpl<EmployeeModel, EmployeeModel> employeeModel) {
 		this.mainView = mainView;
 		this.employeeModel = employeeModel;
-		employeeMap = new HashMap<Integer,Employee>();
+		employeeMap = new HashMap<Integer,EmployeeModel>();
 	}
 
 	public void setView(LoginPanel lp) {
@@ -83,9 +83,9 @@ public class LoginPanelController implements LoginObserver,Serializable{
 	    Iterator iterator;
 		try {
 			iterator = employeeModel.readFile("prova.dat").entrySet().iterator();
-			Map.Entry<Integer,Employee> entryMap = null;
+			Map.Entry<Integer,EmployeeModel> entryMap = null;
 			while(iterator.hasNext()){
-				entryMap =(Map.Entry<Integer,Employee>) iterator.next();
+				entryMap =(Map.Entry<Integer,EmployeeModel>) iterator.next();
 			    //System.out.println("key: "+mentry.getKey()+" value: "+mentry.getValue().getUsername() + " pass:"+mentry.getValue().getPassword());  
 		    }
 			if(entryMap.getValue().getUsername().equals(username) && entryMap.getValue().getPassword().equals(String.valueOf(password)))

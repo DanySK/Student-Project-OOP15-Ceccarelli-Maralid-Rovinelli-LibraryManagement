@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
-public interface Receipt {
+public interface ReceiptModel {
     /** Restituisce gli articoli dello scontrino fiscale fatto */
     public Map<Integer,ArrayList<Object>> getReceipt();
     /** Restituisce il totale dello scontrino*/

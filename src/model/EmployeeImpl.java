@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-public class EmployeeImpl extends AbstractPerson implements Employee ,Serializable {
+public class EmployeeImpl extends PersonImpl implements EmployeeModel ,Serializable {
   
     private static final long serialVersionUID = 1L;
     private Date dateOfBirth ;

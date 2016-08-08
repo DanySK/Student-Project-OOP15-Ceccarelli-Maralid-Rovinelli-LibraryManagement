@@ -1,11 +1,11 @@
 package model;
 
-public class CustomersImpl extends AbstractPerson implements Customers {
+public class CustomerImpl extends PersonImpl implements CustomerModel {
 
     private static final long serialVersionUID = 1L;
     private long telefonCustomers;
     
-    public CustomersImpl(String taxCode, String name, String surname, String email,long telefonCustomers) {
+    public CustomerImpl(String taxCode, String name, String surname, String email,long telefonCustomers) {
         super(taxCode, name, surname, email);
       this.telefonCustomers = telefonCustomers;
     }

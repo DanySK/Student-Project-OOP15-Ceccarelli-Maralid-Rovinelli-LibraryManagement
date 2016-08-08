@@ -1,6 +1,6 @@
 package model;
 
-public interface Subscription {
+public interface SubscriptionModel {
       public Long getId();
       public String getName();
       public String getSurname();
