@@ -1,10 +1,11 @@
 package model.core;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import model.InvoiceModel;
 
 public class InvoicesImpl implements InvoicesModel {
-    private List<InvoiceModel> invoice = new ArrayList<InvoiceModel>();
+
+    private Map<Integer,InvoiceModel> invoice = new HashMap<Integer,InvoiceModel>();
 }

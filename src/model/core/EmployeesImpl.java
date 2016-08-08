@@ -13,6 +13,9 @@ public class EmployeesImpl implements EmployeesModel{
     public void updateEmployees(Map<Integer,EmployeeModel> employees){
         this.employees = employees;
     }
+    public Map<Integer,EmployeeModel> getEmployees(){
+        return this.employees;
+    }
     public Boolean logged(String username,String password){
         boolean exist = false;
         Iterator<Integer> it = employees.keySet().iterator(); 

@@ -16,5 +16,9 @@ public class WarehouseImpl implements ShopAndWarehouseModel {
         }   
     
     }
+    @Override
+    public Map<BookModel, Integer> getBooks() {
+       return this.warehouse;
+    }
 
 }
