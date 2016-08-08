@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-public class StreamImpl<T> implements StreamModel<T>  {
+public class StreamImpl<T,X> implements StreamModel<T,X>  {
 
     /**
      * 
@@ -21,18 +21,19 @@ public class StreamImpl<T> implements StreamModel<T>  {
 
    
 @SuppressWarnings("unchecked")
-public Map<Integer, T> readFile(String path) throws IOException, ClassNotFoundException{
+public Map<X, T> readFile(String path) throws IOException, ClassNotFoundException{
 	 
-	  Map <Integer, T> map = new HashMap<Integer, T>();
+	  Map <X, T> map = new HashMap<X, T>();
        try
        {
           FileInputStream fis = new FileInputStream(path);
           BufferedInputStream bstream = new BufferedInputStream(fis);
           ObjectInputStream ois = new ObjectInputStream(bstream);
      
-          map = (Map<Integer, T>) ois.readObject();  
-         
+          map = (Map<X, T>) ois.readObject();  
+          
           ois.close();
+          bstream.close();
           fis.close();
        }catch(IOException i)
        {
@@ -49,7 +50,7 @@ public Map<Integer, T> readFile(String path) throws IOException, ClassNotFoundEx
    }
 
 @Override
-public void writeFile(String path,Map<Integer,T> o) {
+public void writeFile(String path,T o) {
     try
     {
        FileOutputStream fileOut = new FileOutputStream(path, true);

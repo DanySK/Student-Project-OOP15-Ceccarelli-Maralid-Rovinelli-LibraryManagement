@@ -1,23 +1,51 @@
 package model;
 
-import java.util.HashMap;
-import java.util.Map;
+import model.core.EmployeesImpl;
+import model.core.EmployeesModel;
+import model.core.InvoicesImpl;
+import model.core.InvoicesModel;
+import model.core.ShopAndWarehouseModel;
+import model.core.ShopImpl;
+import model.core.WarehouseImpl;
 
 public class LibraryImpl implements LibraryModel {
-
-   private  Map<BookModel,Integer>shop = new HashMap<BookModel,Integer>();
-    private Map<BookModel,Integer>WareHouse = new HashMap<BookModel,Integer>();
     
-    @Override
-    public void addNewBookInLibrary(BookModel b) {
-        // TODO Auto-generated method stub
+    ShopAndWarehouseModel shop = new ShopImpl();
+    ShopAndWarehouseModel warehouse = new WarehouseImpl();
+    EmployeesModel emplyees = new EmployeesImpl();
+    InvoicesModel invoices = new InvoicesImpl();
+   
+   
+  
+   
+    
+    
+    
+   
+    
+   
         
-    }
-    @Override
-    public void addNewBookInWareHouse(BookModel b) {
-        // TODO Auto-generated method stub
         
-    }
+    
+   /* public void addNewBookInLibrary(BookModel b,Integer i,Integer quantity) {
+        if (i == SHOP){
+            if(shop.containsKey(b)){
+                shop.replace(b, shop.get(b), shop.get(b).intValue()+quantity);
+            }else{
+                shop.put(b, quantity);
+            }   
+        } else if (i == WAREHOUSE) {
+            if(warehouse.containsKey(b)){
+                warehouse.replace(b, warehouse.get(b), warehouse.get(b).intValue()+quantity);
+            }else{
+                shop.put(b, quantity);
+            }   
+        }
+        
+    }*/
+ 
+    
+    
     
     
 }

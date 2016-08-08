@@ -1,7 +1,10 @@
 package model;
 
+import java.io.IOException;
+
 public interface LibraryModel {
 
-    public void addNewBookInLibrary(BookModel b);
-    public void addNewBookInWareHouse(BookModel b);
+  
+   
+    
 }

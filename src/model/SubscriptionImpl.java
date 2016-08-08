@@ -1,6 +1,6 @@
 package model;
 
-public class SubscritionImpl implements SubscriptionModel {
+public class SubscriptionImpl implements SubscriptionModel {
 
     private static final long serialVersionUID = 1L; 
     private String name;
@@ -10,7 +10,7 @@ public class SubscritionImpl implements SubscriptionModel {
    
     @Override
     public Long getId() {
-        return SubscritionImpl.serialVersionUID ;
+        return SubscriptionImpl.serialVersionUID ;
     }
     @Override
     public String getName() {

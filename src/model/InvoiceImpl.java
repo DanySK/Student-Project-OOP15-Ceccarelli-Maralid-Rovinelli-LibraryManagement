@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ReceiptImpl implements ReceiptModel {
+public class InvoiceImpl implements InvoiceModel {
     //primo campo della mappa è il nome dell'articolo comprato il secondo la quantità il 3 il prezzo
     private Map<Integer,ArrayList<Object>> receipt = new HashMap<Integer,ArrayList<Object>>();
     private double total = 0;
