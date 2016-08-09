@@ -16,7 +16,7 @@ public class EmployeesImpl implements EmployeesModel{
     public Map<Integer,EmployeeModel> getEmployees(){
         return this.employees;
     }
-    public Boolean logged(String username,String password){
+    public Boolean logged(String username,char[] password){
         boolean exist = false;
         Iterator<Integer> it = employees.keySet().iterator(); 
         while(it.hasNext()){

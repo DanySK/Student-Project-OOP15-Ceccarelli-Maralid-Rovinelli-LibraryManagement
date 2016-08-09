@@ -10,10 +10,33 @@ import model.core.WarehouseImpl;
 
 public class ModelImpl implements Model {
     
-    ShopAndWarehouseModel shop = new ShopImpl();
-    ShopAndWarehouseModel warehouse = new WarehouseImpl();
-    EmployeesModel emplyees = new EmployeesImpl();
-    InvoicesModel invoices = new InvoicesImpl();
+	private ShopAndWarehouseModel shop;
+    private ShopAndWarehouseModel warehouse;
+    private EmployeesModel employees;
+    private InvoicesModel invoices;
+    
+    public ModelImpl(){
+    	shop = new ShopImpl();
+    	warehouse = new WarehouseImpl();
+    	employees =new EmployeesImpl();
+    	invoices = new InvoicesImpl();
+    }
+    
+    public ShopAndWarehouseModel getShop() {
+    	return this.shop;
+    }
+    
+    public ShopAndWarehouseModel getWarehouse() {
+    	return this.warehouse;
+    }
+    
+    public EmployeesModel getEmployees() {
+    	return this.employees;
+    }
+    
+    public InvoicesModel getInvoices() {
+    	return this.invoices;
+    }
    
    
   

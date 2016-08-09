@@ -8,6 +8,10 @@ import java.util.Map;
 
 import model.EmployeeModel;
 import model.Model;
+import model.ModelImpl;
+import model.core.EmployeesImpl;
+import model.core.EmployeesModel;
+import view.AddEmployeeImpl;
 import view.BookshopPanel;
 import view.BookshopPanelImpl;
 import view.LoginPanel;
@@ -78,10 +82,16 @@ public class LoginPanelController implements LoginObserver,Serializable{
 	}*/
 	@Override
 	public void loginEmployee(String username, char[] password) {
-		BookshopPanelImpl bsp = new BookshopPanelImpl();
-    	BookshopController bsc = new BookshopController(this.mainView, model);
-    	bsc.setView(bsp);
-    	mainView.replaceMainPanel(bsp);
+    	if(model.getEmployees().logged(username, password)){
+    		System.out.println("Loggato");
+    		BookshopPanelImpl bsp = new BookshopPanelImpl();
+        	BookshopController bsc = new BookshopController(this.mainView, model);
+        	bsc.setView(bsp);
+        	mainView.replaceMainPanel(bsp);
+    	} else {
+    		System.out.println("Non loggato");
+    	}
+    	//EmployeesModel employees = new EmployeesImpl();
     	//this.mainView.getNorthPanel().diaplayLoggedEmployee(entryMap.getValue().getName(), entryMap.getValue().getSurname());
 	    /*Iterator iterator;
 		try {
@@ -164,8 +174,11 @@ public class LoginPanelController implements LoginObserver,Serializable{
 
 	@Override
 	public void registerEmployeeClicked() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("qualcosa");
+		AddEmployeeImpl ae = new AddEmployeeImpl();
+		InsertEmployeeController ie = new InsertEmployeeController(model);
+		ie.setView(ae);
+		mainView.replaceMainPanel(ae);
 	}
 
 	
