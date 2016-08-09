@@ -21,4 +21,5 @@ public interface BookshopObserver {
 	 * return BokStock
 	 **/
 	int stocksOfTheShop(String title);
+	
 }

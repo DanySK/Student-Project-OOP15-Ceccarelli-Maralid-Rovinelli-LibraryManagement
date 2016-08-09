@@ -6,12 +6,6 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import model.BookImpl;
-//working copy
-import model.BookModel;
-
-
-// destination
 import view.observer.BookshopObserver;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -29,8 +23,8 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	private BookshopObserver observer;
 	private DefaultTableModel modelAllBooks;
 	private DefaultTableModel modelSelectedBooks;
-	private JTable allBooks;
-	private JTable selectedBooks;
+	private JTable tblAllBooks;
+	private JTable tblSelectedBooks;
 	private JScrollPane scpAllBooks;
 	private JScrollPane scpSelectedBooks;
 	private JTextField txtAmount;
@@ -57,29 +51,29 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		scpAllBooks.setBounds(10, 87, 230, 379);
 		add(scpAllBooks);
 
-		allBooks = new JTable();
-		scpAllBooks.setViewportView(allBooks);
-		allBooks.setModel(modelAllBooks);
-		allBooks.getColumnModel().getColumn(0).setPreferredWidth(74);
-		allBooks.getColumnModel().getColumn(1).setPreferredWidth(66);
-		allBooks.getColumnModel().getColumn(2).setPreferredWidth(126);
-		allBooks.setBorder(new LineBorder(new Color(0, 0, 0)));
-		allBooks.setFont(new Font("Calibri", Font.PLAIN, 13));
-		allBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		tblAllBooks = new JTable();
+		scpAllBooks.setViewportView(tblAllBooks);
+		tblAllBooks.setModel(modelAllBooks);
+		tblAllBooks.getColumnModel().getColumn(0).setPreferredWidth(74);
+		tblAllBooks.getColumnModel().getColumn(1).setPreferredWidth(66);
+		tblAllBooks.getColumnModel().getColumn(2).setPreferredWidth(126);
+		tblAllBooks.setBorder(new LineBorder(new Color(0, 0, 0)));
+		tblAllBooks.setFont(new Font("Calibri", Font.PLAIN, 13));
+		tblAllBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		scpSelectedBooks = new JScrollPane();
 		scpSelectedBooks.setBounds(360, 87, 230, 305);
 		add(scpSelectedBooks);
 
-		selectedBooks = new JTable();
-		scpSelectedBooks.setViewportView(selectedBooks);
-		selectedBooks.setModel(modelSelectedBooks);
-		selectedBooks.getColumnModel().getColumn(0).setPreferredWidth(74);
-		selectedBooks.getColumnModel().getColumn(1).setPreferredWidth(66);
-		selectedBooks.getColumnModel().getColumn(2).setPreferredWidth(126);
-		selectedBooks.setBorder(new LineBorder(new Color(0, 0, 0)));
-		selectedBooks.setFont(new Font("Calibri", Font.PLAIN, 13));
-		selectedBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		tblSelectedBooks = new JTable();
+		scpSelectedBooks.setViewportView(tblSelectedBooks);
+		tblSelectedBooks.setModel(modelSelectedBooks);
+		tblSelectedBooks.getColumnModel().getColumn(0).setPreferredWidth(74);
+		tblSelectedBooks.getColumnModel().getColumn(1).setPreferredWidth(66);
+		tblSelectedBooks.getColumnModel().getColumn(2).setPreferredWidth(126);
+		tblSelectedBooks.setBorder(new LineBorder(new Color(0, 0, 0)));
+		tblSelectedBooks.setFont(new Font("Calibri", Font.PLAIN, 13));
+		tblSelectedBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		lblTitle = new JLabel("BookShop");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -147,20 +141,17 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		add(txtTotalPrice);
 		txtTotalPrice.setColumns(10);
 		
-		for (String elem : BookImpl.getTitle()) {
+
+		/*for (String elem : Book.getTitle()) {
+=======
+		for (String elem : BookModel.getTitle()) {
+
 			((DefaultTableModel) modelAllBooks)
 					.addRow(new String[] { elem });
 			allBooks.repaint();
-		}
+		}*/
 	}
-
-	@Override
-	public void clearSelectedBooks() {
-		for (int i = modelSelectedBooks.getRowCount() - 1; i >= 0; i--) {
-			modelSelectedBooks.removeRow(i);
-		}
-	}
-
+	
 	@Override
 	public void attachObserver(BookshopObserver observer) {
 		this.observer = observer;
@@ -172,20 +163,22 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		if (isPressed == btnAddBook) {
 			double price = -1;
 			String cell;
-			if (allBooks.getSelectedRow() == -1) {
+			String titolo="";
+			if (tblAllBooks.getSelectedRow() == -1) {
 				cell = "";
 			} else {
-				cell = allBooks.getValueAt(allBooks.getSelectedRow(), 0).toString();
+				cell = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString();
 			}
-			price = this.observer.uploadBooks(cell, Integer.parseInt(txtAmount.getText()));
+			int quantity = Integer.parseInt(txtAmount.getText());
+			price = this.observer.uploadBooks(titolo,quantity );
 			txtTotalPrice.setText(Double.parseDouble(txtTotalPrice.getText()) + price + "");
 			int ammount = Integer.parseInt(txtAmount.getText());
 			String title = cell;
-			modelSelectedBooks.addRow(arg0);
-			selectedBooks.repaint();
+			//modelSelectedBooks.addRow(arg0);
+			tblSelectedBooks.repaint();
 		} else {
 			if (isPressed == btnAdd && this.observer.stocksOfTheShop(
-					allBooks.getValueAt(allBooks.getSelectedRow(), 0).toString()) > Integer
+					tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString()) > Integer
 							.parseInt(txtAmount.getText())) {
 				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
 			} else {
@@ -205,7 +198,14 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		if(isPressed==btnAddToCart ){
 			this.observer.ShopCartClicked();
 		}else if (isPressed==btnRemoveBook){
-			modelSelectedBooks.removeRow(selectedBooks.getSelectedRow());
+			modelSelectedBooks.removeRow(tblSelectedBooks.getSelectedRow());
 		}
+	}
+	@Override
+	public void clearSelectedBooks() {
+		for (int i = modelSelectedBooks.getRowCount() - 1; i >= 0; i--) {
+			modelSelectedBooks.removeRow(i);
+		}
+		
 	}
 }
