@@ -31,7 +31,7 @@ public class EmployeesImpl implements EmployeesModel{
         return exist;
     }
     public void addNewEmployee(EmployeeModel employee){
-        int c = this.employees.size()+1;
+        int c = this.employees.size();
         this.employees.put(c, employee);
     }
     @Override

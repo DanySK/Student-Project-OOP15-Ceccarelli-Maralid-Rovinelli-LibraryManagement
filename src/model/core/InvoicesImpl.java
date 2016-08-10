@@ -17,7 +17,7 @@ public class InvoicesImpl implements InvoicesModel {
         this.invoices = invoices;
     }
     public void addNewInvoice(InvoiceModel invoice){
-        this.invoices.put(this.invoices.size()+1, invoice);
+        this.invoices.put(this.invoices.size(), invoice);
     }
     public Map<Integer,InvoiceModel> getInvoices(){
         return this.invoices;
