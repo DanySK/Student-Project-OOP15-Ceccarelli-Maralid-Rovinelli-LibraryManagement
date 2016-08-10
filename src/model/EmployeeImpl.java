@@ -13,8 +13,11 @@ public class EmployeeImpl extends PersonImpl implements EmployeeModel ,Serializa
     private String username;
     private char[] password;
     
-  
-    public EmployeeImpl(String taxCode, String name, String surname, String email, Date dateOfBirth,Date hireDate,String address ,String username,char[] password) {
+    public EmployeeImpl(){
+        
+    }
+    
+   public EmployeeImpl(String taxCode, String name, String surname, String email, Date dateOfBirth,Date hireDate,String address ,String username,char[] password) {
         super(taxCode, name, surname, email);
       
        this.dateOfBirth = dateOfBirth;

@@ -4,7 +4,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import model.BookModel;
-
+/**
+ * This class represents the class of the shop 
+ * 
+ * @author Mattia.Rovinelli
+ *
+ */
 
 public class ShopImpl implements ShopAndWarehouseModel {
     private Map<BookModel,Integer> shop = new HashMap<BookModel,Integer>();
@@ -12,32 +17,32 @@ public class ShopImpl implements ShopAndWarehouseModel {
     public void update(Map<BookModel,Integer> booksInLibrary){
         this.shop = booksInLibrary;
     }
-   /**aggiunta di un nuovo libro nella lista */
-    public void addNewBookInLibrary(BookModel b) {
-        if(shop.containsKey(b)){
-                shop.replace(b, shop.get(b), shop.get(b).intValue()+1);
+   
+    public void addNewBookInLibrary(BookModel book) {
+        if(shop.containsKey(book)){
+                shop.replace(book, shop.get(book), shop.get(book).intValue()+1);
             }else{
-                shop.put(b, 1);
+                shop.put(book, 1);
             }   
         }
-    /** data una quantità nuova ,la sostituise a quella vecchia*/
-    public void replaceQuantity(BookModel b,int quantity){
-       shop.replace(b, quantity);
+   
+    public void replaceQuantity(BookModel book,int quantity){
+        if(shop.containsKey(book)){
+       shop.replace(book, quantity);
+        }else{
+            shop.put(book, quantity);
+        }
      }
-    /**ritorna la lista completa di libri  */
+   
     public Map<BookModel,Integer> getBooks(){
         return this.shop;
     }
-    /** 
-     * dato un libro ,ritorna la quantità contenuta nel magazzino
-     * @param b
-     * @return
-     */
-    public Integer getBookQuantity(BookModel b){
+    
+    public Integer getBookQuantity(BookModel book){
         int quantity = 0;
         Iterator<BookModel> it = shop.keySet().iterator();
         while(it.hasNext()){
-            if(it.next().equals(b)){
+            if(it.next().equals(book)){
             quantity = shop.get(it.next());    
             }
           }

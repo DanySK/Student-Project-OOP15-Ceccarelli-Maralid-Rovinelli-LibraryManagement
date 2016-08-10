@@ -5,7 +5,12 @@ import java.util.Iterator;
 import java.util.Map;
 
 import model.BookModel;
-
+/**
+ * this class represents the warehose of library
+ * 
+ * @author Mattia.Rovinelli
+ *
+ */
 public class WarehouseImpl implements ShopAndWarehouseModel {
     
     private Map<BookModel,Integer> warehouse = new HashMap<BookModel,Integer>();

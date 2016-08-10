@@ -10,6 +10,11 @@ public abstract class PersonImpl implements Serializable ,PersonModel {
     protected String name;
     protected String surname;
     protected String email;
+   
+    public PersonImpl(){
+        
+    }
+    
     /**costruttore astrato della classe persona */
     public PersonImpl(String taxCode,String name,String surname ,String email){
         this.taxCode = taxCode;

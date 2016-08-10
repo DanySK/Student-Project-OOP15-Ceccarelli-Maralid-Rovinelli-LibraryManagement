@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.InvoiceModel;
-
+/**
+ * this class rapresented the map of invoice 
+ * @author Mattia.Rovinelli
+ *
+ */
 public class InvoicesImpl implements InvoicesModel {
 
     private Map<Integer,InvoiceModel> invoices = new HashMap<Integer,InvoiceModel>();

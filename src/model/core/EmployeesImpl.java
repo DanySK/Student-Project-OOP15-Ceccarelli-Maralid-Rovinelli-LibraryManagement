@@ -4,8 +4,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import model.EmployeeImpl;
 import model.EmployeeModel;
-
+/**
+ * This class represents the list of employees
+ * @author mattia.Rovinelli
+ *
+ */
 public class EmployeesImpl implements EmployeesModel{
    
     private Map<Integer,EmployeeModel> employees = new HashMap<Integer,EmployeeModel>();
@@ -28,5 +33,16 @@ public class EmployeesImpl implements EmployeesModel{
     public void addNewEmployee(EmployeeModel employee){
         int c = this.employees.size()+1;
         this.employees.put(c, employee);
+    }
+    @Override
+    public EmployeeModel employeeLogged(String username) {
+        Iterator<Integer> it = employees.keySet().iterator(); 
+        EmployeeModel e = new EmployeeImpl();
+        while(it.hasNext()){
+            if(employees.get(it.next()).getUsername().equals(username)){
+              e = employees.get(it.next());  
+            }
+        }
+        return e;
     }
 }
