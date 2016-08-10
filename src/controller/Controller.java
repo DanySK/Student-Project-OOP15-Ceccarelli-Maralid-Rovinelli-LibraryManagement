@@ -74,7 +74,8 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	@Override
 	public void saveData() {
 		// TODO Auto-generated method stub
-		sm.writeFile("Employee.txt", model.getEmployees().getEmployees());
+		sm.writeFile("Employees.txt", model.getEmployees().getEmployees());
+		System.out.println(model.getEmployees().getEmployees());
 	}
 
 	@Override
@@ -88,8 +89,10 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	public void dataLoad() {
 		// TODO Auto-generated method stub
 		try {
-			Map<Integer, EmployeeModel> mappa = sm.readFile("Employee.txt");
-			System.out.println(mappa.get(0).getUsername());
+			Map<Integer, EmployeeModel> mappa = sm.readFile("Employees.txt");
+			System.out.println(mappa);
+			//System.out.println(mappa.get(0).getUsername());
+			//System.out.println(mappa.get(1).getUsername());
 			model.getEmployees().updateEmployees(mappa);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

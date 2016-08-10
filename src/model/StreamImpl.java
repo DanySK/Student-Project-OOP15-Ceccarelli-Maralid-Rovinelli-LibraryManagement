@@ -2,6 +2,7 @@ package model;
 
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -54,11 +55,14 @@ public void writeFile(String path, Map<T, X> map) {
     try
     {
        FileOutputStream fileOut = new FileOutputStream(path, true);
-       ObjectOutputStream out = new ObjectOutputStream(fileOut);
+       BufferedOutputStream bostream = new BufferedOutputStream(fileOut);
+       ObjectOutputStream out = new ObjectOutputStream(bostream);
+       
        out.writeObject(map);
        out.close();
+       bostream.close();
        fileOut.close();
-       System.out.printf("Serialized data is saved in "+path);
+       System.out.printf("Serialized data is saved in "+ path);
     }catch(IOException i)
     {
         i.printStackTrace();

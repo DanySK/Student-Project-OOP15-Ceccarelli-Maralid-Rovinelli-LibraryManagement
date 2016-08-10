@@ -25,7 +25,7 @@ public class EmployeesImpl implements EmployeesModel{
         boolean exist = false;
         Iterator<Integer> it = employees.keySet().iterator(); 
         while(it.hasNext()){
-            if(employees.get(it.next()).getUsername().equals(username) && employees.get(it.next()).getPassword().equals(String.valueOf(password)) )
+            if(employees.get(it).getUsername().equals(username) && employees.get(it).getPassword().equals(password) )
                 exist = true;
         }
         return exist;
