@@ -10,7 +10,7 @@ public interface LoginObserver {
 	 * permette di effettuare l'accesso tramite uno username ed una password
 	 * 
 	 * @param username
-	 * @param password
+	 * @param cs
 	 * */
 	void loginEmployee(String username, char[] password);
 

@@ -94,6 +94,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 			//System.out.println(mappa.get(0).getUsername());
 			//System.out.println(mappa.get(1).getUsername());
 			model.getEmployees().updateEmployees(mappa);
+			System.out.println(mappa.get(0).getUsername());
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -54,7 +54,6 @@ public class LoginPanelController implements LoginObserver,Serializable{
 
 	@Override
 	public void registerEmployeeClicked() {
-		System.out.println("qualcosa");
 		AddEmployeeImpl ae = new AddEmployeeImpl();
 		InsertEmployeeController ie = new InsertEmployeeController(model);
 		ie.setView(ae);
