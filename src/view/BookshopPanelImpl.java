@@ -6,10 +6,13 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import model.BookModel;
 import view.observer.BookshopObserver;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.List;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -31,7 +34,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	private JLabel lblAmount;
 	private JButton btnAddBook;
 	private JButton btnRemoveBook;
-	private JButton btnAddToCart;
+	private JButton btnPurchaseIt;
 	private JLabel lblTitle;
 	private JButton btnAdd;
 	private JButton btnRemove;
@@ -122,11 +125,11 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		btnRemoveBook.addActionListener(this);
 		add(btnRemoveBook);
 
-		btnAddToCart = new JButton("Aggiungi al carrello");
-		btnAddToCart.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 16));
-		btnAddToCart.setBounds(360, 417, 230, 49);
-		btnAddToCart.addActionListener(this);
-		add(btnAddToCart);
+		btnPurchaseIt = new JButton("Procedi con l'acquisto");
+		btnPurchaseIt.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 16));
+		btnPurchaseIt.setBounds(360, 417, 230, 49);
+		btnPurchaseIt.addActionListener(this);
+		add(btnPurchaseIt);
 
 		lblTotalPrice = new JLabel("Spesa totale:");
 		lblTotalPrice.setHorizontalAlignment(SwingConstants.CENTER);
@@ -142,6 +145,9 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		add(txtTotalPrice);
 		txtTotalPrice.setColumns(10);
 		
+		/*for(BookModel bm:){
+			
+		}*/
 
 		
 	}
@@ -189,8 +195,9 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 				}
 			}
 		}
-		if(isPressed==btnAddToCart ){
-			this.observer.ShopCartClicked();
+		if(isPressed==btnPurchaseIt ){
+			this.observer.shopPurchaseItClicked();
+			
 		}else if (isPressed==btnRemoveBook){
 			modelSelectedBooks.removeRow(tblSelectedBooks.getSelectedRow());
 		}
@@ -201,5 +208,17 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			modelSelectedBooks.removeRow(i);
 		}
 		
+	}
+
+	@Override
+	public List getAllPrice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List getAllTitle() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -166,7 +166,7 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 		add(txtTaxCode);
 		txtTaxCode.setColumns(10);
 
-		lblTelephone = new JLabel("telefono:");
+		lblTelephone = new JLabel("Telefono:");
 		lblTelephone.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
 		lblTelephone.setBounds(358, 101, 143, 14);
 		add(lblTelephone);

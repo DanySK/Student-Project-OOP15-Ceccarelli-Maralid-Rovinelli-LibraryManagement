@@ -13,12 +13,12 @@ public interface BookshopObserver {
 	/**
 	 * permette di aprire la view del carrello con i libri scelti
 	 * */
-	void ShopCartClicked();
+	void shopPurchaseItClicked();
 	/**
 	 *metodo per ottenere la quantità di libri rimanenti in negozio
 	 *
 	 * @param title
-	 * return BokStock
+	 * return BookStock
 	 **/
 	int getStocksOfTheShop(String title);
 	

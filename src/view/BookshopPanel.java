@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.List;
+
 import view.observer.BookshopObserver;
 
 public interface BookshopPanel {
@@ -14,5 +16,14 @@ public interface BookshopPanel {
 	 * */
 	void attachObserver (BookshopObserver observer);
 	
-	// promemoria bisogna aggiungere un metodo per riempire la prima lista
+	/**
+	 * ritorna una lista con tutti i prezzi degli elementi acquistati (ogni elemento ha il prezzo
+	 * base moltiplicato per il numero di copie richiesto)
+	 * 
+	 * */
+	List getAllPrice();
+	/**
+	 *Permette di ottentere l'elenco di tutti gli elementi acquistati 
+	 */	
+	List getAllTitle();
 }
