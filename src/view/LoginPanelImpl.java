@@ -82,9 +82,10 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		add(lblRecorded);
 		
 		lblErrorMsg = new JLabel("");
+		lblErrorMsg.setVerticalAlignment(SwingConstants.TOP);
+		lblErrorMsg.setHorizontalAlignment(SwingConstants.CENTER);
 		lblErrorMsg.setForeground(Color.RED);
 		lblErrorMsg.setFont(new Font("Calibri", Font.ITALIC, 13));
-		lblErrorMsg.setVerticalAlignment(SwingConstants.TOP);
 		lblErrorMsg.setBounds(172, 97, 262, 100);
 		add(lblErrorMsg);
 
@@ -115,7 +116,7 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		this.observer = observer;
 		
 	}
-	void displayMessage(String message){
+	public void displayMessage(String message){
 		this.lblErrorMsg.setText(message);
 	}
 }
