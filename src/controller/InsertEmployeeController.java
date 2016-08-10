@@ -5,11 +5,14 @@ import java.util.Date;
 import view.AddEmployee;
 import view.observer.AddEmployeeObserver;
 import model.Model;
+import model.EmployeeImpl;
+import model.EmployeeModel;
 
 public class InsertEmployeeController implements AddEmployeeObserver{
 
 	private Model model;
 	private AddEmployee view;
+	private EmployeeModel employee;
 	
 	public InsertEmployeeController(Model model) {
 		this.model = model;
@@ -22,7 +25,16 @@ public class InsertEmployeeController implements AddEmployeeObserver{
 	@Override
 	public void saveEmployee(String name, String surname, String address, String username, char[] password,
 			String email, int telephoneNumber, String taxCode, Date birthDate, Date hireDate) {
-		System.out.println("fa qualcosa");
+		
+		employee = new EmployeeImpl(taxCode, name, surname, email, birthDate, hireDate, address, username, password);
+		model.getEmployees().addNewEmployee(employee);
+		view.displayMessage("Registrazione avvenuta con successo");
+	
+		/*} catch (DuplicatedCodeException e) {
+			view.displayMsg("Questo Dipendente è già registrato");
+		} catch (DuplicatedUsernameException e) {
+			view.displayMsg("Questo username è già utilizzato");
+		}
+	}*/
 	}
-
 }

@@ -11,10 +11,10 @@ public class EmployeeImpl extends PersonImpl implements EmployeeModel ,Serializa
     private Date hireDate;
     private String address;
     private String username;
-    private String password;
+    private char[] password;
     
   
-    public EmployeeImpl(String taxCode, String name, String surname, String email, Date dateOfBirth,Date hireDate,String address ,String username,String password) {
+    public EmployeeImpl(String taxCode, String name, String surname, String email, Date dateOfBirth,Date hireDate,String address ,String username,char[] password) {
         super(taxCode, name, surname, email);
       
        this.dateOfBirth = dateOfBirth;
@@ -22,7 +22,6 @@ public class EmployeeImpl extends PersonImpl implements EmployeeModel ,Serializa
        this.address = address;
        this.username = username;
        this.password = password;
-      ;
         
     }
   
@@ -45,7 +44,7 @@ public class EmployeeImpl extends PersonImpl implements EmployeeModel ,Serializa
     }
 
     
-    public String getPassword() {
+    public char[] getPassword() {
         return password;
     }
 
@@ -72,7 +71,7 @@ public class EmployeeImpl extends PersonImpl implements EmployeeModel ,Serializa
     }
 
     
-    public void setPassword(String password) {
+    public void setPassword(char[] password) {
      this.password = password;
     }
 

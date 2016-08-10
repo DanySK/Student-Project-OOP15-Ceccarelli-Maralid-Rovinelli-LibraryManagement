@@ -82,12 +82,13 @@ public class LoginPanelController implements LoginObserver,Serializable{
 	}*/
 	@Override
 	public void loginEmployee(String username, char[] password) {
+		BookshopPanelImpl bsp = new BookshopPanelImpl();
+    	BookshopController bsc = new BookshopController(this.mainView, model);
+    	bsc.setView(bsp);
+    	mainView.replaceMainPanel(bsp);
     	if(model.getEmployees().logged(username, password)){
     		System.out.println("Loggato");
-    		BookshopPanelImpl bsp = new BookshopPanelImpl();
-        	BookshopController bsc = new BookshopController(this.mainView, model);
-        	bsc.setView(bsp);
-        	mainView.replaceMainPanel(bsp);
+    		
     	} else {
     		System.out.println("Non loggato");
     	}

@@ -18,7 +18,7 @@ public interface EmployeeModel {
     public String getUsername();
     
     /**metodo che restituisce la password*/
-    public String getPassword();
+    public char[] getPassword();
     
    /**metodo per settare la data di nascita */
     public void setDateOfBirth(Date date);
@@ -33,7 +33,7 @@ public interface EmployeeModel {
     public void setUsername(String username);
     
     /**metodo per settare la password*/
-    public void setPassword(String password);
+    public void setPassword(char[] password);
     
 
 }
