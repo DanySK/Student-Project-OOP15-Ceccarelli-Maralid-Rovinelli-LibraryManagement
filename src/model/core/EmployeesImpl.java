@@ -26,7 +26,7 @@ public class EmployeesImpl implements EmployeesModel{
         Iterator<Integer> it = employees.keySet().iterator(); 
         while(it.hasNext()){
             /* Iterator<Entry<Integer,EmployeeModel>> it = employees.entrySet().iterator(); 
-            Map.Entry<Integer, EmployeeModel> current = it.next();
+              Map.Entry<Integer, EmployeeModel> current =(Map.Entry<Integer, EmployeeModel>) it.next();
             if(current.getValue().getUsername().equals(username) &&current.getValue().getPassword().equals(password) )*/
             if(employees.get(it.next()).getUsername().equals(username) &&employees.get(it.next()).getPassword().equals(password) )
                 exist = true;
