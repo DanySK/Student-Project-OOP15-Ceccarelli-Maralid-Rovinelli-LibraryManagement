@@ -3,13 +3,11 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -17,13 +15,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import view.observer.ViewObserver;
 
 /**
  * @author Ceccarelli
- * */
+ */
 
 public class MainViewImpl extends JFrame implements MainView, ActionListener, WindowListener {
 	private NorthPanelImpl northPanel;
@@ -31,7 +28,17 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	private JMenuItem[] menuItem;
 	private JMenuBar menuBar;
 	private JFileChooser fileChoosen;
-	private JMenu menu;
+	private JMenuItem mntmExit;
+	private JMenuBar menuBar_1;
+	private JMenu mnNewMenu;
+	private JMenuItem mntmCercaLibro;
+	private JMenuItem mntmCarrello;
+	private JMenuItem mntmGestisciAbbonamenti;
+	private JMenu mnNewMenu_1;
+	private JMenuItem mntmOrdinaScorte;
+	private JMenuItem mntmSalva;
+	private JMenuItem mntmApri;
+	private JMenu mnFile;
 	private static final long serialVersionUID = 1L;
 
 	public MainViewImpl() {
@@ -53,42 +60,42 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		northPanel = new NorthPanelImpl();
 		c.add(northPanel, BorderLayout.NORTH);
 
-		
 		this.setJMenuBar(menuBar);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addWindowListener(this);
-		
-		JMenuBar menuBar_1 = new JMenuBar();
+
+		menuBar_1 = new JMenuBar();
 		setJMenuBar(menuBar_1);
-		
-		JMenu mnFile = new JMenu("File");
+
+		mnFile = new JMenu("File");
 		menuBar_1.add(mnFile);
-		
-		JMenuItem mntmSalva = new JMenuItem("Salva");
+
+		mntmSalva = new JMenuItem("Salva");
 		mnFile.add(mntmSalva);
-		
-		JMenuItem mntmApri = new JMenuItem("Apri");
+
+		mntmApri = new JMenuItem("Apri");
 		mnFile.add(mntmApri);
-		
-		JMenuItem mntmExit = new JMenuItem("Esci");
+
+		mntmExit = new JMenuItem("Esci");
 		mnFile.add(mntmExit);
-		
-		JMenu mnNewMenu = new JMenu("Negozio");
+		mntmExit.addActionListener(this);
+
+		mnNewMenu = new JMenu("Negozio");
 		menuBar_1.add(mnNewMenu);
-		
-		JMenuItem mntmCercaLibro = new JMenuItem("Cerca libro");
+
+		mntmCercaLibro = new JMenuItem("Cerca libro");
 		mnNewMenu.add(mntmCercaLibro);
-		
-		JMenuItem mntmCarrello = new JMenuItem("Carrello");
+
+		mntmCarrello = new JMenuItem("Carrello");
 		mnNewMenu.add(mntmCarrello);
-		
-		JMenuItem mntmGestisciAbbonamenti = new JMenuItem("Gestisci abbonamenti");
+
+		mntmGestisciAbbonamenti = new JMenuItem("Gestisci abbonamenti");
 		mnNewMenu.add(mntmGestisciAbbonamenti);
-		
-		JMenu mnNewMenu_1 = new JMenu("Magazzino");
+
+		mnNewMenu_1 = new JMenu("Magazzino");
 		menuBar_1.add(mnNewMenu_1);
-		
-		JMenuItem mntmOrdinaScorte = new JMenuItem("Ordina scorte");
+
+		mntmOrdinaScorte = new JMenuItem("Ordina scorte");
 		mnNewMenu_1.add(mntmOrdinaScorte);
 		this.setVisible(true);
 
@@ -96,7 +103,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
-		
+
 	}
 
 	@Override
@@ -110,17 +117,17 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {
-		
+
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent arg0) {
-		
+
 	}
 
 	@Override
 	public void windowIconified(WindowEvent arg0) {
-		
+
 	}
 
 	@Override
@@ -129,8 +136,8 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		Object menuSource = arg0.getSource();
+	public void actionPerformed(ActionEvent e) {
+		Object menuSource = e.getSource();
 		if (menuSource == menuItem[0]) {
 			if (this.fileChoosen.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 				this.observer.dataLoad(this.fileChoosen.getSelectedFile().getPath());
@@ -160,7 +167,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	}
 
 	@Override
-	public NorthPanel getNorthPanel() {		
+	public NorthPanel getNorthPanel() {
 		return this.northPanel;
 	}
 
@@ -169,6 +176,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		this.observer = observer;
 
 	}
+
 	private void resetFrame() {
 		Container c = this.getContentPane();
 		c.removeAll();
