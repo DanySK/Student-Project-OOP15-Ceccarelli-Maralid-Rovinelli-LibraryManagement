@@ -85,10 +85,10 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		Object buttonSelected = e.getSource();
-		if (buttonSelected == btnLog) {
+		Object isPressed = e.getSource();
+		if (isPressed == btnLog) {
 			this.observer.buttonLoginClicked();
-		} else if (buttonSelected == btnHome) {
+		} else if (isPressed == btnHome) {
 			this.observer.buttonHomeClicked();
 		}
 

@@ -39,7 +39,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	private JLabel lblTotalPrice;
 
 	public BookshopPanelImpl() {
-		setBackground(SystemColor.inactiveCaptionBorder);
+		setBackground(SystemColor.inactiveCaption);
 		this.setLayout(null);
 
 		modelAllBooks = new DefaultTableModel(new Object[][] {},
@@ -76,6 +76,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		tblSelectedBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		lblTitle = new JLabel("BookShop");
+		lblTitle.setBackground(SystemColor.inactiveCaption);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
 		lblTitle.setBounds(10, 11, 580, 65);
@@ -142,14 +143,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		txtTotalPrice.setColumns(10);
 		
 
-		/*for (String elem : Book.getTitle()) {
-=======
-		for (String elem : BookModel.getTitle()) {
-
-			((DefaultTableModel) modelAllBooks)
-					.addRow(new String[] { elem });
-			allBooks.repaint();
-		}*/
+		
 	}
 	
 	@Override
@@ -177,7 +171,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			//modelSelectedBooks.addRow(arg0);
 			tblSelectedBooks.repaint();
 		} else {
-			if (isPressed == btnAdd && this.observer.stocksOfTheShop(
+			if (isPressed == btnAdd && this.observer.getStocksOfTheShop(
 					tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString()) > Integer
 							.parseInt(txtAmount.getText())) {
 				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));

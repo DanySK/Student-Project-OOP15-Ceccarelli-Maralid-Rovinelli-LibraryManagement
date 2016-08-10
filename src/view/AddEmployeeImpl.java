@@ -54,6 +54,9 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 	private JLabel lblMessage;
 	private JLabel lblEmail;
 	private JTextField txtEmail;
+	private JLabel lblYear;
+	private JLabel lblMonth;
+	private JLabel lblDay;
 
 	public AddEmployeeImpl() {
 		setBackground(SystemColor.activeCaption);
@@ -177,15 +180,18 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 		add(lblBirthDay);
 
 		cmbDay = new JComboBox();
-		cmbDay.setToolTipText("");
 		cmbDay.setBounds(520, 190, 50, 20);
-		
+		cmbDay.addActionListener(this);
+		add(cmbDay);
+
 		cmbMonth = new JComboBox();
 		cmbMonth.setBounds(463, 190, 50, 20);
+		cmbMonth.addActionListener(this);
 		add(cmbMonth);
 
 		cmbYear = new JComboBox();
 		cmbYear.setBounds(358, 190, 95, 20);
+		cmbYear.addActionListener(this);
 		add(cmbYear);
 
 		btnAddEmployee = new JButton("Aggiungi dipendente");
@@ -220,15 +226,15 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 		add(txtEmail);
 		txtEmail.setColumns(10);
 
-		JLabel lblYear = new JLabel("AAAA");
+		lblYear = new JLabel("AAAA");
 		lblYear.setBounds(358, 178, 46, 14);
 		add(lblYear);
 
-		JLabel lblMonth = new JLabel("MM");
+		lblMonth = new JLabel("MM");
 		lblMonth.setBounds(464, 178, 46, 14);
 		add(lblMonth);
 
-		JLabel lblDay = new JLabel("GG");
+		lblDay = new JLabel("GG");
 		lblDay.setFont(new Font("Calibri", Font.ITALIC, 12));
 		lblDay.setBounds(520, 178, 46, 14);
 		add(lblDay);
@@ -237,7 +243,7 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object btnIsPressed = e.getSource();
+		Object isPressed = e.getSource();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String address;
 		int telephoneNumber;
@@ -250,10 +256,8 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 			e2.printStackTrace();
 		}
 
-		// Date hireDate=(Date)DateFormat.parse(currentDate);
-
 		Date birthDate;
-		if (btnIsPressed == btnAddEmployee) {
+		if (isPressed == btnAddEmployee) {
 			try {
 				this.observer.saveEmployee(txtName.getText(), txtSurname.getText(),
 						(address = txtCity.getText() + " " + txtStreet.getText() + " "
@@ -270,8 +274,15 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 				this.displayMessage("Si prega di riempire in modo adeguato tutti i campi presenti ");
 				JOptionPane.showMessageDialog(btnAddEmployee, e1, "Error!", JOptionPane.ERROR_MESSAGE);
 			}
-		} else if (btnIsPressed == btnClear) {
+		} else if (isPressed == btnClear) {
 			this.cleanInterface();
+		} else if (isPressed == cmbYear) {
+			this.setYear();
+		} else if (isPressed == cmbMonth) {
+			this.setMonth();
+		} else if (isPressed == cmbDay
+				&& (!cmbMonth.getSelectedItem().equals("") && !cmbYear.getSelectedItem().equals(""))) {
+			this.setDay();
 		}
 	}
 
@@ -302,7 +313,8 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 	public void displayMessage(String message) {
 		lblMessage.setText(message);
 	}
-	public void setDay(){
+
+	public void setDay() {
 		if (cmbMonth.getSelectedItem() == "2" && (Integer) cmbYear.getSelectedItem() % 4 == 0) {
 			for (int i = 1; i <= 29; i++) {
 				cmbDay.addItem(i);
@@ -317,17 +329,20 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 			for (int i = 1; i <= 30; i++) {
 				cmbDay.addItem(i);
 			}
-		} else
+		} else if (!cmbMonth.getSelectedItem().equals("") || !cmbYear.getSelectedItem().equals("")) {
 			for (int i = 1; i <= 31; i++) {
 				cmbDay.addItem(i);
 			}
+		}
 	}
-	public void setMonth(){
+
+	public void setMonth() {
 		for (int i = 1; i <= 12; i++) {
 			cmbMonth.addItem(i);
 		}
 	}
-	public void setYear(){
+
+	public void setYear() {
 		int year = Calendar.getInstance().get(Calendar.YEAR);
 		for (int i = year; i >= year - 100; i--) {
 			cmbYear.addItem(i);

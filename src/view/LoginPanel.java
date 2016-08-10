@@ -15,4 +15,10 @@ public interface LoginPanel {
 	 * @param observer
 	 * */
 	void attachObserver (LoginObserver observer);
+	
+	/**
+	 * Permette divisualizzare un dato messaggio in una label predefinita
+	 * 
+	 * @param message
+	 */void displayMessage(String message);
 }

@@ -38,7 +38,7 @@ public class BookshopController implements BookshopObserver{
 	}
 
 	@Override
-	public int stocksOfTheShop(String title) {
+	public int getStocksOfTheShop(String title) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -20,6 +20,6 @@ public interface BookshopObserver {
 	 * @param title
 	 * return BokStock
 	 **/
-	int stocksOfTheShop(String title);
+	int getStocksOfTheShop(String title);
 	
 }
