@@ -25,7 +25,6 @@ import view.observer.ViewObserver;
 public class MainViewImpl extends JFrame implements MainView, ActionListener, WindowListener {
 	private NorthPanelImpl northPanel;
 	private ViewObserver observer;
-	private JMenuItem[] menuItem;
 	private JMenuBar menuBar;
 	private JFileChooser fileChoosen;
 	private JMenuItem mntmExit;
@@ -71,15 +70,14 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		menuBar_1.add(mnFile);
 
 		mntmSalva = new JMenuItem("Salva");
-		menuItem[0] = mntmSalva;
+		mntmSalva.addActionListener(this);
 		mnFile.add(mntmSalva);
 
 		mntmApri = new JMenuItem("Apri");
-		menuItem[1] = mntmApri;
+		mntmApri.addActionListener(this);		
 		mnFile.add(mntmApri);
 
-		mntmExit = new JMenuItem("Esci");
-		menuItem[2] = mntmExit;
+		mntmExit = new JMenuItem("Esci");		
 		mnFile.add(mntmExit);
 		mntmExit.addActionListener(this);
 
@@ -141,17 +139,17 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object menuSource = e.getSource();
-		if (menuSource == menuItem[0]) {
+		if (menuSource == mntmSalva) {
 			if (this.fileChoosen.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 				this.observer.dataLoad(this.fileChoosen.getSelectedFile().getPath());
 			}
-		} else if (menuSource == menuItem[1]) {
+		} else if (menuSource == mntmApri) {
 			if (this.fileChoosen.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
 				this.observer.saveData(this.fileChoosen.getSelectedFile().getPath());
 			}
-		} else if (menuSource == menuItem[2]) {
+		} else if (menuSource == mntmExit) {
 			this.observer.exitCommand();
-		}
+		} 
 
 	}
 

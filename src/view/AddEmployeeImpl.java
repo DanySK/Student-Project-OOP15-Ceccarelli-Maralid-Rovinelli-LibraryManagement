@@ -61,7 +61,9 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 	public AddEmployeeImpl() {
 		setBackground(SystemColor.activeCaption);
 		this.setLayout(null);
-
+		// this.setYear();
+		// this.setMonth();
+		System.out.println(Calendar.getInstance().get(Calendar.YEAR));
 		lblTitle = new JLabel("Aggiunta Dipendente");
 		lblTitle.setForeground(new Color(255, 69, 0));
 		lblTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
@@ -180,19 +182,23 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 		add(lblBirthDay);
 
 		cmbDay = new JComboBox();
+		cmbDay.setEnabled(false);
 		cmbDay.setBounds(520, 190, 50, 20);
 		cmbDay.addActionListener(this);
 		add(cmbDay);
 
 		cmbMonth = new JComboBox();
+		cmbMonth.setEnabled(false);
 		cmbMonth.setBounds(463, 190, 50, 20);
 		cmbMonth.addActionListener(this);
 		add(cmbMonth);
+		this.setMonth();
 
 		cmbYear = new JComboBox();
 		cmbYear.setBounds(358, 190, 95, 20);
 		cmbYear.addActionListener(this);
 		add(cmbYear);
+		this.setYear();
 
 		btnAddEmployee = new JButton("Aggiungi dipendente");
 		btnAddEmployee.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
@@ -202,7 +208,7 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 
 		btnClear = new JButton("Pulisci");
 		btnClear.setFont(new Font("Calibri", Font.ITALIC, 14));
-		btnClear.setBounds(475, 451, 115, 38);
+		btnClear.setBounds(455, 402, 115, 38);
 		btnClear.addActionListener(this);
 		add(btnClear);
 
@@ -276,13 +282,11 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 			}
 		} else if (isPressed == btnClear) {
 			this.cleanInterface();
-		} else if (isPressed == cmbYear) {
-			this.setYear();
+		} else if(isPressed== cmbYear){
+			cmbMonth.setEnabled(true);
 		} else if (isPressed == cmbMonth) {
-			this.setMonth();
-		} else if (isPressed == cmbDay
-				&& (!cmbMonth.getSelectedItem().equals("") && !cmbYear.getSelectedItem().equals(""))) {
-			this.setDay();
+			cmbDay.setEnabled(true);
+			setDay();
 		}
 	}
 
@@ -315,21 +319,22 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 	}
 
 	public void setDay() {
-		if (cmbMonth.getSelectedItem() == "2" && (Integer) cmbYear.getSelectedItem() % 4 == 0) {
+		cmbDay.removeAllItems();
+		if (cmbMonth.getSelectedItem().toString().equals("2") && (Integer) cmbYear.getSelectedItem() % 4 == 0) {
 			for (int i = 1; i <= 29; i++) {
 				cmbDay.addItem(i);
 			}
-		} else if (cmbMonth.getSelectedItem() == "2" && (Integer) cmbYear.getSelectedItem() % 4 != 0) {
+		} else if (cmbMonth.getSelectedItem().toString().equals("2") && (Integer) cmbYear.getSelectedItem() % 4 != 0) {
 			for (int i = 1; i <= 28; i++) {
 				cmbDay.addItem(i);
 			}
-		} else if (cmbMonth.getSelectedItem() == "4" || cmbMonth.getSelectedItem() == "6"
-				|| cmbMonth.getSelectedItem() == "9" || cmbMonth.getSelectedItem() == "11") {
+		} else if (cmbMonth.getSelectedItem().toString() .equals("4") || cmbMonth.getSelectedItem().toString() .equals("6")
+				|| cmbMonth.getSelectedItem().toString().equals("9") || cmbMonth.getSelectedItem().toString().equals("11") ) {
 
 			for (int i = 1; i <= 30; i++) {
 				cmbDay.addItem(i);
 			}
-		} else if (!cmbMonth.getSelectedItem().equals("") || !cmbYear.getSelectedItem().equals("")) {
+		} else if (!cmbMonth.getSelectedItem().toString().equals("") || !cmbYear.getSelectedItem().toString().equals("")) {
 			for (int i = 1; i <= 31; i++) {
 				cmbDay.addItem(i);
 			}
@@ -344,7 +349,7 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 
 	public void setYear() {
 		int year = Calendar.getInstance().get(Calendar.YEAR);
-		for (int i = year; i >= year - 100; i--) {
+		for (int i = year -16; i >= year - 100; i--) {
 			cmbYear.addItem(i);
 		}
 	}

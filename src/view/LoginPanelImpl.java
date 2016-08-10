@@ -73,6 +73,7 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		btnRecorded.setEnabled(true);
 		btnRecorded.setFont(new Font("Calibri", Font.ITALIC, 13));
 		btnRecorded.setBounds(10, 424, 89, 30);
+		btnRecorded.addActionListener(this);
 		add(btnRecorded);
 		
 		lblRecorded = new JLabel("Registra nuovo dipendente");
