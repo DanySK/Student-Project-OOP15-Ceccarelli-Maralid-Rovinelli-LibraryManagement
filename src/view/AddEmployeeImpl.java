@@ -250,7 +250,7 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		String address;
 		int telephoneNumber;
 
@@ -271,9 +271,9 @@ public class AddEmployeeImpl extends JPanel implements AddEmployee, ActionListen
 						txtUsername.getText(), txtPassword.getPassword(), txtEmail.getText(),
 						telephoneNumber = Integer.parseInt(txtTelephone.getText()),
 						txtTaxCode.getText(),
-						birthDate = (Date) dateFormat.parse(cmbYear.getSelectedItem() + "/"
-								+ cmbMonth.getSelectedItem() + "/"
-								+ cmbDay.getSelectedItem()),
+						birthDate = (Date) dateFormat.parse(cmbYear.getSelectedItem().toString() + "/"
+								+ cmbMonth.getSelectedItem().toString() + "/"
+								+ cmbDay.getSelectedItem().toString()),
 						hireDate);
 
 			} catch (NumberFormatException | ParseException e1) {

@@ -1,6 +1,8 @@
 package controller;
 
 import model.Model;
+import model.StreamImpl;
+import model.StreamModel;
 import view.LoginPanelImpl;
 import view.MainView;
 import view.NorthPanel;
@@ -8,9 +10,16 @@ import view.NorthPanelImpl;
 import view.observer.NorthPanelObserver;
 import view.observer.ViewObserver;
 
+import java.io.IOException;
+import java.util.Map;
+
+import model.EmployeeImpl;
+import model.EmployeeModel;
+
 public class Controller implements NorthPanelObserver, ViewObserver{
 	private Model model;
 	private MainView mainView;
+	StreamModel<Integer, EmployeeModel> sm = new StreamImpl<Integer, EmployeeModel>();;
 	
 	/**
 	 * Crea un nuovo Controller senza dare alcun parametro come input.
@@ -65,19 +74,30 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	@Override
 	public void saveData() {
 		// TODO Auto-generated method stub
-		
+		sm.writeFile("Employee.txt", model.getEmployees().getEmployees());
 	}
 
 	@Override
 	public void saveData(String path) {
 		// TODO Auto-generated method stub
+		System.out.println("Siamo qui");
 		
 	}
 
 	@Override
 	public void dataLoad() {
 		// TODO Auto-generated method stub
-		
+		try {
+			Map<Integer, EmployeeModel> mappa = sm.readFile("Employee.txt");
+			System.out.println(mappa.get(0).getUsername());
+			model.getEmployees().updateEmployees(mappa);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

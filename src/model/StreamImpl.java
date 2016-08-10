@@ -21,16 +21,16 @@ public class StreamImpl<T,X> implements StreamModel<T,X>  {
 
    
 @SuppressWarnings("unchecked")
-public Map<X, T> readFile(String path) throws IOException, ClassNotFoundException{
+public Map<T, X> readFile(String path) throws IOException, ClassNotFoundException{
 	 
-	  Map <X, T> map = new HashMap<X, T>();
+	  Map <T, X> map = new HashMap<T, X>();
        try
        {
           FileInputStream fis = new FileInputStream(path);
           BufferedInputStream bstream = new BufferedInputStream(fis);
           ObjectInputStream ois = new ObjectInputStream(bstream);
      
-          map = (Map<X, T>) ois.readObject();  
+          map = (Map<T, X>) ois.readObject();  
           
           ois.close();
           bstream.close();
@@ -50,12 +50,12 @@ public Map<X, T> readFile(String path) throws IOException, ClassNotFoundExceptio
    }
 
 @Override
-public void writeFile(String path,T o) {
+public void writeFile(String path, Map<T, X> map) {
     try
     {
        FileOutputStream fileOut = new FileOutputStream(path, true);
        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-       out.writeObject(o);
+       out.writeObject(map);
        out.close();
        fileOut.close();
        System.out.printf("Serialized data is saved in "+path);

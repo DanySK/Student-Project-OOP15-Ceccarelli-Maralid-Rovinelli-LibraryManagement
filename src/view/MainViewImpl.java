@@ -18,9 +18,6 @@ import javax.swing.JPanel;
 
 import view.observer.ViewObserver;
 
-/**
- * @author Ceccarelli
- */
 
 public class MainViewImpl extends JFrame implements MainView, ActionListener, WindowListener {
 	private NorthPanelImpl northPanel;
@@ -68,14 +65,23 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 		mnFile = new JMenu("File");
 		menuBar_1.add(mnFile);
+		
+		mntmSalva = new JMenuItem("Salva");
+		mntmSalva.addActionListener(this);
 
 		mntmSalva = new JMenuItem("Salva");
 		mntmSalva.addActionListener(this);
 		mnFile.add(mntmSalva);
+		
+		mntmApri = new JMenuItem("Apri");
+		mntmApri.addActionListener(this);
 
 		mntmApri = new JMenuItem("Apri");
 		mntmApri.addActionListener(this);		
 		mnFile.add(mntmApri);
+		
+		mntmExit = new JMenuItem("Esci");
+		mntmExit.addActionListener(this);
 
 		mntmExit = new JMenuItem("Esci");		
 		mnFile.add(mntmExit);

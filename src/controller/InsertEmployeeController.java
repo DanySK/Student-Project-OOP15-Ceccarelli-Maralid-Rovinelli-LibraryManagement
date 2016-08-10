@@ -5,6 +5,7 @@ import java.util.Date;
 import view.AddEmployee;
 import view.observer.AddEmployeeObserver;
 import model.Model;
+import model.StreamImpl;
 import model.EmployeeImpl;
 import model.EmployeeModel;
 
@@ -28,8 +29,9 @@ public class InsertEmployeeController implements AddEmployeeObserver{
 		
 		employee = new EmployeeImpl(taxCode, name, surname, email, birthDate, hireDate, address, username, password);
 		model.getEmployees().addNewEmployee(employee);
-		view.displayMessage("Registrazione avvenuta con successo");
-	
+		//StreamImpl<EmployeeImpl, EmployeeImpl> sm = new StreamImpl<EmployeeImpl, EmployeeImpl> ();
+
+		//view.displayMessage("Registrazione avvenuta con successo");
 		/*} catch (DuplicatedCodeException e) {
 			view.displayMsg("Questo Dipendente è già registrato");
 		} catch (DuplicatedUsernameException e) {
