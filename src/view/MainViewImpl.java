@@ -71,12 +71,15 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		menuBar_1.add(mnFile);
 
 		mntmSalva = new JMenuItem("Salva");
+		menuItem[0] = mntmSalva;
 		mnFile.add(mntmSalva);
 
 		mntmApri = new JMenuItem("Apri");
+		menuItem[1] = mntmApri;
 		mnFile.add(mntmApri);
 
 		mntmExit = new JMenuItem("Esci");
+		menuItem[2] = mntmExit;
 		mnFile.add(mntmExit);
 		mntmExit.addActionListener(this);
 
