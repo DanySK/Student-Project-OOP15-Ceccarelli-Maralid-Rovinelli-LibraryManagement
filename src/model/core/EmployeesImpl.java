@@ -44,13 +44,22 @@ public class EmployeesImpl implements EmployeesModel{
     }
     @Override
     public EmployeeModel employeeLogged(String username) {
-        Iterator<Integer> it = employees.keySet().iterator(); 
+        Iterator<Entry<Integer, EmployeeModel>> it = employees.entrySet().iterator(); 
         EmployeeModel e = new EmployeeImpl();
         while(it.hasNext()){
-            if(employees.get(it.next()).getUsername().equals(username)){
-              e = employees.get(it.next());  
+            Map.Entry<Integer, EmployeeModel> pair = (Entry<Integer, EmployeeModel>) it.next();
+            if(pair.getValue().getUsername().equals(username)){
+              e = pair.getValue();  
             }
         }
         return e;
+        /* boolean exist = false;employees.get(it.next()).getUsername().equals(username)
+        Iterator<Entry<Integer, EmployeeModel>> it = employees.entrySet().iterator(); 
+        while(it.hasNext()){
+           Map.Entry<Integer, EmployeeModel> pair = (Entry<Integer, EmployeeModel>) it.next();
+           System.out.println(pair.getValue().getUsername() + username);
+           if(pair.getValue().getUsername().equals(username) && String.valueOf(pair.getValue().getPassword()).equals(String.valueOf(password)))
+                 exist = true;
+        }*/
     }
 }
