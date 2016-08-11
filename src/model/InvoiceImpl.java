@@ -2,17 +2,19 @@ package model;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class InvoiceImpl implements InvoiceModel {
 
-    private Map<Integer,BookModel> receipt = new HashMap<Integer,BookModel>();
+    private Map<Integer,BookModel> receipt;
     private double total = 0;
     private Date date ;
     private String address;
    
     public InvoiceImpl(){
-        
+        receipt = new HashMap<Integer,BookModel>(); 
     }
     @Override
     public Map<Integer, BookModel> getReceipt() {
@@ -21,38 +23,51 @@ public class InvoiceImpl implements InvoiceModel {
 
     @Override
     public double getTotal() {
-        // TODO Auto-generated method stub
-        return 0;
+        Iterator<Entry<Integer,BookModel>> it = receipt.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry<Integer,BookModel> book = (Entry<Integer,BookModel>) it.next();
+            this.total += book.getValue().getPrice();
+        }
+        return total;
     }
+    
 
     @Override
     public Date getDate() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.date;
     }
 
     @Override
     public String getAddress() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.address;
     }
 
     @Override
     public void setAddress(String address) {
-        // TODO Auto-generated method stub
+        this.address = address;
 
     }
 
     @Override
     public void setDate(Date date) {
-        // TODO Auto-generated method stub
+        this.date = date;
 
     }
 
     @Override
     public void addItem(BookModel book) {
-        // TODO Auto-generated method stub
+       receipt.put(receipt.size(), book);
 
+    }
+    public void removeItem(BookModel book){
+        boolean cancel = false;
+        int count = 0;
+        while (cancel = false){
+            if(receipt.get(count).equals(book)){
+               receipt.remove(count);
+               cancel = true;
+            }
+        }       
     }
 
 }

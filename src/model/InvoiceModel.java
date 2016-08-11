@@ -1,6 +1,4 @@
 package model;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -20,7 +18,11 @@ public interface InvoiceModel {
     public void setDate(Date date);
     /**setta un nuovo articolo nello scontrino */
     public void addItem(BookModel book);
-    
+    /**
+     * this method remove a book at the invoice
+     * @param book
+     */
+    public void removeItem(BookModel book);
    
     /*public void addItems(String item,Integer quantity);
     public void addItems(String item,Integer quantity,Integer price);*/
