@@ -11,6 +11,7 @@ import view.observer.NorthPanelObserver;
 import view.observer.ViewObserver;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import model.EmployeeImpl;
@@ -19,7 +20,7 @@ import model.EmployeeModel;
 public class Controller implements NorthPanelObserver, ViewObserver{
 	private Model model;
 	private MainView mainView;
-	StreamModel<Integer, EmployeeModel> sm = new StreamImpl<Integer, EmployeeModel>();;
+	StreamModel<Integer, EmployeeModel> sm;
 	
 	/**
 	 * Crea un nuovo Controller senza dare alcun parametro come input.
@@ -29,6 +30,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	 */
 	public Controller(Model model) {
 			this.model = model;
+			sm = new StreamImpl<Integer, EmployeeModel>();
 	}
 
 
@@ -74,8 +76,8 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	@Override
 	public void saveData() {
 		// TODO Auto-generated method stub
-		sm.writeFile("Employees.txt", model.getEmployees().getEmployees());
-		System.out.println(model.getEmployees().getEmployees());
+		sm.writeFile("Employees.dat", model.employees().getEmployees());
+		System.out.println(model.employees().getEmployees());
 	}
 
 	@Override
@@ -89,12 +91,16 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	public void dataLoad() {
 		// TODO Auto-generated method stub
 		try {
-			Map<Integer, EmployeeModel> mappa = sm.readFile("Employees.txt");
-			System.out.println(mappa);
+			model.employees().updateEmployees(sm.readFile("Employees.dat"));
+			System.out.println(sm.readFile("Employees.dat").get(1).getUsername());
+			//System.out.println(model.employees().getEmployees().get(0).getUsername());
+			//System.out.println(mappa.get(0));
+			//System.out.println(model.getEmployees().getEmployees().get(0).getUsername());
 			//System.out.println(mappa.get(0).getUsername());
 			//System.out.println(mappa.get(1).getUsername());
-			model.getEmployees().updateEmployees(mappa);
+			/*model.getEmployees().updateEmployees(mappa);
 			System.out.println(mappa.get(0).getUsername());
+			System.out.println(mappa.get(1).getUsername());*/
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

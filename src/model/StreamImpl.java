@@ -28,13 +28,11 @@ public Map<T, X> readFile(String path) throws IOException, ClassNotFoundExceptio
        try
        {
           FileInputStream fis = new FileInputStream(path);
-          BufferedInputStream bstream = new BufferedInputStream(fis);
-          ObjectInputStream ois = new ObjectInputStream(bstream);
+          ObjectInputStream ois = new ObjectInputStream(fis);
      
           map = (Map<T, X>) ois.readObject();  
           
           ois.close();
-          bstream.close();
           fis.close();
        }catch(IOException i)
        {

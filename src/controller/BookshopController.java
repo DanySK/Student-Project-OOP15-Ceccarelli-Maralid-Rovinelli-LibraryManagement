@@ -32,7 +32,7 @@ public class BookshopController implements BookshopObserver{
 	}
 
 	@Override
-	public void ShopCartClicked() {
+	public void shopPurchaseItClicked() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -42,5 +42,7 @@ public class BookshopController implements BookshopObserver{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 
 }

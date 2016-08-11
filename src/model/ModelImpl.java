@@ -22,19 +22,19 @@ public class ModelImpl implements Model {
     	invoices = new InvoicesImpl();
     }
     
-    public ShopAndWarehouseModel getShop() {
+    public ShopAndWarehouseModel shop() {
     	return this.shop;
     }
     
-    public ShopAndWarehouseModel getWarehouse() {
+    public ShopAndWarehouseModel warehouse() {
     	return this.warehouse;
     }
     
-    public EmployeesModel getEmployees() {
+    public EmployeesModel employees() {
     	return this.employees;
     }
     
-    public InvoicesModel getInvoices() {
+    public InvoicesModel invoices() {
     	return this.invoices;
     }
    

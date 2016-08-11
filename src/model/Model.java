@@ -6,10 +6,10 @@ import model.core.ShopAndWarehouseModel;
 
 public interface Model {
 
-	 public ShopAndWarehouseModel getShop();
-	 public ShopAndWarehouseModel getWarehouse();
-	 public EmployeesModel getEmployees();
-	 public InvoicesModel getInvoices();
+	 public ShopAndWarehouseModel shop();
+	 public ShopAndWarehouseModel warehouse();
+	 public EmployeesModel employees();
+	 public InvoicesModel invoices();
    
     
 }
