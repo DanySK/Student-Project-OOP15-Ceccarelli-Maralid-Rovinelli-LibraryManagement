@@ -11,10 +11,6 @@ import view.observer.NorthPanelObserver;
 import view.observer.ViewObserver;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import model.EmployeeImpl;
 import model.EmployeeModel;
 
 public class Controller implements NorthPanelObserver, ViewObserver{
@@ -51,7 +47,6 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	@Override
 	public void changeLogStatus() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -70,15 +65,13 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 
 	@Override
 	public void exitCommand() {
+		saveData();
 		System.exit(0);
 	}
 
 	@Override
 	public void saveData() {
-		// TODO Auto-generated method stub
-	    
 		sm.writeFile("Employees.dat", model.employees().getEmployees());
-		
 	}
 
 	@Override

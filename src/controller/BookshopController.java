@@ -1,11 +1,9 @@
 package controller;
 
 import model.Model;
-import model.ModelImpl;
 import view.BookshopPanel;
 import view.MainView;
-import view.NorthPanel;
-import view.NorthPanelImpl;
+import view.ReceiptPanelImpl;
 import view.observer.BookshopObserver;
 
 public class BookshopController implements BookshopObserver{
@@ -33,7 +31,12 @@ public class BookshopController implements BookshopObserver{
 
 	@Override
 	public void shopPurchaseItClicked() {
-		// TODO Auto-generated method stub
+		ReceiptPanelImpl ri = new ReceiptPanelImpl();
+		ReceiptPanelController rc = new ReceiptPanelController(model);
+		rc.setView(ri);
+		maninView.replaceMainPanel(ri);
+		//System.out.println("QUALCOSA");
+		
 		
 	}
 

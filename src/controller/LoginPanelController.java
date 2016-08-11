@@ -1,21 +1,12 @@
 package controller;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
-import model.EmployeeModel;
+import model.EmployeeImpl;
 import model.Model;
-import model.ModelImpl;
-import model.core.EmployeesImpl;
-import model.core.EmployeesModel;
-import view.AddEmployeeImpl;
-import view.BookshopPanel;
+import view.AddEmployeePanelImpl;
 import view.BookshopPanelImpl;
 import view.LoginPanel;
-import view.LoginPanelImpl;
 import view.MainView;
 import view.observer.LoginObserver;
 
@@ -45,17 +36,22 @@ public class LoginPanelController implements LoginObserver,Serializable{
         	BookshopController bsc = new BookshopController(this.mainView, model);
         	bsc.setView(bsp);
         	mainView.replaceMainPanel(bsp);
+        	EmployeeImpl e = (EmployeeImpl) model.employees().employeeLogged(username);
+        	mainView.getNorthPanel().displayLoggedEmployee(e.getName(), e.getSurname());
+        	/*EmployeeModel e = new EmployeeImpl();
+        	e = model.employees().employeeLogged(username);
+        e.getClass().asSubclass(PersonModel);*/
+        	
     		
     	} else {
-    		System.out.println("Non loggato");
     		view.displayMessage("Credenziali errate");
     	}	
 	}
 
 	@Override
 	public void registerEmployeeClicked() {
-		AddEmployeeImpl ae = new AddEmployeeImpl();
-		InsertEmployeeController ie = new InsertEmployeeController(model);
+		AddEmployeePanelImpl ae = new AddEmployeePanelImpl();
+		InsertEmployeeController ie = new InsertEmployeeController(mainView, model);
 		ie.setView(ae);
 		mainView.replaceMainPanel(ae);
 	}

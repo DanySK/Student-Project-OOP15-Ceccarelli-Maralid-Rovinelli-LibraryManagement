@@ -2,24 +2,27 @@ package controller;
 
 import java.util.Date;
 
-import view.AddEmployee;
+import view.AddEmployeePanel;
+import view.LoginPanelImpl;
+import view.MainView;
 import view.observer.AddEmployeeObserver;
 import model.Model;
-import model.StreamImpl;
 import model.EmployeeImpl;
 import model.EmployeeModel;
 
 public class InsertEmployeeController implements AddEmployeeObserver{
 
 	private Model model;
-	private AddEmployee view;
+	private AddEmployeePanel view;
+	private MainView mainView;
 	private EmployeeModel employee;
 	
-	public InsertEmployeeController(Model model) {
+	public InsertEmployeeController(MainView mainView, Model model) {
 		this.model = model;
+		this.mainView = mainView;
 	}
 	
-	public void setView(AddEmployee ae){
+	public void setView(AddEmployeePanel ae){
 		this.view = ae;
 		this.view.attachObserver(this);
 	}
@@ -28,8 +31,13 @@ public class InsertEmployeeController implements AddEmployeeObserver{
 			String email, int telephoneNumber, String taxCode, Date birthDate, Date hireDate) {
 		
 		employee = new EmployeeImpl(taxCode, name, surname, email, birthDate, hireDate, address, username, password);
-		System.out.println(employee.getUsername());
 		model.employees().addNewEmployee(employee);
+		LoginPanelImpl li = new LoginPanelImpl();
+		LoginPanelController lp = new LoginPanelController(this.mainView, model);
+		lp.setView(li);
+		mainView.replaceMainPanel(li);
+		
+		
 		//StreamImpl<EmployeeImpl, EmployeeImpl> sm = new StreamImpl<EmployeeImpl, EmployeeImpl> ();
 
 		//view.displayMessage("Registrazione avvenuta con successo");
