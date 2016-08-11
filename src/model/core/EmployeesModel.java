@@ -36,5 +36,5 @@ public interface EmployeesModel {
      * @param username
      * @return employee
      */
-    public PersonModel employeeLogged(String username);
+    public EmployeeModel employeeLogged(String username);
 }
