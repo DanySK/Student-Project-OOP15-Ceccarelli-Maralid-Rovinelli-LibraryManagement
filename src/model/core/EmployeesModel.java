@@ -3,6 +3,7 @@ package model.core;
 import java.util.Map;
 
 import model.EmployeeModel;
+import model.PersonModel;
 
 public interface EmployeesModel {
    /**
@@ -35,5 +36,5 @@ public interface EmployeesModel {
      * @param username
      * @return employee
      */
-    public EmployeeModel employeeLogged(String username);
+    public PersonModel employeeLogged(String username);
 }

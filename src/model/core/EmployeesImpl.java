@@ -7,6 +7,8 @@ import java.util.Map.Entry;
 
 import model.EmployeeImpl;
 import model.EmployeeModel;
+import model.PersonImpl;
+import model.PersonModel;
 /**
  * This class represents the list of employees
  * @author mattia.Rovinelli
@@ -43,13 +45,15 @@ public class EmployeesImpl implements EmployeesModel{
         this.employees.put(c, employee);
     }
     @Override
-    public EmployeeModel employeeLogged(String username) {
+    public PersonModel employeeLogged(String username) {
         Iterator<Entry<Integer, EmployeeModel>> it = employees.entrySet().iterator(); 
-        EmployeeModel e = new EmployeeImpl();
+       // EmployeeModel e = new EmployeeImpl();
+        PersonModel e = new EmployeeImpl();
         while(it.hasNext()){
             Map.Entry<Integer, EmployeeModel> pair = (Entry<Integer, EmployeeModel>) it.next();
             if(pair.getValue().getUsername().equals(username)){
-              e = pair.getValue();  
+              e = (PersonImpl) pair.getValue(); 
+              
             }
         }
         return e;
