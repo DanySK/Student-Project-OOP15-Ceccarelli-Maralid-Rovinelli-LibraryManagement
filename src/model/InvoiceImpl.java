@@ -1,71 +1,58 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class InvoiceImpl implements InvoiceModel {
-    //primo campo della mappa è il nome dell'articolo comprato il secondo la quantità il 3 il prezzo
-    private Map<Integer,ArrayList<Object>> receipt = new HashMap<Integer,ArrayList<Object>>();
+
+    private Map<Integer,BookModel> receipt = new HashMap<Integer,BookModel>();
     private double total = 0;
     private Date date ;
     private String address;
-    
-    
-    
-     @Override
-    public Map<Integer, ArrayList<Object>> getReceipt() {
-     return this.receipt;
+   
+    public InvoiceImpl(){
+        
+    }
+    @Override
+    public Map<Integer, BookModel> getReceipt() {
+       return this.receipt;
     }
 
     @Override
     public double getTotal() {
-       Iterator<Integer> iterator = receipt.keySet().iterator();
-       while(iterator.hasNext())
-       {
-         this.total += (double) receipt.get(iterator.next()).get(1);
-          
-       }
-        return this.total;
-    }
-
-    @Override
-    public void addItem(String nameItem, double unitPrice) {
-        ArrayList<Object> item = new ArrayList<Object>();
-        item.add(0,nameItem);
-        item.add(1, unitPrice);
-        receipt.put(receipt.size()+1,item);
-        
+        // TODO Auto-generated method stub
+        return 0;
     }
 
     @Override
     public Date getDate() {
-       return this.date;
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
     public String getAddress() {
-      return this.address;
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
     public void setAddress(String address) {
-       this.address = address;
-        
+        // TODO Auto-generated method stub
+
     }
 
     @Override
     public void setDate(Date date) {
-        this.date = date;
-        
+        // TODO Auto-generated method stub
+
     }
 
-  
-        
+    @Override
+    public void addItem(BookModel book) {
+        // TODO Auto-generated method stub
+
+    }
+
 }
-
- 
-
-

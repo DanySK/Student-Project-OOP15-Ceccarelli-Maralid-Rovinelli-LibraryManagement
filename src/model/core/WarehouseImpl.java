@@ -3,6 +3,7 @@ package model.core;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import model.BookModel;
 /**
@@ -43,13 +44,23 @@ public class WarehouseImpl implements ShopAndWarehouseModel {
     /**ritorna la quantità di quel libro*/
     public Integer getBookQuantity(BookModel b) {
         int quantity = 0;
-        Iterator<BookModel> it = warehouse.keySet().iterator();
+        Iterator<Entry<BookModel,Integer>> it = warehouse.entrySet().iterator();
         while(it.hasNext()){
-            if(it.next().equals(b)){
-            quantity = warehouse.get(it.next());    
+            Map.Entry<BookModel, Integer> pair = (Entry<BookModel, Integer>) it.next();
+            if(pair.getKey().equals(b)){
+                quantity = pair.getValue();
             }
-          }
+        }
         return quantity;
+        /*  int quantity = 0;
+        Iterator<Entry<BookModel,Integer>> it = shop.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry<BookModel, Integer> pair = (Entry<BookModel, Integer>) it.next();
+            if(pair.getKey().equals(book)){
+                quantity = pair.getValue();
+            }
+        }
+        return quantity;*/
     }
 
 }
