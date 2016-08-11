@@ -28,6 +28,7 @@ public class InsertEmployeeController implements AddEmployeeObserver{
 			String email, int telephoneNumber, String taxCode, Date birthDate, Date hireDate) {
 		
 		employee = new EmployeeImpl(taxCode, name, surname, email, birthDate, hireDate, address, username, password);
+		System.out.println(employee.getUsername());
 		model.employees().addNewEmployee(employee);
 		//StreamImpl<EmployeeImpl, EmployeeImpl> sm = new StreamImpl<EmployeeImpl, EmployeeImpl> ();
 

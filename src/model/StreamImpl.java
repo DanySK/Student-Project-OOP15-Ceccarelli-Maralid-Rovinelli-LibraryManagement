@@ -1,8 +1,4 @@
 package model;
-
-
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -52,15 +48,14 @@ public Map<T, X> readFile(String path) throws IOException, ClassNotFoundExceptio
 public void writeFile(String path, Map<T, X> map) {
     try
     {
-       FileOutputStream fileOut = new FileOutputStream(path, true);
-       BufferedOutputStream bostream = new BufferedOutputStream(fileOut);
-       ObjectOutputStream out = new ObjectOutputStream(bostream);
+       FileOutputStream fos = new FileOutputStream(path);
+       ObjectOutputStream oos = new ObjectOutputStream(fos);
        
-       out.writeObject(map);
-       out.close();
-       bostream.close();
-       fileOut.close();
-       System.out.printf("Serialized data is saved in "+ path);
+       oos.writeObject(map);
+       
+       oos.close();
+       fos.close();
+       System.out.println("Serialized data is saved in "+ path);
     }catch(IOException i)
     {
         i.printStackTrace();

@@ -27,37 +27,16 @@ public class EmployeesImpl implements EmployeesModel{
         return this.employees;
     }
     public Boolean logged(String username,char[] password){
-    	boolean exist = false;
-    	for(Integer i : employees.keySet()){
-    		if(employees.get(i).getUsername().equals(username) && String.valueOf(employees.get(i).getPassword()).equals(password)){
-    			exist = true;
-    		}
+        boolean exist = false;
+        Iterator<Entry<Integer, EmployeeModel>> it = employees.entrySet().iterator(); 
+        while(it.hasNext()){
+           Map.Entry<Integer, EmployeeModel> pair = (Entry<Integer, EmployeeModel>) it.next();
+           System.out.println(pair.getValue().getUsername() + username);
+           if(pair.getValue().getUsername().equals(username) && String.valueOf(pair.getValue().getPassword()).equals(String.valueOf(password)))
+                 exist = true;
     	}
     	return exist;
-       /* boolean exist = false;
-        Iterator<Integer> it = employees.keySet().iterator(); 
-        while(it.hasNext()){
-        	it.next();
-            Iterator<Entry<Integer,EmployeeModel>> it = employees.entrySet().iterator(); 
-              Map.Entry<Integer, EmployeeModel> current =(Map.Entry<Integer, EmployeeModel>) it.next();
-            if(current.getValue().getUsername().equals(username) &&current.getValue().getPassword().equals(password) )
-            if(employees.get(it).getUsername().equals(username) && String.valueOf(employees.get(it).getPassword()).equals(password) )
-                exist = true;
-            
-        }
-        return exist;*/
-    	 /*boolean exist = false;
-         System.out.println(employees.get(0).getUsername());
-         System.out.println(employees.get(0).getPassword());
-         Iterator<Entry<Integer, EmployeeModel>> it = employees.entrySet().iterator(); 
-         while(it.hasNext()){
-         	Map.Entry<Integer, EmployeeModel> pair = (Entry<Integer, EmployeeModel>) it.next();
-         	System.out.println(pair);
-          	String str = String.valueOf(password);
-              if(pair.getValue().getUsername().equals(username) && String.valueOf(pair.getValue().getPassword()).toString().equals(str))
-                  exist = true;
-          }
-          return exist;*/
+    
     }
     public void addNewEmployee(EmployeeModel employee){
         int c = this.employees.size();
