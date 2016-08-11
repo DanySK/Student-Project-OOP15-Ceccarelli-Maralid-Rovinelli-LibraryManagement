@@ -7,6 +7,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import model.BookModel;
+import model.core.ShopImpl;
 import view.observer.BookshopObserver;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -19,6 +20,10 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.awt.event.ActionEvent;
 
 public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionListener {
@@ -40,6 +45,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	private JButton btnRemove;
 	private JTextField txtTotalPrice;
 	private JLabel lblTotalPrice;
+	private ShopImpl books;
 
 	public BookshopPanelImpl() {
 		setBackground(SystemColor.inactiveCaption);
@@ -144,14 +150,9 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		txtTotalPrice.setBounds(254, 372, 96, 20);
 		add(txtTotalPrice);
 		txtTotalPrice.setColumns(10);
-		
-		/*for(BookModel bm:){
-			
-		}*/
 
-		
 	}
-	
+
 	@Override
 	public void attachObserver(BookshopObserver observer) {
 		this.observer = observer;
@@ -163,18 +164,18 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		if (isPressed == btnAddBook) {
 			double price = -1;
 			String cell;
-			String titolo="";
+			String titolo = "";
 			if (tblAllBooks.getSelectedRow() == -1) {
 				cell = "";
 			} else {
 				cell = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString();
 			}
 			int quantity = Integer.parseInt(txtAmount.getText());
-			price = this.observer.uploadBooks(titolo,quantity );
+			price = this.observer.uploadBooks(titolo, quantity);
 			txtTotalPrice.setText(Double.parseDouble(txtTotalPrice.getText()) + price + "");
 			int ammount = Integer.parseInt(txtAmount.getText());
 			String title = cell;
-			//modelSelectedBooks.addRow(arg0);
+			modelSelectedBooks.addRow(new Object[]{});
 			tblSelectedBooks.repaint();
 		} else {
 			if (isPressed == btnAdd && this.observer.getStocksOfTheShop(
@@ -185,7 +186,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 				JOptionPane.showMessageDialog(null,
 						"Attenzione quantità massima disponibile già raggiunta!");
 			}
-			
+
 			if (isPressed == btnRemove) {
 				if (Integer.parseInt(txtAmount.getText()) > 1) {
 					txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) - 1));
@@ -195,17 +196,29 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 				}
 			}
 		}
-		if(isPressed==btnPurchaseIt ){
+		if (isPressed == btnPurchaseIt) {
 			this.observer.shopPurchaseItClicked();
-			
-		}else if (isPressed==btnRemoveBook){
+
+		} else if (isPressed == btnRemoveBook) {
 			modelSelectedBooks.removeRow(tblSelectedBooks.getSelectedRow());
 		}
 	}
+
 	@Override
 	public void clearSelectedBooks() {
 		for (int i = modelSelectedBooks.getRowCount() - 1; i >= 0; i--) {
 			modelSelectedBooks.removeRow(i);
+		}
+
+	}
+
+	public void setAllBooks() {
+		books = new ShopImpl();	
+		
+		for (Map.Entry<BookModel, Integer> entry : books.getBooks().entrySet())
+		{
+		    modelAllBooks.addRow(new Object[]{entry.getKey().getTitle(),entry.getKey().getAuthor(),
+				    entry.getKey().getyearOfPublication(),entry.getKey().getPrice()});
 		}
 		
 	}

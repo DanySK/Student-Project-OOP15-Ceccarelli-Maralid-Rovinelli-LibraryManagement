@@ -26,7 +26,7 @@ public interface NorthPanel {
 	void clearPanel();
 	/**
 	 * Permette di visualizzare il nome ed il cognome del dipendete 
-	 * che ha effettuato la login
+	 * che ha effettuato la login in alto a destra
 	 * 
 	 * @param nome
 	 * @param cognome

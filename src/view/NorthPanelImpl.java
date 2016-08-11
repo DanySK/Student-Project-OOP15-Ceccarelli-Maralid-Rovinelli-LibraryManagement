@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import view.observer.NorthPanelObserver;
+import java.awt.SystemColor;
 
 public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener {
 	
@@ -25,15 +26,17 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 
 	public NorthPanelImpl() {
 		super();
-		setBackground(new Color(255, 255, 255));// bianco
+		setBackground(SystemColor.inactiveCaption);// bianco
 		this.setLayout(null);
 
 		btnHome = new JButton(HOME);
+		btnHome.setBackground(SystemColor.textInactiveText);
 		btnHome.setEnabled(false);
 		btnHome.setFont(new Font("Calibri", Font.PLAIN, 13));
 		btnHome.setBounds(10, 42, 115, 30);
 
 		btnLog = new JButton(LOGIN);
+		btnLog.setBackground(SystemColor.textInactiveText);
 		btnLog.setFont(new Font("Calibri", Font.PLAIN, 13));
 		btnLog.setBounds(162, 42, 115, 30);
 
@@ -46,7 +49,8 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 		this.setPreferredSize(new Dimension(600, 100));
 
 		logTxt = new JTextArea("none");
-		logTxt.setBounds(10, 7, 55, 24);
+		logTxt.setBackground(SystemColor.inactiveCaption);
+		logTxt.setBounds(10, 7, 580, 24);
 		logTxt.setFont(new Font("Calibri", Font.PLAIN, 15));
 		logTxt.setEditable(false);
 		add(logTxt);
@@ -79,7 +83,7 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 
 	@Override
 	public void displayLoggedEmployee(String nome, String cognome) {
-		this.logTxt.setText("Benvenuto!\r\n" + nome + " " + cognome);
+		this.logTxt.setText("Benvenuto: " + nome + " " + cognome);
 	}
 
 	@Override

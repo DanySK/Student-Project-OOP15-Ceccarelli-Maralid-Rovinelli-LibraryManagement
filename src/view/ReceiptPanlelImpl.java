@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -7,24 +10,21 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import view.observer.RecepitObserver;
-import java.awt.SystemColor;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
+import view.observer.RecepitObserver;
 
-public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionListener {
+public class ReceiptPanlelImpl extends JPanel implements ReceiptPanel,ActionListener {
+	
 	private JTable tblReport;
 	private DefaultTableModel modelReport;
 	private JScrollPane scpReport;
@@ -38,13 +38,13 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 	/**
 	 * Create the panel.
 	 */
-	public ReceiptPanelImpl() {
+	public ReceiptPanlelImpl() {
 		setBackground(SystemColor.inactiveCaption);
 		this.setLayout(null);
 		modelReport = new DefaultTableModel(new Object[][] {}, new String[] { "Titolo", "Prezzo" });
 
 		scpReport = new JScrollPane();
-		scpReport.setBounds(10, 74, 230, 359);
+		scpReport.setBounds(10, 74, 585, 359);
 		add(scpReport);
 
 		tblReport = new JTable();
@@ -52,9 +52,6 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 		scpReport.setViewportView(tblReport);
 		tblReport.setModel(modelReport);
 		scpReport.setBackground(SystemColor.inactiveCaption);
-		tblReport.getColumnModel().getColumn(0).setPreferredWidth(74);
-		tblReport.getColumnModel().getColumn(1).setPreferredWidth(66);
-		tblReport.getColumnModel().getColumn(2).setPreferredWidth(126);
 		tblReport.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tblReport.setFont(new Font("Calibri", Font.ITALIC, 14));
 		tblReport.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
@@ -67,13 +64,13 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 
 		btnMakePurchase = new JButton("Effettua acquisto");
 		btnMakePurchase.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 17));
-		btnMakePurchase.setBounds(382, 367, 161, 50);
+		btnMakePurchase.setBounds(434, 444, 161, 50);
 		btnMakePurchase.addActionListener(this);
 		add(btnMakePurchase);
 
 		cmbTypeOfPayment = new JComboBox();
 		cmbTypeOfPayment.setFont(new Font("Calibri", Font.ITALIC, 13));
-		cmbTypeOfPayment.setBounds(382, 204, 160, 20);
+		cmbTypeOfPayment.setBounds(181, 459, 160, 20);
 		cmbTypeOfPayment.addItem("Contanti");
 		cmbTypeOfPayment.addItem("Carta di credito");
 		cmbTypeOfPayment.addItem("Bancomat");
@@ -83,7 +80,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 		txtTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
 		txtTotalPrice.setEnabled(false);
 		txtTotalPrice.setEditable(false);
-		txtTotalPrice.setBounds(382, 177, 161, 20);
+		txtTotalPrice.setBounds(10, 458, 161, 20);
 		// calcolo del totale tramite i dati presi dalla view
 		// BookShopImpl
 		add(txtTotalPrice);
@@ -91,7 +88,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 
 		lblTotalPrice = new JLabel("Totale:");
 		lblTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblTotalPrice.setBounds(382, 163, 161, 14);
+		lblTotalPrice.setBounds(10, 444, 161, 14);
 		add(lblTotalPrice);
 
 	}
