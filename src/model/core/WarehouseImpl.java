@@ -71,9 +71,6 @@ public class WarehouseImpl implements ShopAndWarehouseModel {
              Map.Entry<BookModel,Integer> book = (Entry<BookModel,Integer>) it.next();
              if(book.getKey().getTitle().equals(title)){
                  bookT = book.getKey();  
-             }else{
-                 bookT = null;
-                 System.out.println("il libro non esiste");
              }
          }
          return bookT;

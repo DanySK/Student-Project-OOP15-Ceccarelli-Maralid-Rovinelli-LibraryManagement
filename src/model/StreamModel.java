@@ -18,7 +18,7 @@ public interface StreamModel<T,X> {
      * @param path
      * @param map for the type
      */
-    public void writeFile(String path,Map<T, X> map);
+    public void writeFile(String path, Map<T, X> map);
    
   
 }

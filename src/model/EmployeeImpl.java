@@ -25,7 +25,6 @@ public class EmployeeImpl extends PersonImpl implements EmployeeModel,Serializab
        this.address = address;
        this.username = username;
        this.password = password;
-        
     }
   
     public Date getDateOfBirth() {

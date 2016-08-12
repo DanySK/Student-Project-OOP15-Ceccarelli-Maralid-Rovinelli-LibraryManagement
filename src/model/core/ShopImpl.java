@@ -53,7 +53,6 @@ public class ShopImpl implements ShopAndWarehouseModel {
             }
         }
         return quantity;
-      
     }
 
     @Override

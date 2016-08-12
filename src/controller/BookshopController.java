@@ -1,5 +1,6 @@
 package controller;
 
+import model.BookImpl;
 import model.Model;
 import view.BookshopPanel;
 import view.MainView;
@@ -42,8 +43,9 @@ public class BookshopController implements BookshopObserver{
 
 	@Override
 	public int getStocksOfTheShop(String title) {
-		// TODO Auto-generated method stub
-		return 0;
+		BookImpl b = (BookImpl) model.shop().searchBook(title);
+		System.out.print(b.getPrice());
+		return (int) b.getPrice();
 	}
 
 	

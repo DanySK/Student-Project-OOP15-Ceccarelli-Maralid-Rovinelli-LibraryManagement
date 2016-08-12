@@ -38,11 +38,6 @@ public class LoginPanelController implements LoginObserver,Serializable{
         	mainView.replaceMainPanel(bsp);
         	EmployeeImpl e = (EmployeeImpl) model.employees().employeeLogged(username);
         	mainView.getNorthPanel().displayLoggedEmployee(e.getName(), e.getSurname());
-        	/*EmployeeModel e = new EmployeeImpl();
-        	e = model.employees().employeeLogged(username);
-        e.getClass().asSubclass(PersonModel);*/
-        	
-    		
     	} else {
     		view.displayMessage("Credenziali errate");
     	}	

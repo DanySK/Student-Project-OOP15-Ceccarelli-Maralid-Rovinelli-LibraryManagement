@@ -3,6 +3,7 @@ package controller;
 import model.Model;
 import model.StreamImpl;
 import model.StreamModel;
+import view.AddBookPanelImpl;
 import view.LoginPanelImpl;
 import view.MainView;
 import view.NorthPanel;
@@ -11,12 +12,16 @@ import view.observer.NorthPanelObserver;
 import view.observer.ViewObserver;
 
 import java.io.IOException;
+
+import model.BookImpl;
+import model.BookModel;
 import model.EmployeeModel;
 
 public class Controller implements NorthPanelObserver, ViewObserver{
 	private Model model;
 	private MainView mainView;
-	StreamModel<Integer, EmployeeModel> sm;
+	private StreamModel<Integer, EmployeeModel> smEmployee;
+	private StreamModel<BookModel, Integer> smBook;
 	
 	/**
 	 * Crea un nuovo Controller senza dare alcun parametro come input.
@@ -26,7 +31,8 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	 */
 	public Controller(Model model) {
 			this.model = model;
-			sm = new StreamImpl<Integer, EmployeeModel>();
+			smEmployee = new StreamImpl<Integer, EmployeeModel>();
+			smBook = new StreamImpl<BookModel, Integer>();
 	}
 
 
@@ -71,14 +77,14 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 
 	@Override
 	public void saveData() {
-		sm.writeFile("Employees.dat", model.employees().getEmployees());
+		smEmployee.writeFile("Employees.dat", model.employees().getEmployees());
+		smBook.writeFile("BooksInWareHouse.dat", model.warehouse().getBooks());
 	}
 
 	@Override
 	public void saveData(String path) {
 		// TODO Auto-generated method stub
 		System.out.println("Siamo qui");
-		
 	}
 
 	@Override
@@ -86,10 +92,18 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		// TODO Auto-generated method stub
 		try {
 		    
-			model.employees().updateEmployees(sm.readFile("Employees.dat"));
+			model.employees().updateEmployees(smEmployee.readFile("Employees.dat"));
 			for(int i = 0;i<model.employees().getEmployees().size();i++){
 	            System.out.println(model.employees().getEmployees().get(i).getUsername());
 			}
+		    model.warehouse().update(smBook.readFile("BooksInWareHouse.dat"));
+		    //System.out.println(model.warehouse().getBooks().);
+		    for ( BookModel key : model.warehouse().getBooks().keySet() ) {
+		        System.out.println( key.getTitle());
+		    }
+		    /*for(int y = 0; y<model.warehouse().getBooks().size(); y++){
+		    	System.out.println(model.warehouse().getBooks().get);
+		    }*/
 		
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -104,6 +118,15 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	public void dataLoad(String path) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	//DA TOGLIERE
+	@Override
+	public void OpenAddBookClick() {
+		AddBookPanelImpl ab = new AddBookPanelImpl();
+		InsertBookController ibc = new InsertBookController(model);
+		ibc.setView(ab);
+		this.mainView.replaceMainPanel(ab);
 	}
 
 

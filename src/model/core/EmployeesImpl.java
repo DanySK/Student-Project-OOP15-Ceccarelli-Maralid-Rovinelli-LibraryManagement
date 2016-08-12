@@ -50,8 +50,7 @@ public class EmployeesImpl implements EmployeesModel{
         while(it.hasNext()){
             Map.Entry<Integer, EmployeeModel> pair = (Entry<Integer, EmployeeModel>) it.next();
             if(pair.getValue().getUsername().equals(username)){
-              e = pair.getValue(); 
-             
+              e = pair.getValue();
             }
         }
         return e;
