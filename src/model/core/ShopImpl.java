@@ -67,8 +67,7 @@ public class ShopImpl implements ShopAndWarehouseModel {
 
     @Override
     public BookModel searchBook(String title) {
-       
-        Iterator<Entry<BookModel,Integer>> it = shop.entrySet().iterator();
+       Iterator<Entry<BookModel,Integer>> it = shop.entrySet().iterator();
        BookModel bookT = new BookImpl();
         while(it.hasNext()){
             Map.Entry<BookModel,Integer> book = (Entry<BookModel,Integer>) it.next();
