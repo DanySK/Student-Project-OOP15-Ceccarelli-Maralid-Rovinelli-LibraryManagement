@@ -26,7 +26,6 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 	private JTextField txtAuthor;
 	private JTextField txtPrice;
 	private JTextField txtAmmount;
-	private JTextField txtTotalPrice;
 	private JLabel lblTitle;
 	private JLabel lblAuthor;
 	private JLabel lblLiteraryGenre;
@@ -44,6 +43,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 	private JButton btnAddTen;
 	private JButton btnAddOne;
 	private AddBookObserver observer;
+	private JButton btnBack;
 	
 	public AddBookPanelImpl() {
 		this.setLayout(null);
@@ -114,21 +114,6 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		lblPrice.setBounds(230, 163, 154, 14);
 		add(lblPrice);
 
-		txtTotalPrice = new JTextField();
-		txtTotalPrice.setHorizontalAlignment(SwingConstants.CENTER);
-		txtTotalPrice.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtTotalPrice.setEditable(false);
-		txtTotalPrice.setEnabled(false);
-		txtTotalPrice.setBounds(10, 274, 154, 20);
-		add(txtTotalPrice);
-		txtTotalPrice.setColumns(10);
-
-		lblAmmount = new JLabel("Totale:");
-		lblAmmount.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAmmount.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
-		lblAmmount.setBounds(10, 249, 154, 14);
-		add(lblAmmount);
-
 		lblPanelTitle = new JLabel("Ordina libro");
 		lblPanelTitle.setForeground(new Color(255, 69, 0));
 		lblPanelTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
@@ -149,7 +134,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 			}
 		});
 		btnAddBook.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		btnAddBook.setBounds(230, 249, 154, 63);
+		btnAddBook.setBounds(10, 241, 154, 68);
 		btnAddBook.addActionListener(this);
 		add(btnAddBook);
 
@@ -200,8 +185,14 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		btnAddOne.setBounds(534, 252, 56, 23);
 		btnAddOne.addActionListener(this);
 		add(btnAddOne);
+		
+		btnBack = new JButton("Indietro");
+		btnBack.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
+		btnBack.setBounds(230, 250, 154, 34);
+		add(btnBack);
 
 		txtTitle = new JTextField();
+		setYear();
 
 	}
 
@@ -214,11 +205,14 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) + 10));
 		} else if (isPressed == btnRemoveOne && Integer.parseInt(txtAmmount.getText()) > 1) {
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 1));
-		}else if (isPressed == btnRemoveOne && Integer.parseInt(txtAmmount.getText()) > 10){
+		}else if (isPressed == btnRemoveTen && Integer.parseInt(txtAmmount.getText()) > 10){
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 10));
 		}else if (isPressed == btnAddBook){
-			observer.addBookClick();
-		}
+			observer.addBook();
+		}else
+			if(isPressed==btnBack ){
+				observer.backToWharehouseClicked();
+			}
 	}
 
 	@Override
@@ -239,7 +233,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		txtAuthor.setText("");
 		txtTitle.setText("");
 		txtPrice.setText("");
-		txtTotalPrice.setText("");
+		
 	}
 
 	public void setYear() {
@@ -249,10 +243,6 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		}
 	}
 
-	@Override
-	public double setTotalPrice(int ammount, double price) {
-		return ammount * price;
-	}
-
+	
 	
 }

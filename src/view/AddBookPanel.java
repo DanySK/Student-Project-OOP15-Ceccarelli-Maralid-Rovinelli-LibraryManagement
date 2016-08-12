@@ -23,5 +23,4 @@ public interface AddBookPanel {
 	 */
 	void clearView();
 	
-	double setTotalPrice(int ammount, double price);
 }

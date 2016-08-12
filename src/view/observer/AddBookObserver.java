@@ -6,5 +6,7 @@ public interface AddBookObserver {
 	 * nel magazzino 
 	 * 
 	 */
-	void addBookClick();
+	void addBook();
+	
+	void backToWharehouseClicked();
 }
