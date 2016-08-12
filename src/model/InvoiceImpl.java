@@ -1,13 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class InvoiceImpl implements InvoiceModel {
+public class InvoiceImpl implements InvoiceModel ,Serializable{
 
+    private static final long serialVersionUID = 1L;
     private Map<Integer,BookModel> receipt;
     private double total = 0;
     private Date date ;

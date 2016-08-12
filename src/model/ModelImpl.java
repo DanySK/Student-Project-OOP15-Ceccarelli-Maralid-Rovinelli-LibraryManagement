@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import model.core.EmployeesImpl;
 import model.core.EmployeesModel;
 import model.core.InvoicesImpl;
@@ -15,7 +17,8 @@ import model.core.WarehouseImpl;
  */
 public class ModelImpl implements Model {
     
-	private ShopAndWarehouseModel shop;
+    
+    private ShopAndWarehouseModel shop;
     private ShopAndWarehouseModel warehouse;
     private EmployeesModel employees;
     private InvoicesModel invoices;

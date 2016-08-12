@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * Class of Subscription
  * @author Mattia.Rovinelli
  *
  */
-public class SubscriptionImpl implements SubscriptionModel {
+public class SubscriptionImpl implements SubscriptionModel, Serializable {
 
     private static final long serialVersionUID = 1L; 
     private String name;

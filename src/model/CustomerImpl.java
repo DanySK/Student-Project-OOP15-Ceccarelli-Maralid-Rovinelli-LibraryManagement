@@ -1,6 +1,8 @@
 package model;
 
-public class CustomerImpl extends PersonImpl implements CustomerModel {
+import java.io.Serializable;
+
+public class CustomerImpl extends PersonImpl implements CustomerModel,Serializable {
 
     private static final long serialVersionUID = 1L;
     private long telefonCustomers;

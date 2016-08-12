@@ -1,7 +1,10 @@
 package model;
 
-public class BookImpl implements BookModel {
+import java.io.Serializable;
 
+public class BookImpl implements BookModel,Serializable {
+
+    private static final long serialVersionUID = 1L;
     private String title;
     private String author;
     private String literaryGenre;
