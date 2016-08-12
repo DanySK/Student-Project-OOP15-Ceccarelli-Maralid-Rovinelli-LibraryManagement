@@ -36,8 +36,6 @@ public class BookshopController implements BookshopObserver{
 		ReceiptPanelController rc = new ReceiptPanelController(model);
 		rc.setView(ri);
 		maninView.replaceMainPanel(ri);
-		//System.out.println("QUALCOSA");
-		
 		
 	}
 

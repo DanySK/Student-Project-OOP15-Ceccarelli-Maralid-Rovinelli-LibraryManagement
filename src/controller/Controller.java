@@ -5,6 +5,7 @@ import model.StreamImpl;
 import model.StreamModel;
 import view.AddBookPanelImpl;
 import view.LoginPanelImpl;
+import view.BookshopPanelImpl;
 import view.MainView;
 import view.NorthPanel;
 import view.NorthPanelImpl;
@@ -57,7 +58,10 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 
 	@Override
 	public void buttonHomeClicked() {
-		// TODO Auto-generated method stub
+		BookshopPanelImpl bsp = new BookshopPanelImpl();
+		BookshopController bsc = new BookshopController(this.mainView, model);
+		bsc.setView(bsp);
+		this.mainView.replaceMainPanel(bsp);
 		
 	}
 	

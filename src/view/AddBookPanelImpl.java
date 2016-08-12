@@ -192,7 +192,6 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		btnBack.setBounds(230, 250, 154, 34);
 		add(btnBack);
 
-		txtTitle = new JTextField();
 		setYear();
 
 	}
