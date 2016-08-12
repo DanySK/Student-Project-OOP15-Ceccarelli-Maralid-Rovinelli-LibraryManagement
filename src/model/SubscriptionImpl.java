@@ -1,13 +1,17 @@
 package model;
-
+/**
+ * Class of Subscription
+ * @author Mattia.Rovinelli
+ *
+ */
 public class SubscriptionImpl implements SubscriptionModel {
 
     private static final long serialVersionUID = 1L; 
     private String name;
     private String surname;
     private String type;
-    private int books;
-   
+    private int books = 0;
+    
     @Override
     public Long getId() {
         return SubscriptionImpl.serialVersionUID ;
@@ -46,7 +50,7 @@ public class SubscriptionImpl implements SubscriptionModel {
         
     }
     @Override
-    public void setBook(int book) {
-       this.books = book;
+    public void addBook(int book) {
+       this.books += book;
        }
 }

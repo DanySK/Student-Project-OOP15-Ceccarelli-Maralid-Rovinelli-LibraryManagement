@@ -5,34 +5,64 @@ import java.util.Date;
 public interface EmployeeModel {
     
  
-    /** metodo per leggere la data di nascita*/
+    /** 
+     * this method return a date of Birth
+     * @return date 
+     */
     public Date getDateOfBirth();
     
-    /**metodo per leggere la data di assunzione*/
+    /**
+     * this method return the date of hire
+     * @return Date
+     */
     public Date getHireDate();
     
-    /**metodo per leggere la via*/
+    /**
+     * this method return the address of employee
+     * @return String
+     */
     public String getAddress();
     
-    /**metodo che restituisce lo username*/
+    /**
+     * this method return the username
+     * @return
+     */
     public String getUsername();
     
-    /**metodo che restituisce la password*/
+    /**
+     * this method return the password
+     * @return string
+     */
     public char[] getPassword();
     
-   /**metodo per settare la data di nascita */
+   /**
+    * method for set a date of birth
+    * @param date
+    */
     public void setDateOfBirth(Date date);
     
-    /**metodo per settare la data di assunzione*/
+    /**
+     * method for set the hire date
+     * @param hireDate
+     */
     public void setHireDate(Date hireDate);
    
-    /**metodo per settare il suo indirizzo*/
+    /**
+     * method for set the address
+     * @param address
+     */
     public void setAddress(String address);
     
-    /**metodo per settare lo username*/
+    /**
+     * metod for set the username
+     * @param username
+     */
     public void setUsername(String username);
     
-    /**metodo per settare la password*/
+    /**
+     * method for set the password
+     * @param password
+     */
     public void setPassword(char[] password);
     
 

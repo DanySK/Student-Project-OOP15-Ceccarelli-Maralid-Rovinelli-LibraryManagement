@@ -5,18 +5,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
+/**
+ * 
+ * @author Mattia.Rovinelli
+ *
+ * @param <T>
+ * @param <X>
+ */
+
 public class StreamImpl<T,X> implements StreamModel<T,X>  {
 
-    /**
-     * 
-     */
-   
-  
- /**metodo che prende come input la path e crea una mappa di classi */  
-
-   
 @SuppressWarnings("unchecked")
 public Map<T, X> readFile(String path) throws IOException, ClassNotFoundException{
 	 
@@ -45,35 +44,20 @@ public Map<T, X> readFile(String path) throws IOException, ClassNotFoundExceptio
    }
 
 @Override
-public void writeFile(String path, Map<T, X> map) {
-    try
-    {
-       FileOutputStream fos = new FileOutputStream(path);
-       ObjectOutputStream oos = new ObjectOutputStream(fos);
+  public void writeFile(String path, Map<T, X> map) {
+      try
+       {
+        FileOutputStream fos = new FileOutputStream(path);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
        
-       oos.writeObject(map);
+        oos.writeObject(map);
        
-       oos.close();
+        oos.close();
        fos.close();
        System.out.println("Serialized data is saved in "+ path);
-    }catch(IOException i)
-    {
+    }catch(IOException i){
         i.printStackTrace();
-    }  
+     }  
     
-}
-
-@Override
-public Object search(Map<Integer, T> genericMap, String field) {
-    Iterator<Integer> it = genericMap.keySet().iterator();
-    T obj = null;
-    while(it.hasNext()){
-       if(genericMap.get(it.next()).equals(field)){
-           obj = genericMap.get(it.next());
-       }
-     }
- return obj;
-}
- 
-
+  }
 }

@@ -25,23 +25,23 @@ public class WarehouseImpl implements ShopAndWarehouseModel {
         }   
     
     }
-    @Override/**ritorna una mappa del magazzino*/
+    @Override
     public Map<BookModel, Integer> getBooks() {
        return this.warehouse;
     }
-    @Override/**aggiorna la mappa*/
+    @Override
     public void update(Map<BookModel, Integer> booksInLibrary) {
         this.warehouse = booksInLibrary;
         
     }
     @Override
-    /**aggiorna la quantità di quel libro*/
+   
     public void replaceQuantity(BookModel b, int quantity) {
         warehouse.replace(b, quantity);
         
     }
     @Override
-    /**ritorna la quantità di quel libro*/
+    
     public Integer getBookQuantity(BookModel b) {
         int quantity = 0;
         Iterator<Entry<BookModel,Integer>> it = warehouse.entrySet().iterator();
@@ -52,15 +52,7 @@ public class WarehouseImpl implements ShopAndWarehouseModel {
             }
         }
         return quantity;
-        /*  int quantity = 0;
-        Iterator<Entry<BookModel,Integer>> it = shop.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry<BookModel, Integer> pair = (Entry<BookModel, Integer>) it.next();
-            if(pair.getKey().equals(book)){
-                quantity = pair.getValue();
-            }
-        }
-        return quantity;*/
+     
     }
 
 }

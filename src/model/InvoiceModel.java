@@ -3,20 +3,42 @@ import java.util.Date;
 import java.util.Map;
 
 public interface InvoiceModel {
-    /** Restituisce gli articoli dello scontrino fiscale fatto */
+    /** 
+     * 1)This method returns the items on the receipt.
+     * 2)return the Receipt
+     * @return Map<Integer, BookModel>
+     */
     public Map<Integer, BookModel> getReceipt();
-    /** Restituisce il totale dello scontrino*/
+    /** 
+     * this method return the total of the receipt
+     * @return double
+     */
     public double getTotal();
-    /** restituisce la data dell'emissione della ricevuta*/
+    /**
+     * returns the receipt issue date
+     * @return
+     */
     public Date getDate();
-    /**restituisce il luogo di emissione*/
+    /**
+     * returns the address of the store that issued the ticket
+     * @return
+     */
     public String getAddress();
     
-    /**setta il luogo di emissione della ricevuta*/
+    /**
+     * this method set a new address for the ticket
+     * @param address
+     */
     public void setAddress(String address);
-    /** setta la data di emissione*/
+    /**
+     * this method return the date for the ticket
+     * @param date
+     */
     public void setDate(Date date);
-    /**setta un nuovo articolo nello scontrino */
+    /**
+     * this method add a new item in invoice
+     * @param book
+     */
     public void addItem(BookModel book);
     /**
      * this method remove a book at the invoice
@@ -24,6 +46,5 @@ public interface InvoiceModel {
      */
     public void removeItem(BookModel book);
    
-    /*public void addItems(String item,Integer quantity);
-    public void addItems(String item,Integer quantity,Integer price);*/
+  
 }

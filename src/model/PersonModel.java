@@ -1,29 +1,57 @@
 package model;
-
+/**
+ * 
+ * @author Mattia.Rovinelli
+ *
+ */
 public interface PersonModel {
     
-    /**metodo per settare il codice fiscale*/ 
+    /**
+     * set the taxCode
+     * @param taxCode
+     */
     public void setTaxCode(String taxCode);
     
-    /**metodo per settare il nome */
+    /**
+     * this method set the name
+     * @param name
+     */
     public void setName(String name);
     
-    /**metodo per settare il cognome*/
+    /**
+     * this method set a surname
+     * @param surname
+     */
     public void setSurname(String surname);
     
-    /**metodo per settare le mail*/
+    /**
+     * this method set a email
+     * @param email
+     */
     public void setEmail(String email);
     
-    /**metodo per leggere il taxCode*/
+    /**
+     * this method return a taxcode
+     * @return String email
+     */
     public String getTaxCode();
     
-    /**metodo per leggere il cognome*/
+    /**
+     * this method get a surname
+     * @return string surname
+     */
     public String getSurname();
     
-    /**metodo per leggere il nome*/
+    /**
+     * this method return a name
+     * @return String name
+     */
     public String getName();
     
-    /**metodo per leggerele la mail*/
+   /**
+    * this method return a mail
+    * @return String email
+    */
     public String getEmail();
    
     

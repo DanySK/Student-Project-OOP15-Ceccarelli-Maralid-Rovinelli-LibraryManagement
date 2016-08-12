@@ -2,8 +2,14 @@ package model;
 
 public interface CustomerModel {
  
-    /** metodo per prelevare il numero di telefono*/
+    /**
+     * method for return a telefon number
+     * @return
+     */
     public long getTelefonCustomers();
-    /** metodo per settare un numero di telefono*/
+    /** 
+     * method for set a telefon number
+     * @param telefon
+     */
     public void setTelefonCusomers(long telefon);
 }

@@ -4,28 +4,21 @@ import java.io.IOException;
 import java.util.Map;
 
 public interface StreamModel<T,X> {
-    /**metodo di lettura di un file
-     * resituisce una mappa numerata con all'interno l'apposita classe
-     * basta passargli il file di destinazione
+    /**method for read a file
+     *returns a map with numbered within the appropriate class
+     * It takes as input the destination file.dat
      * @param path
      * @return
      * @throws IOException
      * @throws ClassNotFoundException
      */
     public Map<T ,X> readFile(String path) throws IOException, ClassNotFoundException;
-    /** metodo per scrivere in un file dato il file e la classe che si vuole scrivere nel file
+    /** method to write to a file given the file and the class you want to write to the file
      *
      * @param path
-     * @param o
+     * @param Map<T,X> maps
      */
     public void writeFile(String path,Map<T, X> map);
-    /**metodo di ricerca di un dato tramite una mappa e il datoda ricercare
-     * 
-     * @param genericMap
-     * @param field
-     * @return
-     */
-    public Object search(Map<Integer,T> genericMap,String field);
-    /** metodo per gestire lo user corrente*/
+   
   
 }

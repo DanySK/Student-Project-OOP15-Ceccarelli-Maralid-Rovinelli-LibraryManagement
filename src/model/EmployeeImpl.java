@@ -42,7 +42,6 @@ public class EmployeeImpl extends PersonImpl implements EmployeeModel ,Serializa
 
   
     public String getUsername() {
-        // TODO Auto-generated method stub
         return username;
     }
 

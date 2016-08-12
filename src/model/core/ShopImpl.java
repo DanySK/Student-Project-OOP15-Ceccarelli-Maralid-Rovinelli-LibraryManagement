@@ -50,14 +50,6 @@ public class ShopImpl implements ShopAndWarehouseModel {
             }
         }
         return quantity;
-      /*  int quantity = 0;
-        Iterator<Entry<BookModel,Integer>> it = shop.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry<BookModel, Integer> pair = (Entry<BookModel, Integer>) it.next();
-            if(pair.getKey().equals(book)){
-                quantity = pair.getValue();
-            }
-        }
-        return quantity;*/
+      
     }
 }

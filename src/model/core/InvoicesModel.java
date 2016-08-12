@@ -1,8 +1,6 @@
 package model.core;
 
 import java.util.Map;
-
-import model.BookModel;
 import model.InvoiceModel;
 
 public interface InvoicesModel {

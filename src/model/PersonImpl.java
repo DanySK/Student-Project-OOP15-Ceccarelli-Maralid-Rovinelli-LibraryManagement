@@ -1,7 +1,11 @@
 package model;
 
 import java.io.Serializable;
-
+/**
+ * this class is a Person and is abstract class
+ * @author Mattia.Rovinelli
+ *
+ */
 public abstract class PersonImpl implements Serializable ,PersonModel {
 
     
@@ -15,7 +19,6 @@ public abstract class PersonImpl implements Serializable ,PersonModel {
         
     }
     
-    /**costruttore astrato della classe persona */
     public PersonImpl(String taxCode,String name,String surname ,String email){
         this.taxCode = taxCode;
         this.name = name;

@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 
 import model.EmployeeImpl;
 import model.EmployeeModel;
-import model.PersonImpl;
+
 /**
  * This class represents the list of employees
  * @author mattia.Rovinelli
