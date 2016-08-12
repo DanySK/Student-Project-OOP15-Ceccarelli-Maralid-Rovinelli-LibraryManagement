@@ -210,7 +210,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 10));
 		} else if (isPressed == btnAddBook) {
 			observer.addBookClicked(txtTitle.getText(), txtAuthor.getText(),
-					cmbLiteraryGenre.getSelectedItem().toString(), cmbYear.getSelectedItem().toString(),
+					cmbLiteraryGenre.getSelectedItem().toString(),(Integer)cmbYear.getSelectedItem(),
 					Double.parseDouble(txtPrice.getText()), Integer.parseInt(txtAmmount.getText()));
 		} else if (isPressed == btnBack) {
 			observer.backToWharehouseClicked();
