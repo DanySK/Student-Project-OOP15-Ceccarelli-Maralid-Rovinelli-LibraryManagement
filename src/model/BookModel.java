@@ -33,7 +33,6 @@ public interface BookModel {
      * @return
      */
     public double getPrice();
-    
     /**
      * this method set a new title
      * @param title

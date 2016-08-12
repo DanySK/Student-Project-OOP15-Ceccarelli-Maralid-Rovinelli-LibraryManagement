@@ -52,4 +52,13 @@ public class ShopImpl implements ShopAndWarehouseModel {
         return quantity;
       
     }
+
+    @Override
+    public void addNewBookInLibrary(BookModel book, int quantity) {
+        if(shop.containsKey(book)){
+            shop.replace(book, shop.get(book), shop.get(book).intValue()+quantity);
+        }else{
+            shop.put(book, quantity);
+        }  
+    }
 }

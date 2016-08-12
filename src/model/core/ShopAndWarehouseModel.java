@@ -17,6 +17,12 @@ public interface ShopAndWarehouseModel {
      */
     public void addNewBookInLibrary(BookModel book);
     /**
+     * this method add a new book in a library and the quantity
+     * @param book
+     * @param quantity
+     */
+    public void addNewBookInLibrary(BookModel book,int quantity);
+    /**
      * this method return a map of books
      * 
      * @return map of book in shop or warehouse

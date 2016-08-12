@@ -24,7 +24,6 @@ public interface InvoiceModel {
      * @return
      */
     public String getAddress();
-    
     /**
      * this method set a new address for the ticket
      * @param address

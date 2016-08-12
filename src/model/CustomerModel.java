@@ -1,7 +1,6 @@
 package model;
 
 public interface CustomerModel {
- 
     /**
      * method for return a telefon number
      * @return

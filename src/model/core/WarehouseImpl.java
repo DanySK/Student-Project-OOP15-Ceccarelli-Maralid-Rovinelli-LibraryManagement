@@ -16,7 +16,7 @@ public class WarehouseImpl implements ShopAndWarehouseModel {
     
     private Map<BookModel,Integer> warehouse = new HashMap<BookModel,Integer>();
     
-    @Override/** aggiunge un nuovo libro al magazzino*/
+    @Override
     public void addNewBookInLibrary(BookModel b) {
         if(warehouse.containsKey(b)){
             warehouse.replace(b, warehouse.get(b), warehouse.get(b).intValue()+1);
@@ -53,6 +53,14 @@ public class WarehouseImpl implements ShopAndWarehouseModel {
         }
         return quantity;
      
+    }
+    @Override
+    public void addNewBookInLibrary(BookModel book, int quantity) {
+        if(warehouse.containsKey(book)){
+            warehouse.replace(book, warehouse.get(book), warehouse.get(book).intValue()+quantity);
+        }else{
+            warehouse.put(book, quantity);
+        }   
     }
 
 }

@@ -26,8 +26,7 @@ public interface SubscriptionModel {
        * @return
        */
       public int getBook();
-      
-     /**
+      /**
       * this method set a name for the subscription
       * @param name
       */
