@@ -1,7 +1,5 @@
 package model;
 
-import java.io.Serializable;
-
 import model.core.EmployeesImpl;
 import model.core.EmployeesModel;
 import model.core.InvoicesImpl;
