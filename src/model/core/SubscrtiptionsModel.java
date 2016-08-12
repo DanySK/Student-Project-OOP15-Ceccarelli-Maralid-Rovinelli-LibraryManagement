@@ -20,7 +20,7 @@ public interface SubscrtiptionsModel {
     public void addSubscription(SubscriptionModel subscription);
     /**
      * this method return the map of subscriptions
-     * @return Map<Integer,SubscriptionModel>
+     * @return map of subscription
      */
     public Map<Integer,SubscriptionModel> getSubscriptions();
 }

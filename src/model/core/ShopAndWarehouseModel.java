@@ -13,13 +13,13 @@ public interface ShopAndWarehouseModel {
     public void update(Map<BookModel,Integer> booksInLibrary);
     /**
      * this method add a new book in a library
-     * @param Book
+     * @param book
      */
     public void addNewBookInLibrary(BookModel book);
     /**
      * this method return a map of books
      * 
-     * @return Map<BookModel,Integer> 
+     * @return map of book in shop or warehouse
      */
     public Map<BookModel,Integer> getBooks();
     /**

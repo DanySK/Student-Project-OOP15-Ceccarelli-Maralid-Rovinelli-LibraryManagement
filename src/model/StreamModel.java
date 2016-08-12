@@ -16,7 +16,7 @@ public interface StreamModel<T,X> {
     /** method to write to a file given the file and the class you want to write to the file
      *
      * @param path
-     * @param Map<T,X> maps
+     * @param map for the type
      */
     public void writeFile(String path,Map<T, X> map);
    

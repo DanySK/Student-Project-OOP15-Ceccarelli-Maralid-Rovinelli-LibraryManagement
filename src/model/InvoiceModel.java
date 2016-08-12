@@ -6,7 +6,7 @@ public interface InvoiceModel {
     /** 
      * 1)This method returns the items on the receipt.
      * 2)return the Receipt
-     * @return Map<Integer, BookModel>
+     * @return map of invoice
      */
     public Map<Integer, BookModel> getReceipt();
     /** 
