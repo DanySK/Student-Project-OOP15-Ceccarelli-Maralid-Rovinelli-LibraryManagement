@@ -30,13 +30,13 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 		this.setLayout(null);
 
 		btnHome = new JButton(HOME);
-		btnHome.setBackground(SystemColor.textInactiveText);
+		btnHome.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHome.setEnabled(false);
 		btnHome.setFont(new Font("Calibri", Font.PLAIN, 13));
 		btnHome.setBounds(10, 42, 115, 30);
 
 		btnLog = new JButton(LOGIN);
-		btnLog.setBackground(SystemColor.textInactiveText);
+		btnLog.setBackground(SystemColor.inactiveCaptionBorder);
 		btnLog.setFont(new Font("Calibri", Font.PLAIN, 13));
 		btnLog.setBounds(162, 42, 115, 30);
 
