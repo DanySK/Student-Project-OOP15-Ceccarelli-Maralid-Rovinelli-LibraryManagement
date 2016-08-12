@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import model.BookImpl;
 import model.BookModel;
+import model.EmployeeModel;
 
 /**
  * This class represents the class of the shop 
@@ -60,5 +63,22 @@ public class ShopImpl implements ShopAndWarehouseModel {
         }else{
             shop.put(book, quantity);
         }  
+    }
+
+    @Override
+    public BookModel searchBook(String title) {
+       
+        Iterator<Entry<BookModel,Integer>> it = shop.entrySet().iterator();
+       BookModel bookT = new BookImpl();
+        while(it.hasNext()){
+            Map.Entry<BookModel,Integer> book = (Entry<BookModel,Integer>) it.next();
+            if(book.getKey().getTitle().equals(title)){
+                bookT = book.getKey();  
+            }else{
+                bookT = null;
+                System.out.println("il libro non esiste");
+            }
+        }
+        return bookT;
     }
 }

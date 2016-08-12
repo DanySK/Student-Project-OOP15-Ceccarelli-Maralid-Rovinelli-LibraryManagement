@@ -43,4 +43,10 @@ public interface ShopAndWarehouseModel {
      * @return amount of the book
      */
     public Integer getBookQuantity(BookModel book);
+    /**
+     * this method return a book if u insert the title in input
+     * @param title
+     * @return
+     */
+    public BookModel searchBook(String title);
 }

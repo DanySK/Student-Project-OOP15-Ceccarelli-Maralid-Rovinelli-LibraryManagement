@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import model.BookImpl;
 import model.BookModel;
 /**
  * this class represents the warehose of library
@@ -62,5 +63,21 @@ public class WarehouseImpl implements ShopAndWarehouseModel {
             warehouse.put(book, quantity);
         }   
     }
-
+    @Override
+    public BookModel searchBook(String title) {
+        Iterator<Entry<BookModel,Integer>> it = warehouse.entrySet().iterator();
+        BookModel bookT = new BookImpl();
+         while(it.hasNext()){
+             Map.Entry<BookModel,Integer> book = (Entry<BookModel,Integer>) it.next();
+             if(book.getKey().getTitle().equals(title)){
+                 bookT = book.getKey();  
+             }else{
+                 bookT = null;
+                 System.out.println("il libro non esiste");
+             }
+         }
+         return bookT;
+     }
 }
+
+
