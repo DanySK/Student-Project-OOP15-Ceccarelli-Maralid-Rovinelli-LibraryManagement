@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import view.observer.AddBookObserver;
 
 import javax.swing.JButton;
+
 //da aggiungere i controlli sulle textField
 public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionListener {
 
@@ -44,7 +45,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 	private JButton btnAddOne;
 	private AddBookObserver observer;
 	private JButton btnBack;
-	
+
 	public AddBookPanelImpl() {
 		this.setLayout(null);
 		setBackground(SystemColor.activeCaption);
@@ -185,7 +186,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		btnAddOne.setBounds(534, 252, 56, 23);
 		btnAddOne.addActionListener(this);
 		add(btnAddOne);
-		
+
 		btnBack = new JButton("Indietro");
 		btnBack.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
 		btnBack.setBounds(230, 250, 154, 34);
@@ -205,14 +206,15 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) + 10));
 		} else if (isPressed == btnRemoveOne && Integer.parseInt(txtAmmount.getText()) > 1) {
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 1));
-		}else if (isPressed == btnRemoveTen && Integer.parseInt(txtAmmount.getText()) > 10){
+		} else if (isPressed == btnRemoveTen && Integer.parseInt(txtAmmount.getText()) > 10) {
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 10));
-		}else if (isPressed == btnAddBook){
-			observer.addBook();
-		}else
-			if(isPressed==btnBack ){
-				observer.backToWharehouseClicked();
-			}
+		} else if (isPressed == btnAddBook) {
+			observer.addBookClicked(txtTitle.getText(), txtAuthor.getText(),
+					cmbLiteraryGenre.getSelectedItem().toString(), cmbYear.getSelectedItem().toString(),
+					Double.parseDouble(txtPrice.getText()), Integer.parseInt(txtAmmount.getText()));
+		} else if (isPressed == btnBack) {
+			observer.backToWharehouseClicked();
+		}
 	}
 
 	@Override
@@ -224,7 +226,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 	@Override
 	public void attachObserver(AddBookObserver observer) {
 		this.observer = observer;
-		
+
 	}
 
 	@Override
@@ -233,16 +235,14 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		txtAuthor.setText("");
 		txtTitle.setText("");
 		txtPrice.setText("");
-		
+
 	}
 
 	public void setYear() {
 		int year = Calendar.getInstance().get(Calendar.YEAR);
-		for (int i = year - 16; i >= year - 100; i--) {
+		for (int i = year; i >= year - 100; i--) {
 			cmbYear.addItem(i);
 		}
 	}
 
-	
-	
 }
