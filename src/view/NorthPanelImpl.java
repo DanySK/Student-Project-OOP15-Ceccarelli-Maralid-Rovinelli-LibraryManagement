@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 
 import view.observer.NorthPanelObserver;
 import java.awt.SystemColor;
+import javax.swing.JTextField;
 
 public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener {
 	
@@ -23,6 +24,7 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 	private JButton btnLog;
 	private JTextArea logTxt;
 	private static final long serialVersionUID = 1;
+	private JButton btnNewButton;
 
 	public NorthPanelImpl() {
 		super();
@@ -54,6 +56,11 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 		logTxt.setFont(new Font("Calibri", Font.PLAIN, 15));
 		logTxt.setEditable(false);
 		add(logTxt);
+		
+		btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(430, 46, 89, 23);
+		btnNewButton.addActionListener(this);
+		add(btnNewButton);
 	}
 
 	@Override
@@ -94,7 +101,10 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 			this.observer.buttonLoginClicked();
 		} else if (isPressed == btnHome) {
 			this.observer.buttonHomeClicked();
-		}
+		}else
+			if(isPressed == btnNewButton){
+				observer.OpenAddBookClick();
+			}
 
 	}
 

@@ -14,5 +14,6 @@ public interface NorthPanelObserver {
 	 * effettua la login 
 	 * */
 	void buttonLoginClicked();
-
+	
+	void OpenAddBookClick();
 }
