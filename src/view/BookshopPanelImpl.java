@@ -150,6 +150,8 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		txtTotalPrice.setBounds(254, 372, 96, 20);
 		add(txtTotalPrice);
 		txtTotalPrice.setColumns(10);
+		
+		this.setAllBooks();
 
 	}
 

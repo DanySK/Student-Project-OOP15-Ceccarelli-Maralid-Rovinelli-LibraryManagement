@@ -14,12 +14,13 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	 * Create the panel.
 	 */
 	
-	private JTable allBooks;
-	private DefaultTableModel modelAllBooks;
-	private JScrollPane scrAllBooks;
-	public WarehousePanelImpl() {
-		this.setLayout(null);
-	}
+		private JTable allBooks;
+		private DefaultTableModel modelAllBooks;
+		private JScrollPane scrAllBooks;
+		public WarehousePanelImpl() {
+			this.setLayout(null);
+		}		
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
