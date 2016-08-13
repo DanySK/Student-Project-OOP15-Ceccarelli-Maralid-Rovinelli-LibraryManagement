@@ -105,9 +105,6 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		    for ( BookModel key : model.warehouse().getBooks().keySet() ) {
 		        System.out.println( key.getTitle());
 		    }
-		    /*for(int y = 0; y<model.warehouse().getBooks().size(); y++){
-		    	System.out.println(model.warehouse().getBooks().get);
-		    }*/
 		
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
