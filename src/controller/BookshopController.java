@@ -1,6 +1,9 @@
 package controller;
 
+import java.util.Map;
+
 import model.BookImpl;
+import model.BookModel;
 import model.Model;
 import view.BookshopPanel;
 import view.MainView;
@@ -44,6 +47,12 @@ public class BookshopController implements BookshopObserver{
 		BookImpl b = (BookImpl) model.shop().searchBook(title);
 		System.out.print(b.getPrice());
 		return (int) b.getPrice();
+	}
+
+	@Override
+	public Map<BookModel, Integer> setBookInShop() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

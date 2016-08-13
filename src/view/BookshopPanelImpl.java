@@ -9,6 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import model.BookModel;
 import model.Model;
 import model.ModelImpl;
+import model.StreamImpl;
+import model.StreamModel;
 import model.core.ShopAndWarehouseModel;
 import model.core.ShopImpl;
 import view.observer.BookshopObserver;
@@ -23,6 +25,7 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -57,7 +60,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		this.setLayout(null);
 
 		modelAllBooks = new DefaultTableModel(new Object[][] {},
-				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo", "quantita'" });
+				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo" });
 		modelSelectedBooks = new DefaultTableModel(new Object[][] {},
 				new String[] { "Titolo", "Autore", "Anno P.", "N#" });
 
@@ -156,7 +159,15 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		add(txtTotalPrice);
 		txtTotalPrice.setColumns(10);
 		
-		this.setAllBooks();
+		try {
+			this.setAllBooks();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -219,17 +230,23 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 
 	}
 
-	public void setAllBooks() {
+	public void setAllBooks() throws ClassNotFoundException, IOException {
 		books = new ShopImpl();	
 		model= new ModelImpl();
+		StreamModel<BookModel, Integer> sm = new StreamImpl<>();
+		model.warehouse().update(sm.readFile("BooksInWareHouse.dat"));
 		for (BookModel entry : model.warehouse().getBooks().keySet())
 		{
-		   ((DefaultTableModel) modelAllBooks).addRow(new Object[]{entry.getTitle(),entry.getAuthor(),
-				    entry.getyearOfPublication(),entry.getPrice()});
+			Object [] obj =  {entry.getTitle(),entry.getAuthor(),
+				    entry.getyearOfPublication(),entry.getPrice()};
+			((DefaultTableModel)modelAllBooks).addRow(obj);
+		  /* ((DefaultTableModel) modelAllBooks).addRow(new Object[]{entry.getTitle(),entry.getAuthor(),
+				    entry.getyearOfPublication(),entry.getPrice()});*/
 		    tblAllBooks.repaint();
-		    System.out.println("ciccia"+entry.getTitle());
+			
+		    System.out.println("ciccia1"+entry.getTitle());
 		}
-		System.out.println("ciccia"+model.warehouse().getBooks());
+		System.out.println("ciccia2"+model.warehouse().getBooks());
 		
 		
 	}
