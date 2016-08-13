@@ -1,5 +1,9 @@
 package view.observer;
 
+import java.util.Map;
+
+import model.BookModel;
+
 public interface BookshopObserver {
 	
 	/**
@@ -21,5 +25,10 @@ public interface BookshopObserver {
 	 * return BookStock
 	 **/
 	int getStocksOfTheShop(String title);
+	/**
+	 * 
+	 * 
+	 * */
+	Map <BookModel, Integer> setBookInShop ();
 	
 }

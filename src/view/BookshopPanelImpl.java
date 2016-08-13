@@ -7,6 +7,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import model.BookModel;
+import model.Model;
+import model.ModelImpl;
+import model.core.ShopAndWarehouseModel;
 import model.core.ShopImpl;
 import view.observer.BookshopObserver;
 import javax.swing.JButton;
@@ -28,6 +31,8 @@ import java.awt.event.ActionEvent;
 
 public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionListener {
 
+	private Model model;
+	
 	private BookshopObserver observer;
 	private DefaultTableModel modelAllBooks;
 	private DefaultTableModel modelSelectedBooks;
@@ -45,14 +50,14 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	private JButton btnRemove;
 	private JTextField txtTotalPrice;
 	private JLabel lblTotalPrice;
-	private ShopImpl books;
+	private ShopAndWarehouseModel books;
 
 	public BookshopPanelImpl() {
 		setBackground(SystemColor.inactiveCaption);
 		this.setLayout(null);
 
 		modelAllBooks = new DefaultTableModel(new Object[][] {},
-				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo" });
+				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo", "quantita'" });
 		modelSelectedBooks = new DefaultTableModel(new Object[][] {},
 				new String[] { "Titolo", "Autore", "Anno P.", "N#" });
 
@@ -216,12 +221,16 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 
 	public void setAllBooks() {
 		books = new ShopImpl();	
-		
-		for (Map.Entry<BookModel, Integer> entry : books.getBooks().entrySet())
+		model= new ModelImpl();
+		for (BookModel entry : model.warehouse().getBooks().keySet())
 		{
-		    modelAllBooks.addRow(new Object[]{entry.getKey().getTitle(),entry.getKey().getAuthor(),
-				    entry.getKey().getyearOfPublication(),entry.getKey().getPrice()});
+		   ((DefaultTableModel) modelAllBooks).addRow(new Object[]{entry.getTitle(),entry.getAuthor(),
+				    entry.getyearOfPublication(),entry.getPrice()});
+		    tblAllBooks.repaint();
+		    System.out.println("ciccia"+entry.getTitle());
 		}
+		System.out.println("ciccia"+model.warehouse().getBooks());
+		
 		
 	}
 
