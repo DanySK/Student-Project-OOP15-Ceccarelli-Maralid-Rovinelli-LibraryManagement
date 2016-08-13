@@ -2,6 +2,7 @@ package view.observer;
 
 import java.util.Map;
 
+import model.BookImpl;
 import model.BookModel;
 
 public interface BookshopObserver {
@@ -29,6 +30,6 @@ public interface BookshopObserver {
 	 * 
 	 * 
 	 * */
-	Map <BookModel, Integer> setBookInShop ();
+	Map <BookModel, Integer> getBookInShop ();
 	
 }

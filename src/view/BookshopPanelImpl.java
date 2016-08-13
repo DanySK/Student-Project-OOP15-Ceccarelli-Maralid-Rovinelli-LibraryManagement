@@ -7,12 +7,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import model.BookModel;
-import model.Model;
-import model.ModelImpl;
-import model.StreamImpl;
-import model.StreamModel;
 import model.core.ShopAndWarehouseModel;
-import model.core.ShopImpl;
+import model.core.WarehouseImpl;
 import view.observer.BookshopObserver;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -26,15 +22,10 @@ import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.awt.event.ActionEvent;
 
 public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionListener {
-
-	private Model model;
 	
 	private BookshopObserver observer;
 	private DefaultTableModel modelAllBooks;
@@ -53,7 +44,6 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	private JButton btnRemove;
 	private JTextField txtTotalPrice;
 	private JLabel lblTotalPrice;
-	private ShopAndWarehouseModel books;
 
 	public BookshopPanelImpl() {
 		setBackground(SystemColor.inactiveCaption);
@@ -159,6 +149,12 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		add(txtTotalPrice);
 		txtTotalPrice.setColumns(10);
 		
+		
+	}
+
+	@Override
+	public void attachObserver(BookshopObserver observer) {
+		this.observer = observer;
 		try {
 			this.setAllBooks();
 		} catch (ClassNotFoundException e) {
@@ -169,14 +165,9 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			e.printStackTrace();
 		}
 
-	}
-
-	@Override
-	public void attachObserver(BookshopObserver observer) {
-		this.observer = observer;
 
 	}
-
+	
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
 		if (isPressed == btnAddBook) {
@@ -231,22 +222,16 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	}
 
 	public void setAllBooks() throws ClassNotFoundException, IOException {
-		books = new ShopImpl();	
-		model= new ModelImpl();
-		StreamModel<BookModel, Integer> sm = new StreamImpl<>();
-		model.warehouse().update(sm.readFile("BooksInWareHouse.dat"));
-		for (BookModel entry : model.warehouse().getBooks().keySet())
+		for (BookModel entry : this.observer.getBookInShop().keySet())
 		{
 			Object [] obj =  {entry.getTitle(),entry.getAuthor(),
 				    entry.getyearOfPublication(),entry.getPrice()};
 			((DefaultTableModel)modelAllBooks).addRow(obj);
-		  /* ((DefaultTableModel) modelAllBooks).addRow(new Object[]{entry.getTitle(),entry.getAuthor(),
+		  /*((DefaultTableModel) modelAllBooks).addRow(new Object[]{entry.getTitle(),entry.getAuthor(),
 				    entry.getyearOfPublication(),entry.getPrice()});*/
 		    tblAllBooks.repaint();
-			
 		    System.out.println("ciccia1"+entry.getTitle());
 		}
-		System.out.println("ciccia2"+model.warehouse().getBooks());
 		
 		
 	}

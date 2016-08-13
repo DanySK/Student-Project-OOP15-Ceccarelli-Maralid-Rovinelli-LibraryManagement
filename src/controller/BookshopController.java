@@ -39,7 +39,6 @@ public class BookshopController implements BookshopObserver{
 		ReceiptPanelController rc = new ReceiptPanelController(model);
 		rc.setView(ri);
 		maninView.replaceMainPanel(ri);
-		
 	}
 
 	@Override
@@ -50,9 +49,10 @@ public class BookshopController implements BookshopObserver{
 	}
 
 	@Override
-	public Map<BookModel, Integer> setBookInShop() {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<BookModel, Integer> getBookInShop() {
+		System.out.println(model.warehouse().getBooks());
+		Map<BookModel, Integer> map= model.warehouse().getBooks();
+		return map;
 	}
 
 	
