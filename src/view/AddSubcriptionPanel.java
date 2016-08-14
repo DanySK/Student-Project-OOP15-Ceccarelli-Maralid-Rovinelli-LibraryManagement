@@ -1,14 +1,14 @@
 package view;
 
-import view.observer.WarehouseObserver;
+import view.observer.AddSubscriptionObserver;
 
-public interface WarehousePanel {
+public interface AddSubcriptionPanel {
 	/**
 	 * set for the WarehousePnaleImpl observer
 	 * 
 	 * @param observer
 	 * */
-	void attachObserver(WarehouseObserver observer);
+	void attachObserver(AddSubscriptionObserver observer);
 	/**
 	 * Cleans all textField in the panel 
 	 * */

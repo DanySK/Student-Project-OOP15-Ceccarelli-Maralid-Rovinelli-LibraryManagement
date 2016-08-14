@@ -23,10 +23,11 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.awt.event.ActionEvent;
 
 public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionListener {
-	
+
 	private BookshopObserver observer;
 	private DefaultTableModel modelAllBooks;
 	private DefaultTableModel modelSelectedBooks;
@@ -148,8 +149,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		txtTotalPrice.setBounds(254, 372, 96, 20);
 		add(txtTotalPrice);
 		txtTotalPrice.setColumns(10);
-		
-		
+
 	}
 
 	@Override
@@ -165,26 +165,32 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			e.printStackTrace();
 		}
 
-
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
 		if (isPressed == btnAddBook) {
-			double price = -1;
-			String cell;
-			String titolo = "";
-			if (tblAllBooks.getSelectedRow() == -1) {
-				cell = "";
-			} else {
-				cell = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString();
-			}
-			int quantity = Integer.parseInt(txtAmount.getText());
-			price = this.observer.uploadBooks(titolo, quantity);
-			txtTotalPrice.setText(Double.parseDouble(txtTotalPrice.getText()) + price + "");
-			int ammount = Integer.parseInt(txtAmount.getText());
-			String title = cell;
-			modelSelectedBooks.addRow(new Object[]{});
+
+			/*
+			 * double price = -1; String cell; String titolo = "";
+			 * if (tblAllBooks.getSelectedRow() == -1) { cell = "";
+			 * } else { cell =
+			 * tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(),
+			 * 0).toString(); } int quantity =
+			 * Integer.parseInt(txtAmount.getText()); price =
+			 * this.observer.uploadBooks(titolo, quantity);
+			 * txtTotalPrice.setText(Double.parseDouble(
+			 * txtTotalPrice.getText()) + price + ""); int ammount =
+			 * Integer.parseInt(txtAmount.getText()); String title =
+			 * cell; modelSelectedBooks.addRow(new Object[]{});
+			 */
+			String title = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString();
+			String author = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString();
+			String publicationYear = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 2).toString();
+			String ammount = txtAmount.getText();
+			String[] str = { title, author, publicationYear, ammount };
+			((DefaultTableModel) modelSelectedBooks).addRow(str);
+			System.out.println(title + " " + author + " " + publicationYear + " " + ammount);
 			tblSelectedBooks.repaint();
 		} else {
 			if (isPressed == btnAdd && this.observer.getStocksOfTheShop(
@@ -222,18 +228,20 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	}
 
 	public void setAllBooks() throws ClassNotFoundException, IOException {
-		for (BookModel entry : this.observer.getBookInShop().keySet())
-		{
-			Object [] obj =  {entry.getTitle(),entry.getAuthor(),
-				    entry.getyearOfPublication(),entry.getPrice()};
-			((DefaultTableModel)modelAllBooks).addRow(obj);
-		  /*((DefaultTableModel) modelAllBooks).addRow(new Object[]{entry.getTitle(),entry.getAuthor(),
-				    entry.getyearOfPublication(),entry.getPrice()});*/
-		    tblAllBooks.repaint();
-		    System.out.println("ciccia1"+entry.getTitle());
+		for (BookModel entry : this.observer.getBookInShop().keySet()) {
+
+			Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getyearOfPublication(),
+					entry.getPrice() };
+			((DefaultTableModel) modelAllBooks).addRow(obj);
+			/*
+			 * ((DefaultTableModel) modelAllBooks).addRow(new
+			 * Object[]{entry.getTitle(),entry.getAuthor(),
+			 * entry.getyearOfPublication(),entry.getPrice()});
+			 */
+			tblAllBooks.repaint();
+			System.out.println("ciccia1" + entry.getTitle());
+			
 		}
-		
-		
 	}
 
 	@Override
