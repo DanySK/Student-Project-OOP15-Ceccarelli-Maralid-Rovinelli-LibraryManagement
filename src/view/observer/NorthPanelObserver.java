@@ -16,9 +16,5 @@ public interface NorthPanelObserver {
 	void buttonLoginClicked();
 	
 	void OpenAddBookClick();
-	 /**
-	  * 
-	  * 
-	  */
-	boolean loginFlag();
+	
 }

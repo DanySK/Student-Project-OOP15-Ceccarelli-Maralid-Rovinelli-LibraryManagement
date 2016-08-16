@@ -59,11 +59,7 @@ public interface ViewObserver {
 	 * 
 	 */
 	void addSubscriptionClicked();
-	 /**
-	  * 
-	  * 
-	  */
-	boolean loginFlag();
+	
 
 	
 }

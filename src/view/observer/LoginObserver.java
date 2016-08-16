@@ -13,5 +13,10 @@ public interface LoginObserver {
 	 * @param cs
 	 * */
 	void loginEmployee(String username, char[] password);
+	 /**
+	  * 
+	  * 
+	  */
+	boolean loginFlag();
 
 }
