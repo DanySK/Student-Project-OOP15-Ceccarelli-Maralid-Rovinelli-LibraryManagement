@@ -35,7 +35,9 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	private JMenuItem mntmSalva;
 	private JMenuItem mntmApri;
 	private JMenu mnFile;
+	private JMenuItem mntmAddEmployee;
 	private static final long serialVersionUID = 1L;
+	private JMenuItem mntmRelocateBooks;
 
 	public MainViewImpl() {
 		this.getContentPane().setBackground(Color.WHITE);
@@ -48,7 +50,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		 * problemi nella visualizzazione della GUI
 		 */
 		this.setResizable(false);
-		this.setSize(610, 620);
+		this.setSize(900, 700);
 
 		fileChoosen = new JFileChooser();
 
@@ -66,7 +68,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		mnFile = new JMenu("File");
 		menuBar_1.add(mnFile);
 		
-		mntmSalva = new JMenuItem("Salva");
+		/*mntmSalva = new JMenuItem("Salva");
 		mntmSalva.addActionListener(this);
 
 		mntmSalva = new JMenuItem("Salva");
@@ -78,10 +80,12 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 		mntmApri = new JMenuItem("Apri");
 		mntmApri.addActionListener(this);		
-		mnFile.add(mntmApri);
+		mnFile.add(mntmApri);*/
 		
-		mntmExit = new JMenuItem("Esci");
-		mntmExit.addActionListener(this);
+				
+		mntmAddEmployee = new JMenuItem("Aggiungi dipendente");
+		mnFile.add(mntmAddEmployee);
+		mntmAddEmployee.addActionListener(this);
 
 		mntmExit = new JMenuItem("Esci");		
 		mnFile.add(mntmExit);
@@ -89,21 +93,28 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 		mnNewMenu = new JMenu("Negozio");
 		menuBar_1.add(mnNewMenu);
+		
 
 		mntmCercaLibro = new JMenuItem("Cerca libro");
 		mnNewMenu.add(mntmCercaLibro);
-
-		mntmCarrello = new JMenuItem("Carrello");
-		mnNewMenu.add(mntmCarrello);
+		mntmCercaLibro.addActionListener(this);
 
 		mntmGestisciAbbonamenti = new JMenuItem("Gestisci abbonamenti");
 		mnNewMenu.add(mntmGestisciAbbonamenti);
+		mntmGestisciAbbonamenti.addActionListener(this);
 
 		mnNewMenu_1 = new JMenu("Magazzino");
 		menuBar_1.add(mnNewMenu_1);
+		
 
 		mntmOrdinaScorte = new JMenuItem("Ordina scorte");
 		mnNewMenu_1.add(mntmOrdinaScorte);
+		mntmOrdinaScorte.addActionListener(this);
+		
+		mntmRelocateBooks = new JMenuItem("Tasferisci libri");
+		mnNewMenu_1.add(mntmRelocateBooks);
+		mntmRelocateBooks.addActionListener(this);
+		
 		this.setVisible(true);
 
 	}
@@ -117,10 +128,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	public void windowClosed(WindowEvent arg0) {
 	}
 
-	@Override
-	public void windowClosing(WindowEvent arg0) {
-		this.observer.saveData();
-	}
+	
 
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {
@@ -137,25 +145,23 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 	}
 
-	@Override
-	public void windowOpened(WindowEvent arg0) {
-		this.observer.dataLoad();
-	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object menuSource = e.getSource();
-		if (menuSource == mntmSalva) {
-			if (this.fileChoosen.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-				this.observer.dataLoad(this.fileChoosen.getSelectedFile().getPath());
-			}
-		} else if (menuSource == mntmApri) {
-			if (this.fileChoosen.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-				this.observer.saveData(this.fileChoosen.getSelectedFile().getPath());
-			}
-		} else if (menuSource == mntmExit) {
+		Object isPressed = e.getSource();
+		if (isPressed == mntmExit) {
 			this.observer.exitCommand();
-		} 
+		} else if (isPressed == mntmCercaLibro){			
+			this.observer.bookShopClicked();
+		}else if (isPressed == mntmGestisciAbbonamenti){
+			this.observer.addSubscriptionClicked();
+		}else if(isPressed == mntmOrdinaScorte){
+			this.observer.addBooksClicked();
+		}else if(isPressed == mntmAddEmployee){
+			this.observer.addEmployeeClicked();
+		}else if(isPressed == mntmRelocateBooks){
+			this.observer.warehouseClicked();
+		}
 
 	}
 

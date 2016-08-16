@@ -51,12 +51,12 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		this.setLayout(null);
 
 		modelAllBooks = new DefaultTableModel(new Object[][] {},
-				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo" });
+				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo", "quantità" });
 		modelSelectedBooks = new DefaultTableModel(new Object[][] {},
 				new String[] { "Titolo", "Autore", "Anno P.", "N#" });
 
 		scpAllBooks = new JScrollPane();
-		scpAllBooks.setBounds(10, 87, 230, 379);
+		scpAllBooks.setBounds(10, 87, 352, 379);
 		add(scpAllBooks);
 
 		tblAllBooks = new JTable();
@@ -70,7 +70,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		tblAllBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		scpSelectedBooks = new JScrollPane();
-		scpSelectedBooks.setBounds(360, 87, 230, 305);
+		scpSelectedBooks.setBounds(568, 87, 309, 379);
 		add(scpSelectedBooks);
 
 		tblSelectedBooks = new JTable();
@@ -84,10 +84,11 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		tblSelectedBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		lblTitle = new JLabel("BookShop");
+		lblTitle.setForeground(new Color(255, 69, 0));
 		lblTitle.setBackground(SystemColor.inactiveCaption);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
-		lblTitle.setBounds(10, 11, 580, 65);
+		lblTitle.setBounds(10, 11, 880, 65);
 		add(lblTitle);
 
 		txtAmount = new JTextField();
@@ -96,57 +97,57 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		txtAmount.setFont(new Font("Calibri", Font.ITALIC, 16));
 		txtAmount.setEnabled(false);
 		txtAmount.setEditable(false);
-		txtAmount.setBounds(254, 141, 43, 42);
+		txtAmount.setBounds(414, 143, 43, 42);
 		add(txtAmount);
 		txtAmount.setColumns(10);
 
 		btnAdd = new JButton("+");
 		btnAdd.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
-		btnAdd.setBounds(307, 117, 43, 43);
+		btnAdd.setBounds(467, 119, 43, 43);
 		btnAdd.addActionListener(this);
 		add(btnAdd);
 
 		btnRemove = new JButton("-");
 		btnRemove.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
-		btnRemove.setBounds(307, 171, 43, 43);
+		btnRemove.setBounds(467, 173, 43, 43);
 		btnRemove.addActionListener(this);
 		add(btnRemove);
 
 		lblAmount = new JLabel("Quantità");
 		lblAmount.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAmount.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblAmount.setBounds(250, 87, 100, 14);
+		lblAmount.setBounds(372, 88, 186, 14);
 		add(lblAmount);
 
 		btnAddBook = new JButton("Aggiungi");
 		btnAddBook.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
-		btnAddBook.setBounds(250, 237, 100, 49);
+		btnAddBook.setBounds(372, 241, 186, 49);
 		btnAddBook.addActionListener(this);
 		add(btnAddBook);
 
 		btnRemoveBook = new JButton("Togli");
 		btnRemoveBook.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
-		btnRemoveBook.setBounds(250, 297, 100, 49);
+		btnRemoveBook.setBounds(372, 301, 186, 49);
 		btnRemoveBook.addActionListener(this);
 		add(btnRemoveBook);
 
 		btnPurchaseIt = new JButton("Procedi con l'acquisto");
 		btnPurchaseIt.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 16));
-		btnPurchaseIt.setBounds(360, 417, 230, 49);
+		btnPurchaseIt.setBounds(568, 494, 309, 49);
 		btnPurchaseIt.addActionListener(this);
 		add(btnPurchaseIt);
 
 		lblTotalPrice = new JLabel("Spesa totale:");
 		lblTotalPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblTotalPrice.setBounds(250, 357, 100, 14);
+		lblTotalPrice.setBounds(372, 357, 186, 14);
 		add(lblTotalPrice);
 
 		txtTotalPrice = new JTextField();
 		txtTotalPrice.setEnabled(false);
 		txtTotalPrice.setFont(new Font("Calibri", Font.ITALIC, 12));
 		txtTotalPrice.setHorizontalAlignment(SwingConstants.CENTER);
-		txtTotalPrice.setBounds(254, 372, 96, 20);
+		txtTotalPrice.setBounds(376, 372, 182, 20);
 		add(txtTotalPrice);
 		txtTotalPrice.setColumns(10);
 
@@ -158,10 +159,10 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		try {
 			this.setAllBooks();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -191,7 +192,11 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			String[] str = { title, author, publicationYear, ammount };
 			((DefaultTableModel) modelSelectedBooks).addRow(str);
 			System.out.println(title + " " + author + " " + publicationYear + " " + ammount);
+			String price = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3).toString();
+			double doublePrice = Double.parseDouble(price);
 			tblSelectedBooks.repaint();
+			txtTotalPrice.setText(String.valueOf(Double.parseDouble(txtTotalPrice.getText())
+					+ (Integer.parseInt(txtAmount.getText()) * doublePrice)));
 		} else {
 			if (isPressed == btnAdd && this.observer.getStocksOfTheShop(
 					tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString()) > Integer
@@ -228,10 +233,13 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	}
 
 	public void setAllBooks() throws ClassNotFoundException, IOException {
-		for (BookModel entry : this.observer.getBookInShop().keySet()) {
+		Map<BookModel, Integer> tmp = this.observer.getBookInShop();
+		int i = 0;
+
+		for (BookModel entry : tmp.keySet()) {
 
 			Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getyearOfPublication(),
-					entry.getPrice() };
+					entry.getPrice(), tmp.values().toArray()[i] };
 			((DefaultTableModel) modelAllBooks).addRow(obj);
 			/*
 			 * ((DefaultTableModel) modelAllBooks).addRow(new
@@ -239,9 +247,10 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			 * entry.getyearOfPublication(),entry.getPrice()});
 			 */
 			tblAllBooks.repaint();
-			System.out.println("ciccia1" + entry.getTitle());
-			
+			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
+
 		}
+
 	}
 
 	@Override

@@ -7,30 +7,32 @@ public interface ViewObserver {
 	void exitCommand();
 
 	/**
-	 * Metodo che permette il savataggio dei dati
-	 */
-	void saveData();
-	
-	/**
-	 * Metodo che permette il savataggio dei dati
 	 * 
-	 * @param path
-	 *            Percorso in cui salvare il model
+	 * 
 	 */
-	void saveData(String path);
-	/**
-	 * Metodo che permette di salvare i dati
-	 */
-	
-	void dataLoad();
+	void warehouseClicked();
 
 	/**
-	 * Metodo che permette di salvare i dati
 	 * 
-	 * @param path
-	 *            Percorso da cui caricare il model
-	 */
-	void dataLoad(String path);
+	 * 
+	 * */
+	void addBooksClicked();
 
-	
+	/**
+	 * 
+	 * */
+	void bookShopClicked();
+
+	/**
+	 * 
+	 * 
+	 */
+	void addEmployeeClicked();
+
+	/**
+	 * 
+	 * 
+	 * */
+	void addSubscriptionClicked();
+
 }

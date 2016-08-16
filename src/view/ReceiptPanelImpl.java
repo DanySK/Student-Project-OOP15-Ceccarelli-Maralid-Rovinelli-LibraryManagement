@@ -44,7 +44,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 		modelReport = new DefaultTableModel(new Object[][] {}, new String[] { "Titolo", "Prezzo" });
 
 		scpReport = new JScrollPane();
-		scpReport.setBounds(10, 74, 585, 310);
+		scpReport.setBounds(20, 74, 853, 418);
 		add(scpReport);
 
 		tblReport = new JTable();
@@ -57,20 +57,21 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 		tblReport.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		lblNewLabel = new JLabel("BookShop inc");
+		lblNewLabel.setForeground(new Color(255, 69, 0));
 		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 11, 585, 52);
+		lblNewLabel.setBounds(10, 11, 880, 52);
 		add(lblNewLabel);
 
 		btnMakePurchase = new JButton("Effettua acquisto");
-		btnMakePurchase.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 17));
-		btnMakePurchase.setBounds(434, 395, 161, 31);
+		btnMakePurchase.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
+		btnMakePurchase.setBounds(712, 518, 161, 31);
 		btnMakePurchase.addActionListener(this);
 		add(btnMakePurchase);
 
 		cmbTypeOfPayment = new JComboBox();
 		cmbTypeOfPayment.setFont(new Font("Calibri", Font.ITALIC, 13));
-		cmbTypeOfPayment.setBounds(181, 410, 160, 20);
+		cmbTypeOfPayment.setBounds(356, 523, 160, 20);
 		cmbTypeOfPayment.addItem("Contanti");
 		cmbTypeOfPayment.addItem("Carta di credito");
 		cmbTypeOfPayment.addItem("Bancomat");
@@ -80,7 +81,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 		txtTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
 		txtTotalPrice.setEnabled(false);
 		txtTotalPrice.setEditable(false);
-		txtTotalPrice.setBounds(10, 409, 161, 20);
+		txtTotalPrice.setBounds(20, 523, 161, 20);
 		// calcolo del totale tramite i dati presi dalla view
 		// BookShopImpl
 		add(txtTotalPrice);
@@ -88,7 +89,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 
 		lblTotalPrice = new JLabel("Totale:");
 		lblTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblTotalPrice.setBounds(10, 395, 161, 14);
+		lblTotalPrice.setBounds(20, 509, 161, 14);
 		add(lblTotalPrice);
 
 	}

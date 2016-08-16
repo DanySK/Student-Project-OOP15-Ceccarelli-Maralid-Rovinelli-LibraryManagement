@@ -23,6 +23,10 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, ActionListener {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 //prova
 	private AddEmployeeObserver observer;
 	private JLabel lblTitle;
@@ -68,147 +72,147 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 		lblTitle.setForeground(new Color(255, 69, 0));
 		lblTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitle.setBounds(10, 11, 580, 48);
+		lblTitle.setBounds(10, 11, 880, 48);
 		add(lblTitle);
 
 		lblName = new JLabel("Nome:");
 		lblName.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblName.setBounds(28, 83, 143, 14);
+		lblName.setBounds(42, 83, 143, 14);
 		add(lblName);
 
 		txtName = new JTextField();
 		txtName.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtName.setBounds(28, 101, 143, 20);
+		txtName.setBounds(42, 101, 143, 20);
 		add(txtName);
 		txtName.setColumns(10);
 
 		lblSurname = new JLabel("Cognome:");
 		lblSurname.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblSurname.setBounds(28, 132, 140, 14);
+		lblSurname.setBounds(42, 142, 140, 14);
 		add(lblSurname);
 
 		txtSurname = new JTextField();
 		txtSurname.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtSurname.setBounds(28, 147, 143, 20);
+		txtSurname.setBounds(42, 157, 143, 20);
 		add(txtSurname);
 		txtSurname.setColumns(10);
 
 		lblUsername = new JLabel("Username:");
 		lblUsername.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblUsername.setBounds(28, 178, 143, 14);
+		lblUsername.setBounds(42, 201, 143, 14);
 		add(lblUsername);
 
 		txtUsername = new JTextField();
 		txtUsername.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtUsername.setBounds(28, 192, 143, 20);
+		txtUsername.setBounds(42, 215, 143, 20);
 		add(txtUsername);
 		txtUsername.setColumns(10);
 
 		lblPassword = new JLabel("Password:");
 		lblPassword.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblPassword.setBounds(28, 223, 143, 14);
+		lblPassword.setBounds(42, 261, 143, 14);
 		add(lblPassword);
 
 		txtPassword = new JPasswordField();
 		txtPassword.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtPassword.setBounds(28, 237, 143, 20);
+		txtPassword.setBounds(42, 275, 143, 20);
 		add(txtPassword);
 
 		lblAddress = new JLabel("Indirizzo:");
 		lblAddress.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblAddress.setBounds(28, 268, 143, 14);
+		lblAddress.setBounds(39, 317, 143, 14);
 		add(lblAddress);
 
 		txtCity = new JTextField();
 		txtCity.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtCity.setBounds(28, 300, 86, 20);
+		txtCity.setBounds(39, 349, 86, 20);
 		add(txtCity);
 		txtCity.setColumns(10);
 
 		txtStreet = new JTextField();
 		txtStreet.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtStreet.setBounds(123, 300, 86, 20);
+		txtStreet.setBounds(134, 349, 86, 20);
 		add(txtStreet);
 		txtStreet.setColumns(10);
 
 		txtHouseNumber = new JTextField();
 		txtHouseNumber.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtHouseNumber.setBounds(220, 300, 44, 20);
+		txtHouseNumber.setBounds(231, 349, 44, 20);
 		add(txtHouseNumber);
 		txtHouseNumber.setColumns(10);
 
 		lblCity = new JLabel("città");
 		lblCity.setFont(new Font("Calibri", Font.ITALIC, 12));
 		lblCity.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCity.setBounds(28, 288, 86, 14);
+		lblCity.setBounds(39, 337, 86, 14);
 		add(lblCity);
 
 		lblStreet = new JLabel("via");
 		lblStreet.setFont(new Font("Calibri", Font.ITALIC, 12));
 		lblStreet.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStreet.setBounds(123, 288, 86, 14);
+		lblStreet.setBounds(134, 337, 86, 14);
 		add(lblStreet);
 
 		lblHouseNumber = new JLabel("N#");
 		lblHouseNumber.setFont(new Font("Calibri", Font.ITALIC, 12));
 		lblHouseNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHouseNumber.setBounds(220, 288, 44, 14);
+		lblHouseNumber.setBounds(231, 337, 44, 14);
 		add(lblHouseNumber);
 
 		lblTaxCode = new JLabel("Codice Fiscale:");
 		lblTaxCode.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblTaxCode.setBounds(28, 331, 143, 14);
+		lblTaxCode.setBounds(42, 414, 143, 14);
 		add(lblTaxCode);
 
 		txtTaxCode = new JTextField();
 		txtTaxCode.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtTaxCode.setBounds(28, 348, 143, 20);
+		txtTaxCode.setBounds(42, 431, 143, 20);
 		add(txtTaxCode);
 		txtTaxCode.setColumns(10);
 
 		lblTelephone = new JLabel("Telefono:");
 		lblTelephone.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblTelephone.setBounds(358, 101, 143, 14);
+		lblTelephone.setBounds(661, 83, 143, 14);
 		add(lblTelephone);
 
 		txtTelephone = new JTextField();
-		txtTelephone.setBounds(358, 121, 143, 20);
+		txtTelephone.setBounds(661, 103, 143, 20);
 		add(txtTelephone);
 		txtTelephone.setColumns(10);
 
 		lblBirthDay = new JLabel("Anno di nascita:");
 		lblBirthDay.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblBirthDay.setBounds(358, 162, 143, 14);
+		lblBirthDay.setBounds(661, 237, 143, 14);
 		add(lblBirthDay);
 
 		cmbDay = new JComboBox();
 		cmbDay.setEnabled(false);
-		cmbDay.setBounds(520, 190, 50, 20);
+		cmbDay.setBounds(823, 275, 50, 20);
 		cmbDay.addActionListener(this);
 		add(cmbDay);
 
 		cmbMonth = new JComboBox();
 		cmbMonth.setEnabled(false);
-		cmbMonth.setBounds(463, 190, 50, 20);
+		cmbMonth.setBounds(766, 275, 50, 20);
 		cmbMonth.addActionListener(this);
 		add(cmbMonth);
 		this.setMonth();
 
 		cmbYear = new JComboBox();
-		cmbYear.setBounds(358, 190, 95, 20);
+		cmbYear.setBounds(661, 275, 95, 20);
 		cmbYear.addActionListener(this);
 		add(cmbYear);
 		this.setYear();
 
 		btnAddEmployee = new JButton("Aggiungi dipendente");
 		btnAddEmployee.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
-		btnAddEmployee.setBounds(359, 300, 170, 40);
+		btnAddEmployee.setBounds(703, 469, 170, 40);
 		btnAddEmployee.addActionListener(this);
 		add(btnAddEmployee);
 
 		btnClear = new JButton("Pulisci");
 		btnClear.setFont(new Font("Calibri", Font.ITALIC, 14));
-		btnClear.setBounds(455, 402, 115, 38);
+		btnClear.setBounds(758, 533, 115, 38);
 		btnClear.addActionListener(this);
 		add(btnClear);
 
@@ -218,31 +222,31 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 		lblMessage.setForeground(Color.RED);
 		lblMessage.setBackground(Color.BLACK);
 		lblMessage.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblMessage.setBounds(181, 348, 285, 141);
+		lblMessage.setBounds(42, 462, 651, 109);
 		add(lblMessage);
 
 		lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblEmail.setBounds(358, 237, 212, 14);
+		lblEmail.setBounds(661, 403, 212, 14);
 		add(lblEmail);
 
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("Calibri", Font.ITALIC, 10));
-		txtEmail.setBounds(358, 255, 212, 20);
+		txtEmail.setBounds(661, 421, 212, 20);
 		add(txtEmail);
 		txtEmail.setColumns(10);
 
 		lblYear = new JLabel("AAAA");
-		lblYear.setBounds(358, 178, 46, 14);
+		lblYear.setBounds(661, 263, 46, 14);
 		add(lblYear);
 
 		lblMonth = new JLabel("MM");
-		lblMonth.setBounds(464, 178, 46, 14);
+		lblMonth.setBounds(767, 263, 46, 14);
 		add(lblMonth);
 
 		lblDay = new JLabel("GG");
 		lblDay.setFont(new Font("Calibri", Font.ITALIC, 12));
-		lblDay.setBounds(520, 178, 46, 14);
+		lblDay.setBounds(823, 263, 46, 14);
 		add(lblDay);
 
 	}

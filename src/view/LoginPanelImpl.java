@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
 import view.observer.LoginObserver;
 import javax.swing.JButton;
+import java.awt.SystemColor;
 
 public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener{
 	private JTextField txtUsername;
@@ -27,26 +28,26 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 
 	public LoginPanelImpl() {
 		super();
-		setBackground(Color.WHITE);
+		setBackground(SystemColor.activeCaption);
 		this.setLayout(null);
 		
 		
 		lblPassword = new JLabel("Password:");
 		lblPassword.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPassword.setFont(new Font("Calibri", Font.ITALIC, 14));
-		lblPassword.setBounds(430, 21, 160, 25);
+		lblPassword.setBounds(716, 130, 160, 25);
 		add(lblPassword);
 		
 		lblUsername = new JLabel("Username:");
 		lblUsername.setHorizontalAlignment(SwingConstants.LEFT);
 		lblUsername.setFont(new Font("Calibri", Font.ITALIC, 14));
-		lblUsername.setBounds(10, 21, 160, 25);
+		lblUsername.setBounds(23, 130, 160, 25);
 		add(lblUsername);
 		
 		txtPassword = new JPasswordField();
 		txtPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPassword.setFont(new Font("Calibri", Font.PLAIN, 13));
-		txtPassword.setBounds(430, 46, 160, 20);
+		txtPassword.setBounds(716, 155, 160, 20);
 		add(txtPassword);
 		
 		txtUsername = new JTextField();
@@ -54,32 +55,31 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		txtUsername.setFont(new Font("Calibri", Font.PLAIN, 13));
 		add(txtUsername);
 		txtUsername.setColumns(10);
-		txtUsername.setBounds(10, 46, 160, 20);
+		txtUsername.setBounds(23, 155, 160, 20);
 		
 		
 		btnLogin = new JButton("Accedi");
-		btnLogin.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 16));
-		btnLogin.setBounds(236, 36, 120, 40);
+		btnLogin.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
+		btnLogin.setBounds(408, 145, 120, 40);
 		btnLogin.addActionListener(this);
 		add(btnLogin);
 		
 		btnClear = new JButton("Pulisci tutto");
-		btnClear.setFont(new Font("Calibri", Font.ITALIC, 13));
-		btnClear.setBounds(485, 424, 105, 30);
+		btnClear.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
+		btnClear.setBounds(739, 476, 137, 55);
 		btnClear.addActionListener(this);
 		add(btnClear);
 		
 		btnRecorded = new JButton("Registrati");
 		btnRecorded.setEnabled(true);
-		btnRecorded.setFont(new Font("Calibri", Font.ITALIC, 13));
-		btnRecorded.setBounds(10, 424, 89, 30);
+		btnRecorded.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
+		btnRecorded.setBounds(23, 488, 143, 43);
 		btnRecorded.addActionListener(this);
 		add(btnRecorded);
 		
 		lblRecorded = new JLabel("Registra nuovo dipendente");
-		lblRecorded.setEnabled(false);
 		lblRecorded.setFont(new Font("Calibri", Font.ITALIC, 13));
-		lblRecorded.setBounds(10, 399, 143, 25);
+		lblRecorded.setBounds(23, 459, 143, 25);
 		add(lblRecorded);
 		
 		lblErrorMsg = new JLabel("");
@@ -89,6 +89,13 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		lblErrorMsg.setFont(new Font("Calibri", Font.ITALIC, 13));
 		lblErrorMsg.setBounds(172, 97, 262, 100);
 		add(lblErrorMsg);
+		
+		JLabel lblTitle = new JLabel("Login");
+		lblTitle.setForeground(new Color(255, 69, 0));
+		lblTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 35));
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setBounds(10, 11, 880, 75);
+		add(lblTitle);
 
 	}
 

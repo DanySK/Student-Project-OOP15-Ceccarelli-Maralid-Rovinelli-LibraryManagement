@@ -48,7 +48,7 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 		btnLog.addActionListener(this);
 		btnHome.addActionListener(this);
 
-		this.setPreferredSize(new Dimension(600, 100));
+		this.setPreferredSize(new Dimension(900, 100));
 
 		logTxt = new JTextArea("none");
 		logTxt.setBackground(SystemColor.inactiveCaption);

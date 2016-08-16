@@ -35,7 +35,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	private JButton btnRemoveTen;
 	private JButton btnAddOne;
 	private JButton btnAddTen;
-	private JButton btnAddToWareHouse;
+	private JButton btnAddToBookShop;
 	private static final long serialVersionUID = 1L;
 
 	public WarehousePanelImpl() {
@@ -44,7 +44,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		modelAllBooks = new DefaultTableModel(new Object[][] {},
 				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo", "Rimanenze" });
 		scpAllBooks = new JScrollPane();
-		scpAllBooks.setBounds(10, 88, 383, 379);
+		scpAllBooks.setBounds(20, 88, 486, 464);
 		add(scpAllBooks);
 
 		tblAllBooks = new JTable();
@@ -63,7 +63,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		lblWareHouseTitle.setForeground(new Color(255, 69, 0));
 		lblWareHouseTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
 		lblWareHouseTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWareHouseTitle.setBounds(10, 11, 585, 66);
+		lblWareHouseTitle.setBounds(10, 11, 880, 66);
 		add(lblWareHouseTitle);
 
 		txtAmmount = new JTextField();
@@ -72,45 +72,45 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		txtAmmount.setText("1");
 		txtAmmount.setFont(new Font("Calibri", Font.ITALIC, 13));
 		txtAmmount.setHorizontalAlignment(SwingConstants.CENTER);
-		txtAmmount.setBounds(403, 103, 192, 20);
+		txtAmmount.setBounds(680, 102, 192, 20);
 		add(txtAmmount);
 		txtAmmount.setColumns(10);
 
 		lblAmmount = new JLabel("Quantità:");
 		lblAmmount.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
 		lblAmmount.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAmmount.setBounds(403, 89, 192, 14);
+		lblAmmount.setBounds(680, 88, 192, 14);
 		add(lblAmmount);
 
 		btnRemoveOne = new JButton("-");
 		btnRemoveOne.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 18));
-		btnRemoveOne.setBounds(403, 134, 50, 50);
+		btnRemoveOne.setBounds(680, 133, 50, 50);
 		btnRemoveOne.addActionListener(this);
 		add(btnRemoveOne);
 
 		btnRemoveTen = new JButton("--");
 		btnRemoveTen.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 18));
-		btnRemoveTen.setBounds(437, 188, 50, 50);
+		btnRemoveTen.setBounds(714, 187, 50, 50);
 		btnRemoveTen.addActionListener(this);
 		add(btnRemoveTen);
 
 		btnAddOne = new JButton("+");
 		btnAddOne.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		btnAddOne.setBounds(545, 134, 50, 50);
+		btnAddOne.setBounds(822, 134, 50, 50);
 		btnAddOne.addActionListener(this);
 		add(btnAddOne);
 
 		btnAddTen = new JButton("++");
 		btnAddTen.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		btnAddTen.setBounds(516, 189, 50, 50);
+		btnAddTen.setBounds(793, 188, 50, 50);
 		btnAddTen.addActionListener(this);
 		add(btnAddTen);
 
-		btnAddToWareHouse = new JButton("Aggiungi al magazzino");
-		btnAddToWareHouse.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		btnAddToWareHouse.setBounds(403, 297, 192, 50);
-		btnAddToWareHouse.addActionListener(this);
-		add(btnAddToWareHouse);
+		btnAddToBookShop = new JButton("Aggiungi al negozzio");
+		btnAddToBookShop.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
+		btnAddToBookShop.setBounds(680, 297, 192, 50);
+		btnAddToBookShop.addActionListener(this);
+		add(btnAddToBookShop);
 	}
 
 	@Override
@@ -127,8 +127,8 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) + 1));
 		} else if (isPressed == btnAddTen) {
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) + 10));
-		} else if (isPressed == btnAddToWareHouse) {
-this.observer.addBooksInWarehouseClicked(  Integer.parseInt(txtAmmount.getText()));
+		} else if (isPressed == btnAddToBookShop) {
+this.observer.addBooksInBookShopClicked(  Integer.parseInt(txtAmmount.getText()));
 		}
 	}
 
