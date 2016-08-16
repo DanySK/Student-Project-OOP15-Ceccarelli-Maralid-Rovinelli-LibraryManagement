@@ -63,7 +63,7 @@ public interface ViewObserver {
 	  * 
 	  * 
 	  */
-	boolean setMenu();
+	boolean loginFlag();
 
 	
 }

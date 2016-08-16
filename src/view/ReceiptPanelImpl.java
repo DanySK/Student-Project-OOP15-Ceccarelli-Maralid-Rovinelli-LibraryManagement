@@ -34,6 +34,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 	private RecepitObserver observer;
 	private JTextField txtTotalPrice;
 	private JLabel lblTotalPrice;
+	private JTextField txtSubscriptionCode;
 
 	/**
 	 * Create the panel.
@@ -71,7 +72,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 
 		cmbTypeOfPayment = new JComboBox();
 		cmbTypeOfPayment.setFont(new Font("Calibri", Font.ITALIC, 13));
-		cmbTypeOfPayment.setBounds(356, 523, 160, 20);
+		cmbTypeOfPayment.setBounds(237, 523, 160, 20);
 		cmbTypeOfPayment.addItem("Contanti");
 		cmbTypeOfPayment.addItem("Carta di credito");
 		cmbTypeOfPayment.addItem("Bancomat");
@@ -91,6 +92,16 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 		lblTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
 		lblTotalPrice.setBounds(20, 509, 161, 14);
 		add(lblTotalPrice);
+		
+		txtSubscriptionCode = new JTextField();
+		txtSubscriptionCode.setBounds(421, 523, 161, 20);
+		add(txtSubscriptionCode);
+		txtSubscriptionCode.setColumns(10);
+		
+		JLabel lblSubscription = new JLabel("Codice abbonamento");
+		lblSubscription.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
+		lblSubscription.setBounds(421, 503, 161, 14);
+		add(lblSubscription);
 
 	}
 

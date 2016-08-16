@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 
 import view.observer.ViewObserver;
 
-
 public class MainViewImpl extends JFrame implements MainView, ActionListener, WindowListener {
 	private NorthPanelImpl northPanel;
 	private ViewObserver observer;
@@ -63,32 +62,31 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 		mnFile = new JMenu("File");
 		menuBar_1.add(mnFile);
-		
-		/*mntmSalva = new JMenuItem("Salva");
-		mntmSalva.addActionListener(this);
 
-		mntmSalva = new JMenuItem("Salva");
-		mntmSalva.addActionListener(this);
-		mnFile.add(mntmSalva);
-		
-		mntmApri = new JMenuItem("Apri");
-		mntmApri.addActionListener(this);
+		/*
+		 * mntmSalva = new JMenuItem("Salva");
+		 * mntmSalva.addActionListener(this);
+		 * 
+		 * mntmSalva = new JMenuItem("Salva");
+		 * mntmSalva.addActionListener(this); mnFile.add(mntmSalva);
+		 * 
+		 * mntmApri = new JMenuItem("Apri");
+		 * mntmApri.addActionListener(this);
+		 * 
+		 * mntmApri = new JMenuItem("Apri");
+		 * mntmApri.addActionListener(this); mnFile.add(mntmApri);
+		 */
 
-		mntmApri = new JMenuItem("Apri");
-		mntmApri.addActionListener(this);		
-		mnFile.add(mntmApri);*/
-		
-				
 		mntmAddEmployee = new JMenuItem("Aggiungi dipendente");
 		mnFile.add(mntmAddEmployee);
+		mntmAddEmployee.addActionListener(this);
 
-		mntmExit = new JMenuItem("Esci");		
+		mntmExit = new JMenuItem("Esci");
 		mnFile.add(mntmExit);
 		mntmExit.addActionListener(this);
 
 		mnNewMenu = new JMenu("Negozio");
 		menuBar_1.add(mnNewMenu);
-		
 
 		mntmCercaLibro = new JMenuItem("Cerca libro");
 		mnNewMenu.add(mntmCercaLibro);
@@ -100,25 +98,27 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 		mnNewMenu_1 = new JMenu("Magazzino");
 		menuBar_1.add(mnNewMenu_1);
-		
 
 		mntmOrdinaScorte = new JMenuItem("Ordina scorte");
 		mnNewMenu_1.add(mntmOrdinaScorte);
 		mntmOrdinaScorte.addActionListener(this);
-		
+
 		mntmRelocateBooks = new JMenuItem("Tasferisci libri");
 		mnNewMenu_1.add(mntmRelocateBooks);
 		mntmRelocateBooks.addActionListener(this);
-		
+
 		this.setVisible(true);
 
 	}
+
 	public void windowOpened(WindowEvent arg0) {
 		this.observer.dataLoad();
-		}
+	}
+
 	public void windowClosing(WindowEvent arg0) {
 		this.observer.saveData();
 	}
+
 	@Override
 	public void windowActivated(WindowEvent arg0) {
 
@@ -127,8 +127,6 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	@Override
 	public void windowClosed(WindowEvent arg0) {
 	}
-
-	
 
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {
@@ -145,20 +143,21 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 	}
 
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
-		  if (isPressed == mntmExit) {
-		   this.observer.exitCommand();
-		  } else if (isPressed == mntmCercaLibro){   
-		   this.observer.bookShopClicked();
-		  }else if (isPressed == mntmGestisciAbbonamenti){
-		   this.observer.addSubscriptionClicked();
-		  }else if(isPressed == mntmOrdinaScorte){
-		   this.observer.addBooksClicked();
-		  }else if(isPressed == mntmAddEmployee){
-		   this.observer.addEmployeeClicked();
+		if (isPressed == mntmExit) {
+			this.observer.exitCommand();
+		} else if (isPressed == mntmCercaLibro) {
+			this.observer.bookShopClicked();
+		} else if (isPressed == mntmGestisciAbbonamenti) {
+			this.observer.addSubscriptionClicked();
+		} else if (isPressed == mntmOrdinaScorte) {
+			this.observer.addBooksClicked();
+		} else if (isPressed == mntmAddEmployee) {
+			this.observer.addEmployeeClicked();
+		} else if (isPressed == mntmRelocateBooks) {
+			this.observer.warehouseClicked();
 		}
 
 	}

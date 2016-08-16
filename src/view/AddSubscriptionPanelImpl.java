@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 import view.observer.AddSubscriptionObserver;
 import java.awt.SystemColor;
@@ -11,6 +13,8 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -29,6 +33,7 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 	private AddSubscriptionObserver observer;
 	private JButton btnClear;
 	private JTextField txtType;
+	private JTable tblAllSubscription;
 
 	/**
 	 * Create the panel.
@@ -36,6 +41,24 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 	public AddSubscriptionPanelImpl() {
 		this.setLayout(null);
 		setBackground(SystemColor.activeCaption);
+
+		modelAllBooks = new DefaultTableModel(new Object[][] {},
+				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo", "quantità" });
+		
+		scpAllBooks = new JScrollPane();
+		scpAllBooks.setBounds(10, 87, 352, 379);
+		add(scpAllBooks);
+
+		tblAllBooks = new JTable();
+		scpAllBooks.setViewportView(tblAllBooks);
+		tblAllBooks.setModel(modelAllBooks);
+		tblAllBooks.getColumnModel().getColumn(0).setPreferredWidth(74);
+		tblAllBooks.getColumnModel().getColumn(1).setPreferredWidth(66);
+		tblAllBooks.getColumnModel().getColumn(2).setPreferredWidth(126);
+		tblAllBooks.setBorder(new LineBorder(new Color(0, 0, 0)));
+		tblAllBooks.setFont(new Font("Calibri", Font.PLAIN, 13));
+		tblAllBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+
 
 		lblTitle = new JLabel("Abbonamenti");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
