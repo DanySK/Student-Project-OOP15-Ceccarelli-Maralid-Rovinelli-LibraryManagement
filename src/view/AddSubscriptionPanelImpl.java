@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-public class AddSubscriptionPanelImpl extends JPanel implements AddSubcriptionPanel, ActionListener {
+public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionPanel, ActionListener {
 	private JTextField txtName;
 	private JTextField txtSurname;
 	private JLabel lblTitle;

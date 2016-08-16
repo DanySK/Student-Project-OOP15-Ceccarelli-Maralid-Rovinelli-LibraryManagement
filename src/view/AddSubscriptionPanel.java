@@ -2,7 +2,7 @@ package view;
 
 import view.observer.AddSubscriptionObserver;
 
-public interface AddSubcriptionPanel {
+public interface AddSubscriptionPanel {
 	/**
 	 * set for the WarehousePnaleImpl observer
 	 * 
@@ -13,5 +13,5 @@ public interface AddSubcriptionPanel {
 	 * Cleans all textField in the panel 
 	 * */
 	void clearPanel();
-	
+		
 }
