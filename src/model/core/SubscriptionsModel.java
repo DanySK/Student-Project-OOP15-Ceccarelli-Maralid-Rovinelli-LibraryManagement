@@ -5,7 +5,7 @@ import java.util.Map;
 
 import model.SubscriptionModel;
 
-public interface SubscrtiptionsModel {
+public interface SubscriptionsModel {
     /**
      * this method updates the map of subscriptions
      * 
@@ -23,4 +23,15 @@ public interface SubscrtiptionsModel {
      * @return map of subscription
      */
     public Map<Integer,SubscriptionModel> getSubscriptions();
+    /**
+     * this method return a subscription if it is given the card number
+     * @param numCard
+     * @return
+     */
+    public SubscriptionModel getASubscription(int numCard);
+    /**
+     * this method delete a subscription if it is given the card number
+     * @param numCard
+     */
+    public void deleteSubscription(int numCard);
 }

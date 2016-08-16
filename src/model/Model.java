@@ -3,6 +3,7 @@ package model;
 import model.core.EmployeesModel;
 import model.core.InvoicesModel;
 import model.core.ShopAndWarehouseModel;
+import model.core.SubscriptionsModel;
 
 public interface Model {
     /**
@@ -27,4 +28,5 @@ public interface Model {
 	 public InvoicesModel invoices();
    
     
+	 public SubscriptionsModel subscriptions();
 }
