@@ -7,14 +7,6 @@ import view.observer.NorthPanelObserver;
 
 public interface NorthPanel {
 	/**
-	 * controlla eventuali login e ne imposta l'identita
-	 * */
-	void checkEmployeeLogin();
-	/**
-	 * controlla eventuali logout e ne disconnette il soggetto
-	 * */
-	void checkEmployeeLogout();
-	/**
 	 * set per l'observer del northPanel
 	 * 
 	 * @param observer

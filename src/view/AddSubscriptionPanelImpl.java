@@ -47,7 +47,7 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo", "quantità" });
 		
 		scpAllSubscription = new JScrollPane();
-		scpAllSubscription.setBounds(10, 87, 352, 379);
+		scpAllSubscription.setBounds(522, 73, 352, 392);
 		add(scpAllSubscription);
 
 		tblAllSubscription = new JTable();

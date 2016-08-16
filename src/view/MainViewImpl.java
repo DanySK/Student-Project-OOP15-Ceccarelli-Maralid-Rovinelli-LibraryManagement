@@ -16,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import view.observer.LoginObserver;
 import view.observer.ViewObserver;
 
 public class MainViewImpl extends JFrame implements MainView, ActionListener, WindowListener {
@@ -24,15 +25,16 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	private JMenuBar menuBar;
 	private JMenuItem mntmExit;
 	private JMenuBar menuBar_1;
-	private JMenu mnNewMenu;
+	private JMenu mnShop;
 	private JMenuItem mntmCercaLibro;
 	private JMenuItem mntmGestisciAbbonamenti;
-	private JMenu mnNewMenu_1;
+	private JMenu mnWarehose;
 	private JMenuItem mntmOrdinaScorte;
 	private JMenu mnFile;
 	private JMenuItem mntmAddEmployee;
 	private static final long serialVersionUID = 1L;
 	private JMenuItem mntmRelocateBooks;
+	private LoginObserver loginObserver;
 
 	public MainViewImpl() {
 		this.getContentPane().setBackground(Color.WHITE);
@@ -77,34 +79,36 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		 * mntmApri.addActionListener(this); mnFile.add(mntmApri);
 		 */
 
-		mntmAddEmployee = new JMenuItem("Aggiungi dipendente");
-		mnFile.add(mntmAddEmployee);
-		mntmAddEmployee.addActionListener(this);
-
 		mntmExit = new JMenuItem("Esci");
 		mnFile.add(mntmExit);
 		mntmExit.addActionListener(this);
 
-		mnNewMenu = new JMenu("Negozio");
-		menuBar_1.add(mnNewMenu);
+		mnShop = new JMenu("Negozio");
+		mnShop.setEnabled(false);
+		menuBar_1.add(mnShop);
 
 		mntmCercaLibro = new JMenuItem("Cerca libro");
-		mnNewMenu.add(mntmCercaLibro);
+		mnShop.add(mntmCercaLibro);
 		mntmCercaLibro.addActionListener(this);
 
 		mntmGestisciAbbonamenti = new JMenuItem("Gestisci abbonamenti");
-		mnNewMenu.add(mntmGestisciAbbonamenti);
+		mnShop.add(mntmGestisciAbbonamenti);
+		
+				mntmAddEmployee = new JMenuItem("Aggiungi dipendente");
+				mnShop.add(mntmAddEmployee);
+				mntmAddEmployee.addActionListener(this);
 		mntmGestisciAbbonamenti.addActionListener(this);
 
-		mnNewMenu_1 = new JMenu("Magazzino");
-		menuBar_1.add(mnNewMenu_1);
+		mnWarehose = new JMenu("Magazzino");
+		mnWarehose.setEnabled(false);
+		menuBar_1.add(mnWarehose);
 
 		mntmOrdinaScorte = new JMenuItem("Ordina scorte");
-		mnNewMenu_1.add(mntmOrdinaScorte);
+		mnWarehose.add(mntmOrdinaScorte);
 		mntmOrdinaScorte.addActionListener(this);
 
 		mntmRelocateBooks = new JMenuItem("Tasferisci libri");
-		mnNewMenu_1.add(mntmRelocateBooks);
+		mnWarehose.add(mntmRelocateBooks);
 		mntmRelocateBooks.addActionListener(this);
 
 		this.setVisible(true);
@@ -146,6 +150,13 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
+		if(loginObserver.loginFlag() == true){
+			mnShop.setEnabled(true);
+			mnWarehose.setEnabled(true);
+		}else {
+			mnShop.setEnabled(false);
+			mnWarehose.setEnabled(false);
+		}
 		if (isPressed == mntmExit) {
 			this.observer.exitCommand();
 		} else if (isPressed == mntmCercaLibro) {
