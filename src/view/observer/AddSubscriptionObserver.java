@@ -7,5 +7,5 @@ public interface AddSubscriptionObserver {
 	 * 
 	 * 
 	 */	
-	void addNewSubcriptionClicked(String name, String surname, String literaryGenre);
+	void addNewSubcriptionClicked(String name, String surname);
 }

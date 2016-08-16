@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,7 +11,6 @@ import javax.swing.JTextArea;
 
 import view.observer.NorthPanelObserver;
 import java.awt.SystemColor;
-import javax.swing.JTextField;
 
 public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener {
 	

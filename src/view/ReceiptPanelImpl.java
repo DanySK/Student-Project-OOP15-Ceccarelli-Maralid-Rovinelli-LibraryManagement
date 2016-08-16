@@ -25,12 +25,13 @@ import view.observer.RecepitObserver;
 
 public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListener {
 	
+	private static final long serialVersionUID = 1L;
 	private JTable tblReport;
 	private DefaultTableModel modelReport;
 	private JScrollPane scpReport;
 	private JButton btnMakePurchase;
 	private JLabel lblNewLabel;
-	private JComboBox cmbTypeOfPayment;
+	private JComboBox<String> cmbTypeOfPayment;
 	private RecepitObserver observer;
 	private JTextField txtTotalPrice;
 	private JLabel lblTotalPrice;
@@ -70,7 +71,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 		btnMakePurchase.addActionListener(this);
 		add(btnMakePurchase);
 
-		cmbTypeOfPayment = new JComboBox();
+		cmbTypeOfPayment = new JComboBox<String>();
 		cmbTypeOfPayment.setFont(new Font("Calibri", Font.ITALIC, 13));
 		cmbTypeOfPayment.setBounds(237, 523, 160, 20);
 		cmbTypeOfPayment.addItem("Contanti");
@@ -109,12 +110,11 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		Date today = null;
 		Date currentDate = Calendar.getInstance().getTime();
 		if (isPressed == btnMakePurchase) {
 			try {
 				this.observer.saveAccountingClicked(
-						today = (Date) dateFormat.parse((dateFormat.format(currentDate))),
+						(Date) dateFormat.parse((dateFormat.format(currentDate))),
 						Double.parseDouble(txtTotalPrice.getText()),
 						cmbTypeOfPayment.getSelectedItem().toString());
 			} catch (NumberFormatException | ParseException e1) {

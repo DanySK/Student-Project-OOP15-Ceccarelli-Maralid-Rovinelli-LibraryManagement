@@ -1,6 +1,5 @@
 package view.observer;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public interface AddEmployeeObserver {

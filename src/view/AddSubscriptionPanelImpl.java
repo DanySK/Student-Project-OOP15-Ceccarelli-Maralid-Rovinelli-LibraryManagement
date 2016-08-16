@@ -16,7 +16,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionPanel, ActionListener {
@@ -34,6 +33,8 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 	private JButton btnClear;
 	private JTextField txtType;
 	private JTable tblAllSubscription;
+	private DefaultTableModel modeAllSubscription;
+	private JScrollPane scpAllSubscription;
 
 	/**
 	 * Create the panel.
@@ -42,22 +43,22 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		this.setLayout(null);
 		setBackground(SystemColor.activeCaption);
 
-		modelAllBooks = new DefaultTableModel(new Object[][] {},
+		modeAllSubscription = new DefaultTableModel(new Object[][] {},
 				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo", "quantità" });
 		
-		scpAllBooks = new JScrollPane();
-		scpAllBooks.setBounds(10, 87, 352, 379);
-		add(scpAllBooks);
+		scpAllSubscription = new JScrollPane();
+		scpAllSubscription.setBounds(10, 87, 352, 379);
+		add(scpAllSubscription);
 
-		tblAllBooks = new JTable();
-		scpAllBooks.setViewportView(tblAllBooks);
-		tblAllBooks.setModel(modelAllBooks);
-		tblAllBooks.getColumnModel().getColumn(0).setPreferredWidth(74);
-		tblAllBooks.getColumnModel().getColumn(1).setPreferredWidth(66);
-		tblAllBooks.getColumnModel().getColumn(2).setPreferredWidth(126);
-		tblAllBooks.setBorder(new LineBorder(new Color(0, 0, 0)));
-		tblAllBooks.setFont(new Font("Calibri", Font.PLAIN, 13));
-		tblAllBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		tblAllSubscription = new JTable();
+		scpAllSubscription.setViewportView(tblAllSubscription);
+		tblAllSubscription.setModel(modeAllSubscription);
+		tblAllSubscription.getColumnModel().getColumn(0).setPreferredWidth(74);
+		tblAllSubscription.getColumnModel().getColumn(1).setPreferredWidth(66);
+		tblAllSubscription.getColumnModel().getColumn(2).setPreferredWidth(126);
+		tblAllSubscription.setBorder(new LineBorder(new Color(0, 0, 0)));
+		tblAllSubscription.setFont(new Font("Calibri", Font.PLAIN, 13));
+		tblAllSubscription.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 
 		lblTitle = new JLabel("Abbonamenti");

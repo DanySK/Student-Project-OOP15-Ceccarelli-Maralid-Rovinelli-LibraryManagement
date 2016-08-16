@@ -74,7 +74,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		lblYear.setBounds(10, 207, 154, 14);
 		add(lblYear);
 
-		cmbLiteraryGenre = new JComboBox();
+		cmbLiteraryGenre = new JComboBox<String>();
 		cmbLiteraryGenre.setFont(new Font("Calibri", Font.ITALIC, 13));
 		cmbLiteraryGenre.setBounds(380, 102, 154, 20);
 		cmbLiteraryGenre.addItem("Fanatscienza");
@@ -83,7 +83,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		cmbLiteraryGenre.addItem("Horror");
 		add(cmbLiteraryGenre);
 
-		cmbYear = new JComboBox();
+		cmbYear = new JComboBox<Integer>();
 		cmbYear.setFont(new Font("Calibri", Font.ITALIC, 13));
 		cmbYear.setBounds(10, 232, 154, 20);
 		add(cmbYear);

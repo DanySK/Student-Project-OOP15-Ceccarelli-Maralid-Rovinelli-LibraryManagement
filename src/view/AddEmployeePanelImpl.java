@@ -2,10 +2,8 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,9 +21,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, ActionListener {
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 //prova
 	private AddEmployeeObserver observer;
@@ -50,9 +46,9 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 	private JLabel lblTelephone;
 	private JLabel lblTaxCode;
 	private JLabel lblBirthDay;
-	private JComboBox cmbDay;
-	private JComboBox cmbMonth;
-	private JComboBox cmbYear;
+	private JComboBox<Integer> cmbDay;
+	private JComboBox<Integer> cmbMonth;
+	private JComboBox<Integer> cmbYear;
 	private JButton btnAddEmployee;
 	private JButton btnClear;
 	private JLabel lblMessage;
@@ -185,20 +181,20 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 		lblBirthDay.setBounds(661, 237, 143, 14);
 		add(lblBirthDay);
 
-		cmbDay = new JComboBox();
+		cmbDay = new JComboBox<Integer>();
 		cmbDay.setEnabled(false);
 		cmbDay.setBounds(823, 275, 50, 20);
 		cmbDay.addActionListener(this);
 		add(cmbDay);
 
-		cmbMonth = new JComboBox();
+		cmbMonth = new JComboBox<Integer>();
 		cmbMonth.setEnabled(false);
 		cmbMonth.setBounds(766, 275, 50, 20);
 		cmbMonth.addActionListener(this);
 		add(cmbMonth);
 		this.setMonth();
 
-		cmbYear = new JComboBox();
+		cmbYear = new JComboBox<Integer>();
 		cmbYear.setBounds(661, 275, 95, 20);
 		cmbYear.addActionListener(this);
 		add(cmbYear);
@@ -255,9 +251,6 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		String address;
-		int telephoneNumber;
-
 		Date hireDate = null;
 		Date currentDate = Calendar.getInstance().getTime();
 		try {
@@ -266,16 +259,15 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 			e2.printStackTrace();
 		}
 
-		Date birthDate;
 		if (isPressed == btnAddEmployee) {
 			try {
 				this.observer.saveEmployee(txtName.getText(), txtSurname.getText(),
-						(address = txtCity.getText() + " " + txtStreet.getText() + " "
+						(txtCity.getText() + " " + txtStreet.getText() + " "
 								+ txtHouseNumber.getText()),
 						txtUsername.getText(), txtPassword.getPassword(), txtEmail.getText(),
-						telephoneNumber = Integer.parseInt(txtTelephone.getText()),
+						Integer.parseInt(txtTelephone.getText()),
 						txtTaxCode.getText(),
-						birthDate = (Date) dateFormat.parse(cmbYear.getSelectedItem().toString() + "/"
+						(Date) dateFormat.parse(cmbYear.getSelectedItem().toString() + "/"
 								+ cmbMonth.getSelectedItem().toString() + "/"
 								+ cmbDay.getSelectedItem().toString()),
 						hireDate);

@@ -2,7 +2,6 @@ package view.observer;
 
 import java.util.Map;
 
-import model.BookImpl;
 import model.BookModel;
 
 public interface BookshopObserver {
