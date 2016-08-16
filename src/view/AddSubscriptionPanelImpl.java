@@ -16,17 +16,19 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionPanel, ActionListener {
+	
+	private static final long serialVersionUID = 1L;
 	private JTextField txtName;
 	private JTextField txtSurname;
 	private JLabel lblTitle;
 	private JLabel lblAccountHolder;
 	private JLabel lblName;
 	private JLabel lblSurname;
-	private JLabel lblLiteraryGenre;
-	private JComboBox cmbLiteraryGenre;
+	private JLabel lblType;
 	private JButton btnAddSubcription;
 	private AddSubscriptionObserver observer;
 	private JButton btnClear;
+	private JTextField txtType;
 
 	/**
 	 * Create the panel.
@@ -49,48 +51,47 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 
 		lblName = new JLabel("Nome:");
 		lblName.setFont(new Font("Calibri", Font.ITALIC, 13));
-		lblName.setBounds(30, 176, 260, 14);
+		lblName.setBounds(30, 140, 171, 14);
 		add(lblName);
 
 		lblSurname = new JLabel("Cognome:");
 		lblSurname.setFont(new Font("Calibri", Font.ITALIC, 13));
-		lblSurname.setBounds(30, 270, 260, 14);
+		lblSurname.setBounds(30, 196, 171, 14);
 		add(lblSurname);
 
 		txtName = new JTextField();
-		txtName.setBounds(30, 201, 260, 20);
+		txtName.setBounds(30, 165, 171, 20);
 		add(txtName);
 		txtName.setColumns(10);
 
 		txtSurname = new JTextField();
-		txtSurname.setBounds(30, 294, 260, 20);
+		txtSurname.setBounds(30, 220, 171, 20);
 		add(txtSurname);
 		txtSurname.setColumns(10);
 
-		lblLiteraryGenre = new JLabel("Genere letterario:");
-		lblLiteraryGenre.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
-		lblLiteraryGenre.setBounds(30, 378, 260, 14);
-		add(lblLiteraryGenre);
-
-		cmbLiteraryGenre = new JComboBox();
-		cmbLiteraryGenre.setBounds(30, 405, 260, 20);
-		cmbLiteraryGenre.addItem("Horror");
-		cmbLiteraryGenre.addItem("Noir");
-		cmbLiteraryGenre.addItem("Romanzo storico");
-		cmbLiteraryGenre.addItem("Fantascienza");
-		add(cmbLiteraryGenre);
+		lblType = new JLabel("Tipo abbonamento");
+		lblType.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
+		lblType.setBounds(30, 251, 171, 14);
+		add(lblType);
 
 		btnAddSubcription = new JButton("Aggiungi abbonameto");
 		btnAddSubcription.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 16));
-		btnAddSubcription.setBounds(501, 269, 180, 70);
+		btnAddSubcription.setBounds(30, 307, 180, 70);
 		btnAddSubcription.addActionListener(this);
 		add(btnAddSubcription);
 
 		btnClear = new JButton("Pulisci tutto");
 		btnClear.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
-		btnClear.setBounds(742, 501, 125, 50);
+		btnClear.setBounds(251, 115, 125, 50);
 		btnClear.addActionListener(this);
 		add(btnClear);
+		
+		txtType = new JTextField();
+		txtType.setEnabled(false);
+		txtType.setEditable(false);
+		txtType.setBounds(30, 276, 171, 20);
+		add(txtType);
+		txtType.setColumns(10);
 
 	}
 
@@ -100,8 +101,7 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		if (isPressed == btnClear) {
 			this.clearPanel();
 		} else if (isPressed == btnAddSubcription) {
-			this.observer.addNewSubcriptionClicked(txtName.getText(), txtSurname.getText(),
-					cmbLiteraryGenre.getSelectedItem().toString());
+			this.observer.addNewSubcriptionClicked(txtName.getText(), txtSurname.getText());
 		}
 
 	}

@@ -34,8 +34,8 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 	private JLabel lblYear;
 	private JLabel lblPanelTitle;
 	private JLabel lblAmmount;
-	private JComboBox cmbLiteraryGenre;
-	private JComboBox cmbYear;
+	private JComboBox<String> cmbLiteraryGenre;
+	private JComboBox<Integer> cmbYear;
 	private static final long serialVersionUID = 1L;
 	private JLabel lblMessage;
 	private JButton btnRemoveOne;

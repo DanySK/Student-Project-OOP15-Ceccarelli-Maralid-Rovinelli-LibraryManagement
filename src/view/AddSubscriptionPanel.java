@@ -13,5 +13,5 @@ public interface AddSubscriptionPanel {
 	 * Cleans all textField in the panel 
 	 * */
 	void clearPanel();
-		
+	
 }

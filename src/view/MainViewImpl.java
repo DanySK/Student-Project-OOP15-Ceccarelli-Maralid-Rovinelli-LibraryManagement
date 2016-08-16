@@ -23,17 +23,13 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	private NorthPanelImpl northPanel;
 	private ViewObserver observer;
 	private JMenuBar menuBar;
-	private JFileChooser fileChoosen;
 	private JMenuItem mntmExit;
 	private JMenuBar menuBar_1;
 	private JMenu mnNewMenu;
 	private JMenuItem mntmCercaLibro;
-	private JMenuItem mntmCarrello;
 	private JMenuItem mntmGestisciAbbonamenti;
 	private JMenu mnNewMenu_1;
 	private JMenuItem mntmOrdinaScorte;
-	private JMenuItem mntmSalva;
-	private JMenuItem mntmApri;
 	private JMenu mnFile;
 	private JMenuItem mntmAddEmployee;
 	private static final long serialVersionUID = 1L;
@@ -52,7 +48,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		this.setResizable(false);
 		this.setSize(900, 700);
 
-		fileChoosen = new JFileChooser();
+		new JFileChooser();
 
 		Container c = this.getContentPane();
 		northPanel = new NorthPanelImpl();

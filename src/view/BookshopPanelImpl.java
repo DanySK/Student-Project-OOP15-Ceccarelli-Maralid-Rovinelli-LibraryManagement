@@ -7,8 +7,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import model.BookModel;
-import model.core.ShopAndWarehouseModel;
-import model.core.WarehouseImpl;
 import view.observer.BookshopObserver;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -23,11 +21,11 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.awt.event.ActionEvent;
 
 public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionListener {
 
+	private static final long serialVersionUID = 1L;
 	private BookshopObserver observer;
 	private DefaultTableModel modelAllBooks;
 	private DefaultTableModel modelSelectedBooks;
