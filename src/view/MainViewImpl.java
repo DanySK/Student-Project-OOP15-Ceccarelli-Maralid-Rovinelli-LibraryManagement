@@ -85,7 +85,6 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 				
 		mntmAddEmployee = new JMenuItem("Aggiungi dipendente");
 		mnFile.add(mntmAddEmployee);
-		mntmAddEmployee.addActionListener(this);
 
 		mntmExit = new JMenuItem("Esci");		
 		mnFile.add(mntmExit);
@@ -118,7 +117,12 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		this.setVisible(true);
 
 	}
-
+	public void windowOpened(WindowEvent arg0) {
+		this.observer.dataLoad();
+		}
+	public void windowClosing(WindowEvent arg0) {
+		this.observer.saveData();
+	}
 	@Override
 	public void windowActivated(WindowEvent arg0) {
 
@@ -149,18 +153,16 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
-		if (isPressed == mntmExit) {
-			this.observer.exitCommand();
-		} else if (isPressed == mntmCercaLibro){			
-			this.observer.bookShopClicked();
-		}else if (isPressed == mntmGestisciAbbonamenti){
-			this.observer.addSubscriptionClicked();
-		}else if(isPressed == mntmOrdinaScorte){
-			this.observer.addBooksClicked();
-		}else if(isPressed == mntmAddEmployee){
-			this.observer.addEmployeeClicked();
-		}else if(isPressed == mntmRelocateBooks){
-			this.observer.warehouseClicked();
+		  if (isPressed == mntmExit) {
+		   this.observer.exitCommand();
+		  } else if (isPressed == mntmCercaLibro){   
+		   this.observer.bookShopClicked();
+		  }else if (isPressed == mntmGestisciAbbonamenti){
+		   this.observer.addSubscriptionClicked();
+		  }else if(isPressed == mntmOrdinaScorte){
+		   this.observer.addBooksClicked();
+		  }else if(isPressed == mntmAddEmployee){
+		   this.observer.addEmployeeClicked();
 		}
 
 	}
