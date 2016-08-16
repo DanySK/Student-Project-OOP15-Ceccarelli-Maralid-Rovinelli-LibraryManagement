@@ -58,14 +58,4 @@ public class LoginPanelController implements LoginObserver,Serializable{
 	public boolean loginFlag() {
 		return true;
 	}
-
-	
-	/*public void registerUser() {
-		InsertDipendenteController idc = new InsertDipendenteController(model);
-		InsertDipendenteView idview = new InsertDipendenteView();
-		idc.setView(idview);
-		mainView.replaceCentralPanel(idview);
-
-	}*/
-
 }

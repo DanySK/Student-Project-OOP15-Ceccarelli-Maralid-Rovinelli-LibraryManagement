@@ -3,6 +3,7 @@ package controller;
 import model.Model;
 import model.StreamImpl;
 import model.StreamModel;
+import model.SubscriptionModel;
 import view.AddBookPanelImpl;
 import view.AddEmployeePanelImpl;
 import view.AddSubscriptionPanelImpl;
@@ -26,6 +27,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	private MainView mainView;
 	private StreamModel<Integer, EmployeeModel> smEmployee;
 	private StreamModel<BookModel, Integer> smBook;
+	private StreamModel<Integer, SubscriptionModel> smSubscription;
 	
 	/**
 	 * Crea un nuovo Controller senza dare alcun parametro come input.
@@ -37,6 +39,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 			this.model = model;
 			smEmployee = new StreamImpl<Integer, EmployeeModel>();
 			smBook = new StreamImpl<BookModel, Integer>();
+			smSubscription = new StreamImpl<>();
 	}
 
 
@@ -65,7 +68,6 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		BookshopController bsc = new BookshopController(this.mainView, model);
 		bsc.setView(bsp);
 		this.mainView.replaceMainPanel(bsp);
-		
 	}
 	
 	@Override
@@ -86,6 +88,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	public void saveData() {
 		smEmployee.writeFile("Employees.dat", model.employees().getEmployees());
 		smBook.writeFile("BooksInWareHouse.dat", model.warehouse().getBooks());
+		smSubscription.writeFile("Subscriptions.dat", model.subscriptions().getSubscriptions());
 	}
 
 	@Override
@@ -107,6 +110,12 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		    //System.out.println(model.warehouse().getBooks().);
 		    for ( BookModel key : model.warehouse().getBooks().keySet() ) {
 		        System.out.println( key.getTitle());
+		    }
+		    model.subscriptions().updateSubscriptions(smSubscription.readFile("Subscriptions.dat"));
+		    for (int j = 0; j<model.subscriptions().getSubscriptions().size(); j++){
+		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getName());
+		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getSurname());
+		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getType());
 		    }
 		
 		} catch (ClassNotFoundException e) {

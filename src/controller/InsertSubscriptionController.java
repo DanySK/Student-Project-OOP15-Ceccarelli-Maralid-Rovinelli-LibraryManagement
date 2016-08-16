@@ -22,9 +22,10 @@ public class InsertSubscriptionController implements AddSubscriptionObserver{
 	}
 
 	@Override
-	public void addNewSubcriptionClicked(String name, String surname, String literaryGenre) {
-		subscription = new SubscriptionImpl(name, surname, literaryGenre, 0);
-		System.out.println(subscription.getName());
+	public void addNewSubcriptionClicked(String name, String surname) {
+		subscription = new SubscriptionImpl(name, surname, "Bronze", 0);
+		model.subscriptions().addSubscription(subscription);
+		System.out.println(model.subscriptions().getSubscriptions());
 	}
 
 }
