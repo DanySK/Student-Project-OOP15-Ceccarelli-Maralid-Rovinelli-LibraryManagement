@@ -3,7 +3,8 @@ package model;
 import java.io.Serializable;
 
 /**
- * Class of Subscription
+ * This class represents a subscription.
+ * The subscription is made when a customer wants to subscribe to receive discounts at the checkout.
  * @author Mattia.Rovinelli
  *
  */
@@ -13,7 +14,14 @@ public class SubscriptionImpl implements SubscriptionModel, Serializable {
     private String name;
     private String surname;
     private String type;
-    private int books = 0;
+    private int books ;
+    
+    public SubscriptionImpl(String name,String surname,String type,int books){
+       this.name = name;
+       this.surname = surname;
+       this.type = type;
+       this.books = books;
+    }
     
     @Override
     public Long getId() {

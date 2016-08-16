@@ -18,6 +18,12 @@ public class InvoiceImpl implements InvoiceModel ,Serializable{
     public InvoiceImpl(){
         receipt = new HashMap<Integer,BookModel>(); 
     }
+    public InvoiceImpl(Map<Integer,BookModel> list,double total,Date date,String address){
+      this.receipt = list;
+      this.total = total;
+      this.date = date;
+      this.address = address;
+    }
     @Override
     public Map<Integer, BookModel> getReceipt() {
        return this.receipt;
@@ -64,7 +70,7 @@ public class InvoiceImpl implements InvoiceModel ,Serializable{
     public void removeItem(BookModel book){
         boolean cancel = false;
         int count = 0;
-        while (cancel = false){
+        while (cancel == false){
             if(receipt.get(count).equals(book)){
                receipt.remove(count);
                cancel = true;
