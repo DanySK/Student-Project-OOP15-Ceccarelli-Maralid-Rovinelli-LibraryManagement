@@ -56,10 +56,10 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		lpc.setView(lp);
 		this.mainView.replaceMainPanel(lp);
 	}*/
-	
+
 	@Override
 	public void changeLogStatus() {
-		//
+		
 	}
 
 	@Override
@@ -72,6 +72,14 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	
 	@Override
 	public void buttonLoginClicked() {
+		LoginPanelImpl lp = new LoginPanelImpl();
+		LoginPanelController lpc = new LoginPanelController(this.mainView, model);
+		lpc.setView(lp);
+		this.mainView.replaceMainPanel(lp);
+	}
+	
+	@Override
+	public void buttonLogoutClicked() {
 		LoginPanelImpl lp = new LoginPanelImpl();
 		LoginPanelController lpc = new LoginPanelController(this.mainView, model);
 		lpc.setView(lp);
@@ -188,6 +196,4 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		sc.setView(sp);
 		mainView.replaceMainPanel(sp);
 	}
-
-
 }
