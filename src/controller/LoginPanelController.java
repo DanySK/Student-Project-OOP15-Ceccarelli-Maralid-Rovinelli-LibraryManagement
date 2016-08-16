@@ -30,14 +30,16 @@ public class LoginPanelController implements LoginObserver,Serializable{
 	
 	@Override
 	public void loginEmployee(String username, char[] password) {
+		EmployeeImpl e;
     	if(model.employees().logged(username, password).equals(true)){
     		System.out.println("Loggato");
     		BookshopPanelImpl bsp = new BookshopPanelImpl();
         	BookshopController bsc = new BookshopController(this.mainView, model);
         	bsc.setView(bsp);
         	mainView.replaceMainPanel(bsp);
-        	EmployeeImpl e = (EmployeeImpl) model.employees().employeeLogged(username);
+        	e = (EmployeeImpl) model.employees().employeeLogged(username);
         	mainView.getNorthPanel().displayLoggedEmployee(e.getName(), e.getSurname());
+        	loginFlag();
     	} else {
     		view.displayMessage("Credenziali errate");
     	}	
@@ -49,6 +51,12 @@ public class LoginPanelController implements LoginObserver,Serializable{
 		InsertEmployeeController ie = new InsertEmployeeController(mainView, model);
 		ie.setView(ae);
 		mainView.replaceMainPanel(ae);
+	}
+
+	//It's true if someone is logged
+	@Override
+	public boolean loginFlag() {
+		return true;
 	}
 
 	

@@ -4,11 +4,14 @@ import model.Model;
 import model.StreamImpl;
 import model.StreamModel;
 import view.AddBookPanelImpl;
+import view.AddEmployeePanelImpl;
+import view.AddSubscriptionPanelImpl;
 import view.LoginPanelImpl;
 import view.BookshopPanelImpl;
 import view.MainView;
 import view.NorthPanel;
 import view.NorthPanelImpl;
+import view.WarehousePanelImpl;
 import view.observer.NorthPanelObserver;
 import view.observer.ViewObserver;
 
@@ -53,7 +56,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	
 	@Override
 	public void changeLogStatus() {
-		// TODO Auto-generated method stub
+		//
 	}
 
 	@Override
@@ -128,6 +131,53 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		InsertBookController ibc = new InsertBookController(model);
 		ibc.setView(ab);
 		this.mainView.replaceMainPanel(ab);
+	}
+
+
+	@Override
+	public void warehouseClicked() {
+		WarehousePanelImpl wp = new WarehousePanelImpl();
+		WarehouseController wc = new WarehouseController(mainView, model);
+		wc.setView(wp);
+		this.mainView.replaceMainPanel(wp);
+		
+	}
+
+
+	@Override
+	public void addBooksClicked() {
+		AddBookPanelImpl ab = new AddBookPanelImpl();
+		InsertBookController ibc = new InsertBookController(model);
+		ibc.setView(ab);
+		this.mainView.replaceMainPanel(ab);
+	}
+
+
+	@Override
+	public void bookShopClicked() {
+		BookshopPanelImpl bsp = new BookshopPanelImpl();
+    	BookshopController bsc = new BookshopController(this.mainView, model);
+    	bsc.setView(bsp);
+    	mainView.replaceMainPanel(bsp);
+		
+	}
+
+
+	@Override
+	public void addEmployeeClicked() {
+		AddEmployeePanelImpl ae = new AddEmployeePanelImpl();
+		InsertEmployeeController ie = new InsertEmployeeController(mainView, model);
+		ie.setView(ae);
+		mainView.replaceMainPanel(ae);	
+	}
+
+
+	@Override
+	public void addSubscriptionClicked() {
+		AddSubscriptionPanelImpl sp = new AddSubscriptionPanelImpl();
+		InsertSubscriptionController sc = new InsertSubscriptionController(model);
+		sc.setView(sp);
+		mainView.replaceMainPanel(sp);
 	}
 
 
