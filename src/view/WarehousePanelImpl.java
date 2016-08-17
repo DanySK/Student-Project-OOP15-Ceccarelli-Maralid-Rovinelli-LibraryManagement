@@ -32,7 +32,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	private JTable tblAllBooks;
 	private DefaultTableModel modelAllBooks;
 	private JScrollPane scpAllBooks;
-	private JTextField txtAmmount;
+	private JTextField txtAmount;
 	private JLabel lblWareHouseTitle;
 	private JLabel lblAmmount;
 	private JButton btnRemoveOne;
@@ -70,15 +70,15 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		lblWareHouseTitle.setBounds(10, 11, 880, 66);
 		add(lblWareHouseTitle);
 
-		txtAmmount = new JTextField();
-		txtAmmount.setEnabled(false);
-		txtAmmount.setEditable(false);
-		txtAmmount.setText("1");
-		txtAmmount.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtAmmount.setHorizontalAlignment(SwingConstants.CENTER);
-		txtAmmount.setBounds(680, 102, 192, 20);
-		add(txtAmmount);
-		txtAmmount.setColumns(10);
+		txtAmount = new JTextField();
+		txtAmount.setEnabled(false);
+		txtAmount.setEditable(false);
+		txtAmount.setText("1");
+		txtAmount.setFont(new Font("Calibri", Font.ITALIC, 13));
+		txtAmount.setHorizontalAlignment(SwingConstants.CENTER);
+		txtAmount.setBounds(680, 102, 192, 20);
+		add(txtAmount);
+		txtAmount.setColumns(10);
 
 		lblAmmount = new JLabel("Quantità:");
 		lblAmmount.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
@@ -121,16 +121,24 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
 		if (isPressed == btnRemoveOne) {
-			if (Integer.parseInt(txtAmmount.getText()) > 1)
-				txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 1));
+			if (Integer.parseInt(txtAmount.getText()) > 1)
+				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) - 1));
 		} else if (isPressed == btnRemoveTen) {
-			if (Integer.parseInt(txtAmmount.getText()) > 10) {
-				txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 10));
+			if (Integer.parseInt(txtAmount.getText()) > 10) {
+				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) - 10));
 			}
 		} else if (isPressed == btnAddOne) {
-			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) + 1));
+			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) < Integer
+					.parseInt(txtAmount.getText()))
+				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
+			else
+				displayMessage("Quantità massima già raggiunta");
 		} else if (isPressed == btnAddTen) {
-			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) + 10));
+			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) < Integer
+					.parseInt(txtAmount.getText()))
+				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 10));
+			else
+				displayMessage("Quantità massima già raggiunta");
 		} else if (isPressed == btnAddToBookShop) {
 			displayMessage("I libri sono stati aggiunti al negozio");
 			this.observer.addBooksInBookShopClicked(
@@ -139,7 +147,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 2).toString(),
 					(int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3),
 					(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4),
-					Integer.parseInt(txtAmmount.getText()));
+					Integer.parseInt(txtAmount.getText()));
 		}
 	}
 
@@ -159,7 +167,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 
 	@Override
 	public void clearPanel() {
-		txtAmmount.setText("1");
+		txtAmount.setText("1");
 
 	}
 

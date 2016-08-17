@@ -13,5 +13,11 @@ public interface BookshopPanel {
 	 * @param observer
 	 * */
 	void attachObserver (BookshopObserver observer);
+	/**
+	 * The method used to display a message
+	 * 
+	 * @param message
+	 */
+	void displayMessage(String message);
 		
 }

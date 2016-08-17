@@ -115,7 +115,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		lblPrice.setBounds(380, 207, 154, 14);
 		add(lblPrice);
 
-		lblPanelTitle = new JLabel("Ordina libro");
+		lblPanelTitle = new JLabel("Aggiungi libro");
 		lblPanelTitle.setForeground(new Color(255, 69, 0));
 		lblPanelTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
 		lblPanelTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -187,13 +187,14 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		btnAddOne.addActionListener(this);
 		add(btnAddOne);
 
-		btnBack = new JButton("Indietro");
+		btnBack = new JButton("Vai al amgazziono");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		btnBack.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
 		btnBack.setBounds(380, 390, 154, 34);
+		btnBack.addActionListener(this);
 		add(btnBack);
 
 		setYear();

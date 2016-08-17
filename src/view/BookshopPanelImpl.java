@@ -168,22 +168,6 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
 		if (isPressed == btnAddBook) {
-
-			/*
-			 * double price = -1; String cell; String titolo = "";
-			 * if (tblAllBooks.getSelectedRow() == -1) { cell = "";
-			 * } else { cell =
-			 * tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(),
-			 * 0).toString(); } int quantity =
-			 * Integer.parseInt(txtAmount.getText()); price =
-			 * this.observer.uploadBooks(titolo, quantity);
-			 * txtTotalPrice.setText(Double.parseDouble(
-			 * txtTotalPrice.getText()) + price + ""); int ammount =
-			 * Integer.parseInt(txtAmount.getText()); String title =
-			 * cell; modelSelectedBooks.addRow(new Object[]{});
-			 */
-			
-			
 			String title = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString();
 			String author = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString();
 			String publicationYear = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 2).toString();
@@ -197,10 +181,12 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			txtTotalPrice.setText(String.valueOf(Double.parseDouble(txtTotalPrice.getText())
 					+ (Integer.parseInt(txtAmount.getText()) * doublePrice)));
 		} else {
-			if (isPressed == btnAdd && this.observer.getStocksOfTheShop(
-					tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString()) > Integer
-							.parseInt(txtAmount.getText())) {
-				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
+			if (isPressed == btnAdd) {
+				if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) < Integer
+						.parseInt(txtAmount.getText()))
+					txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
+				else
+					displayMessage("Quantità massima già raggiunta");
 			} else {
 				JOptionPane.showMessageDialog(null,
 						"Attenzione quantità massima disponibile già raggiunta!", "Attenzione",
@@ -250,5 +236,10 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
 			i++;
 		}
+	}
+
+	@Override
+	public void displayMessage(String message) {
+		JOptionPane.showMessageDialog(null, message, "Attenzione", JOptionPane.PLAIN_MESSAGE);
 	}
 }
