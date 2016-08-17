@@ -11,7 +11,6 @@ import view.observer.BookshopObserver;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.List;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -183,6 +182,8 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			 * Integer.parseInt(txtAmount.getText()); String title =
 			 * cell; modelSelectedBooks.addRow(new Object[]{});
 			 */
+			
+			
 			String title = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString();
 			String author = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString();
 			String publicationYear = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 2).toString();
@@ -202,7 +203,8 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
 			} else {
 				JOptionPane.showMessageDialog(null,
-						"Attenzione quantità massima disponibile già raggiunta!");
+						"Attenzione quantità massima disponibile già raggiunta!", "Attenzione",
+						JOptionPane.PLAIN_MESSAGE);
 			}
 
 			if (isPressed == btnRemove) {
@@ -248,5 +250,5 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
 			i++;
 		}
-	}	
+	}
 }

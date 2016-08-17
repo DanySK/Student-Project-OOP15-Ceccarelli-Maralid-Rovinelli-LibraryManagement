@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -45,7 +46,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		setBackground(SystemColor.activeCaption);
 		this.setLayout(null);
 		modelAllBooks = new DefaultTableModel(new Object[][] {},
-				new String[] { "Titolo", "Autore", "Anno P.","Genere", "Prezzo", "Rimanenze" });
+				new String[] { "Titolo", "Autore", "Genere","Anno P.", "Prezzo", "Rimanenze" });
 		scpAllBooks = new JScrollPane();
 		scpAllBooks.setBounds(20, 88, 486, 464);
 		add(scpAllBooks);
@@ -120,7 +121,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
 		if (isPressed == btnRemoveOne) {
-			if (Integer.parseInt(txtAmmount.getText()) > 1)
+			if (Integer.parseInt(txtAmmount.getText()) > 1)				
 				txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 1));
 		} else if (isPressed == btnRemoveTen) {
 			if (Integer.parseInt(txtAmmount.getText()) > 10) {
@@ -131,6 +132,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		} else if (isPressed == btnAddTen) {
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) + 10));
 		} else if (isPressed == btnAddToBookShop) {
+			displayMessage("I libri sono stati aggiunti al negozio");
 			this.observer.addBooksInBookShopClicked(
 					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString(),
 					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString(),
@@ -181,6 +183,14 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 
 		}
 
+	}
+
+	@Override
+	public void displayMessage(String message) {
+		JOptionPane.showMessageDialog(null, message,
+				    "Attenzione",
+				    JOptionPane.PLAIN_MESSAGE);
+		
 	}
 
 }

@@ -4,14 +4,22 @@ import view.observer.WarehouseObserver;
 
 public interface WarehousePanel {
 	/**
-	 * set for the WarehousePnaleImpl observer
+	 * Set for the WarehousePnaleImpl observer
 	 * 
 	 * @param observer
-	 * */
+	 */
 	void attachObserver(WarehouseObserver observer);
+
 	/**
-	 * Cleans all textField in the panel 
-	 * */
+	 * Cleans all textField in the panel
+	 */
 	void clearPanel();
-	
+
+	/**
+	 * The method used to display a message
+	 * 
+	 * @param message
+	 */
+	void displayMessage(String message);
+
 }

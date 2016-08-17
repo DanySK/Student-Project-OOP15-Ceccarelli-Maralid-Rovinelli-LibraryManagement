@@ -15,6 +15,5 @@ public interface WarehouseObserver {
 	 * 
 	 * 
 	 */
-	Map <BookModel, Integer> getBooksInWarehouse();
-	
+	Map <BookModel, Integer> getBooksInWarehouse();	
 }
