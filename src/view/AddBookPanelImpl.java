@@ -9,6 +9,7 @@ import java.util.Calendar;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -213,9 +214,18 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		} else if (isPressed == btnRemoveTen && Integer.parseInt(txtAmmount.getText()) > 10) {
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 10));
 		} else if (isPressed == btnAddBook) {
-			observer.addBookClicked(txtTitle.getText(), txtAuthor.getText(),
-					cmbLiteraryGenre.getSelectedItem().toString(),(Integer)cmbYear.getSelectedItem(),
-					Double.parseDouble(txtPrice.getText()), Integer.parseInt(txtAmmount.getText()));
+			try {
+				observer.addBookClicked(txtTitle.getText(), txtAuthor.getText(),
+						cmbLiteraryGenre.getSelectedItem().toString(),
+						(Integer) cmbYear.getSelectedItem(),
+						Double.parseDouble(txtPrice.getText()),
+						Integer.parseInt(txtAmmount.getText()));
+			} catch (IllegalArgumentException iE) {
+				JOptionPane.showMessageDialog(null,
+						iE + ": inserire il valore corrette nelle apposite caselle", "Errore",
+						JOptionPane.ERROR_MESSAGE);
+			}
+
 		} else if (isPressed == btnBack) {
 			observer.backToWharehouseClicked();
 		}

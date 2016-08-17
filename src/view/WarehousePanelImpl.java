@@ -128,7 +128,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) - 10));
 			}
 		} else if (isPressed == btnAddOne) {
-			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) < Integer
+			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) >= Integer
 					.parseInt(txtAmount.getText()))
 				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
 			else

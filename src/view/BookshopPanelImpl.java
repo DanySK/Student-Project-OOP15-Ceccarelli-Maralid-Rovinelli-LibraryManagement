@@ -147,7 +147,6 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		txtTotalPrice.setBounds(376, 372, 182, 20);
 		add(txtTotalPrice);
 		txtTotalPrice.setColumns(10);
-
 	}
 
 	@Override
@@ -162,7 +161,6 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 
 			e.printStackTrace();
 		}
-
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -182,7 +180,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 					+ (Integer.parseInt(txtAmount.getText()) * doublePrice)));
 		} else {
 			if (isPressed == btnAdd) {
-				if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) < Integer
+				if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) >= Integer
 						.parseInt(txtAmount.getText()))
 					txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
 				else
@@ -227,11 +225,6 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getyearOfPublication(),
 					entry.getPrice(), tmp.values().toArray()[i] };
 			((DefaultTableModel) modelAllBooks).addRow(obj);
-			/*
-			 * ((DefaultTableModel) modelAllBooks).addRow(new
-			 * Object[]{entry.getTitle(),entry.getAuthor(),
-			 * entry.getyearOfPublication(),entry.getPrice()});
-			 */
 			tblAllBooks.repaint();
 			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
 			i++;
