@@ -46,7 +46,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		setBackground(SystemColor.activeCaption);
 		this.setLayout(null);
 		modelAllBooks = new DefaultTableModel(new Object[][] {},
-				new String[] { "Titolo", "Autore", "Genere","Anno P.", "Prezzo", "Rimanenze" });
+				new String[] { "Titolo", "Autore", "Genere", "Anno P.", "Prezzo", "Rimanenze" });
 		scpAllBooks = new JScrollPane();
 		scpAllBooks.setBounds(20, 88, 486, 464);
 		add(scpAllBooks);
@@ -121,7 +121,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
 		if (isPressed == btnRemoveOne) {
-			if (Integer.parseInt(txtAmmount.getText()) > 1)				
+			if (Integer.parseInt(txtAmmount.getText()) > 1)
 				txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 1));
 		} else if (isPressed == btnRemoveTen) {
 			if (Integer.parseInt(txtAmmount.getText()) > 10) {
@@ -169,8 +169,8 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 
 		for (BookModel entry : tmp.keySet()) {
 
-			Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getyearOfPublication(),
-					entry.getPrice(),entry.getLiteraryGenre(), tmp.values().toArray()[i] };
+			Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getLiteraryGenre(),
+					entry.getyearOfPublication(), entry.getPrice(), tmp.values().toArray()[i] };
 			((DefaultTableModel) modelAllBooks).addRow(obj);
 			/*
 			 * ((DefaultTableModel) modelAllBooks).addRow(new
@@ -187,10 +187,8 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 
 	@Override
 	public void displayMessage(String message) {
-		JOptionPane.showMessageDialog(null, message,
-				    "Attenzione",
-				    JOptionPane.PLAIN_MESSAGE);
-		
+		JOptionPane.showMessageDialog(null, message, "Attenzione", JOptionPane.PLAIN_MESSAGE);
+
 	}
 
 }
