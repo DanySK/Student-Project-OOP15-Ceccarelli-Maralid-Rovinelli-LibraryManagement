@@ -24,10 +24,8 @@ public class InsertBookController implements AddBookObserver{
 
 	@Override
 	public void addBookClicked(String title, String author, String literaryGenre, int year, double price, int ammount) {
-		book = new BookImpl(title, author, literaryGenre, year, price);
-		model.warehouse().addNewBookInLibrary(book, ammount);
-		
-		
+		book = new BookImpl(title, author, literaryGenre, year, price);//Create new book
+		model.warehouse().addNewBookInLibrary(book, ammount);//Add book into warehouse
 	}
 	
 	@Override

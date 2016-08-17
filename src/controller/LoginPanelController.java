@@ -32,16 +32,15 @@ public class LoginPanelController implements LoginObserver,Serializable{
 	public void loginEmployee(String username, char[] password) {
 		EmployeeImpl e;
     	if(model.employees().logged(username, password).equals(true)){
-    		System.out.println("Loggato");
+    		mainView.getNorthPanel().changeLogStatus(true);
+        	mainView.changeLogStatus(true);
     		BookshopPanelImpl bsp = new BookshopPanelImpl();
         	BookshopController bsc = new BookshopController(this.mainView, model);
         	bsc.setView(bsp);
         	mainView.replaceMainPanel(bsp);
         	e = (EmployeeImpl) model.employees().employeeLogged(username);
         	mainView.getNorthPanel().displayLoggedEmployee(e.getName(), e.getSurname());
-        	mainView.getNorthPanel().changeLogStatus(true);
     	} else {
-    		mainView.getNorthPanel().changeLogStatus(false);
     		view.displayMessage("Credenziali errate");
     	}	
 	}

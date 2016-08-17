@@ -76,12 +76,15 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		this.mainView.replaceMainPanel(lp);
 	}
 	
+	//Rimpiazza la view corrente con quella del login
 	@Override
 	public void buttonLogoutClicked() {
 		LoginPanelImpl lp = new LoginPanelImpl();
 		LoginPanelController lpc = new LoginPanelController(this.mainView, model);
 		lpc.setView(lp);
 		this.mainView.replaceMainPanel(lp);
+		mainView.changeLogStatus(false);
+		mainView.getNorthPanel().changeLogStatus(false);
 	}
 
 	@Override
@@ -137,16 +140,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	public void dataLoad(String path) {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	//DA TOGLIERE
-	@Override
-	public void OpenAddBookClick() {
-		AddBookPanelImpl ab = new AddBookPanelImpl();
-		InsertBookController ibc = new InsertBookController(model);
-		ibc.setView(ab);
-		this.mainView.replaceMainPanel(ab);
-	}
+	}	
 
 
 	@Override

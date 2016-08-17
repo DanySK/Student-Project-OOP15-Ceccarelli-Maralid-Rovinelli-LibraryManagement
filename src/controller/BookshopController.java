@@ -50,7 +50,7 @@ public class BookshopController implements BookshopObserver{
 
 	@Override
 	public Map<BookModel, Integer> getBookInShop() {
-		Map<BookModel, Integer> map= model.warehouse().getBooks();
+		Map<BookModel, Integer> map= model.shop().getBooks();
 		return map;
 	}
 

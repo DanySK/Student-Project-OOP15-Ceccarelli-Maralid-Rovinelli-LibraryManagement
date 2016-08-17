@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Map;
+
 import model.BookModel;
 import model.Model;
 import view.MainView;
@@ -28,6 +30,12 @@ public class WarehouseController implements WarehouseObserver{
 		// TODO Auto-generated method stub
 		/*book = new BookImpl(title, author, literaryGenre, year, price);
 		model.shop().addNewBookInLibrary(book, quantity);*/
+	}
+
+	@Override
+	public void getBooksInWarehouse() {
+		Map<BookModel, Integer> map= model.warehouse().getBooks();
+		return map;
 	}
 
 }
