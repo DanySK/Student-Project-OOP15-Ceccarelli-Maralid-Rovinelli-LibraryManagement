@@ -131,21 +131,36 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		} else if (isPressed == btnAddTen) {
 			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) + 10));
 		} else if (isPressed == btnAddToBookShop) {
-this.observer.addBooksInBookShopClicked(  Integer.parseInt(txtAmmount.getText()));
+			this.observer.addBooksInBookShopClicked(
+					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString(),
+					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString(),
+					(int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 2),
+					(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3),
+					Integer.parseInt(txtAmmount.getText()));
 		}
 	}
 
 	@Override
 	public void attachObserver(WarehouseObserver observer) {
-		this.observer= observer;
-		
+		this.observer = observer;
+		try {
+			this.setAllBooks();
+		} catch (ClassNotFoundException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
 	public void clearPanel() {
 		txtAmmount.setText("1");
-		
+
 	}
+
 	public void setAllBooks() throws ClassNotFoundException, IOException {
 		Map<BookModel, Integer> tmp = this.observer.getBooksInWarehouse();
 		int i = 0;
