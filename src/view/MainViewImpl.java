@@ -16,7 +16,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import view.observer.LoginObserver;
 import view.observer.ViewObserver;
 
 public class MainViewImpl extends JFrame implements MainView, ActionListener, WindowListener {

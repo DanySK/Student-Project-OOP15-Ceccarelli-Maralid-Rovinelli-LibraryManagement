@@ -246,20 +246,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			 */
 			tblAllBooks.repaint();
 			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
-
+			i++;
 		}
-
-	}
-
-	@Override
-	public List getAllPrice() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List getAllTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	}	
 }

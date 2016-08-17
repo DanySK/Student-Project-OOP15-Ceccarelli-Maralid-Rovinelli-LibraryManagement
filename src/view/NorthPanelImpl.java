@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import view.observer.LoginObserver;
 import view.observer.NorthPanelObserver;
 import java.awt.SystemColor;
 

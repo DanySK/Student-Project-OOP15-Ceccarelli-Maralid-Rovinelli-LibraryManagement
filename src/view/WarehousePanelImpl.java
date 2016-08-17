@@ -45,7 +45,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		setBackground(SystemColor.activeCaption);
 		this.setLayout(null);
 		modelAllBooks = new DefaultTableModel(new Object[][] {},
-				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo", "Rimanenze" });
+				new String[] { "Titolo", "Autore", "Anno P.","Genere", "Prezzo", "Rimanenze" });
 		scpAllBooks = new JScrollPane();
 		scpAllBooks.setBounds(20, 88, 486, 464);
 		add(scpAllBooks);
@@ -134,8 +134,9 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 			this.observer.addBooksInBookShopClicked(
 					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString(),
 					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString(),
-					(int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 2),
-					(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3),
+					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 2).toString(),
+					(int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3),
+					(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4),
 					Integer.parseInt(txtAmmount.getText()));
 		}
 	}
@@ -152,7 +153,6 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
@@ -168,7 +168,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		for (BookModel entry : tmp.keySet()) {
 
 			Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getyearOfPublication(),
-					entry.getPrice(), tmp.values().toArray()[i] };
+					entry.getPrice(),entry.getLiteraryGenre(), tmp.values().toArray()[i] };
 			((DefaultTableModel) modelAllBooks).addRow(obj);
 			/*
 			 * ((DefaultTableModel) modelAllBooks).addRow(new
@@ -177,6 +177,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 			 */
 			tblAllBooks.repaint();
 			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
+			i++;
 
 		}
 

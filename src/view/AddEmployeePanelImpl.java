@@ -207,8 +207,8 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 		add(btnAddEmployee);
 
 		btnClear = new JButton("Pulisci");
-		btnClear.setFont(new Font("Calibri", Font.ITALIC, 14));
-		btnClear.setBounds(758, 533, 115, 38);
+		btnClear.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
+		btnClear.setBounds(39, 470, 115, 38);
 		btnClear.addActionListener(this);
 		add(btnClear);
 
