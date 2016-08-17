@@ -39,9 +39,9 @@ public class LoginPanelController implements LoginObserver,Serializable{
         	mainView.replaceMainPanel(bsp);
         	e = (EmployeeImpl) model.employees().employeeLogged(username);
         	mainView.getNorthPanel().displayLoggedEmployee(e.getName(), e.getSurname());
-        	//FARE UN METODO NEL NORTHPANEL CHE PRENDE COME PARAMENTRO UN BOOLEAN E QUI LO IMPOSTO A TRUE SE E' LOGGATO
-        	loginFlag();
+        	mainView.getNorthPanel().changeLogStatus(true);
     	} else {
+    		mainView.getNorthPanel().changeLogStatus(false);
     		view.displayMessage("Credenziali errate");
     	}	
 	}

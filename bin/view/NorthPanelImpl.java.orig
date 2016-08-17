@@ -88,7 +88,7 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 		btnLogout.addActionListener(this);
 		add(btnLogout);
 		btnLogout.setVisible(false);
-		btnLogout.setEnabled(false);
+
 	}
 
 	/*
@@ -123,6 +123,7 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
+
 		if (isPressed == btnLogin) {
 			this.observer.buttonLoginClicked();
 

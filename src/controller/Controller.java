@@ -28,6 +28,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	private StreamModel<Integer, EmployeeModel> smEmployee;
 	private StreamModel<BookModel, Integer> smBook;
 	private StreamModel<Integer, SubscriptionModel> smSubscription;
+	private StreamModel<Integer, BookModel> smInvoice;
 	
 	/**
 	 * Crea un nuovo Controller senza dare alcun parametro come input.
@@ -39,7 +40,8 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 			this.model = model;
 			smEmployee = new StreamImpl<Integer, EmployeeModel>();
 			smBook = new StreamImpl<BookModel, Integer>();
-			smSubscription = new StreamImpl<>();
+			smSubscription = new StreamImpl<Integer, SubscriptionModel>();
+			smInvoice = new StreamImpl<Integer, BookModel>();
 	}
 
 
@@ -57,10 +59,6 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		this.mainView.replaceMainPanel(lp);
 	}*/
 
-	@Override
-	public void changeLogStatus() {
-		
-	}
 
 	@Override
 	public void buttonHomeClicked() {

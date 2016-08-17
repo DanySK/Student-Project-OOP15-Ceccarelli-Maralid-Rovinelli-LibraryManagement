@@ -1,5 +1,6 @@
 package controller;
 
+import model.BookModel;
 import model.Model;
 import view.MainView;
 import view.WarehousePanel;
@@ -10,7 +11,8 @@ public class WarehouseController implements WarehouseObserver{
 	private Model model;
 	private MainView mainView;
 	private WarehousePanel view;
-	
+	private BookModel book;
+
 	public WarehouseController(MainView mainView, Model model){
 		this.mainView = mainView;
 		this.model = model;
@@ -24,7 +26,8 @@ public class WarehouseController implements WarehouseObserver{
 	@Override
 	public void addBooksInBookShopClicked(int ammount) {
 		// TODO Auto-generated method stub
-		
+		/*book = new BookImpl(title, author, literaryGenre, year, price);
+		model.shop().addNewBookInLibrary(book, quantity);*/
 	}
 
 }
