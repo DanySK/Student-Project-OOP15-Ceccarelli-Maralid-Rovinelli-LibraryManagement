@@ -1,5 +1,9 @@
 package view.observer;
 
+import java.util.Map;
+
+import model.BookModel;
+
 public interface WarehouseObserver {
 	/**
 	 * It allows you to add new books in warehouse
@@ -11,6 +15,6 @@ public interface WarehouseObserver {
 	 * 
 	 * 
 	 */
-	void getBooksInWarehouse();
+	Map <BookModel, Integer> getBooksInWarehouse();
 	
 }

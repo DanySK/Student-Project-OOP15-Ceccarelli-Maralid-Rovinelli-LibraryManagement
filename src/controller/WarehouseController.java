@@ -33,7 +33,7 @@ public class WarehouseController implements WarehouseObserver{
 	}
 
 	@Override
-	public void getBooksInWarehouse() {
+	public Map <BookModel, Integer> getBooksInWarehouse() {
 		Map<BookModel, Integer> map= model.warehouse().getBooks();
 		return map;
 	}

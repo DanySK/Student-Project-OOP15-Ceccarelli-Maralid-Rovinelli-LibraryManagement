@@ -52,10 +52,5 @@ public class LoginPanelController implements LoginObserver,Serializable{
 		ie.setView(ae);
 		mainView.replaceMainPanel(ae);
 	}
-
-	//It's true if someone is logged
-	@Override
-	public boolean loginFlag() {
-		return true;
-	}
+		
 }
