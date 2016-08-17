@@ -2,6 +2,8 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Map;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -9,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import model.BookModel;
 import view.observer.WarehouseObserver;
 
 import java.awt.Color;
@@ -143,6 +146,25 @@ this.observer.addBooksInBookShopClicked(  Integer.parseInt(txtAmmount.getText())
 		txtAmmount.setText("1");
 		
 	}
+	public void setAllBooks() throws ClassNotFoundException, IOException {
+		Map<BookModel, Integer> tmp = this.observer.getBooksInWarehouse();
+		int i = 0;
 
+		for (BookModel entry : tmp.keySet()) {
+
+			Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getyearOfPublication(),
+					entry.getPrice(), tmp.values().toArray()[i] };
+			((DefaultTableModel) modelAllBooks).addRow(obj);
+			/*
+			 * ((DefaultTableModel) modelAllBooks).addRow(new
+			 * Object[]{entry.getTitle(),entry.getAuthor(),
+			 * entry.getyearOfPublication(),entry.getPrice()});
+			 */
+			tblAllBooks.repaint();
+			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
+
+		}
+
+	}
 
 }

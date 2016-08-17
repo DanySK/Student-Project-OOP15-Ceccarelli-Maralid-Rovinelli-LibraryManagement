@@ -22,28 +22,8 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 	private JButton btnHome;
 	private JButton btnLogin;
 	private JTextArea logTxt;
-	private static final long serialVersionUID = 1;
-	private JButton btnNewButton;
-	private LoginObserver loginObserver = new LoginObserver() {
-
-		@Override
-		public void registerEmployeeClicked() {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public boolean loginFlag() {
-			// TODO Auto-generated method stub
-			return true;
-		}
-
-		@Override
-		public void loginEmployee(String username, char[] password) {
-			// TODO Auto-generated method stub
-
-		}
-	};
+	private static final long serialVersionUID = 1;		
+	
 	private JButton btnLogout;
 
 	public NorthPanelImpl() {
@@ -76,11 +56,6 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 		logTxt.setFont(new Font("Calibri", Font.PLAIN, 15));
 		logTxt.setEditable(false);
 		add(logTxt);
-
-		btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(430, 46, 89, 23);
-		btnNewButton.addActionListener(this);
-		add(btnNewButton);
 
 		btnLogout = new JButton("Logout");
 		btnLogout.setFont(new Font("Calibri", Font.ITALIC, 13));
@@ -127,12 +102,9 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 			this.observer.buttonLoginClicked();
 		} else if (isPressed == btnHome) {
 			this.observer.buttonHomeClicked();
-		} else if (isPressed == btnNewButton) {
-			this.observer.OpenAddBookClick();
-		}else if (isPressed == btnLogout){
+		} else if (isPressed == btnLogout) {
 			this.observer.buttonLogoutClicked();
 		}
-
 	}
 
 	@Override
@@ -141,12 +113,14 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 
 			btnLogin.setEnabled(false);
 			btnLogin.setVisible(false);
+			btnHome.setEnabled(true);
 			btnLogout.setEnabled(true);
 			btnLogout.setVisible(true);
 			System.out.println("loggato");
 		} else {
 			btnLogin.setEnabled(true);
 			btnLogin.setVisible(true);
+			btnHome.setEnabled(false);
 			btnLogout.setEnabled(false);
 			btnLogout.setVisible(false);
 			System.out.println("sloggato");

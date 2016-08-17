@@ -17,8 +17,7 @@ public interface NorthPanelObserver {
 	 * 
 	 * 
 	 */
-	void buttonLogoutClicked();
+	void buttonLogoutClicked();	
 	
-	void OpenAddBookClick();
 	
 }

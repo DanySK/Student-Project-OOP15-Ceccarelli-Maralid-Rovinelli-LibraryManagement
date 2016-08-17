@@ -6,5 +6,11 @@ public interface WarehouseObserver {
 	 * 
 	 */
 	void addBooksInBookShopClicked(int ammount);//aggiungere l'oggetto a cui si riferisce
+	/**
+	 * 
+	 * 
+	 * 
+	 */
+	void getBooksInWarehouse();
 	
 }

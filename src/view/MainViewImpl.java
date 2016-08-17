@@ -33,27 +33,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	private JMenu mnFile;
 	private JMenuItem mntmAddEmployee;
 	private static final long serialVersionUID = 1L;
-	private JMenuItem mntmRelocateBooks;
-	private LoginObserver loginObserver = new LoginObserver() {
-		
-		@Override
-		public void registerEmployeeClicked() {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public boolean loginFlag() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public void loginEmployee(String username, char[] password) {
-			// TODO Auto-generated method stub
-			
-		}
-	};
+	private JMenuItem mntmRelocateBooks;	
 
 	public MainViewImpl() {
 		this.getContentPane().setBackground(Color.WHITE);
