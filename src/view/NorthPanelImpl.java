@@ -125,11 +125,12 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 		Object isPressed = e.getSource();
 		if (isPressed == btnLogin) {
 			this.observer.buttonLoginClicked();
-
 		} else if (isPressed == btnHome) {
 			this.observer.buttonHomeClicked();
 		} else if (isPressed == btnNewButton) {
-			observer.OpenAddBookClick();
+			this.observer.OpenAddBookClick();
+		}else if (isPressed == btnLogout){
+			this.observer.buttonLogoutClicked();
 		}
 
 	}

@@ -33,5 +33,7 @@ public interface MainView {
 	 * @param observer
 	 */
 	void attachObserver(ViewObserver observer);
+
+	void changeLogStatus(Boolean logged); 
 	
 }

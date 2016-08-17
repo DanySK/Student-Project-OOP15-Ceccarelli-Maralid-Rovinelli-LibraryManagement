@@ -169,13 +169,7 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
-		if(loginObserver.loginFlag() == true){
-			mnShop.setEnabled(true);
-			mnWarehose.setEnabled(true);
-		}else {
-			mnShop.setEnabled(false);
-			mnWarehose.setEnabled(false);
-		}
+		
 		if (isPressed == mntmExit) {
 			this.observer.exitCommand();
 		} else if (isPressed == mntmCercaLibro) {
@@ -221,5 +215,17 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		Container c = this.getContentPane();
 		c.removeAll();
 		c.add(northPanel, BorderLayout.NORTH);
+	}
+
+	@Override
+	public void changeLogStatus(Boolean logged) {
+		if(logged == true){
+			mnShop.setEnabled(true);
+			mnWarehose.setEnabled(true);
+		}else {
+			mnShop.setEnabled(false);
+			mnWarehose.setEnabled(false);
+		}
+		
 	}
 }
