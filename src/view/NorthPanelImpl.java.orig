@@ -50,10 +50,6 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 		super();
 		setBackground(SystemColor.inactiveCaption);// bianco
 		this.setLayout(null);
-<<<<<<< working copy
-=======
-		
->>>>>>> destination
 
 		btnHome = new JButton(HOME);
 		btnHome.setBackground(SystemColor.inactiveCaptionBorder);
@@ -91,13 +87,8 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 		btnLogout.setBounds(162, 42, 115, 30);
 		btnLogout.addActionListener(this);
 		add(btnLogout);
-<<<<<<< working copy
 		btnLogout.setVisible(false);
 
-=======
-		btnLogout.setVisible(false);
-		btnLogout.setEnabled(false);
->>>>>>> destination
 	}
 
 	/*
@@ -132,21 +123,7 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
-<<<<<<< working copy
 
-=======
-		/*if (loginObserver.loginFlag() == true) {
-			btnLogin.setEnabled(false);
-			btnLogin.setVisible(false);
-			btnLogout.setEnabled(true);
-			btnLogout.setVisible(true);
-		} else {
-			btnLogin.setEnabled(true);
-			btnLogin.setVisible(true);
-			btnLogout.setEnabled(false);
-			btnLogout.setVisible(false);
-		}*/
->>>>>>> destination
 		if (isPressed == btnLogin) {
 			this.observer.buttonLoginClicked();
 

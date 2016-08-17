@@ -33,4 +33,5 @@ public interface MainView {
 	 * @param observer
 	 */
 	void attachObserver(ViewObserver observer);
+	
 }
