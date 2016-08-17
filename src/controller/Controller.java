@@ -29,6 +29,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	private StreamModel<BookModel, Integer> smBook;
 	private StreamModel<Integer, SubscriptionModel> smSubscription;
 	private StreamModel<Integer, BookModel> smInvoice;
+	private StreamModel<BookModel, Integer> smBookShop;
 	
 	/**
 	 * Crea un nuovo Controller senza dare alcun parametro come input.
@@ -42,6 +43,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 			smBook = new StreamImpl<BookModel, Integer>();
 			smSubscription = new StreamImpl<Integer, SubscriptionModel>();
 			smInvoice = new StreamImpl<Integer, BookModel>();
+			smBookShop = new StreamImpl<BookModel, Integer>();
 	}
 
 
@@ -88,75 +90,18 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	}
 
 	@Override
-	public void exitCommand() {
-		saveData();
-		System.exit(0);
-	}
-
-	@Override
-	public void saveData() {
-		smEmployee.writeFile("Employees.dat", model.employees().getEmployees());
-		smBook.writeFile("BooksInWareHouse.dat", model.warehouse().getBooks());
-		smSubscription.writeFile("Subscriptions.dat", model.subscriptions().getSubscriptions());
-	}
-
-	@Override
-	public void saveData(String path) {
-		// TODO Auto-generated method stub
-		System.out.println("Siamo qui");
-	}
-
-	@Override
-	public void dataLoad() {
-		// TODO Auto-generated method stub
-		try {
-		    
-			model.employees().updateEmployees(smEmployee.readFile("Employees.dat"));
-			for(int i = 0;i<model.employees().getEmployees().size();i++){
-	            System.out.println(model.employees().getEmployees().get(i).getUsername());
-			}
-		    model.warehouse().update(smBook.readFile("BooksInWareHouse.dat"));
-		    //System.out.println(model.warehouse().getBooks().);
-		    for ( BookModel key : model.warehouse().getBooks().keySet() ) {
-		        System.out.println( key.getTitle());
-		    }
-		    model.subscriptions().updateSubscriptions(smSubscription.readFile("Subscriptions.dat"));
-		    for (int j = 0; j<model.subscriptions().getSubscriptions().size(); j++){
-		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getName());
-		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getSurname());
-		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getType());
-		    }
-		
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void dataLoad(String path) {
-		// TODO Auto-generated method stub
-		
-	}	
-
-
-	@Override
 	public void warehouseClicked() {
 		WarehousePanelImpl wp = new WarehousePanelImpl();
-		WarehouseController wc = new WarehouseController(mainView, model);
+		WarehouseController wc = new WarehouseController(model);
 		wc.setView(wp);
 		this.mainView.replaceMainPanel(wp);
-		
 	}
 
 
 	@Override
 	public void addBooksClicked() {
 		AddBookPanelImpl ab = new AddBookPanelImpl();
-		InsertBookController ibc = new InsertBookController(model);
+		InsertBookController ibc = new InsertBookController(this.mainView, model);
 		ibc.setView(ab);
 		this.mainView.replaceMainPanel(ab);
 	}
@@ -175,7 +120,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	@Override
 	public void addEmployeeClicked() {
 		AddEmployeePanelImpl ae = new AddEmployeePanelImpl();
-		InsertEmployeeController ie = new InsertEmployeeController(mainView, model);
+		InsertEmployeeController ie = new InsertEmployeeController(this.mainView, model);
 		ie.setView(ae);
 		mainView.replaceMainPanel(ae);	
 	}
@@ -188,4 +133,65 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		sc.setView(sp);
 		mainView.replaceMainPanel(sp);
 	}
+	
+	@Override
+	public void exitCommand() {
+		saveData();
+		System.exit(0);
+	}
+
+	@Override
+	public void saveData() {
+		smEmployee.writeFile("Employees.dat", model.employees().getEmployees());
+		smBook.writeFile("BooksInWareHouse.dat", model.warehouse().getBooks());
+		smBookShop.writeFile("BooksInShop.dat", model.shop().getBooks());
+		smSubscription.writeFile("Subscriptions.dat", model.subscriptions().getSubscriptions());
+	}
+
+	@Override
+	public void saveData(String path) {
+		// TODO Auto-generated method stub
+		System.out.println("Siamo qui");
+	}
+
+	@Override
+	public void dataLoad() {
+		// TODO Auto-generated method stub
+		try {
+		    
+			model.employees().updateEmployees(smEmployee.readFile("Employees.dat"));
+			/*for(int i = 0;i<model.employees().getEmployees().size();i++){
+	            System.out.println(model.employees().getEmployees().get(i).getUsername());
+			}*/
+		    model.warehouse().update(smBook.readFile("BooksInWareHouse.dat"));
+		    //System.out.println(model.warehouse().getBooks().);
+		    for ( BookModel key : model.warehouse().getBooks().keySet() ) {
+		        System.out.println( key.getTitle());
+		    }
+		    model.subscriptions().updateSubscriptions(smSubscription.readFile("Subscriptions.dat"));
+		    for (int j = 0; j<model.subscriptions().getSubscriptions().size(); j++){
+		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getName());
+		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getSurname());
+		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getType());
+		    }
+		    model.shop().update(smBookShop.readFile("BooksInShop.dat"));
+		    /*for ( BookModel key : model.shop().getBooks().keySet() ) {
+		        System.out.println( key.getTitle());
+		    }*/
+		    
+		
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void dataLoad(String path) {
+		// TODO Auto-generated method stub
+		
+	}	
 }

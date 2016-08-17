@@ -26,12 +26,6 @@ public class BookshopController implements BookshopObserver{
 		this.view.attachObserver(this);
 
 	}
-	
-	@Override
-	public double uploadBooks(String title, int ammount) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public void shopPurchaseItClicked() {
@@ -39,13 +33,6 @@ public class BookshopController implements BookshopObserver{
 		ReceiptPanelController rc = new ReceiptPanelController(model);
 		rc.setView(ri);
 		maninView.replaceMainPanel(ri);
-	}
-
-	@Override
-	public int getStocksOfTheShop(String title) {
-		BookImpl b = (BookImpl) model.shop().searchBook(title);
-		System.out.print(b.getPrice());
-		return (int) b.getPrice();
 	}
 
 	@Override

@@ -140,7 +140,6 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 			else
 				displayMessage("Quantità massima già raggiunta");
 		} else if (isPressed == btnAddToBookShop) {
-			displayMessage("I libri sono stati aggiunti al negozio");
 			this.observer.addBooksInBookShopClicked(
 					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString(),
 					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString(),
