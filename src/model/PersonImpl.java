@@ -2,7 +2,8 @@ package model;
 
 import java.io.Serializable;
 /**
- * this class is a Person and is abstract class
+ * this class is a Person and is abstract class.
+ *It represents the characteristics that all people have within the program.
  * @author Mattia.Rovinelli
  *
  */

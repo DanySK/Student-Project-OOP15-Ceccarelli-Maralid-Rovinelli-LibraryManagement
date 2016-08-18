@@ -6,7 +6,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-
+/**
+ * this class represented a invoice in a library .
+ * the receipt is made from books,from the total,from the date and address of the library
+ * @author mattia.rovinelli
+ *
+ */
 public class InvoiceImpl implements InvoiceModel ,Serializable{
 
     private static final long serialVersionUID = 1L;

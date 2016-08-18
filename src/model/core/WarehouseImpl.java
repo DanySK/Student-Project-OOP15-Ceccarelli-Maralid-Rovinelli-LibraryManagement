@@ -8,8 +8,8 @@ import java.util.Map.Entry;
 import model.BookImpl;
 import model.BookModel;
 /**
- * this class represents the warehose of library
- * 
+ * This class represents the books in warehouse of the library list.
+ * This class is composed of a list and the processing methods.
  * @author Mattia.Rovinelli
  *
  */

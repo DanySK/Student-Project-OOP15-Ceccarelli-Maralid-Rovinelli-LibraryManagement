@@ -9,7 +9,8 @@ import model.EmployeeImpl;
 import model.EmployeeModel;
 
 /**
- * This class represents the list of employees
+ * This class represents the employees of the library list.
+ * This class is composed of a list and the processing methods.
  * @author mattia.Rovinelli
  *
  */

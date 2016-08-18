@@ -1,16 +1,21 @@
 package model;
 
 import java.io.Serializable;
-
+/**
+ * this class represented a book from the library
+ * The book is composed of the title, author, year of publication,genre,and price.
+ * @author rovi9
+ *
+ */
 public class BookImpl implements BookModel,Serializable {
-
+   
     private static final long serialVersionUID = 1L;
     private String title;
     private String author;
     private String literaryGenre;
     private int yearOfPublication;
     private double price;
-    
+  
     public BookImpl(){
         
     }

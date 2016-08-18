@@ -7,7 +7,8 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 /**
- * 
+ * This class is the class that is used to write and read a particular file.dat
+ * this class contain 2 method,read and write.
  * @author Mattia.Rovinelli
  *
  * @param <T>

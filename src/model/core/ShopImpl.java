@@ -9,7 +9,8 @@ import model.BookModel;
 
 
 /**
- * This class represents the class of the shop 
+ * This class represents the books in shop of the library list.
+ * This class is composed of a list and the processing methods.
  * 
  * @author Mattia.Rovinelli
  *

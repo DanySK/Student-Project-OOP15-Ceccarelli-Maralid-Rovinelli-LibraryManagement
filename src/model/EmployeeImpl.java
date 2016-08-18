@@ -2,7 +2,12 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * This class represents a employee of library.
+ * The customer is composed of the data of the abstract class and its data(date of birth,hire date).
+ * @author mattia.rovinelli
+ *
+ */
 
 public class EmployeeImpl extends PersonImpl implements EmployeeModel,Serializable  {
     

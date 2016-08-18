@@ -5,7 +5,9 @@ import java.util.Map;
 
 import model.InvoiceModel;
 /**
- * this class rapresented the map of invoice 
+ * This class represents the invoices of the library list.
+ * This class is composed of a list and the processing methods. 
+ * 
  * @author Mattia.Rovinelli
  *
  */
