@@ -217,9 +217,10 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 						Double.parseDouble(txtPrice.getText()),
 						Integer.parseInt(lblAmount.getText()));
 			} catch (IllegalArgumentException iE) {
-				JOptionPane.showMessageDialog(null,
+				/*JOptionPane.showMessageDialog(null,
 						iE + ": inserire il valore corrette nelle apposite caselle", "Errore",
-						JOptionPane.ERROR_MESSAGE);
+						JOptionPane.ERROR_MESSAGE);*/
+				displayMessage(iE+ ": Valore inserito errato");
 			}
 
 		} else if (isPressed == btnBack) {
@@ -229,7 +230,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 
 	@Override
 	public void displayMessage(String message) {
-		lblMessage.setText(message);
+		JOptionPane.showMessageDialog(null, message, "Attenzione", JOptionPane.PLAIN_MESSAGE);
 
 	}
 

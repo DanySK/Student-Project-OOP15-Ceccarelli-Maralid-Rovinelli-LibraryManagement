@@ -66,9 +66,8 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 			  public void mouseClicked(MouseEvent e) {
 				    if (e.getClickCount() == 2) {
 				      JTable target = (JTable)e.getSource();
-				      int row = target.getSelectedRow();
-				      int column = target.getSelectedColumn();
-				     if((Integer)modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5)<1){
+				      int row = target.getSelectedRow();				     
+				     if((Integer)modelAllBooks.getValueAt(row, 5)<1){
 					     btnAddToBookShop.setEnabled(false);
 				     }else{
 					     btnAddToBookShop.setEnabled(true);
