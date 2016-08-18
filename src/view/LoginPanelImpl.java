@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import view.observer.LoginObserver;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener{
 	private JTextField txtUsername;
@@ -96,6 +98,7 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setBounds(10, 11, 880, 75);
 		add(lblTitle);
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtPassword, txtUsername, btnLogin}));
 
 	}
 

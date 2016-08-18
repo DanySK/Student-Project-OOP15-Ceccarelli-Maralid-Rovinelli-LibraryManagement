@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 
 public class WarehousePanelImpl extends JPanel implements WarehousePanel, ActionListener {
@@ -114,6 +115,8 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		btnAddToBookShop.setBounds(680, 297, 192, 50);
 		btnAddToBookShop.addActionListener(this);
 		add(btnAddToBookShop);
+		
+
 	}
 
 	@Override
@@ -160,8 +163,9 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		txtAmount.setText("1");
 
 	}
-@Override
-	public void setAllBooks()  {
+
+	@Override
+	public void setAllBooks() {
 		Map<BookModel, Integer> tmp = this.observer.getBooksInWarehouse();
 		int i = 0;
 
@@ -170,13 +174,13 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 			Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getLiteraryGenre(),
 					entry.getyearOfPublication(), entry.getPrice(), tmp.values().toArray()[i] };
 			((DefaultTableModel) modelAllBooks).addRow(obj);
-			
+
 			tblAllBooks.repaint();
 			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
 			i++;
 
 		}
-
+		tblAllBooks.setRowSelectionInterval(0, 0);
 	}
 
 	@Override
@@ -184,10 +188,11 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		JOptionPane.showMessageDialog(null, message, "Attenzione", JOptionPane.PLAIN_MESSAGE);
 
 	}
+
 	@Override
 	public void clearSelectedBooks() {
 		for (int i = modelAllBooks.getRowCount() - 1; i >= 0; i--) {
-			modelAllBooks.removeRow(i);			
+			modelAllBooks.removeRow(i);
 		}
 
 	}

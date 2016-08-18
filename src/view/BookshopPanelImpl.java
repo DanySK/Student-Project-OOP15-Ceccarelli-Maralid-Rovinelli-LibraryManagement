@@ -176,6 +176,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 							- Integer.parseInt(txtAmount.getText()),
 					tblAllBooks.getSelectedRow(), 4);
 			tblSelectedBooks.repaint();
+			txtAmount.setText("1");
 		} else {
 			if (isPressed == btnAdd) {
 				if (selectedAmount > newAmount)
@@ -222,6 +223,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
 			i++;
 		}
+		tblAllBooks.setRowSelectionInterval(0, 0);
 	}
 
 	@Override
