@@ -173,7 +173,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 			this.observer.addCopyToWarehouse(
 					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString(),
 					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString(),
-					(Integer) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4),
+					(Integer) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3),
 					Integer.parseInt(lblAmount.getText()));
 		}
 	}
