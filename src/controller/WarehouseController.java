@@ -45,8 +45,9 @@ public class WarehouseController implements WarehouseObserver{
 	
 	@Override
 	public void addCopyToWarehouse(String title, String author, int year, int amount) {
-		System.out.println("PROVA");
-		
+		model.warehouse().replaceQuantity(model.warehouse().searchBook(title, author, year), model.warehouse().getBookQuantity(model.warehouse().searchBook(title, author, year))+ amount);
+		this.view.clearSelectedBooks();
+		this.view.setAllBooks();
 	}
 	
 	@Override
