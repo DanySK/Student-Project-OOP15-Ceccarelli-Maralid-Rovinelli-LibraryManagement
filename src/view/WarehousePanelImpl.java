@@ -20,7 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 
 public class WarehousePanelImpl extends JPanel implements WarehousePanel, ActionListener {
@@ -115,7 +114,6 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		btnAddToBookShop.setBounds(680, 297, 192, 50);
 		btnAddToBookShop.addActionListener(this);
 		add(btnAddToBookShop);
-		
 
 	}
 
@@ -170,17 +168,21 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		int i = 0;
 
 		for (BookModel entry : tmp.keySet()) {
+			if (entry.getTitle() == null) {
+			} else {
+				Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getLiteraryGenre(),
+						entry.getyearOfPublication(), entry.getPrice(),
+						tmp.values().toArray()[i] };
+				((DefaultTableModel) modelAllBooks).addRow(obj);
 
-			Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getLiteraryGenre(),
-					entry.getyearOfPublication(), entry.getPrice(), tmp.values().toArray()[i] };
-			((DefaultTableModel) modelAllBooks).addRow(obj);
-
-			tblAllBooks.repaint();
-			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
-			i++;
-
+				tblAllBooks.repaint();
+				System.out.println("ciccia1 " + tmp.values().toArray()[i]);
+				i++;
+			}
 		}
-		tblAllBooks.setRowSelectionInterval(0, 0);
+		if (tblAllBooks.getSelectedRow() != 0) {
+			tblAllBooks.setRowSelectionInterval(0, 0);
+		}
 	}
 
 	@Override

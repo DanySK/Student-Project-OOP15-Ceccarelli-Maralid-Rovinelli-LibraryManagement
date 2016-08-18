@@ -204,26 +204,40 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 
 	@Override
 	public void clearSelectedBooks() {
-		for (int i = modelSelectedBooks.getRowCount() - 1; i >= 0; i--) {
-			modelSelectedBooks.removeRow(i);			
+		int i = 0;
+
+		String[] selectedBook = { tblSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 0).toString(),
+				tblSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 1).toString(),
+				tblSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 2).toString() };
+		String[] allBook = { tblAllBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 0).toString(),
+				tblAllBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 1).toString(),
+				tblAllBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 2).toString() };
+		while (true) {
+
 		}
+		//modelSelectedBooks.removeRow(tblSelectedBooks.getSelectedRow());
 
 	}
 
-	public void setAllBooks(){
+	public void setAllBooks() {
 		Map<BookModel, Integer> tmp = this.observer.getBookInShop();
 		int i = 0;
 
 		for (BookModel entry : tmp.keySet()) {
+			if (entry.getTitle() == null) {
 
-			Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getyearOfPublication(),
-					entry.getPrice(), tmp.values().toArray()[i] };
-			((DefaultTableModel) modelAllBooks).addRow(obj);
-			tblAllBooks.repaint();
-			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
-			i++;
+			} else {
+				Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getyearOfPublication(),
+						entry.getPrice(), tmp.values().toArray()[i] };
+				((DefaultTableModel) modelAllBooks).addRow(obj);
+				tblAllBooks.repaint();
+				System.out.println("ciccia1 " + tmp.values().toArray()[i]);
+				i++;
+			}
 		}
-		tblAllBooks.setRowSelectionInterval(0, 0);
+		if (tblAllBooks.getSelectedRow() != 0) {
+			tblAllBooks.setRowSelectionInterval(0, 0);
+		}
 	}
 
 	@Override
@@ -240,4 +254,5 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		}
 		return totalPrice;
 	}
+
 }
