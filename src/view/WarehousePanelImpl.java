@@ -2,7 +2,6 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.Map;
 
 import javax.swing.JPanel;
@@ -185,5 +184,11 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		JOptionPane.showMessageDialog(null, message, "Attenzione", JOptionPane.PLAIN_MESSAGE);
 
 	}
+	@Override
+	public void clearSelectedBooks() {
+		for (int i = modelAllBooks.getRowCount() - 1; i >= 0; i--) {
+			modelAllBooks.removeRow(i);			
+		}
 
+	}
 }

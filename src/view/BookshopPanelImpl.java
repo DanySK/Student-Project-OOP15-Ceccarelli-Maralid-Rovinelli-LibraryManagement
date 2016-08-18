@@ -18,7 +18,6 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 

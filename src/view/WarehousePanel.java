@@ -26,5 +26,7 @@ public interface WarehousePanel {
 	 *
 	 */
 	void setAllBooks();
+	
+	void clearSelectedBooks();
 
 }
