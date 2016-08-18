@@ -53,6 +53,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 				new String[] { "Titolo", "Autore", "Anno P.", "Copie" });
 
 		scpAllBooks = new JScrollPane();
+		scpAllBooks.setEnabled(false);
 		scpAllBooks.setBounds(10, 87, 352, 379);
 		add(scpAllBooks);
 
@@ -67,6 +68,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		tblAllBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		scpSelectedBooks = new JScrollPane();
+		scpSelectedBooks.setEnabled(false);
 		scpSelectedBooks.setBounds(568, 87, 309, 379);
 		add(scpSelectedBooks);
 

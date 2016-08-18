@@ -18,4 +18,6 @@ public interface WarehouseObserver {
 	 * @return
 	 */
 	Map<BookModel, Integer> getBooksInWarehouse();
+	
+	void addCopyToWarehouse(String title, String author, int year, int amount );
 }

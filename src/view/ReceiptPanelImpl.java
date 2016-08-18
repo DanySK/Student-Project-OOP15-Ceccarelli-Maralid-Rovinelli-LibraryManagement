@@ -46,6 +46,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 		modelReport = new DefaultTableModel(new Object[][] {}, new String[] { "Titolo", "Prezzo" });
 
 		scpReport = new JScrollPane();
+		scpReport.setEnabled(false);
 		scpReport.setBounds(20, 74, 853, 418);
 		add(scpReport);
 

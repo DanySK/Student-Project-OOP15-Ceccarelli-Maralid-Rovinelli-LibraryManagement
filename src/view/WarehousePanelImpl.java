@@ -41,6 +41,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	private JButton btnAddToBookShop;
 	private static final long serialVersionUID = 1L;
 	private JLabel lblAmount;
+	private JButton btnAddCopyToWarehouse;
 
 	public WarehousePanelImpl() {
 		setBackground(SystemColor.activeCaption);
@@ -48,6 +49,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		modelAllBooks = new DefaultTableModel(new Object[][] {},
 				new String[] { "Titolo", "Autore", "Genere", "Anno P.", "Prezzo", "Rimanenze" });
 		scpAllBooks = new JScrollPane();
+		scpAllBooks.setEnabled(false);
 		scpAllBooks.setBounds(20, 88, 486, 464);
 		add(scpAllBooks);
 
@@ -63,19 +65,19 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		tblAllBooks.setFont(new Font("Calibri", Font.PLAIN, 13));
 		tblAllBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		tblAllBooks.addMouseListener(new MouseAdapter() {
-			  public void mouseClicked(MouseEvent e) {
-				    if (e.getClickCount() == 2) {
-				      JTable target = (JTable)e.getSource();
-				      int row = target.getSelectedRow();				     
-				     if((Integer)modelAllBooks.getValueAt(row, 5)<1){
-					     btnAddToBookShop.setEnabled(false);
-				     }else{
-					     btnAddToBookShop.setEnabled(true);
-				     }
-				    }
-				  }
-				});
-		
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					JTable target = (JTable) e.getSource();
+					int row = target.getSelectedRow();
+					if ((Integer) modelAllBooks.getValueAt(row, 5) < 1) {
+						btnAddToBookShop.setEnabled(false);
+					} else {
+						btnAddToBookShop.setEnabled(true);
+					}
+				}
+			}
+		});
+
 		lblWareHouseTitle = new JLabel("Magazzino");
 		lblWareHouseTitle.setForeground(new Color(255, 69, 0));
 		lblWareHouseTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
@@ -118,17 +120,27 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		btnAddToBookShop.setBounds(680, 297, 192, 50);
 		btnAddToBookShop.addActionListener(this);
 		add(btnAddToBookShop);
-		
+
 		lblAmount = new JLabel("1");
 		lblAmount.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAmount.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
 		lblAmount.setBounds(684, 102, 188, 25);
 		add(lblAmount);
+
+		btnAddCopyToWarehouse = new JButton("Aggiungi al magazzino");
+		btnAddCopyToWarehouse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnAddCopyToWarehouse.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
+		btnAddCopyToWarehouse.setBounds(680, 460, 192, 50);
+		btnAddCopyToWarehouse.addActionListener(this);
+		add(btnAddCopyToWarehouse);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		Object isPressed = e.getSource();
 		if (isPressed == btnRemoveOne) {
 			if (Integer.parseInt(lblAmount.getText()) > 1)
@@ -157,6 +169,12 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 					(int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3),
 					(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4),
 					Integer.parseInt(lblAmount.getText()));
+		} else if (isPressed == btnAddCopyToWarehouse) {
+			this.observer.addCopyToWarehouse(
+					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString(),
+					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString(),
+					(Integer) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4),
+					Integer.parseInt(lblAmount.getText()));
 		}
 	}
 
@@ -164,7 +182,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	public void attachObserver(WarehouseObserver observer) {
 		this.observer = observer;
 		this.setAllBooks();
-		
+
 	}
 
 	@Override
