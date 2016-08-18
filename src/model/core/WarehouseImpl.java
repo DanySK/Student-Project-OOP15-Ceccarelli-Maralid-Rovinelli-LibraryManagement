@@ -59,17 +59,17 @@ public class WarehouseImpl implements ShopAndWarehouseModel {
     public void addNewBookInLibrary(BookModel book, int quantity) {
         if(warehouse.containsKey(book)){
             warehouse.replace(book, warehouse.get(book), warehouse.get(book).intValue()+quantity);
-        }else{
+        }else {
             warehouse.put(book, quantity);
         }   
     }
-    @Override
-    public BookModel searchBook(String title) {
+    
+    public BookModel searchBook(String title, String author, int yearOfPublication) {
         Iterator<Entry<BookModel,Integer>> it = warehouse.entrySet().iterator();
-        BookModel bookT = new BookImpl();
+        BookModel bookT = null;
          while(it.hasNext()){
              Map.Entry<BookModel,Integer> book = (Entry<BookModel,Integer>) it.next();
-             if(book.getKey().getTitle().equals(title)){
+             if(book.getKey().getTitle().equals(title) && book.getKey().getAuthor().equals(author) && book.getKey().getyearOfPublication() == yearOfPublication){
                  bookT = book.getKey();  
              }
          }

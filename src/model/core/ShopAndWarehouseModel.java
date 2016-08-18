@@ -48,5 +48,5 @@ public interface ShopAndWarehouseModel {
      * @param title
      * @return
      */
-    public BookModel searchBook(String title);
+    public BookModel searchBook(String title, String author, int yearOfPublication);
 }

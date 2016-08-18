@@ -2,7 +2,6 @@ package controller;
 
 import java.util.Map;
 
-import model.BookImpl;
 import model.BookModel;
 import model.Model;
 import view.BookshopPanel;
@@ -19,12 +18,13 @@ public class BookshopController implements BookshopObserver{
 	public BookshopController(MainView mainView, Model model){
 		this.maninView = mainView;
 		this.model = model;
+
 	}
 	
 	public void setView(BookshopPanel bp) {
 		this.view = bp;
 		this.view.attachObserver(this);
-
+		//this.view.clearSelectedBooks();
 	}
 
 	@Override

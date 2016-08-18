@@ -59,21 +59,20 @@ public class ShopImpl implements ShopAndWarehouseModel {
     public void addNewBookInLibrary(BookModel book, int quantity) {
         if(shop.containsKey(book)){
             shop.replace(book, shop.get(book), shop.get(book).intValue()+quantity);
-        }else{
+        }else {
             shop.put(book, quantity);
         }  
     }
 
     @Override
-    public BookModel searchBook(String title) {
+    public BookModel searchBook(String title, String author, int yearOfPublication) {
        Iterator<Entry<BookModel,Integer>> it = shop.entrySet().iterator();
-       BookModel bookT = new BookImpl();
+       BookModel bookT = null;
         while(it.hasNext()){
             Map.Entry<BookModel,Integer> book = (Entry<BookModel,Integer>) it.next();
-            if(book.getKey().getTitle().equals(title)){
+            if(book.getKey().getTitle().equals(title) && book.getKey().getAuthor().equals(author) && book.getKey().getyearOfPublication() == yearOfPublication){
                 bookT = book.getKey();  
             }else{
-                bookT = null;
                 System.out.println("il libro non esiste");
             }
         }

@@ -5,7 +5,6 @@ import java.util.Map;
 import model.BookImpl;
 import model.BookModel;
 import model.Model;
-import view.MainView;
 import view.WarehousePanel;
 import view.observer.WarehouseObserver;
 
@@ -13,8 +12,8 @@ public class WarehouseController implements WarehouseObserver{
 
 	private Model model;
 	private WarehousePanel view;
-	private BookModel book;
 	private Map<BookModel, Integer> map;
+	
 	public WarehouseController(Model model){
 		this.model = model;
 	}
@@ -22,23 +21,32 @@ public class WarehouseController implements WarehouseObserver{
 	public void setView(WarehousePanel wp){
 		this.view = wp;
 		this.view.attachObserver(this);
+		System.out.println(model.shop().getBooks());
 	}
 	
 	@Override
 	public void addBooksInBookShopClicked(String title, String author, String literaryGenre, int year, double price,
-			int ammount) {
-		book = new BookImpl(title, author, literaryGenre, year, price);//Create new book
-		model.shop().addNewBookInLibrary(book, ammount);//Add book into library (book shop)
-		for ( BookModel b : model.warehouse().getBooks().keySet() ) {
-			if(model.warehouse().getBookQuantity(b) == 0 && b.getTitle().equals(book.getTitle()) && b.getAuthor().equals(book.getAuthor())){
-				view.displayMessage("Quantità residua esaurita");
+			int amount) {
+		if(model.warehouse().getBookQuantity(model.warehouse().searchBook(title, author, year)) == 0){
+			this.view.displayMessage("Quantità esaurita");
+		} else {
+			if(model.shop().searchBook(title, author, year) == null) {
+				model.shop().addNewBookInLibrary(model.warehouse().searchBook(title, author, year), amount);
 			} else {
-				if(b.getTitle().equals(book.getTitle()) && b.getAuthor().equals(book.getAuthor()) && b.getyearOfPublication() == book.getyearOfPublication()){
-					model.warehouse().replaceQuantity(b, model.warehouse().getBookQuantity(b) - ammount);//Change ammount
-					view.displayMessage("Libro aggiunto al negozio");
-				}
+				model.shop().replaceQuantity(model.shop().searchBook(title, author, year), model.shop().getBookQuantity(model.shop().searchBook(title, author, year)) + amount);
 			}
-	    }
+			model.warehouse().replaceQuantity(model.warehouse().searchBook(title, author, year), model.warehouse().getBookQuantity(model.warehouse().searchBook(title, author, year)) - amount);
+			this.view.clearSelectedBooks();
+			this.view.setAllBooks();
+			this.view.displayMessage("Libro aggiunto al negozio");
+		}
+			
+	}
+	
+	@Override
+	public void addCopyToWarehouse(String title, String author, int year, int amount) {
+		System.out.println("PROVA");
+		
 	}
 	
 	@Override
@@ -46,4 +54,5 @@ public class WarehouseController implements WarehouseObserver{
 		map= model.warehouse().getBooks();
 		return map;
 	}
+	
 }
