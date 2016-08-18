@@ -280,6 +280,7 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 			this.cleanInterface();
 		} else if(isPressed== cmbYear){
 			cmbMonth.setEnabled(true);
+			setDay();
 		} else if (isPressed == cmbMonth) {
 			cmbDay.setEnabled(true);
 			setDay();

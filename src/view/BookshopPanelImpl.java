@@ -39,17 +39,18 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	private JLabel lblTitle;
 	private JButton btnAdd;
 	private JButton btnRemove;
-	private JTextField txtTotalPrice;
 	private JLabel lblTotalPrice;
+	private JLabel lblTotalPriceAmount;
+	private JLabel lblCurrencies;
 
 	public BookshopPanelImpl() {
 		setBackground(SystemColor.inactiveCaption);
 		this.setLayout(null);
 
 		modelAllBooks = new DefaultTableModel(new Object[][] {},
-				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo", "quantità" });
+				new String[] { "Titolo", "Autore", "Anno P.", "Prezzo", "Copie" });
 		modelSelectedBooks = new DefaultTableModel(new Object[][] {},
-				new String[] { "Titolo", "Autore", "Anno P.", "N#" });
+				new String[] { "Titolo", "Autore", "Anno P.", "Copie" });
 
 		scpAllBooks = new JScrollPane();
 		scpAllBooks.setBounds(10, 87, 352, 379);
@@ -138,15 +139,19 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		lblTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
 		lblTotalPrice.setBounds(372, 357, 186, 14);
 		add(lblTotalPrice);
+		
+		lblTotalPriceAmount = new JLabel("0");
+		lblTotalPriceAmount.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotalPriceAmount.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 17));
+		lblTotalPriceAmount.setBounds(372, 387, 138, 29);
+		add(lblTotalPriceAmount);
+		
+		lblCurrencies = new JLabel("Euro");
+		lblCurrencies.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCurrencies.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 17));
+		lblCurrencies.setBounds(512, 382, 46, 38);
+		add(lblCurrencies);
 
-		txtTotalPrice = new JTextField();
-		txtTotalPrice.setText("0");
-		txtTotalPrice.setEnabled(false);
-		txtTotalPrice.setFont(new Font("Calibri", Font.ITALIC, 12));
-		txtTotalPrice.setHorizontalAlignment(SwingConstants.CENTER);
-		txtTotalPrice.setBounds(376, 372, 182, 20);
-		add(txtTotalPrice);
-		txtTotalPrice.setColumns(10);
 	}
 
 	@Override
@@ -167,9 +172,11 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			String[] str = { title, author, publicationYear, ammount };
 			((DefaultTableModel) modelSelectedBooks).addRow(str);
 
-			txtTotalPrice.setText(setTotalPrice(Integer.parseInt(txtAmount.getText()),
-					(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3),
-					Double.parseDouble(txtTotalPrice.getText())));
+			lblTotalPriceAmount
+					.setText(setTotalPrice(Integer.parseInt(txtAmount.getText()),
+							(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(),
+									3),
+							Double.parseDouble(lblTotalPriceAmount.getText())));
 
 			modelAllBooks.setValueAt(
 					(Integer) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4)
@@ -177,6 +184,9 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 					tblAllBooks.getSelectedRow(), 4);
 			tblSelectedBooks.repaint();
 			txtAmount.setText("1");
+			if (tblSelectedBooks.getRowCount() > 0) {
+				tblSelectedBooks.setRowSelectionInterval(0, 0);
+			}
 		} else {
 			if (isPressed == btnAdd) {
 				if (selectedAmount > newAmount)
@@ -198,24 +208,35 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			this.observer.shopPurchaseItClicked();
 
 		} else if (isPressed == btnRemoveBook) {
-			modelSelectedBooks.removeRow(tblSelectedBooks.getSelectedRow());
+			clearSelectedBooks();
 		}
 	}
 
 	@Override
 	public void clearSelectedBooks() {
-		int i = 0;
+		for (int i = 0; i < modelAllBooks.getRowCount(); i++) {
+			if (modelAllBooks.getValueAt(i, 0)
+					.equals(modelSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 0))
+					&& modelAllBooks.getValueAt(i, 1)
+							.equals(modelSelectedBooks.getValueAt(
+									tblSelectedBooks.getSelectedRow(), 1))
+					&& modelAllBooks.getValueAt(i, 2).toString().equals(modelSelectedBooks
+							.getValueAt(tblSelectedBooks.getSelectedRow(), 2).toString())) {
 
-		String[] selectedBook = { tblSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 0).toString(),
-				tblSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 1).toString(),
-				tblSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 2).toString() };
-		String[] allBook = { tblAllBooks.getValueAt(i, 0).toString(),
-				tblAllBooks.getValueAt(i, 1).toString(),
-				tblAllBooks.getValueAt(i, 2).toString() };
-		while (true) {
-
+				int oldValue = (Integer) modelAllBooks.getValueAt(i, 4);
+				int newValue = Integer.parseInt((String) modelSelectedBooks
+						.getValueAt(tblSelectedBooks.getSelectedRow(), 3));
+				modelAllBooks.setValueAt(newValue + oldValue, i, 4);
+				modelSelectedBooks.removeRow(tblSelectedBooks.getSelectedRow());
+				lblTotalPriceAmount.setText(
+						setTotalPrice(-newValue, (Double) modelAllBooks.getValueAt(i, 3),
+								Double.parseDouble(lblTotalPriceAmount.getText())));
+				break;
+			}
 		}
-		//modelSelectedBooks.removeRow(tblSelectedBooks.getSelectedRow());
+		if (tblSelectedBooks.getRowCount() > 0) {
+			tblSelectedBooks.setRowSelectionInterval(0, 0);
+		}
 	}
 
 	public void setAllBooks() {
@@ -230,7 +251,6 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 						entry.getPrice(), tmp.values().toArray()[i] };
 				((DefaultTableModel) modelAllBooks).addRow(obj);
 				tblAllBooks.repaint();
-				System.out.println("ciccia1 " + tmp.values().toArray()[i]);
 				i++;
 			}
 		}
@@ -253,5 +273,4 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		}
 		return totalPrice;
 	}
-
 }

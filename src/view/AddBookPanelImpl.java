@@ -27,14 +27,13 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 	private JTextField txtTitle;
 	private JTextField txtAuthor;
 	private JTextField txtPrice;
-	private JTextField txtAmmount;
 	private JLabel lblTitle;
 	private JLabel lblAuthor;
 	private JLabel lblLiteraryGenre;
 	private JLabel lblPrice;
 	private JLabel lblYear;
 	private JLabel lblPanelTitle;
-	private JLabel lblAmmount;
+	private JLabel lblAmountTitle;
 	private JComboBox<String> cmbLiteraryGenre;
 	private JComboBox<Integer> cmbYear;
 	private static final long serialVersionUID = 1L;
@@ -46,6 +45,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 	private JButton btnAddOne;
 	private AddBookObserver observer;
 	private JButton btnBack;
+	private JLabel lblAmount;
 
 	public AddBookPanelImpl() {
 		this.setLayout(null);
@@ -60,7 +60,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		lblAuthor = new JLabel("Autore:");
 		lblAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAuthor.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
-		lblAuthor.setBounds(736, 77, 154, 17);
+		lblAuthor.setBounds(724, 77, 154, 17);
 		add(lblAuthor);
 
 		lblLiteraryGenre = new JLabel("Genere:");
@@ -99,7 +99,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		txtAuthor = new JTextField();
 		txtAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 		txtAuthor.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtAuthor.setBounds(736, 105, 154, 20);
+		txtAuthor.setBounds(724, 105, 154, 20);
 		add(txtAuthor);
 		txtAuthor.setColumns(10);
 
@@ -140,21 +140,11 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		btnAddBook.addActionListener(this);
 		add(btnAddBook);
 
-		txtAmmount = new JTextField();
-		txtAmmount.setHorizontalAlignment(SwingConstants.CENTER);
-		txtAmmount.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtAmmount.setText("1");
-		txtAmmount.setEditable(false);
-		txtAmmount.setEnabled(false);
-		txtAmmount.setBounds(736, 232, 154, 20);
-		add(txtAmmount);
-		txtAmmount.setColumns(10);
-
-		lblAmmount = new JLabel("Quantità:");
-		lblAmmount.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAmmount.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblAmmount.setBounds(736, 207, 154, 14);
-		add(lblAmmount);
+		lblAmountTitle = new JLabel("Quantità:");
+		lblAmountTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAmountTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
+		lblAmountTitle.setBounds(724, 207, 154, 14);
+		add(lblAmountTitle);
 
 		btnRemoveOne = new JButton("-");
 		btnRemoveOne.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
@@ -162,7 +152,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnRemoveOne.setBounds(736, 364, 56, 23);
+		btnRemoveOne.setBounds(724, 364, 56, 23);
 		btnRemoveOne.addActionListener(this);
 		add(btnRemoveOne);
 
@@ -172,19 +162,19 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnRemoveTen.setBounds(736, 398, 56, 23);
+		btnRemoveTen.setBounds(724, 398, 56, 23);
 		btnRemoveTen.addActionListener(this);
 		add(btnRemoveTen);
 
 		btnAddTen = new JButton("++");
 		btnAddTen.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
-		btnAddTen.setBounds(834, 401, 56, 23);
+		btnAddTen.setBounds(822, 401, 56, 23);
 		btnAddTen.addActionListener(this);
 		add(btnAddTen);
 
 		btnAddOne = new JButton("+");
 		btnAddOne.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
-		btnAddOne.setBounds(834, 364, 56, 23);
+		btnAddOne.setBounds(822, 364, 56, 23);
 		btnAddOne.addActionListener(this);
 		add(btnAddOne);
 
@@ -197,6 +187,12 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		btnBack.setBounds(380, 390, 154, 34);
 		btnBack.addActionListener(this);
 		add(btnBack);
+		
+		lblAmount = new JLabel("1");
+		lblAmount.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAmount.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
+		lblAmount.setBounds(724, 232, 154, 20);
+		add(lblAmount);
 
 		setYear();
 
@@ -206,20 +202,20 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
 		if (isPressed == btnAddOne) {
-			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) + 1));
+			lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) + 1));
 		} else if (isPressed == btnAddTen) {
-			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) + 10));
-		} else if (isPressed == btnRemoveOne && Integer.parseInt(txtAmmount.getText()) > 1) {
-			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 1));
-		} else if (isPressed == btnRemoveTen && Integer.parseInt(txtAmmount.getText()) > 10) {
-			txtAmmount.setText(String.valueOf(Integer.parseInt(txtAmmount.getText()) - 10));
+			lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) + 10));
+		} else if (isPressed == btnRemoveOne && Integer.parseInt(lblAmount.getText()) > 1) {
+			lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) - 1));
+		} else if (isPressed == btnRemoveTen && Integer.parseInt(lblAmount.getText()) > 10) {
+			lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) - 10));
 		} else if (isPressed == btnAddBook) {
 			try {
 				observer.addBookClicked(txtTitle.getText(), txtAuthor.getText(),
 						cmbLiteraryGenre.getSelectedItem().toString(),
 						(Integer) cmbYear.getSelectedItem(),
 						Double.parseDouble(txtPrice.getText()),
-						Integer.parseInt(txtAmmount.getText()));
+						Integer.parseInt(lblAmount.getText()));
 			} catch (IllegalArgumentException iE) {
 				JOptionPane.showMessageDialog(null,
 						iE + ": inserire il valore corrette nelle apposite caselle", "Errore",
@@ -245,7 +241,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 
 	@Override
 	public void clearView() {
-		txtAmmount.setText("1");
+		lblAmount.setText("1");
 		txtAuthor.setText("");
 		txtTitle.setText("");
 		txtPrice.setText("");

@@ -2,6 +2,8 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Map;
 
 import javax.swing.JPanel;
@@ -19,7 +21,6 @@ import java.awt.SystemColor;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class WarehousePanelImpl extends JPanel implements WarehousePanel, ActionListener {
@@ -31,15 +32,15 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	private JTable tblAllBooks;
 	private DefaultTableModel modelAllBooks;
 	private JScrollPane scpAllBooks;
-	private JTextField txtAmount;
 	private JLabel lblWareHouseTitle;
-	private JLabel lblAmmount;
+	private JLabel lblAmountTitle;
 	private JButton btnRemoveOne;
 	private JButton btnRemoveTen;
 	private JButton btnAddOne;
 	private JButton btnAddTen;
 	private JButton btnAddToBookShop;
 	private static final long serialVersionUID = 1L;
+	private JLabel lblAmount;
 
 	public WarehousePanelImpl() {
 		setBackground(SystemColor.activeCaption);
@@ -61,7 +62,21 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		tblAllBooks.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tblAllBooks.setFont(new Font("Calibri", Font.PLAIN, 13));
 		tblAllBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-
+		tblAllBooks.addMouseListener(new MouseAdapter() {
+			  public void mouseClicked(MouseEvent e) {
+				    if (e.getClickCount() == 2) {
+				      JTable target = (JTable)e.getSource();
+				      int row = target.getSelectedRow();
+				      int column = target.getSelectedColumn();
+				     if((Integer)modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5)<1){
+					     btnAddToBookShop.setEnabled(false);
+				     }else{
+					     btnAddToBookShop.setEnabled(true);
+				     }
+				    }
+				  }
+				});
+		
 		lblWareHouseTitle = new JLabel("Magazzino");
 		lblWareHouseTitle.setForeground(new Color(255, 69, 0));
 		lblWareHouseTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
@@ -69,21 +84,11 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		lblWareHouseTitle.setBounds(10, 11, 880, 66);
 		add(lblWareHouseTitle);
 
-		txtAmount = new JTextField();
-		txtAmount.setEnabled(false);
-		txtAmount.setEditable(false);
-		txtAmount.setText("1");
-		txtAmount.setFont(new Font("Calibri", Font.ITALIC, 13));
-		txtAmount.setHorizontalAlignment(SwingConstants.CENTER);
-		txtAmount.setBounds(680, 102, 192, 20);
-		add(txtAmount);
-		txtAmount.setColumns(10);
-
-		lblAmmount = new JLabel("Quantità:");
-		lblAmmount.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblAmmount.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAmmount.setBounds(680, 88, 192, 14);
-		add(lblAmmount);
+		lblAmountTitle = new JLabel("Quantità:");
+		lblAmountTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
+		lblAmountTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAmountTitle.setBounds(680, 88, 192, 14);
+		add(lblAmountTitle);
 
 		btnRemoveOne = new JButton("-");
 		btnRemoveOne.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 18));
@@ -114,29 +119,35 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		btnAddToBookShop.setBounds(680, 297, 192, 50);
 		btnAddToBookShop.addActionListener(this);
 		add(btnAddToBookShop);
-
+		
+		lblAmount = new JLabel("1");
+		lblAmount.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAmount.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
+		lblAmount.setBounds(684, 102, 188, 25);
+		add(lblAmount);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		Object isPressed = e.getSource();
 		if (isPressed == btnRemoveOne) {
-			if (Integer.parseInt(txtAmount.getText()) > 1)
-				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) - 1));
+			if (Integer.parseInt(lblAmount.getText()) > 1)
+				lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) - 1));
 		} else if (isPressed == btnRemoveTen) {
-			if (Integer.parseInt(txtAmount.getText()) > 10) {
-				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) - 10));
+			if (Integer.parseInt(lblAmount.getText()) > 10) {
+				lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) - 10));
 			}
 		} else if (isPressed == btnAddOne) {
 			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) > Integer
-					.parseInt(txtAmount.getText()))
-				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
+					.parseInt(lblAmount.getText()))
+				lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) + 1));
 			else
 				displayMessage("Quantità massima già raggiunta");
 		} else if (isPressed == btnAddTen) {
 			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) > Integer
-					.parseInt(txtAmount.getText()))
-				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 10));
+					.parseInt(lblAmount.getText()))
+				lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) + 10));
 			else
 				displayMessage("Quantità massima già raggiunta");
 		} else if (isPressed == btnAddToBookShop) {
@@ -146,7 +157,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 2).toString(),
 					(int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3),
 					(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4),
-					Integer.parseInt(txtAmount.getText()));
+					Integer.parseInt(lblAmount.getText()));
 		}
 	}
 
@@ -154,11 +165,12 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	public void attachObserver(WarehouseObserver observer) {
 		this.observer = observer;
 		this.setAllBooks();
+		
 	}
 
 	@Override
 	public void clearPanel() {
-		txtAmount.setText("1");
+		lblAmount.setText("1");
 
 	}
 
