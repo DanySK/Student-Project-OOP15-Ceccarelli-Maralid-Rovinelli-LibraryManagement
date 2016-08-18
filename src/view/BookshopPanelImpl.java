@@ -141,6 +141,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		add(lblTotalPrice);
 
 		txtTotalPrice = new JTextField();
+		txtTotalPrice.setText("0");
 		txtTotalPrice.setEnabled(false);
 		txtTotalPrice.setFont(new Font("Calibri", Font.ITALIC, 12));
 		txtTotalPrice.setHorizontalAlignment(SwingConstants.CENTER);
@@ -152,19 +153,13 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	@Override
 	public void attachObserver(BookshopObserver observer) {
 		this.observer = observer;
-		try {
-			this.setAllBooks();
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
+		this.setAllBooks();
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
+		int selectedAmount = (int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4);
+		int newAmount = Integer.parseInt(txtAmount.getText());
 		if (isPressed == btnAddBook) {
 			String title = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString();
 			String author = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString();
@@ -172,31 +167,30 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			String ammount = txtAmount.getText();
 			String[] str = { title, author, publicationYear, ammount };
 			((DefaultTableModel) modelSelectedBooks).addRow(str);
-			System.out.println(title + " " + author + " " + publicationYear + " " + ammount);
-			String price = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3).toString();
-			double doublePrice = Double.parseDouble(price);
+
+			txtTotalPrice.setText(setTotalPrice(Integer.parseInt(txtAmount.getText()),
+					(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3),
+					Double.parseDouble(txtTotalPrice.getText())));
+
+			modelAllBooks.setValueAt(
+					(Integer) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4)
+							- Integer.parseInt(txtAmount.getText()),
+					tblAllBooks.getSelectedRow(), 4);
 			tblSelectedBooks.repaint();
-			txtTotalPrice.setText(String.valueOf(Double.parseDouble(txtTotalPrice.getText())
-					+ (Integer.parseInt(txtAmount.getText()) * doublePrice)));
 		} else {
 			if (isPressed == btnAdd) {
-				if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) >= Integer
-						.parseInt(txtAmount.getText()))
+				if (selectedAmount > newAmount)
 					txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
-				else
+				else if (selectedAmount == 0) {
+					displayMessage("Non ci sono piu libri del tipo scelto");
+				} else {
 					displayMessage("Quantità massima già raggiunta");
-			} else {
-				JOptionPane.showMessageDialog(null,
-						"Attenzione quantità massima disponibile già raggiunta!", "Attenzione",
-						JOptionPane.PLAIN_MESSAGE);
-			}
-
-			if (isPressed == btnRemove) {
-				if (Integer.parseInt(txtAmount.getText()) > 1) {
+				}
+			} else if (isPressed == btnRemove) {
+				if (newAmount > 1) {
 					txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) - 1));
 				} else {
-					JOptionPane.showMessageDialog(null,
-							"Attenzione quantità minima gia' impostata!");
+					displayMessage("Attenzione quantità minima gia' impostata!");
 				}
 			}
 		}
@@ -211,12 +205,12 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	@Override
 	public void clearSelectedBooks() {
 		for (int i = modelSelectedBooks.getRowCount() - 1; i >= 0; i--) {
-			modelSelectedBooks.removeRow(i);
+			modelSelectedBooks.removeRow(i);			
 		}
 
 	}
 
-	public void setAllBooks() throws ClassNotFoundException, IOException {
+	public void setAllBooks(){
 		Map<BookModel, Integer> tmp = this.observer.getBookInShop();
 		int i = 0;
 
@@ -234,5 +228,15 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	@Override
 	public void displayMessage(String message) {
 		JOptionPane.showMessageDialog(null, message, "Attenzione", JOptionPane.PLAIN_MESSAGE);
+	}
+
+	String setTotalPrice(int amount, double price, double previousPrice) {
+		String totalPrice;
+		if (previousPrice > 0) {
+			totalPrice = String.valueOf(previousPrice + (amount * price));
+		} else {
+			totalPrice = String.valueOf(amount * price);
+		}
+		return totalPrice;
 	}
 }

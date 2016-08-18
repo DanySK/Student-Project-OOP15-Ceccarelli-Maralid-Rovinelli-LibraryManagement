@@ -19,5 +19,11 @@ public interface BookshopPanel {
 	 * @param message
 	 */
 	void displayMessage(String message);
+	/**
+	 *Load the list of books
+	 *
+	 */
+	void setAllBooks();
+
 		
 }

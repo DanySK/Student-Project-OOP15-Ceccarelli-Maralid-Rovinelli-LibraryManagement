@@ -128,13 +128,13 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) - 10));
 			}
 		} else if (isPressed == btnAddOne) {
-			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) >= Integer
+			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) > Integer
 					.parseInt(txtAmount.getText()))
 				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
 			else
 				displayMessage("Quantità massima già raggiunta");
 		} else if (isPressed == btnAddTen) {
-			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) < Integer
+			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) > Integer
 					.parseInt(txtAmount.getText()))
 				txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 10));
 			else
@@ -153,15 +153,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	@Override
 	public void attachObserver(WarehouseObserver observer) {
 		this.observer = observer;
-		try {
-			this.setAllBooks();
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
+		this.setAllBooks();
 	}
 
 	@Override
@@ -169,8 +161,8 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		txtAmount.setText("1");
 
 	}
-
-	public void setAllBooks() throws ClassNotFoundException, IOException {
+@Override
+	public void setAllBooks()  {
 		Map<BookModel, Integer> tmp = this.observer.getBooksInWarehouse();
 		int i = 0;
 
@@ -179,11 +171,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 			Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getLiteraryGenre(),
 					entry.getyearOfPublication(), entry.getPrice(), tmp.values().toArray()[i] };
 			((DefaultTableModel) modelAllBooks).addRow(obj);
-			/*
-			 * ((DefaultTableModel) modelAllBooks).addRow(new
-			 * Object[]{entry.getTitle(),entry.getAuthor(),
-			 * entry.getyearOfPublication(),entry.getPrice()});
-			 */
+			
 			tblAllBooks.repaint();
 			System.out.println("ciccia1 " + tmp.values().toArray()[i]);
 			i++;
