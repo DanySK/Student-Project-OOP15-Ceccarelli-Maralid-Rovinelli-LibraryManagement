@@ -209,14 +209,13 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		String[] selectedBook = { tblSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 0).toString(),
 				tblSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 1).toString(),
 				tblSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 2).toString() };
-		String[] allBook = { tblAllBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 0).toString(),
-				tblAllBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 1).toString(),
-				tblAllBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 2).toString() };
+		String[] allBook = { tblAllBooks.getValueAt(i, 0).toString(),
+				tblAllBooks.getValueAt(i, 1).toString(),
+				tblAllBooks.getValueAt(i, 2).toString() };
 		while (true) {
 
 		}
 		//modelSelectedBooks.removeRow(tblSelectedBooks.getSelectedRow());
-
 	}
 
 	public void setAllBooks() {
@@ -235,7 +234,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 				i++;
 			}
 		}
-		if (tblAllBooks.getSelectedRow() != 0) {
+		if (tblAllBooks.getRowCount() > 0) {
 			tblAllBooks.setRowSelectionInterval(0, 0);
 		}
 	}

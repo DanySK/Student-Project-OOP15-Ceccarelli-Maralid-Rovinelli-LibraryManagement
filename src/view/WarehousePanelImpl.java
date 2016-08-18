@@ -180,7 +180,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 				i++;
 			}
 		}
-		if (tblAllBooks.getSelectedRow() != 0) {
+		if (tblAllBooks.getRowCount() > 0) {
 			tblAllBooks.setRowSelectionInterval(0, 0);
 		}
 	}
