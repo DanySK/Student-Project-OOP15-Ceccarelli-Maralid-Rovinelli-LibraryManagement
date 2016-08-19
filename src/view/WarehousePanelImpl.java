@@ -205,7 +205,6 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 				((DefaultTableModel) modelAllBooks).addRow(obj);
 
 				tblAllBooks.repaint();
-				System.out.println("ciccia1 " + tmp.values().toArray()[i]);
 				i++;
 			}
 		}

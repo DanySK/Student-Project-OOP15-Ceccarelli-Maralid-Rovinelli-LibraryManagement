@@ -1,5 +1,9 @@
 package view.observer;
 
+import java.util.Map;
+
+import model.SubscriptionModel;
+
 public interface AddSubscriptionObserver {
 	
 	/**
@@ -9,4 +13,9 @@ public interface AddSubscriptionObserver {
 	 * @param surname
 	 */	
 	void addNewSubcriptionClicked(String name, String surname);
+	/**
+	 * 
+	 * 
+	 */
+	Map <Integer, SubscriptionModel> getAllSubscriptions ();
 }
