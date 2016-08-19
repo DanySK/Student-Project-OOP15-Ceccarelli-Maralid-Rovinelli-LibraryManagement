@@ -27,7 +27,7 @@ public class BookshopController implements BookshopObserver{
 	}
 
 	@Override
-	public void shopPurchaseItClicked() {
+	public void shopPurchaseItClicked(Map<BookModel, Integer> purchaseList) {
 		ReceiptPanelImpl ri = new ReceiptPanelImpl();
 		ReceiptPanelController rc = new ReceiptPanelController(model);
 		rc.setView(ri);
@@ -39,7 +39,4 @@ public class BookshopController implements BookshopObserver{
 		Map<BookModel, Integer> booksInShop= model.shop().getBooks();
 		return booksInShop;
 	}
-
-	
-
 }
