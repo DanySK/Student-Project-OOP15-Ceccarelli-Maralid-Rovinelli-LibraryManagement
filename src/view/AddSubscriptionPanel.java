@@ -14,4 +14,6 @@ public interface AddSubscriptionPanel {
 	 * */
 	void clearPanel();
 	
+	void setAllSubscriptions();
+	
 }

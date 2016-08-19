@@ -68,7 +68,7 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		tblAllSubscription.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tblAllSubscription.setFont(new Font("Calibri", Font.PLAIN, 13));
 		tblAllSubscription.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-
+	
 		lblTitle = new JLabel("Abbonamenti");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
@@ -180,6 +180,7 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 	}
 
 	public void setAllSubscriptions() {
+		clearTable(modelAllSubscription);
 		Map<Integer, SubscriptionModel> tmp = this.observer.getAllSubscriptions();
 
 		for (Integer entry : tmp.keySet()) {
@@ -196,4 +197,10 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 			tblAllSubscription.setRowSelectionInterval(0, 0);
 		}
 	}
+	private void clearTable(DefaultTableModel model){
+		for(int i =0; i< model.getRowCount(); i++){
+			model.removeRow(i);
+		}
+	}
+	
 }

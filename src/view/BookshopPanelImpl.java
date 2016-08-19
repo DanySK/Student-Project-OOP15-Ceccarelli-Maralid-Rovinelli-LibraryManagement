@@ -66,6 +66,8 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		tblAllBooks.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tblAllBooks.setFont(new Font("Calibri", Font.PLAIN, 13));
 		tblAllBooks.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		
+		
 
 		scpSelectedBooks = new JScrollPane();
 		scpSelectedBooks.setEnabled(false);
@@ -242,6 +244,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	}
 
 	public void setAllBooks() {
+		clearTable(modelAllBooks);
 		Map<BookModel, Integer> tmp = this.observer.getBookInShop();
 		int i = 0;
 
@@ -274,5 +277,11 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			totalPrice = String.valueOf(amount * price);
 		}
 		return totalPrice;
+	}
+	
+	private void clearTable(DefaultTableModel model){
+		for(int i =0; i< model.getRowCount(); i++){
+			model.removeRow(i);
+		}
 	}
 }

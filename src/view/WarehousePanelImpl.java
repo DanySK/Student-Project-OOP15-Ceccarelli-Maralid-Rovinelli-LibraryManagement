@@ -193,6 +193,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 
 	@Override
 	public void setAllBooks() {
+		 clearTable(modelAllBooks);
 		Map<BookModel, Integer> tmp = this.observer.getBooksInWarehouse();
 		int i = 0;
 
@@ -219,11 +220,16 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 
 	}
 
-	@Override
+	/*@Override
 	public void clearSelectedBooks() {
 		for (int i = modelAllBooks.getRowCount() - 1; i >= 0; i--) {
 			modelAllBooks.removeRow(i);
 		}
 
+	}*/
+	private void clearTable(DefaultTableModel model){
+		for(int i =0; i< model.getRowCount(); i++){
+			model.removeRow(i);
+		}
 	}
 }
