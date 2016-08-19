@@ -7,12 +7,12 @@ import model.BookModel;
 public interface BookshopObserver {
 	/**
 	 * permette di aprire la view del carrello con i libri scelti
-	 * */
-	void shopPurchaseItClicked();
+	 */
+	void shopPurchaseItClicked(Map<BookModel, Integer> purchaseList);
+
 	/**
 	 * 
 	 * 
 	 * */
-	Map <BookModel, Integer> getBookInShop ();
-	
+	Map<BookModel, Integer> getBookInShop();
 }

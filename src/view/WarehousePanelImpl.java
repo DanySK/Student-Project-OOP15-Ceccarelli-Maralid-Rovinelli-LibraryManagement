@@ -53,7 +53,14 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		scpAllBooks.setBounds(20, 88, 486, 464);
 		add(scpAllBooks);
 
-		tblAllBooks = new JTable();
+		tblAllBooks = new JTable() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			    public boolean isCellEditable(int row, int column) {
+			      return false;
+			    }
+			};
 		scpAllBooks.setViewportView(tblAllBooks);
 		tblAllBooks.setModel(modelAllBooks);
 		tblAllBooks.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -219,14 +226,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 		JOptionPane.showMessageDialog(null, message, "Attenzione", JOptionPane.PLAIN_MESSAGE);
 
 	}
-
-	/*@Override
-	public void clearSelectedBooks() {
-		for (int i = modelAllBooks.getRowCount() - 1; i >= 0; i--) {
-			modelAllBooks.removeRow(i);
-		}
-
-	}*/
+	
 	private void clearTable(DefaultTableModel model){
 		for(int i = model.getRowCount()-1; i >= 0; i--){
 			model.removeRow(i);

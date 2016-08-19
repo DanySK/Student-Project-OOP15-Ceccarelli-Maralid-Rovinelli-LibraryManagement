@@ -35,7 +35,6 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 	private JButton btnAddSubcription;
 	private AddSubscriptionObserver observer;
 	private JButton btnClear;
-	private JTextField txtType;
 	private JTable tblAllSubscription;
 	private DefaultTableModel modelAllSubscription;
 	private JScrollPane scpAllSubscription;
@@ -43,6 +42,7 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 	private JLabel lblDescriptionSilver;
 	private JLabel lblDescriptionGold;
 	private JLabel lblDescriptionPlatinum;
+	private JLabel lblSubscriptionType;
 
 	/**
 	 * Create the panel.
@@ -54,11 +54,20 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		modelAllSubscription = new DefaultTableModel(new Object[][] {},
 				new String[] { "Nome", "Cognome", "Tipo abbonamento", "Numero acquisti" });
 
+		
 		scpAllSubscription = new JScrollPane();
 		scpAllSubscription.setBounds(493, 73, 381, 420);
 		add(scpAllSubscription);
 
-		tblAllSubscription = new JTable();
+		tblAllSubscription = new JTable() {			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			    public boolean isCellEditable(int row, int column) {
+			        //all cells false
+			        return false;
+			    }
+			}; 
 		scpAllSubscription.setViewportView(tblAllSubscription);
 		tblAllSubscription.setModel(modelAllSubscription);
 		tblAllSubscription.getColumnModel().getColumn(0).setPreferredWidth(74);
@@ -67,7 +76,7 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		tblAllSubscription.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tblAllSubscription.setFont(new Font("Calibri", Font.PLAIN, 13));
 		tblAllSubscription.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-	
+
 		lblTitle = new JLabel("Abbonamenti");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 30));
@@ -91,11 +100,13 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		add(lblSurname);
 
 		txtName = new JTextField();
+		txtName.setFont(new Font("Calibri", Font.ITALIC, 13));
 		txtName.setBounds(30, 165, 171, 20);
 		add(txtName);
 		txtName.setColumns(10);
 
 		txtSurname = new JTextField();
+		txtSurname.setFont(new Font("Calibri", Font.ITALIC, 13));
 		txtSurname.setBounds(30, 220, 171, 20);
 		add(txtSurname);
 		txtSurname.setColumns(10);
@@ -116,13 +127,6 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		btnClear.setBounds(30, 510, 125, 50);
 		btnClear.addActionListener(this);
 		add(btnClear);
-
-		txtType = new JTextField();
-		txtType.setEnabled(false);
-		txtType.setEditable(false);
-		txtType.setBounds(30, 276, 171, 20);
-		add(txtType);
-		txtType.setColumns(10);
 
 		lblDescriptionBronze = new JLabel("Bronzo : 1-20 libri\r\n\r\n");
 		lblDescriptionBronze.setVerticalAlignment(SwingConstants.TOP);
@@ -151,6 +155,11 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		lblDescriptionPlatinum.setFont(new Font("Calibri", Font.ITALIC, 13));
 		lblDescriptionPlatinum.setBounds(268, 279, 220, 28);
 		add(lblDescriptionPlatinum);
+
+		lblSubscriptionType = new JLabel("Bronzo");
+		lblSubscriptionType.setFont(new Font("Calibri", Font.ITALIC, 13));
+		lblSubscriptionType.setBounds(30, 276, 171, 14);
+		add(lblSubscriptionType);
 
 	}
 
@@ -196,10 +205,10 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 			tblAllSubscription.setRowSelectionInterval(0, 0);
 		}
 	}
-	private void clearTable(DefaultTableModel model){
+
+		private void clearTable(DefaultTableModel model){
 		for(int i = model.getRowCount()-1; i >= 0; i--){
 			model.removeRow(i);
 		}
-	}
-	
+	}	
 }

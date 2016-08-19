@@ -25,8 +25,6 @@ public interface WarehousePanel {
 	 *Load the list of books
 	 *
 	 */
-	void setAllBooks();
+	void setAllBooks();	
 	
-	//void clearSelectedBooks();
-
 }
