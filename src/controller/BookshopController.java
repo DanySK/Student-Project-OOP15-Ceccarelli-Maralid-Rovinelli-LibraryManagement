@@ -28,8 +28,9 @@ public class BookshopController implements BookshopObserver{
 
 	@Override
 	public void shopPurchaseItClicked(Map<BookModel, Integer> purchaseList) {
+		System.out.println(purchaseList);
 		ReceiptPanelImpl ri = new ReceiptPanelImpl();
-		ReceiptPanelController rc = new ReceiptPanelController(model);
+		ReceiptPanelController rc = new ReceiptPanelController(model, purchaseList);
 		rc.setView(ri);
 		maninView.replaceMainPanel(ri);
 	}

@@ -16,10 +16,9 @@ import view.WarehousePanelImpl;
 import view.observer.NorthPanelObserver;
 import view.observer.ViewObserver;
 
-import java.io.IOException;
-
 import model.BookModel;
 import model.EmployeeModel;
+import model.InvoiceModel;
 
 public class Controller implements NorthPanelObserver, ViewObserver{
 	private Model model;
@@ -28,7 +27,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	private StreamModel<BookModel, Integer> smBookInWarehouse;
 	private StreamModel<BookModel, Integer> smBookInShop;
 	private StreamModel<Integer, SubscriptionModel> smSubscription;
-	private StreamModel<Integer, BookModel> smInvoice;
+	private StreamModel<Integer, InvoiceModel> smInvoice;
 	
 	/**
 	 * Crea un nuovo Controller senza dare alcun parametro come input.
@@ -42,7 +41,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 			smBookInWarehouse = new StreamImpl<BookModel, Integer>();
 			smBookInShop = new StreamImpl<BookModel, Integer>();
 			smSubscription = new StreamImpl<Integer, SubscriptionModel>();
-			smInvoice = new StreamImpl<Integer, BookModel>();
+			smInvoice = new StreamImpl<Integer, InvoiceModel>();
 	}
 
 
@@ -142,9 +141,10 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 	@Override
 	public void saveData() {
 		smEmployee.writeFile("Employees.dat", model.employees().getEmployees());
-		smBookInWarehouse.writeFile("BooksInWareHouse.dat", model.warehouse().getBooks());
+		smBookInWarehouse.writeFile("BooksInWarehouse.dat", model.warehouse().getBooks());
 		smBookInShop.writeFile("BooksInShop.dat", model.shop().getBooks());
 		smSubscription.writeFile("Subscriptions.dat", model.subscriptions().getSubscriptions());
+		smInvoice.writeFile("Invoices.dat", model.invoices().getInvoices());
 	}
 
 	@Override
@@ -153,38 +153,35 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 
 	@Override
 	public void dataLoad() {
-		// TODO Auto-generated method stub
-		try {
-		    
 			model.employees().updateEmployees(smEmployee.readFile("Employees.dat"));
 			/*for(int i = 0;i<model.employees().getEmployees().size();i++){
 	            System.out.println(model.employees().getEmployees().get(i).getUsername());
 			}*/
-		    model.warehouse().update(smBookInWarehouse.readFile("BooksInWareHouse.dat"));
+		    model.warehouse().update(smBookInWarehouse.readFile("BooksInWarehouse.dat"));
 		    //System.out.println(model.warehouse().getBooks().);
 		    /*for ( BookModel key : model.warehouse().getBooks().keySet() ) {
 		        System.out.println( key.getTitle());
 		    }*/
 		    model.subscriptions().updateSubscriptions(smSubscription.readFile("Subscriptions.dat"));
-		    for (int j = 0; j<model.subscriptions().getSubscriptions().size(); j++){
+		    /*for (int j = 0; j<model.subscriptions().getSubscriptions().size(); j++){
 		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getName());
 		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getSurname());
 		    	System.out.println(model.subscriptions().getSubscriptions().get(j).getType());
 		    	System.out.println(model.subscriptions().getSubscriptions());
-		    }
+		    }*/
 		    model.shop().update(smBookInShop.readFile("BooksInShop.dat"));
-		    for ( BookModel key : model.shop().getBooks().keySet() ) {
+		    /*for ( BookModel key : model.shop().getBooks().keySet() ) {
 		        System.out.println( key.getTitle());
+		    }*/
+		    model.invoices().updateInvoices(smInvoice.readFile("Invoices.dat"));
+		    for (int k = 0; k < model.invoices().getInvoices().size(); k++){
+		    	System.out.println(model.invoices().getInvoices().get(k).getTotal());
+		    	System.out.println(model.invoices().getInvoices().get(k).getDate());
+		    	System.out.println(model.invoices().getInvoices().get(k).getPaymentMethod());
+		    	System.out.println(model.invoices().getInvoices().get(k).getReceipt());
 		    }
 		    
-		
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
 
 	@Override

@@ -116,8 +116,9 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 			try {
 				this.observer.saveAccountingClicked(
 						(Date) dateFormat.parse((dateFormat.format(currentDate))),
-						Double.parseDouble(txtTotalPrice.getText()),
-						cmbTypeOfPayment.getSelectedItem().toString());
+						12.3, cmbTypeOfPayment.getSelectedItem().toString()
+						/*Double.parseDouble(txtTotalPrice.getText()),
+						cmbTypeOfPayment.getSelectedItem().toString()*/);
 			} catch (NumberFormatException | ParseException e1) {
 
 				e1.printStackTrace();

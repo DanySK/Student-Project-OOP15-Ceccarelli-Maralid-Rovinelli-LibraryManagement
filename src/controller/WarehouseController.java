@@ -2,7 +2,6 @@ package controller;
 
 import java.util.Map;
 
-import model.BookImpl;
 import model.BookModel;
 import model.Model;
 import view.WarehousePanel;

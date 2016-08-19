@@ -14,32 +14,35 @@ import java.util.Map.Entry;
  */
 public class InvoiceImpl implements InvoiceModel ,Serializable{
 
+	public static int CASH = 0;
+	public static int CREDITCARD = 1;
+	public static int BANCONMAT = 2;
+	private static String[] paymentMethods = {"Carta di credito", "Contanti", "Bancomat"};
+	
     private static final long serialVersionUID = 1L;
-    private Map<Integer,BookModel> receipt;
-    private double total = 0;
+    private Map<BookModel,Integer> receipt;
+    private double total;
     private Date date ;
-    private String address;
-   
-    public InvoiceImpl(){
-        receipt = new HashMap<Integer,BookModel>(); 
-    }
-    public InvoiceImpl(Map<Integer,BookModel> list,double total,Date date,String address){
+    private int payment;
+    
+    
+    public InvoiceImpl(Map<BookModel,Integer> list, Date date, int payment){
       this.receipt = list;
-      this.total = total;
       this.date = date;
-      this.address = address;
+      this.payment = payment;
     }
     @Override
-    public Map<Integer, BookModel> getReceipt() {
+    public Map<BookModel, Integer> getReceipt() {
        return this.receipt;
     }
 
     @Override
     public double getTotal() {
-        Iterator<Entry<Integer,BookModel>> it = receipt.entrySet().iterator();
+    	total = 0;
+        Iterator<Entry<BookModel,Integer>> it = receipt.entrySet().iterator();
         while(it.hasNext()){
-            Map.Entry<Integer,BookModel> book = (Entry<Integer,BookModel>) it.next();
-            this.total += book.getValue().getPrice();
+            Map.Entry<BookModel, Integer> book = (Entry<BookModel,Integer>) it.next();
+            this.total += (book.getKey().getPrice() * book.getValue());
         }
         return total;
     }
@@ -51,13 +54,13 @@ public class InvoiceImpl implements InvoiceModel ,Serializable{
     }
 
     @Override
-    public String getAddress() {
-        return this.address;
+    public String getPaymentMethod() {
+        return paymentMethods[this.payment];
     }
 
     @Override
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPaymentMethod(int payment) {
+        this.payment = payment;
 
     }
 
@@ -65,22 +68,6 @@ public class InvoiceImpl implements InvoiceModel ,Serializable{
     public void setDate(Date date) {
         this.date = date;
 
-    }
-
-    @Override
-    public void addItem(BookModel book) {
-       receipt.put(receipt.size(), book);
-
-    }
-    public void removeItem(BookModel book){
-        boolean cancel = false;
-        int count = 0;
-        while (cancel == false){
-            if(receipt.get(count).equals(book)){
-               receipt.remove(count);
-               cancel = true;
-            }
-        }       
     }
 
 }

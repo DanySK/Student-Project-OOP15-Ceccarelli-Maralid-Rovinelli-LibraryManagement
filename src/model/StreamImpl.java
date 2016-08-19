@@ -1,5 +1,7 @@
 package model;
+import java.io.EOFException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -18,38 +20,28 @@ import java.util.Map;
 public class StreamImpl<T,X> implements StreamModel<T,X>  {
 
 @SuppressWarnings("unchecked")
-public Map<T, X> readFile(String path) throws IOException, ClassNotFoundException{
+public Map<T, X> readFile(String path){
 	 
-	  Map <T, X> map = new HashMap<T, X>();
-       try
-       {
-          FileInputStream fis = new FileInputStream(path);
-          ObjectInputStream ois = new ObjectInputStream(fis);
-     
-          map = (Map<T, X>) ois.readObject();
-          if(map.isEmpty()) {
-         	  FileOutputStream fos = new FileOutputStream(path);
-               ObjectOutputStream oos = new ObjectOutputStream(fos);
-               
-               oos.writeObject(map);
-               oos.close();
-               fos.close();
-           }
-          
-          ois.close();
-          fis.close();
-       }catch(IOException i)
-       {
-          i.printStackTrace();
-          throw i;
-       }catch(ClassNotFoundException c)
-       {
-          System.out.println("class not found");
-          c.printStackTrace();
-          throw c;
-       } 
-    return map;
-       
+	  	Map <T, X> map = new HashMap<T, X>();
+
+          FileInputStream fis;
+		try {
+			fis = new FileInputStream(path);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+		     
+	          map = (Map<T, X>) ois.readObject();
+	          
+	          
+	          ois.close();
+	          fis.close();
+		} catch (FileNotFoundException e) {
+			
+		} catch (IOException e) {
+			
+		} catch (ClassNotFoundException e) {
+			
+		}
+          return map;
    }
 
 @Override

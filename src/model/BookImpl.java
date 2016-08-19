@@ -7,10 +7,11 @@ import java.io.Serializable;
  * @author rovi9
  *
  */
+
 public class BookImpl implements BookModel,Serializable {
-   
-    private static final long serialVersionUID = 1L;
-    private String title;
+
+	private static final long serialVersionUID = 1L;
+	private String title;
     private String author;
     private String literaryGenre;
     private int yearOfPublication;

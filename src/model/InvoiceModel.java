@@ -8,7 +8,7 @@ public interface InvoiceModel {
      * 2)return the Receipt
      * @return map of invoice
      */
-    public Map<Integer, BookModel> getReceipt();
+    public Map<BookModel, Integer> getReceipt();
     /** 
      * this method return the total of the receipt
      * @return double
@@ -23,27 +23,17 @@ public interface InvoiceModel {
      * returns the address of the store that issued the ticket
      * @return
      */
-    public String getAddress();
+    public String getPaymentMethod();
     /**
      * this method set a new address for the ticket
      * @param address
      */
-    public void setAddress(String address);
+    public void setPaymentMethod(int payment);
     /**
      * this method return the date for the ticket
      * @param date
      */
     public void setDate(Date date);
-    /**
-     * this method add a new item in invoice
-     * @param book
-     */
-    public void addItem(BookModel book);
-    /**
-     * this method remove a book at the invoice
-     * @param book
-     */
-    public void removeItem(BookModel book);
    
   
 }

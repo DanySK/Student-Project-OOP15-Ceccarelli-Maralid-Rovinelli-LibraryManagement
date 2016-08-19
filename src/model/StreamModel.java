@@ -11,8 +11,9 @@ public interface StreamModel<T,X> {
      * @return
      * @throws IOException
      * @throws ClassNotFoundException
+     * @throws Exception 
      */
-    public Map<T ,X> readFile(String path) throws IOException, ClassNotFoundException;
+    public Map<T ,X> readFile(String path);
     /** method to write to a file given the file and the class you want to write to the file
      *
      * @param path

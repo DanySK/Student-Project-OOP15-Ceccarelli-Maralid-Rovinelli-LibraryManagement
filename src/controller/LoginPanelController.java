@@ -10,6 +10,7 @@ import view.LoginPanel;
 import view.MainView;
 import view.observer.LoginObserver;
 
+@SuppressWarnings("serial")
 public class LoginPanelController implements LoginObserver,Serializable{
 	
 	private Model model;
