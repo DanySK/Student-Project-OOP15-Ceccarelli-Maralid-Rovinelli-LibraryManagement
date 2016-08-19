@@ -280,7 +280,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	}
 	
 	private void clearTable(DefaultTableModel model){
-		for(int i =0; i< model.getRowCount(); i++){
+		for(int i = model.getRowCount()-1; i >= 0; i--){
 			model.removeRow(i);
 		}
 	}

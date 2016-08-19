@@ -17,7 +17,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import model.BookModel;
 import model.SubscriptionModel;
 
 import javax.swing.JTextField;
@@ -198,7 +197,7 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		}
 	}
 	private void clearTable(DefaultTableModel model){
-		for(int i =0; i< model.getRowCount(); i++){
+		for(int i = model.getRowCount()-1; i >= 0; i--){
 			model.removeRow(i);
 		}
 	}
