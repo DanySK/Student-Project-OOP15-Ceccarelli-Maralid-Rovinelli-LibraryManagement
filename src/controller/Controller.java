@@ -111,7 +111,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		BookshopPanelImpl bsp = new BookshopPanelImpl();
     	BookshopController bsc = new BookshopController(this.mainView, model);
     	bsc.setView(bsp);
-    	mainView.replaceMainPanel(bsp);
+    	this.mainView.replaceMainPanel(bsp);
 		
 	}
 
@@ -121,7 +121,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		AddEmployeePanelImpl ae = new AddEmployeePanelImpl();
 		InsertEmployeeController ie = new InsertEmployeeController(this.mainView, model);
 		ie.setView(ae);
-		mainView.replaceMainPanel(ae);	
+		this.mainView.replaceMainPanel(ae);	
 	}
 
 
@@ -130,7 +130,7 @@ public class Controller implements NorthPanelObserver, ViewObserver{
 		AddSubscriptionPanelImpl sp = new AddSubscriptionPanelImpl();
 		InsertSubscriptionController sc = new InsertSubscriptionController(model);
 		sc.setView(sp);
-		mainView.replaceMainPanel(sp);
+		this.mainView.replaceMainPanel(sp);
 	}
 	
 	@Override

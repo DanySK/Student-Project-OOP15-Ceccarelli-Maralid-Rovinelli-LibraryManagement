@@ -12,7 +12,6 @@ public class WarehouseController implements WarehouseObserver{
 
 	private Model model;
 	private WarehousePanel view;
-	private Map<BookModel, Integer> map;
 	
 	public WarehouseController(Model model){
 		this.model = model;
@@ -36,7 +35,6 @@ public class WarehouseController implements WarehouseObserver{
 				model.shop().replaceQuantity(model.shop().searchBook(title, author, year), model.shop().getBookQuantity(model.shop().searchBook(title, author, year)) + amount);
 			}
 			model.warehouse().replaceQuantity(model.warehouse().searchBook(title, author, year), model.warehouse().getBookQuantity(model.warehouse().searchBook(title, author, year)) - amount);
-			this.view.clearSelectedBooks();
 			this.view.setAllBooks();
 			this.view.displayMessage("Libro aggiunto al negozio");
 		}
@@ -46,14 +44,13 @@ public class WarehouseController implements WarehouseObserver{
 	@Override
 	public void addCopyToWarehouse(String title, String author, int year, int amount) {
 		model.warehouse().replaceQuantity(model.warehouse().searchBook(title, author, year), model.warehouse().getBookQuantity(model.warehouse().searchBook(title, author, year))+ amount);
-		this.view.clearSelectedBooks();
 		this.view.setAllBooks();
 	}
 	
 	@Override
 	public Map <BookModel, Integer> getBooksInWarehouse() {
-		map= model.warehouse().getBooks();
-		return map;
+		Map<BookModel, Integer> booksInWarehouse = model.warehouse().getBooks();
+		return booksInWarehouse;
 	}
 	
 }

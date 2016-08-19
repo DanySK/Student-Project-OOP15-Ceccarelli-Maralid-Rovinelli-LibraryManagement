@@ -1,4 +1,5 @@
 package model;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,7 +27,15 @@ public Map<T, X> readFile(String path) throws IOException, ClassNotFoundExceptio
           FileInputStream fis = new FileInputStream(path);
           ObjectInputStream ois = new ObjectInputStream(fis);
      
-          map = (Map<T, X>) ois.readObject();  
+          map = (Map<T, X>) ois.readObject();
+          if(map.isEmpty()) {
+         	  FileOutputStream fos = new FileOutputStream(path);
+               ObjectOutputStream oos = new ObjectOutputStream(fos);
+               
+               oos.writeObject(map);
+               oos.close();
+               fos.close();
+           }
           
           ois.close();
           fis.close();

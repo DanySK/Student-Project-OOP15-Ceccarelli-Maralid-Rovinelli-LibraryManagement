@@ -24,7 +24,6 @@ public class BookshopController implements BookshopObserver{
 	public void setView(BookshopPanel bp) {
 		this.view = bp;
 		this.view.attachObserver(this);
-		//this.view.clearSelectedBooks();
 	}
 
 	@Override
@@ -37,8 +36,8 @@ public class BookshopController implements BookshopObserver{
 
 	@Override
 	public Map<BookModel, Integer> getBookInShop() {
-		Map<BookModel, Integer> map= model.shop().getBooks();
-		return map;
+		Map<BookModel, Integer> booksInShop= model.shop().getBooks();
+		return booksInShop;
 	}
 
 	
