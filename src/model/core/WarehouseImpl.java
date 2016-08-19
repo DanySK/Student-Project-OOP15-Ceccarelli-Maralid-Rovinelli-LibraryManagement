@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import model.BookImpl;
 import model.BookModel;
 /**
  * This class represents the books in warehouse of the library list.

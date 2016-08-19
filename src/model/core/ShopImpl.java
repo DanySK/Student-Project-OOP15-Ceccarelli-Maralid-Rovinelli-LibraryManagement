@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import model.BookImpl;
 import model.BookModel;
 
 
@@ -72,8 +71,6 @@ public class ShopImpl implements ShopAndWarehouseModel {
             Map.Entry<BookModel,Integer> book = (Entry<BookModel,Integer>) it.next();
             if(book.getKey().getTitle().equals(title) && book.getKey().getAuthor().equals(author) && book.getKey().getyearOfPublication() == yearOfPublication){
                 bookT = book.getKey();  
-            }else{
-                System.out.println("il libro non esiste");
             }
         }
         return bookT;

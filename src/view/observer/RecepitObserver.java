@@ -1,6 +1,9 @@
 package view.observer;
 
 import java.util.Date;
+import java.util.Map;
+
+import model.BookModel;
 
 public interface RecepitObserver {
 	/**
@@ -12,6 +15,16 @@ public interface RecepitObserver {
 	 * @param money
 	 * @param type
 	 **/
-	void saveAccountingClicked(Date today, double money, String type);
+	void saveAccountingClicked(Date today, int payment);
+	
+	/**
+	 * get total of sale
+	 **/
+	public double getTotal();
+	
+	/**
+	 * get purchase recap
+	 **/
+	public Map<BookModel, Integer> getPurchaseRecap();
 	
 }

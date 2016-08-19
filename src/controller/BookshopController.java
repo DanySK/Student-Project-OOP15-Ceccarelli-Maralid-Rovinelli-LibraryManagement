@@ -9,18 +9,18 @@ import view.MainView;
 import view.ReceiptPanelImpl;
 import view.observer.BookshopObserver;
 
-public class BookshopController implements BookshopObserver{
-	
+public class BookshopController implements BookshopObserver {
+
 	private Model model;
 	private MainView maninView;
 	private BookshopPanel view;
-	
-	public BookshopController(MainView mainView, Model model){
+
+	public BookshopController(MainView mainView, Model model) {
 		this.maninView = mainView;
 		this.model = model;
 
 	}
-	
+
 	public void setView(BookshopPanel bp) {
 		this.view = bp;
 		this.view.attachObserver(this);
@@ -28,7 +28,6 @@ public class BookshopController implements BookshopObserver{
 
 	@Override
 	public void shopPurchaseItClicked(Map<BookModel, Integer> purchaseList) {
-		System.out.println(purchaseList);
 		ReceiptPanelImpl ri = new ReceiptPanelImpl();
 		ReceiptPanelController rc = new ReceiptPanelController(model, purchaseList);
 		rc.setView(ri);
@@ -37,7 +36,7 @@ public class BookshopController implements BookshopObserver{
 
 	@Override
 	public Map<BookModel, Integer> getBookInShop() {
-		Map<BookModel, Integer> booksInShop= model.shop().getBooks();
+		Map<BookModel, Integer> booksInShop = model.shop().getBooks();//Get all book into the shop
 		return booksInShop;
 	}
 }
