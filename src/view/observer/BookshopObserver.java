@@ -13,11 +13,11 @@ public interface BookshopObserver {
 	void shopPurchaseItClicked(Map<BookModel, Integer> purchaseList);
 
 	/**
-	 * It allows you to switch to the controller data on eg a search for specific books
+	 * 
 	 * 
 	 * @return
 	 */
-	Map<BookModel, Integer> getBookInShop(String type, String value);
+	Map<BookModel, Integer> getBookInShop();
 	/**
 	 *It allows you to switch to the controller data on eg a search for specific books
 	 * 

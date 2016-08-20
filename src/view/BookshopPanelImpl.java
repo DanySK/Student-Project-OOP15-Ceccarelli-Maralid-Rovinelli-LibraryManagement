@@ -244,6 +244,9 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 
 			} else if (isPressed == btnRemoveBook) {
 				clearSelectedBooks();
+			}else if(isPressed==btnSearch){
+				this.observer.searchType(cmbSearchType.getSelectedItem().toString(),txtSearchType.getText() );
+				this.setAllBooks();
 			}
 		}
 	}
@@ -339,7 +342,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	@Override
 	public void setAllBooks() {
 		clearTable(modelAllBooks);
-		Map<BookModel, Integer> tmp = this.observer.getBookInShop(cmbSearchType.getSelectedItem().toString(),txtSearchType.getText());
+		Map<BookModel, Integer> tmp = this.observer.getBookInShop();
 		int i = 0;
 
 		for (BookModel entry : tmp.keySet()) {
