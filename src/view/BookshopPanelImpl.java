@@ -53,7 +53,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	private final int amountCell = 5;
 	private JTextField txtSearchType;
 	private JButton btnSearch;
-	private JComboBox<String> cmbSearchType ;
+	private JComboBox<String> cmbSearchType;
 
 	public BookshopPanelImpl() {
 		super();
@@ -180,19 +180,19 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		lblCurrencies.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 17));
 		lblCurrencies.setBounds(459, 381, 43, 38);
 		add(lblCurrencies);
-		
+
 		txtSearchType = new JTextField();
 		txtSearchType.setBounds(152, 108, 136, 20);
 		add(txtSearchType);
 		txtSearchType.setColumns(10);
-		
+
 		cmbSearchType = new JComboBox<String>();
 		cmbSearchType.setBounds(10, 108, 132, 20);
 		cmbSearchType.addItem("Titolo");
 		cmbSearchType.addItem("Autore");
 		cmbSearchType.addItem("Anno");
 		add(cmbSearchType);
-		
+
 		btnSearch = new JButton("New button");
 		btnSearch.setBounds(298, 107, 89, 23);
 		btnSearch.addActionListener(this);
@@ -207,47 +207,41 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (modelAllBooks.getRowCount() == 0) {
-			displayMessage("Nessun libro presente");
-		} else {
 
-			Object isPressed = e.getSource();
-			int selectedAmount = (int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), amountCell);
-			int newAmount = Integer.parseInt(txtAmount.getText());
-			if (isPressed == btnAddBook) {
-				if((Integer)modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), amountCell)!=0)
+		Object isPressed = e.getSource();
+		int selectedAmount = (int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), amountCell);
+		int newAmount = Integer.parseInt(txtAmount.getText());
+		if (isPressed == btnAddBook) {
+			if ((Integer) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), amountCell) != 0)
 				this.moveBooks();
-				else 
-					displayMessage("Non ci sono libri del tipo scelto in negozzio!");
-			} else {
-				if (isPressed == btnAdd) {
-					if (selectedAmount > newAmount)
-						txtAmount.setText(String
-								.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
-					else if (selectedAmount == 0) {
-						displayMessage("Non ci sono piu libri del tipo scelto");
-					} else {
-						displayMessage("Quantità massima già raggiunta");
-					}
-				} else if (isPressed == btnRemove) {
-					if (newAmount > 1) {
-						txtAmount.setText(String
-								.valueOf(Integer.parseInt(txtAmount.getText()) - 1));
-					} else {
-						displayMessage("Attenzione quantità minima gia' impostata!");
-					}
+			else
+				displayMessage("Non ci sono libri del tipo scelto in negozzio!");
+		} else {
+			if (isPressed == btnAdd) {
+				if (selectedAmount > newAmount)
+					txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) + 1));
+				else if (selectedAmount == 0) {
+					displayMessage("Non ci sono piu libri del tipo scelto");
+				} else {
+					displayMessage("Quantità massima già raggiunta");
+				}
+			} else if (isPressed == btnRemove) {
+				if (newAmount > 1) {
+					txtAmount.setText(String.valueOf(Integer.parseInt(txtAmount.getText()) - 1));
+				} else {
+					displayMessage("Attenzione quantità minima gia' impostata!");
 				}
 			}
-			if (isPressed == btnPurchaseIt) {
+		}
+		if (isPressed == btnPurchaseIt) {
 
-				this.observer.shopPurchaseItClicked(purchase());
+			this.observer.shopPurchaseItClicked(purchase());
 
-			} else if (isPressed == btnRemoveBook) {
-				clearSelectedBooks();
-			}else if(isPressed==btnSearch){
-				this.observer.searchType(cmbSearchType.getSelectedItem().toString(),txtSearchType.getText() );
-				this.setAllBooks();
-			}
+		} else if (isPressed == btnRemoveBook) {
+			clearSelectedBooks();
+		} else if (isPressed == btnSearch) {
+			this.observer.searchType(cmbSearchType.getSelectedItem().toString(), txtSearchType.getText());
+			this.setAllBooks();
 		}
 	}
 
@@ -342,25 +336,29 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	@Override
 	public void setAllBooks() {
 		clearTable(modelAllBooks);
-		Map<BookModel, Integer> tmp = this.observer.getBookInShop(cmbSearchType.getSelectedItem().toString(),txtSearchType.getText());
-		int i = 0;
+		Map<BookModel, Integer> tmp = this.observer.getBookInShop(cmbSearchType.getSelectedItem().toString(),
+				txtSearchType.getText());
+		if (tmp.keySet() == null) {
+			displayMessage("Nessun libro presente");
+		} else {
+			int i = 0;
 
-		for (BookModel entry : tmp.keySet()) {
-			if (entry.getTitle() == null) {
+			for (BookModel entry : tmp.keySet()) {
+				if (entry.getTitle() == null) {
 
-			} 
-			else  {
-				Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getLiteraryGenre(),
-						entry.getyearOfPublication(), entry.getPrice(),
-						tmp.values().toArray()[i] };
-				((DefaultTableModel) modelAllBooks).addRow(obj);
-				tblAllBooks.repaint();
-				System.out.println("bllcnvkdmndvjslvn " +tmp.values().toArray()[i]);
-				i++;
+				} else {
+					Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getLiteraryGenre(),
+							entry.getyearOfPublication(), entry.getPrice(),
+							tmp.values().toArray()[i] };
+					((DefaultTableModel) modelAllBooks).addRow(obj);
+					tblAllBooks.repaint();
+					System.out.println("bllcnvkdmndvjslvn " + tmp.values().toArray()[i]);
+					i++;
+				}
 			}
-		}
-		if (tblAllBooks.getRowCount() > 0) {
-			tblAllBooks.setRowSelectionInterval(0, 0);
+			if (tblAllBooks.getRowCount() > 0) {
+				tblAllBooks.setRowSelectionInterval(0, 0);
+			}
 		}
 	}
 
