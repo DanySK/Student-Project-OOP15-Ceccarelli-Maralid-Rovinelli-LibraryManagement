@@ -338,9 +338,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		clearTable(modelAllBooks);
 		Map<BookModel, Integer> tmp = this.observer.getBookInShop(cmbSearchType.getSelectedItem().toString(),
 				txtSearchType.getText());
-		if (tmp.keySet() == null) {
-			displayMessage("Nessun libro presente");
-		} else {
+		 
 			int i = 0;
 
 			for (BookModel entry : tmp.keySet()) {
@@ -359,8 +357,10 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			if (tblAllBooks.getRowCount() > 0) {
 				tblAllBooks.setRowSelectionInterval(0, 0);
 			}
+			if(modelAllBooks.getRowCount()==0)
+				displayMessage("Nessun libro presente");
 		}
-	}
+	
 
 	@Override
 	public void displayMessage(String message) {
