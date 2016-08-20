@@ -75,4 +75,35 @@ public class ShopImpl implements ShopAndWarehouseModel {
 		}
 		return bookT;
 	}
+
+	@Override
+	public Map<BookModel, Integer> searchBookByField(String field, String value) {
+		Map<BookModel, Integer> searchedBooks = new HashMap<>();
+		for(BookModel book : shop.keySet()){
+			switch (field) {
+			case "Titolo":
+				if (book.getTitle().equals(value)) {
+					searchedBooks.put(book, getBookQuantity(book));
+				}
+				break;
+			case "Autore":
+				if (book.getAuthor().equals(value)) {
+					searchedBooks.put(book, getBookQuantity(book));
+				}
+				break;
+			case "Anno":
+				try{
+					if (book.getyearOfPublication() == Integer.parseInt(value)) {
+						searchedBooks.put(book, getBookQuantity(book));
+					}
+					break;
+				} catch (NumberFormatException e) {
+					
+				}
+			default:
+				System.out.println("Errore nell'inserimento del campo");
+			}
+		}
+		return searchedBooks;
+	}
 }

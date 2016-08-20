@@ -18,7 +18,8 @@ public class BookshopController implements BookshopObserver {
 	private Model model;
 	private MainView maninView;
 	private BookshopPanel view;
-
+	Map<BookModel, Integer> booksInShop;
+	
 	public BookshopController(MainView mainView, Model model) {
 		this.maninView = mainView;
 		this.model = model;
@@ -39,8 +40,19 @@ public class BookshopController implements BookshopObserver {
 	}
 
 	@Override
-	public Map<BookModel, Integer> getBookInShop() {
-		Map<BookModel, Integer> booksInShop = model.shop().getBooks();
+	public Map<BookModel, Integer> getBookInShop(String type, String value) {
+		if(value.equals("")){
+			booksInShop = model.shop().getBooks();
+		} else {
+			booksInShop = model.shop().searchBookByField(type, value);
+		}
+		
+		return booksInShop;
+	}
+
+	@Override
+	public Map<BookModel, Integer> searchType(String type, String value) {
+		booksInShop = model.shop().searchBookByField(type, value);
 		return booksInShop;
 	}
 }

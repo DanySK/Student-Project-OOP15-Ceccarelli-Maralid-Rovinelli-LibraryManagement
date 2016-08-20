@@ -82,4 +82,31 @@ public class WarehouseImpl implements ShopAndWarehouseModel {
 		}
 		return bookT;
 	}
+
+	@Override
+	public Map<BookModel, Integer> searchBookByField(String field, String value) {
+		Map<BookModel, Integer> map = new HashMap<>();
+		for(BookModel book : warehouse.keySet()){
+			switch (field) {
+			case "Titolo":
+				if (book.getTitle().equals(value)) {
+					map.put(book, getBookQuantity(book));
+				}
+				break;
+			case "Autore":
+				if (book.getAuthor().equals(value)) {
+					map.put(book, getBookQuantity(book));
+				}
+				break;
+			case "Anno":
+				if (book.getyearOfPublication() == Integer.parseInt(value)) {
+					map.put(book, getBookQuantity(book));
+				}
+				break;
+			default:
+				System.out.println("Errore. Campo non trovato");
+			}
+		}
+		return map;
+	}
 }

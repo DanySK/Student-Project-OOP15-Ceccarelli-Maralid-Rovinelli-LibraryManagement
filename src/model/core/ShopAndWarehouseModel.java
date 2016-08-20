@@ -59,4 +59,8 @@ public interface ShopAndWarehouseModel {
 	 * @return
 	 */
 	public BookModel searchBook(String title, String author, int yearOfPublication);
+	
+	public Map<BookModel, Integer> searchBookByField(String field, String value);
+	
+	
 }

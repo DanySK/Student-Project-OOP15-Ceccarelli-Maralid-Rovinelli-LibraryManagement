@@ -134,34 +134,9 @@ public class Controller implements NorthPanelObserver, ViewObserver {
 	@Override
 	public void dataLoad() {
 		model.employees().updateEmployees(smEmployee.readFile("Employees.dat"));
-		/*
-		 * for(int i = 0;i<model.employees().getEmployees().size();i++){
-		 * System.out.println(model.employees().getEmployees().get(i).
-		 * getUsername()); }
-		 */
 		model.warehouse().update(smBookInWarehouse.readFile("BooksInWarehouse.dat"));
-		// System.out.println(model.warehouse().getBooks().);
-		/*
-		 * for ( BookModel key : model.warehouse().getBooks().keySet() ) {
-		 * System.out.println( key.getTitle()); }
-		 */
-		model.subscriptions().updateSubscriptions(smSubscription.readFile("Subscriptions.dat"));
-		/*
-		 * for (int j = 0; j<model.subscriptions().getSubscriptions().size();
-		 * j++){
-		 * System.out.println(model.subscriptions().getSubscriptions().get(j).
-		 * getName());
-		 * System.out.println(model.subscriptions().getSubscriptions().get(j).
-		 * getSurname());
-		 * System.out.println(model.subscriptions().getSubscriptions().get(j).
-		 * getType());
-		 * System.out.println(model.subscriptions().getSubscriptions()); }
-		 */
 		model.shop().update(smBookInShop.readFile("BooksInShop.dat"));
-		/*
-		 * for ( BookModel key : model.shop().getBooks().keySet() ) {
-		 * System.out.println( key.getTitle()); }
-		 */
+		model.subscriptions().updateSubscriptions(smSubscription.readFile("Subscriptions.dat"));
 		model.invoices().updateInvoices(smInvoice.readFile("Invoices.dat"));
 	}
 }

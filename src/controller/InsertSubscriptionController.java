@@ -31,6 +31,7 @@ public class InsertSubscriptionController implements AddSubscriptionObserver {
 	public void addNewSubcriptionClicked(String name, String surname) {
 		subscription = new SubscriptionImpl(name, surname, "Bronze", 0);
 		model.subscriptions().addSubscription(subscription);
+		this.view.displayMessage("Abbonamento aggiunto con successo");
 		this.view.setAllSubscriptions();
 	}
 

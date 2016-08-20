@@ -43,10 +43,8 @@ public class ReceiptPanelController implements RecepitObserver {
 					model.shop().getBookQuantity(
 							model.shop().searchBook(book.getTitle(), book.getAuthor(), book.getyearOfPublication()))
 							- amount);
-			if (subscriptionId != null) {
+			if (!subscriptionId.equals(""))
 				model.subscriptions().getASubscription(Integer.parseInt(subscriptionId)).addBook(amount);
-			}
-
 		});
 		this.view.displayMessage("Acquisto effettuato");
 	}
