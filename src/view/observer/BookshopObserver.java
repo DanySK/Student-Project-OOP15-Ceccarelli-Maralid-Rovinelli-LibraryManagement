@@ -23,5 +23,5 @@ public interface BookshopObserver {
 	 * 
 	 *@return map of the required fields
 	 */
-	Map<BookModel, Integer> searchType (String type, String value);
+	String [] searchType (String type, String value);
 }
