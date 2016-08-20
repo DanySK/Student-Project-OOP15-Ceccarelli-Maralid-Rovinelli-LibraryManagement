@@ -8,23 +8,27 @@ public interface BookshopPanel {
 	 * */
 	void clearSelectedBooks();
 	/**
-	 * Attacca alla view il BookshopObserver
+	 * attacca alla view il BookshopObserver
 	 * 
 	 * @param observer
-	 * */
+	 */
 	void attachObserver (BookshopObserver observer);
 	/**
-	 * The method used to display a message
+	 * the method used to display a message
 	 * 
 	 * @param message
 	 */
 	void displayMessage(String message);
 	/**
-	 *Load the list of books
+	 *load the list of books
 	 *
 	 */
 	void setAllBooks();
-	
+	/**
+	 * this method check if the user can move the book by the jtable tblAllBooks 
+	 * to tblSelectedBooks and do this job
+	 * 
+	 */
 	void moveBooks();
 
 		

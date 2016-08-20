@@ -42,6 +42,12 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 	private static final long serialVersionUID = 1L;
 	private JLabel lblAmount;
 	private JButton btnAddCopyToWarehouse;
+	private final int titleCell = 0;
+	private final int authorCell = 1;
+	private final int genreCell = 2;
+	private final int yearCell = 3;
+	private final int priceCell = 4;
+	private final int amountCell = 5;
 
 	public WarehousePanelImpl() {
 		setBackground(SystemColor.activeCaption);
@@ -76,7 +82,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 				if (e.getClickCount() == 2) {
 					JTable target = (JTable) e.getSource();
 					int row = target.getSelectedRow();
-					if ((Integer) modelAllBooks.getValueAt(row, 5) < 1) {
+					if ((Integer) modelAllBooks.getValueAt(row, amountCell) < 1) {
 						btnAddToBookShop.setEnabled(false);
 					} else {
 						btnAddToBookShop.setEnabled(true);
@@ -161,27 +167,29 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 					.parseInt(lblAmount.getText()))
 				lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) + 1));
 			else
-				displayMessage("Quantità  massima già  raggiunta");
+				displayMessage("Quantitï¿½ massima giï¿½ raggiunta");
 		} else if (isPressed == btnAddTen) {
 			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) > Integer
 					.parseInt(lblAmount.getText()))
 				lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) + 10));
 			else
-				displayMessage("Quantità  massima già  raggiunta");
+				displayMessage("Quantitï¿½ massima giï¿½ raggiunta");
 		} else if (isPressed == btnAddToBookShop) {
 			this.observer.addBooksInBookShopClicked(
-					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString(),
-					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString(),
-					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 2).toString(),
-					(int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3),
-					(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4),
+					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), titleCell).toString(),
+					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), authorCell).toString(),
+					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), genreCell).toString(),
+					(int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), yearCell),
+					(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), priceCell),
 					Integer.parseInt(lblAmount.getText()));
+			lblAmount.setText("1");
 		} else if (isPressed == btnAddCopyToWarehouse) {
 			this.observer.addCopyToWarehouse(
-					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString(),
-					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString(),
-					(Integer) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3),
+					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), titleCell).toString(),
+					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), authorCell).toString(),
+					(Integer) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), yearCell),
 					Integer.parseInt(lblAmount.getText()));
+			lblAmount.setText("1");
 		}
 	}
 

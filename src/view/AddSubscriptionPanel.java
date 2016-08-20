@@ -10,10 +10,19 @@ public interface AddSubscriptionPanel {
 	 * */
 	void attachObserver(AddSubscriptionObserver observer);
 	/**
-	 * Cleans all textField in the panel 
-	 * */
+	 * cleans all textField in the panel 
+	 */
 	void clearPanel();
-	
+	/**
+	 *this method fill the Jtable with the subscriptions list 
+	 * 
+	 */
 	void setAllSubscriptions();
+	/**
+	 * the method used to display a message
+	 * 
+	 * @param message
+	 */
+	void displayMessage(String message);
 	
 }

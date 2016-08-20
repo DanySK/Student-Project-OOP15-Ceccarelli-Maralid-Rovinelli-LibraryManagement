@@ -36,10 +36,10 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 	private JLabel lblNewLabel;
 	private JComboBox<String> cmbTypeOfPayment;
 	private RecepitObserver observer;
-	private JTextField txtTotalPrice;
-	private JLabel lblTotalPrice;
+	private JLabel lblTotalPriceTitle;
 	private JTextField txtSubscriptionCode;
 	private JLabel lblSubscription;
+	private JLabel lblTotalPrice;
 
 	/**
 	 * Create the panel.
@@ -47,14 +47,22 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 	public ReceiptPanelImpl() {
 		setBackground(SystemColor.inactiveCaption);
 		this.setLayout(null);
-		modelReport = new DefaultTableModel(new Object[][] {}, new String[] { "Titolo", "Quantita'", "Prezzo" });
+		modelReport = new DefaultTableModel(new Object[][] {},
+				new String[] { "Titolo", "Quantita'", "Prezzo" });
 
 		scpReport = new JScrollPane();
 		scpReport.setEnabled(false);
 		scpReport.setBounds(20, 74, 853, 418);
 		add(scpReport);
 
-		tblReport = new JTable();
+		tblReport = new JTable() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		tblReport.setBackground(SystemColor.inactiveCaption);
 		scpReport.setViewportView(tblReport);
 		tblReport.setModel(modelReport);
@@ -72,7 +80,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 
 		btnMakePurchase = new JButton("Effettua acquisto");
 		btnMakePurchase.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
-		btnMakePurchase.setBounds(712, 518, 161, 31);
+		btnMakePurchase.setBounds(709, 512, 161, 31);
 		btnMakePurchase.addActionListener(this);
 		add(btnMakePurchase);
 
@@ -84,26 +92,26 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 		cmbTypeOfPayment.addItem("Bancomat");
 		add(cmbTypeOfPayment);
 
-		txtTotalPrice = new JTextField();
-		txtTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		txtTotalPrice.setBounds(20, 523, 161, 20);
-		add(txtTotalPrice);
-		txtTotalPrice.setColumns(10);
-
-		lblTotalPrice = new JLabel("Totale:");
-		lblTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblTotalPrice.setBounds(20, 509, 161, 14);
-		add(lblTotalPrice);
+		lblTotalPriceTitle = new JLabel("Totale:");
+		lblTotalPriceTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
+		lblTotalPriceTitle.setBounds(30, 503, 161, 20);
+		add(lblTotalPriceTitle);
 
 		txtSubscriptionCode = new JTextField();
+		txtSubscriptionCode.setFont(new Font("Calibri", Font.ITALIC, 13));
 		txtSubscriptionCode.setBounds(421, 523, 161, 20);
 		add(txtSubscriptionCode);
 		txtSubscriptionCode.setColumns(10);
 
 		lblSubscription = new JLabel("Codice abbonamento");
 		lblSubscription.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
-		lblSubscription.setBounds(421, 503, 161, 14);
+		lblSubscription.setBounds(421, 506, 161, 14);
 		add(lblSubscription);
+
+		lblTotalPrice = new JLabel("0.0");
+		lblTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 16));
+		lblTotalPrice.setBounds(30, 520, 161, 29);
+		add(lblTotalPrice);
 
 	}
 
@@ -114,8 +122,10 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 		Date currentDate = Calendar.getInstance().getTime();
 		if (isPressed == btnMakePurchase) {
 			try {
-				this.observer.saveAccountingClicked((Date) dateFormat.parse((dateFormat.format(currentDate))),
-						cmbTypeOfPayment.getSelectedIndex(), txtSubscriptionCode.getText().toString());
+				this.observer.saveAccountingClicked(
+						(Date) dateFormat.parse((dateFormat.format(currentDate))),
+						cmbTypeOfPayment.getSelectedIndex(),
+						txtSubscriptionCode.getText().toString());
 			} catch (NumberFormatException | ParseException e1) {
 
 				e1.printStackTrace();
@@ -144,8 +154,11 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 						entry.getPrice() * (Integer) tmp.values().toArray()[i] };
 				((DefaultTableModel) modelReport).addRow(obj);
 				tblReport.repaint();
+				lblTotalPrice.setText(String.valueOf(Double.parseDouble(lblTotalPrice.getText())
+						+((Integer) tmp.values().toArray()[i] * entry.getPrice())));
 				i++;
 			}
+			
 		}
 		if (tblReport.getRowCount() > 0) {
 			tblReport.setRowSelectionInterval(0, 0);

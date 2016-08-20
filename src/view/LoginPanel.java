@@ -6,18 +6,18 @@ import view.observer.LoginObserver;
 public interface LoginPanel {
 
 	/**
-	 * metodo per pulire le textfield nel login
+	 * cleans all textField in the panel
 	 * */
 	void clearLogin();
 	/**
-	 * Attacca alla view il LoginObserver
+	 * set for the LoginObserver
 	 * 
 	 * @param observer
 	 * */
 	void attachObserver (LoginObserver observer);
 	
 	/**
-	 * Permette divisualizzare un dato messaggio in una label predefinita
+	 * the method used to display a message
 	 * 
 	 * @param message
 	 */void displayMessage(String message);

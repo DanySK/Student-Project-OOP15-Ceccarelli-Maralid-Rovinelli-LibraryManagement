@@ -210,7 +210,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 		} else if (isPressed == btnRemoveTen && Integer.parseInt(lblAmount.getText()) > 10) {
 			lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) - 10));
 		} else if (isPressed == btnAddBook) {
-			try {
+			try {				
 				observer.addBookClicked(txtTitle.getText(), txtAuthor.getText(),
 						cmbLiteraryGenre.getSelectedItem().toString(),
 						(Integer) cmbYear.getSelectedItem(),
@@ -219,7 +219,7 @@ public class AddBookPanelImpl extends JPanel implements AddBookPanel, ActionList
 			} catch (IllegalArgumentException iE) {
 				this.displayMessage("Valore inserito errato. Controllare i campi inseriti");
 			}
-
+			lblAmount.setText("1");
 		} else if (isPressed == btnBack) {
 			observer.backToWharehouseClicked();
 		}

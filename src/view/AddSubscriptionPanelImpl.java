@@ -11,6 +11,8 @@ import javax.swing.JTable;
 import view.observer.AddSubscriptionObserver;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -124,7 +126,7 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 
 		btnClear = new JButton("Pulisci tutto");
 		btnClear.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
-		btnClear.setBounds(30, 510, 125, 50);
+		btnClear.setBounds(30, 443, 125, 50);
 		btnClear.addActionListener(this);
 		add(btnClear);
 
@@ -169,7 +171,10 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		if (isPressed == btnClear) {
 			this.clearPanel();
 		} else if (isPressed == btnAddSubcription) {
+			if(!(txtName.getText().equals("")&& txtSurname.getText().equals("")))
 			this.observer.addNewSubcriptionClicked(txtName.getText(), txtSurname.getText());
+			else
+				displayMessage("Riempire correttamente tutti i campi richisti");
 		}
 
 	}
@@ -210,5 +215,10 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		for(int i = model.getRowCount()-1; i >= 0; i--){
 			model.removeRow(i);
 		}
-	}	
+	}
+
+		@Override
+		public void displayMessage(String message) {
+			JOptionPane.showMessageDialog(null, message, "Attenzione", JOptionPane.PLAIN_MESSAGE);			
+		}	
 }

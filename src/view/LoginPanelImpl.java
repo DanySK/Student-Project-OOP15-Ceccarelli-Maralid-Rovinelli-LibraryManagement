@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JPasswordField;
@@ -24,7 +25,6 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 	private LoginObserver observer;
 	private JButton btnRecorded;
 	private JLabel lblRecorded;
-	private JLabel lblErrorMsg;
 	private JLabel lblTitle;
 
 	public LoginPanelImpl() {
@@ -83,14 +83,6 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		lblRecorded.setBounds(23, 459, 143, 25);
 		add(lblRecorded);
 		
-		lblErrorMsg = new JLabel("");
-		lblErrorMsg.setVerticalAlignment(SwingConstants.TOP);
-		lblErrorMsg.setHorizontalAlignment(SwingConstants.CENTER);
-		lblErrorMsg.setForeground(Color.RED);
-		lblErrorMsg.setFont(new Font("Calibri", Font.ITALIC, 13));
-		lblErrorMsg.setBounds(172, 97, 262, 100);
-		add(lblErrorMsg);
-		
 		lblTitle = new JLabel("Login");
 		lblTitle.setForeground(new Color(255, 69, 0));
 		lblTitle.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 35));
@@ -126,7 +118,9 @@ public class LoginPanelImpl extends JPanel implements LoginPanel, ActionListener
 		this.observer = observer;
 		
 	}
+	
+	@Override
 	public void displayMessage(String message){
-		this.lblErrorMsg.setText(message);
+		JOptionPane.showMessageDialog(null, message, "Attenzione", JOptionPane.PLAIN_MESSAGE);
 	}
 }
