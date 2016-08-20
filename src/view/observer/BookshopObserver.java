@@ -17,11 +17,11 @@ public interface BookshopObserver {
 	 * 
 	 * @return
 	 */
-	Map<BookModel, Integer> getBookInShop();
+	Map<BookModel, Integer> getBookInShop(String type, String value);
 	/**
 	 *It allows you to switch to the controller data on eg a search for specific books
 	 * 
 	 *@return map of the required fields
 	 */
-	String [] searchType (String type, String value);
+	Map< BookModel,Integer>searchType (String type, String value);
 }

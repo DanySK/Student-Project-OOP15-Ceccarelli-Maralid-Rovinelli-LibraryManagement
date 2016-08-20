@@ -342,7 +342,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	@Override
 	public void setAllBooks() {
 		clearTable(modelAllBooks);
-		Map<BookModel, Integer> tmp = this.observer.getBookInShop();
+		Map<BookModel, Integer> tmp = this.observer.getBookInShop(cmbSearchType.getSelectedItem().toString(),txtSearchType.getText());
 		int i = 0;
 
 		for (BookModel entry : tmp.keySet()) {
