@@ -1,5 +1,4 @@
 package main;
-import model.EmployeeModel;
 import model.Model;
 import model.ModelImpl;
 import view.MainView;

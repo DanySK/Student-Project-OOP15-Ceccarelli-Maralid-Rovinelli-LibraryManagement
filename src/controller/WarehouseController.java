@@ -23,7 +23,6 @@ public class WarehouseController implements WarehouseObserver {
 	public void setView(WarehousePanel wp) {
 		this.view = wp;
 		this.view.attachObserver(this);
-		System.out.println(model.shop().getBooks());
 	}
 
 	@Override

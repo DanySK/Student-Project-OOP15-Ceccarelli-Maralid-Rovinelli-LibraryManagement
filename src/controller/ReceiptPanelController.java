@@ -8,6 +8,8 @@ import model.BookModel;
 import model.InvoiceImpl;
 import model.InvoiceModel;
 import model.Model;
+import view.BookshopPanelImpl;
+import view.MainView;
 import view.ReceiptPanel;
 import view.observer.RecepitObserver;
 
@@ -18,11 +20,13 @@ import view.observer.RecepitObserver;
 public class ReceiptPanelController implements RecepitObserver {
 
 	private Model model;
+	private MainView mainView;
 	private ReceiptPanel view;
 	private Map<BookModel, Integer> purchaseList = new HashMap<BookModel, Integer>();
 	private InvoiceModel invoice;
 
-	public ReceiptPanelController(Model model, Map<BookModel, Integer> purchaseList) {
+	public ReceiptPanelController(MainView mainView, Model model, Map<BookModel, Integer> purchaseList) {
+		this.mainView = mainView;
 		this.model = model;
 		this.purchaseList = purchaseList;
 	}
@@ -34,7 +38,6 @@ public class ReceiptPanelController implements RecepitObserver {
 
 	@Override
 	public void saveAccountingClicked(Date today, int payment, String subscriptionId) {
-		System.out.println(subscriptionId);
 		invoice = new InvoiceImpl(purchaseList, today, payment);
 		model.invoices().addNewInvoice(invoice);
 		purchaseList.forEach((book, amount) -> {
@@ -47,6 +50,10 @@ public class ReceiptPanelController implements RecepitObserver {
 				model.subscriptions().getASubscription(Integer.parseInt(subscriptionId)).addBook(amount);
 		});
 		this.view.displayMessage("Acquisto effettuato");
+		BookshopPanelImpl bsp = new BookshopPanelImpl();
+		BookshopController bsc = new BookshopController(this.mainView, model);
+		bsc.setView(bsp);
+		this.mainView.replaceMainPanel(bsp);
 	}
 
 	public double getTotal() {

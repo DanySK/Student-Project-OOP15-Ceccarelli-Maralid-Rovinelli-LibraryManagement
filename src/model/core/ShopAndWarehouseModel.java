@@ -45,7 +45,7 @@ public interface ShopAndWarehouseModel {
 	public void replaceQuantity(BookModel book, int quantity);
 
 	/**
-	 * This method returns the amount of the requested book
+	 * this method returns the amount of the requested book
 	 * 
 	 * @param book
 	 * @return amount of the book
@@ -53,13 +53,19 @@ public interface ShopAndWarehouseModel {
 	public Integer getBookQuantity(BookModel book);
 
 	/**
-	 * this method return a book if u insert the title in input
+	 * this method return a book if u insert the title, author, yearOfPublication in input
 	 * 
 	 * @param title
 	 * @return
 	 */
 	public BookModel searchBook(String title, String author, int yearOfPublication);
 	
+	/**
+	 * this method return a map of searched books by field (title or author or yearOfPublication)
+	 * @param field
+	 * @param value
+	 * @return
+	 */
 	public Map<BookModel, Integer> searchBookByField(String field, String value);
 	
 	

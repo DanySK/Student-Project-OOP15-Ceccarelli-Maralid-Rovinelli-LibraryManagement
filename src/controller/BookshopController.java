@@ -19,7 +19,7 @@ public class BookshopController implements BookshopObserver {
 	private MainView maninView;
 	private BookshopPanel view;
 	Map<BookModel, Integer> booksInShop;
-	
+
 	public BookshopController(MainView mainView, Model model) {
 		this.maninView = mainView;
 		this.model = model;
@@ -34,19 +34,19 @@ public class BookshopController implements BookshopObserver {
 	@Override
 	public void shopPurchaseItClicked(Map<BookModel, Integer> purchaseList) {
 		ReceiptPanelImpl ri = new ReceiptPanelImpl();
-		ReceiptPanelController rc = new ReceiptPanelController(model, purchaseList);
+		ReceiptPanelController rc = new ReceiptPanelController(this.maninView, model, purchaseList);
 		rc.setView(ri);
 		this.maninView.replaceMainPanel(ri);
 	}
 
 	@Override
 	public Map<BookModel, Integer> getBookInShop(String type, String value) {
-		if(value.equals("")){
+		if (value.equals("")) {
 			booksInShop = model.shop().getBooks();
 		} else {
 			booksInShop = model.shop().searchBookByField(type, value);
 		}
-		
+
 		return booksInShop;
 	}
 
