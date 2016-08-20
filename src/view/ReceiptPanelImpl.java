@@ -47,8 +47,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 	public ReceiptPanelImpl() {
 		setBackground(SystemColor.inactiveCaption);
 		this.setLayout(null);
-		modelReport = new DefaultTableModel(new Object[][] {},
-				new String[] { "Titolo", "Quantita'", "Prezzo" });
+		modelReport = new DefaultTableModel(new Object[][] {}, new String[] { "Titolo", "Quantita'", "Prezzo" });
 
 		scpReport = new JScrollPane();
 		scpReport.setEnabled(false);
@@ -115,10 +114,8 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 		Date currentDate = Calendar.getInstance().getTime();
 		if (isPressed == btnMakePurchase) {
 			try {
-				this.observer.saveAccountingClicked(
-						(Date) dateFormat.parse((dateFormat.format(currentDate))),
-						cmbTypeOfPayment.getSelectedIndex(),
-						Integer.parseInt(txtSubscriptionCode.getText()));
+				this.observer.saveAccountingClicked((Date) dateFormat.parse((dateFormat.format(currentDate))),
+						cmbTypeOfPayment.getSelectedIndex(), txtSubscriptionCode.getText().toString());
 			} catch (NumberFormatException | ParseException e1) {
 
 				e1.printStackTrace();

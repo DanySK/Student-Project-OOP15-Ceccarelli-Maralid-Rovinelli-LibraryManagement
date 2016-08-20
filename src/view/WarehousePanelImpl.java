@@ -161,13 +161,13 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 					.parseInt(lblAmount.getText()))
 				lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) + 1));
 			else
-				displayMessage("Quantit√† massima gi√† raggiunta");
+				displayMessage("Quantit‡† massima gi‡† raggiunta");
 		} else if (isPressed == btnAddTen) {
 			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) > Integer
 					.parseInt(lblAmount.getText()))
 				lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) + 10));
 			else
-				displayMessage("Quantit√† massima gi√† raggiunta");
+				displayMessage("Quantit‡† massima gi‡† raggiunta");
 		} else if (isPressed == btnAddToBookShop) {
 			this.observer.addBooksInBookShopClicked(
 					modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString(),

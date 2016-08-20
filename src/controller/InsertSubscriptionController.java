@@ -8,18 +8,21 @@ import model.SubscriptionModel;
 import view.AddSubscriptionPanel;
 import view.observer.AddSubscriptionObserver;
 
-public class InsertSubscriptionController implements AddSubscriptionObserver{
-	
+/**
+ * @author erik_
+ *
+ */
+public class InsertSubscriptionController implements AddSubscriptionObserver {
+
 	private Model model;
 	private AddSubscriptionPanel view;
 	private SubscriptionModel subscription;
 
-	
-	public InsertSubscriptionController(Model model){
+	public InsertSubscriptionController(Model model) {
 		this.model = model;
 	}
-	
-	public void setView(AddSubscriptionPanel sp){
+
+	public void setView(AddSubscriptionPanel sp) {
 		this.view = sp;
 		this.view.attachObserver(this);
 	}
@@ -33,7 +36,7 @@ public class InsertSubscriptionController implements AddSubscriptionObserver{
 
 	@Override
 	public Map<Integer, SubscriptionModel> getAllSubscriptions() {
-		Map <Integer, SubscriptionModel> subscriptions = model.subscriptions().getSubscriptions();
+		Map<Integer, SubscriptionModel> subscriptions = model.subscriptions().getSubscriptions();
 		return subscriptions;
 	}
 

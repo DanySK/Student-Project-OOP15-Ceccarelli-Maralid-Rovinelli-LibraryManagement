@@ -2,16 +2,16 @@ package view.observer;
 
 public interface LoginObserver {
 	/**
-	 * metodo utilizzato per caricare la view per la registrazione di un
-	 * nuovo dipendete
+	 * go to view register employee
 	 */
 	void registerEmployeeClicked();
+
 	/**
-	 * permette di effettuare l'accesso tramite uno username ed una password
+	 * allow user (employee) to login in
 	 * 
 	 * @param username
-	 * @param cs
-	 * */
+	 * @param password
+	 */
 	void loginEmployee(String username, char[] password);
-	 
+
 }

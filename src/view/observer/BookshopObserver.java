@@ -6,13 +6,16 @@ import model.BookModel;
 
 public interface BookshopObserver {
 	/**
-	 * permette di aprire la view del carrello con i libri scelti
+	 * go to purhcase recap view
+	 * 
+	 * @param purchaseList
 	 */
 	void shopPurchaseItClicked(Map<BookModel, Integer> purchaseList);
 
 	/**
+	 * return books in shop
 	 * 
-	 * 
-	 * */
+	 * @return
+	 */
 	Map<BookModel, Integer> getBookInShop();
 }

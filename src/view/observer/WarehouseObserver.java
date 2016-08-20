@@ -6,18 +6,32 @@ import model.BookModel;
 
 public interface WarehouseObserver {
 	/**
-	 * It allows you to add new books in warehouse
+	 * allows to add new books in book shop
 	 * 
+	 * @param title
+	 * @param author
+	 * @param literaryGenre
+	 * @param year
+	 * @param price
+	 * @param amount
 	 */
 	void addBooksInBookShopClicked(String title, String author, String literaryGenre, int year, double price,
 			int amount);
 
 	/**
-	 *This method returns a list of all the books in the wharehouse
+	 * this method returns a list of all books in warehouse
 	 * 
 	 * @return
 	 */
 	Map<BookModel, Integer> getBooksInWarehouse();
-	
-	void addCopyToWarehouse(String title, String author, int year, int amount );
+
+	/**
+	 * allow to add few copies to warehouse
+	 * 
+	 * @param title
+	 * @param author
+	 * @param year
+	 * @param amount
+	 */
+	void addCopyToWarehouse(String title, String author, int year, int amount);
 }

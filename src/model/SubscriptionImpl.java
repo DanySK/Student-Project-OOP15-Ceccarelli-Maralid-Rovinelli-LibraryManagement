@@ -37,7 +37,18 @@ public class SubscriptionImpl implements SubscriptionModel, Serializable {
     }
     @Override
     public String getType() {
-        return this.type;
+    	if(books >= 1 && books <=20) {
+    		type = "Bronzo";
+    	} else if (books >=21 && books <= 50) {
+    		type = "Argento";
+    	} else if (books >=51 && books <= 100) {
+    		type = "Oro";
+    	} else if (books >= 101 && books <= 200) {
+    		type = "Platino";
+    	} else if (books >= 201){
+    		type = "Platino";
+    	}
+    	return this.type;
     }
     @Override
     public int getBook() {

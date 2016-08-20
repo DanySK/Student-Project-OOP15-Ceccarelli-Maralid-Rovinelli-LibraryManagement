@@ -10,6 +10,10 @@ import model.Model;
 import model.EmployeeImpl;
 import model.EmployeeModel;
 
+/**
+ * @author erik_
+ *
+ */
 public class InsertEmployeeController implements AddEmployeeObserver {
 
 	private Model model;
@@ -30,13 +34,17 @@ public class InsertEmployeeController implements AddEmployeeObserver {
 	@Override
 	public void saveEmployee(String name, String surname, String address, String username, char[] password,
 			String email, int telephoneNumber, String taxCode, Date birthDate, Date hireDate) {
-
-		employee = new EmployeeImpl(taxCode, name, surname, email, birthDate, hireDate, address, username, password);
-		model.employees().addNewEmployee(employee);
-		LoginPanelImpl li = new LoginPanelImpl();
-		LoginPanelController lp = new LoginPanelController(this.mainView, model);
-		lp.setView(li);
-		mainView.replaceMainPanel(li);
+		if (model.employees().searchEmployee(username).getUsername() == null) {
+			employee = new EmployeeImpl(taxCode, name, surname, email, birthDate, hireDate, address, username, password);
+			model.employees().addNewEmployee(employee);
+			LoginPanelImpl li = new LoginPanelImpl();
+			LoginPanelController lp = new LoginPanelController(this.mainView, model);
+			lp.setView(li);
+			this.mainView.replaceMainPanel(li);
+			this.view.displayMessage("Dipendente registrato con successo");
+		} else {
+			this.view.displayMessage("Username già utilizzato");
+		}
 
 	}
 }

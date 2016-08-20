@@ -9,6 +9,10 @@ import view.MainView;
 import view.ReceiptPanelImpl;
 import view.observer.BookshopObserver;
 
+/**
+ * @author erik_
+ *
+ */
 public class BookshopController implements BookshopObserver {
 
 	private Model model;
@@ -31,12 +35,12 @@ public class BookshopController implements BookshopObserver {
 		ReceiptPanelImpl ri = new ReceiptPanelImpl();
 		ReceiptPanelController rc = new ReceiptPanelController(model, purchaseList);
 		rc.setView(ri);
-		maninView.replaceMainPanel(ri);
+		this.maninView.replaceMainPanel(ri);
 	}
 
 	@Override
 	public Map<BookModel, Integer> getBookInShop() {
-		Map<BookModel, Integer> booksInShop = model.shop().getBooks();//Get all book into the shop
+		Map<BookModel, Integer> booksInShop = model.shop().getBooks();
 		return booksInShop;
 	}
 }

@@ -2,64 +2,43 @@ package view.observer;
 
 public interface ViewObserver {
 	/**
-	 * Metodo per chiudere l'applicazione
+	 * close the application
 	 */
 	void exitCommand();
 
 	/**
-	 * Metodo che permette il savataggio dei dati
+	 * save data into files when you close the application
 	 */
 	void saveData();
-	
+
 	/**
-	 * Metodo che permette il savataggio dei dati
-	 * 
-	 * @param path
-	 *            Percorso in cui salvare il model
+	 * load data when you open the application
 	 */
-	void saveData(String path);
-	/**
-	 * Metodo che permette di salvare i dati
-	 */
-	
 	void dataLoad();
 
 	/**
-	 * Metodo che permette di salvare i dati
-	 * 
-	 * @param path
-	 *            Percorso da cui caricare il model
-	 */
-	void dataLoad(String path);
-	/**
-	 * 
+	 * go to warehouse view
 	 */
 	void warehouseClicked();
 
 	/**
-	 * 
-	 * 
+	 * go to add book view
 	 */
 	void addBooksClicked();
 
 	/**
-	 * 
-	 * 
+	 * go to book shop view
 	 */
 	void bookShopClicked();
 
 	/**
-	 * 
-	 * 
+	 * go to add new employee view
 	 */
 	void addEmployeeClicked();
 
 	/**
-	 * 
-	 * 
+	 * go to add subscription view
 	 */
 	void addSubscriptionClicked();
-	
 
-	
 }

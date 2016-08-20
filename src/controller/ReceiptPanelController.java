@@ -11,6 +11,10 @@ import model.Model;
 import view.ReceiptPanel;
 import view.observer.RecepitObserver;
 
+/**
+ * @author erik_
+ *
+ */
 public class ReceiptPanelController implements RecepitObserver {
 
 	private Model model;
@@ -29,16 +33,22 @@ public class ReceiptPanelController implements RecepitObserver {
 	}
 
 	@Override
-	public void saveAccountingClicked(Date today, int payment) {
-		int prova = 0;
+	public void saveAccountingClicked(Date today, int payment, String subscriptionId) {
+		System.out.println(subscriptionId);
 		invoice = new InvoiceImpl(purchaseList, today, payment);
 		model.invoices().addNewInvoice(invoice);
 		purchaseList.forEach((book, amount) -> {
 			model.shop().replaceQuantity(
-					model.shop().searchBook(book.getTitle(), book.getAuthor(), book.getyearOfPublication()), 
-					model.shop().getBookQuantity(model.shop().searchBook(book.getTitle(), book.getAuthor(), book.getyearOfPublication())) - amount);
-					//model.subscriptions().getASubscription(num).addBook(amount);
+					model.shop().searchBook(book.getTitle(), book.getAuthor(), book.getyearOfPublication()),
+					model.shop().getBookQuantity(
+							model.shop().searchBook(book.getTitle(), book.getAuthor(), book.getyearOfPublication()))
+							- amount);
+			if (subscriptionId != null) {
+				model.subscriptions().getASubscription(Integer.parseInt(subscriptionId)).addBook(amount);
+			}
+
 		});
+		this.view.displayMessage("Acquisto effettuato");
 	}
 
 	public double getTotal() {

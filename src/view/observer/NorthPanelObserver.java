@@ -1,23 +1,19 @@
 package view.observer;
 
 public interface NorthPanelObserver {
-	
-
 	/**
-	 *ritorna nella home (il pannello di login) 
-	 *
+	 * go back to home when click the button "Home"
 	 */
 	void buttonHomeClicked();
+
 	/**
-	 * effettua la login 
-	 * 
+	 * go to login view
 	 */
 	void buttonLoginClicked();
+
 	/**
-	 * 
-	 * 
+	 * go to login view if click on button "Logout"
 	 */
-	void buttonLogoutClicked();	
-	
-	
+	void buttonLogoutClicked();
+
 }

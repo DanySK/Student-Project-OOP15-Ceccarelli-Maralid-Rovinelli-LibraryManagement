@@ -23,7 +23,7 @@ import javax.swing.JButton;
 public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, ActionListener {
 
 	private static final long serialVersionUID = 1L;
-//prova
+	// prova
 	private AddEmployeeObserver observer;
 	private JLabel lblTitle;
 	private JTextField txtName;
@@ -51,7 +51,6 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 	private JComboBox<Integer> cmbYear;
 	private JButton btnAddEmployee;
 	private JButton btnClear;
-	private JLabel lblMessage;
 	private JLabel lblEmail;
 	private JTextField txtEmail;
 	private JLabel lblYear;
@@ -61,8 +60,6 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 	public AddEmployeePanelImpl() {
 		setBackground(SystemColor.activeCaption);
 		this.setLayout(null);
-		// this.setYear();
-		// this.setMonth();
 		System.out.println(Calendar.getInstance().get(Calendar.YEAR));
 		lblTitle = new JLabel("Aggiunta Dipendente");
 		lblTitle.setForeground(new Color(255, 69, 0));
@@ -212,15 +209,6 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 		btnClear.addActionListener(this);
 		add(btnClear);
 
-		lblMessage = new JLabel("");
-		lblMessage.setHorizontalAlignment(SwingConstants.LEFT);
-		lblMessage.setVerticalAlignment(SwingConstants.TOP);
-		lblMessage.setForeground(Color.RED);
-		lblMessage.setBackground(Color.BLACK);
-		lblMessage.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		lblMessage.setBounds(42, 462, 651, 109);
-		add(lblMessage);
-
 		lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
 		lblEmail.setBounds(661, 403, 212, 14);
@@ -262,23 +250,19 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 		if (isPressed == btnAddEmployee) {
 			try {
 				this.observer.saveEmployee(txtName.getText(), txtSurname.getText(),
-						(txtCity.getText() + " " + txtStreet.getText() + " "
-								+ txtHouseNumber.getText()),
+						(txtCity.getText() + " " + txtStreet.getText() + " " + txtHouseNumber.getText()),
 						txtUsername.getText(), txtPassword.getPassword(), txtEmail.getText(),
-						Integer.parseInt(txtTelephone.getText()),
-						txtTaxCode.getText(),
+						Integer.parseInt(txtTelephone.getText()), txtTaxCode.getText(),
 						(Date) dateFormat.parse(cmbYear.getSelectedItem().toString() + "/"
-								+ cmbMonth.getSelectedItem().toString() + "/"
-								+ cmbDay.getSelectedItem().toString()),
+								+ cmbMonth.getSelectedItem().toString() + "/" + cmbDay.getSelectedItem().toString()),
 						hireDate);
 
 			} catch (NumberFormatException | ParseException e1) {
 				this.displayMessage("Si prega di riempire in modo adeguato tutti i campi presenti ");
-				JOptionPane.showMessageDialog(btnAddEmployee, e1, "Error!", JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (isPressed == btnClear) {
 			this.cleanInterface();
-		} else if(isPressed== cmbYear){
+		} else if (isPressed == cmbYear) {
 			cmbMonth.setEnabled(true);
 			setDay();
 		} else if (isPressed == cmbMonth) {
@@ -302,7 +286,6 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 		this.cmbDay.setSelectedItem("");
 		this.cmbMonth.setSelectedItem("");
 		this.cmbYear.setSelectedItem("");
-		this.lblMessage.setText("");
 	}
 
 	@Override
@@ -312,7 +295,7 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 
 	@Override
 	public void displayMessage(String message) {
-		lblMessage.setText(message);
+		JOptionPane.showMessageDialog(null, message, "Attenzione", JOptionPane.PLAIN_MESSAGE);
 	}
 
 	public void setDay() {
@@ -325,13 +308,16 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 			for (int i = 1; i <= 28; i++) {
 				cmbDay.addItem(i);
 			}
-		} else if (cmbMonth.getSelectedItem().toString() .equals("4") || cmbMonth.getSelectedItem().toString() .equals("6")
-				|| cmbMonth.getSelectedItem().toString().equals("9") || cmbMonth.getSelectedItem().toString().equals("11") ) {
+		} else if (cmbMonth.getSelectedItem().toString().equals("4")
+				|| cmbMonth.getSelectedItem().toString().equals("6")
+				|| cmbMonth.getSelectedItem().toString().equals("9")
+				|| cmbMonth.getSelectedItem().toString().equals("11")) {
 
 			for (int i = 1; i <= 30; i++) {
 				cmbDay.addItem(i);
 			}
-		} else if (!cmbMonth.getSelectedItem().toString().equals("") || !cmbYear.getSelectedItem().toString().equals("")) {
+		} else if (!cmbMonth.getSelectedItem().toString().equals("")
+				|| !cmbYear.getSelectedItem().toString().equals("")) {
 			for (int i = 1; i <= 31; i++) {
 				cmbDay.addItem(i);
 			}
@@ -346,7 +332,7 @@ public class AddEmployeePanelImpl extends JPanel implements AddEmployeePanel, Ac
 
 	public void setYear() {
 		int year = Calendar.getInstance().get(Calendar.YEAR);
-		for (int i = year -16; i >= year - 100; i--) {
+		for (int i = year - 16; i >= year - 100; i--) {
 			cmbYear.addItem(i);
 		}
 	}

@@ -5,17 +5,19 @@ import java.util.Map;
 import model.SubscriptionModel;
 
 public interface AddSubscriptionObserver {
-	
+
 	/**
-	 *With this method can be save a new subcription 
+	 * this method saves a new subscription when click the button
 	 * 
 	 * @param name
 	 * @param surname
-	 */	
-	void addNewSubcriptionClicked(String name, String surname);
-	/**
-	 * 
-	 * 
 	 */
-	Map <Integer, SubscriptionModel> getAllSubscriptions ();
+	void addNewSubcriptionClicked(String name, String surname);
+
+	/**
+	 * this method return map of subscriptions
+	 * 
+	 * @return
+	 */
+	Map<Integer, SubscriptionModel> getAllSubscriptions();
 }

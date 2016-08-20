@@ -20,6 +20,10 @@ import model.BookModel;
 import model.EmployeeModel;
 import model.InvoiceModel;
 
+/**
+ * @author erik_
+ *
+ */
 public class Controller implements NorthPanelObserver, ViewObserver {
 	private Model model;
 	private MainView mainView;
@@ -29,12 +33,6 @@ public class Controller implements NorthPanelObserver, ViewObserver {
 	private StreamModel<Integer, SubscriptionModel> smSubscription;
 	private StreamModel<Integer, InvoiceModel> smInvoice;
 
-	/**
-	 * Crea un nuovo Controller senza dare alcun parametro come input.
-	 * 
-	 * @param model
-	 *            il model utilizzato per salvare i dati
-	 */
 	public Controller(Model model) {
 		this.model = model;
 		smEmployee = new StreamImpl<Integer, EmployeeModel>();
@@ -50,13 +48,6 @@ public class Controller implements NorthPanelObserver, ViewObserver {
 		NorthPanel northpanel = (NorthPanelImpl) this.mainView.getNorthPanel();
 		northpanel.attachObserver(this);
 	}
-
-	/*
-	 * public void createLoginPanel() { LoginPanelImpl lp = new
-	 * LoginPanelImpl(); LoginPanelController lpc = new
-	 * LoginPanelController(this.mainView, model); lpc.setView(lp);
-	 * this.mainView.replaceMainPanel(lp); }
-	 */
 
 	@Override
 	public void buttonHomeClicked() {
@@ -74,15 +65,14 @@ public class Controller implements NorthPanelObserver, ViewObserver {
 		this.mainView.replaceMainPanel(lp);
 	}
 
-	// Rimpiazza la view corrente con quella del login
 	@Override
 	public void buttonLogoutClicked() {
 		LoginPanelImpl lp = new LoginPanelImpl();
 		LoginPanelController lpc = new LoginPanelController(this.mainView, model);
 		lpc.setView(lp);
 		this.mainView.replaceMainPanel(lp);
-		mainView.changeLogStatus(false);
-		mainView.getNorthPanel().changeLogStatus(false);
+		this.mainView.changeLogStatus(false);
+		this.mainView.getNorthPanel().changeLogStatus(false);
 	}
 
 	@Override
@@ -142,10 +132,6 @@ public class Controller implements NorthPanelObserver, ViewObserver {
 	}
 
 	@Override
-	public void saveData(String path) {
-	}
-
-	@Override
 	public void dataLoad() {
 		model.employees().updateEmployees(smEmployee.readFile("Employees.dat"));
 		/*
@@ -177,22 +163,5 @@ public class Controller implements NorthPanelObserver, ViewObserver {
 		 * System.out.println( key.getTitle()); }
 		 */
 		model.invoices().updateInvoices(smInvoice.readFile("Invoices.dat"));
-		System.out.println(model.subscriptions().getASubscription(0).getBook());
-		/*
-		 * for (int k = 0; k < model.invoices().getInvoices().size(); k++){
-		 * System.out.println(model.invoices().getInvoices().get(k).getTotal());
-		 * System.out.println(model.invoices().getInvoices().get(k).getDate());
-		 * System.out.println(model.invoices().getInvoices().get(k).
-		 * getPaymentMethod());
-		 * System.out.println(model.invoices().getInvoices().get(k).getReceipt()
-		 * ); }
-		 */
-
-	}
-
-	@Override
-	public void dataLoad(String path) {
-		// TODO Auto-generated method stub
-
 	}
 }

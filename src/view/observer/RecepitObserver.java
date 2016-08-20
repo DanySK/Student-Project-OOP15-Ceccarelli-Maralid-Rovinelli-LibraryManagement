@@ -7,24 +7,26 @@ import model.BookModel;
 
 public interface RecepitObserver {
 	/**
-	 *permette di tenere traccia di una avvenuta vendita per stilare un resoconto finale ,
-	 *il parametro today salva il giorno corrente,   mouney è l'incasso metre type è 
-	 *il metodo di pagamento utilizzato
+	 * save receipt when click the button
 	 * 
-	 * @param month
-	 * @param money
-	 * @param type
-	 **/
-	void saveAccountingClicked(Date today, int payment, int subscriptionId);
-	
+	 * @param today
+	 * @param payment
+	 * @param subscriptionId
+	 */
+	void saveAccountingClicked(Date today, int payment, String subscriptionId);
+
 	/**
 	 * get total of sale
-	 **/
+	 * 
+	 * @return
+	 */
 	public double getTotal();
-	
+
 	/**
-	 * get purchase recap
-	 **/
+	 * get purchase recap into map
+	 * 
+	 * @return
+	 */
 	public Map<BookModel, Integer> getPurchaseRecap();
-	
+
 }
