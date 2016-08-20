@@ -1,3 +1,6 @@
+/**
+ *@author Ceccarelli 
+ */
 package view.observer;
 
 public interface NorthPanelObserver {

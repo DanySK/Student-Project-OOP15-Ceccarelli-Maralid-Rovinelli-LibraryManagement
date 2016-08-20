@@ -1,3 +1,6 @@
+/**
+ *@author Ceccarelli 
+ */
 package view;
 
 import javax.swing.JPanel;
@@ -193,7 +196,8 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 		cmbSearchType.addItem("Anno");
 		add(cmbSearchType);
 
-		btnSearch = new JButton("New button");
+		btnSearch = new JButton("Cerca libri");
+		btnSearch.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 16));
 		btnSearch.setBounds(298, 107, 89, 23);
 		btnSearch.addActionListener(this);
 		add(btnSearch);
@@ -340,7 +344,6 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 						entry.getyearOfPublication(), entry.getPrice(), tmp.values().toArray()[i] };
 				((DefaultTableModel) modelAllBooks).addRow(obj);
 				tblAllBooks.repaint();
-				System.out.println("bllcnvkdmndvjslvn " + tmp.values().toArray()[i]);
 				i++;
 			}
 		}

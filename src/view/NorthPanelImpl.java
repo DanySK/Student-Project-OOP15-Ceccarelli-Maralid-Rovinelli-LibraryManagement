@@ -1,3 +1,7 @@
+/**
+ *@author Ceccarelli 
+ */
+
 package view;
 
 import java.awt.Dimension;
@@ -49,7 +53,7 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 
 		this.setPreferredSize(new Dimension(900, 100));
 
-		logTxt = new JTextArea("none");
+		logTxt = new JTextArea();
 		logTxt.setBackground(SystemColor.inactiveCaption);
 		logTxt.setBounds(10, 7, 580, 24);
 		logTxt.setFont(new Font("Calibri", Font.PLAIN, 15));
@@ -65,19 +69,7 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 		btnLogout.setEnabled(false);
 	}
 
-	/*
-	 * public void checkEmployeeLogin() {
-	 * 
-	 * this.btnLog.setText("Logout"); this.btnHome.setEnabled(true);
-	 * this.btnHome.setVisible(true);
-	 * 
-	 * }
-	 * 
-	 * 
-	 * public void checkEmployeeLogout() { this.btnLog.setText("Login");
-	 * this.btnHome.setEnabled(false); this.btnHome.setVisible(false); }
-	 */
-
+	
 	@Override
 	public void attachObserver(NorthPanelObserver observer) {
 		this.observer = observer;

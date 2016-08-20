@@ -1,3 +1,6 @@
+/**
+ *@author Ceccarelli 
+ */
 package view.observer;
 
 import java.util.Map;
@@ -21,7 +24,7 @@ public interface WarehouseObserver {
 	/**
 	 * this method returns a list of all books in warehouse
 	 * 
-	 * @return
+	 * @return Map<BookModel, Integer
 	 */
 	Map<BookModel, Integer> getBooksInWarehouse();
 

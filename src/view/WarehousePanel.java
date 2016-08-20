@@ -1,3 +1,6 @@
+/**
+ *@author Ceccarelli 
+ */
 package view;
 
 import view.observer.WarehouseObserver;

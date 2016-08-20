@@ -1,3 +1,6 @@
+/**
+ *@author Ceccarelli 
+ */
 package view.observer;
 
 import java.util.Map;
@@ -17,7 +20,7 @@ public interface AddSubscriptionObserver {
 	/**
 	 * this method return map of subscriptions
 	 * 
-	 * @return
+	 * @return Map <integer,SubscriptionModel>
 	 */
 	Map<Integer, SubscriptionModel> getAllSubscriptions();
 }

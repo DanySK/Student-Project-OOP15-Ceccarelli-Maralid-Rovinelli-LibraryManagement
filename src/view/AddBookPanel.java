@@ -1,25 +1,26 @@
+/**
+ *@author Ceccarelli 
+ */
 package view;
 
 import view.observer.AddBookObserver;
 
 public interface AddBookPanel {
 	/**
-	 * Permette di visualizzare un messaggio in una label
+	 * the method used to display a message
 	 * 
-	 * 
+	 * @param message
 	 */
 	void displayMessage(String message);
 	
 	/**
-	 * Attacca l'AddBookObserver alla view
+	 * set the AddBookObserver in the view
 	 * 
 	 */
 	void attachObserver(AddBookObserver observer);
 	
 	/**
-	 * Pulisce tutti i campi all'interno della view
-	 * 
-	 * 
+	 * cleans all textField in the panel 
 	 */
 	void clearView();
 	

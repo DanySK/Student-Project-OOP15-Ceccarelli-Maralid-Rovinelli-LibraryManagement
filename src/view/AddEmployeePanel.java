@@ -1,25 +1,27 @@
+/**
+ *@author Ceccarelli 
+ */
 package view;
 
 import view.observer.AddEmployeeObserver;
 
 public interface AddEmployeePanel {
 	/**
-	 * pulitura della schermata di aggiunta di un nuovo dipendente
+	 * cleans all textField in the panel 
 	 * 
 	 **/
 	void cleanInterface();
 
 	/**
-	 * Attacca l'observer alla view
+	 * set the AddEmployeeObserver in the view
 	 * 
 	 * @param observer
 	 **/
 	void attachObserver(AddEmployeeObserver observer);
-
 	/**
-	 * visualizza eventuali messaggi
+	 * the method used to display a message
 	 * 
 	 * @param message
-	 * */
+	 */
 	void displayMessage(String message);
 }

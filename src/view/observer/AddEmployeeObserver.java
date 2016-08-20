@@ -1,3 +1,6 @@
+/**
+ *@author Ceccarelli 
+ */
 package view.observer;
 
 import java.util.Date;

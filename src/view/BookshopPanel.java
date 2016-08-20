@@ -1,14 +1,17 @@
+/**
+ *@author Ceccarelli 
+ */
 package view;
 
 import view.observer.BookshopObserver;
 
 public interface BookshopPanel {
 	/**
-	 * metodo per pulire l'elenco dei libri selezionati
-	 * */
+	 * cleans all textField in the panel 
+	 */
 	void clearSelectedBooks();
 	/**
-	 * attacca alla view il BookshopObserver
+	 * set the BookshopObserver in the view
 	 * 
 	 * @param observer
 	 */

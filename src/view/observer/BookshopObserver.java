@@ -1,3 +1,6 @@
+/**
+ *@author Ceccarelli 
+ */
 package view.observer;
 
 import java.util.Map;
@@ -13,9 +16,8 @@ public interface BookshopObserver {
 	void shopPurchaseItClicked(Map<BookModel, Integer> purchaseList);
 
 	/**
+	 * It allows you to view all the books in jtable tbl Books
 	 * 
-	 * 
-	 * @return
 	 */
 	Map<BookModel, Integer> getBookInShop(String type, String value);
 	/**

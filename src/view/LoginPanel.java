@@ -1,3 +1,6 @@
+/**
+ *@author Ceccarelli 
+ */
 package view;
 import view.observer.LoginObserver;
 /**
@@ -20,5 +23,6 @@ public interface LoginPanel {
 	 * the method used to display a message
 	 * 
 	 * @param message
-	 */void displayMessage(String message);
+	 */
+	void displayMessage(String message);
 }

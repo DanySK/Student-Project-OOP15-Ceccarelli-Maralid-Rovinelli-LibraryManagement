@@ -1,3 +1,6 @@
+/**
+ *@author Ceccarelli 
+ */
 package view.observer;
 
 import java.util.Date;
@@ -18,14 +21,14 @@ public interface RecepitObserver {
 	/**
 	 * get total of sale
 	 * 
-	 * @return
+	 * @return double 
 	 */
 	public double getTotal();
 
 	/**
 	 * get purchase recap into map
 	 * 
-	 * @return
+	 * @return Map<BookModel, Integer>
 	 */
 	public Map<BookModel, Integer> getPurchaseRecap();
 

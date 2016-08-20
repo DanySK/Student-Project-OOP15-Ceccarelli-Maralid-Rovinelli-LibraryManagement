@@ -1,3 +1,6 @@
+/**
+ *@author Ceccarelli 
+ */
 package view;
 
 import java.awt.BorderLayout;
@@ -7,16 +10,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import view.observer.ViewObserver;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class MainViewImpl extends JFrame implements MainView, ActionListener, WindowListener {
 	private NorthPanelImpl northPanel;
@@ -25,14 +32,16 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	private JMenuItem mntmExit;
 	private JMenuBar menuBar_1;
 	private JMenu mnShop;
-	private JMenuItem mntmCercaLibro;
-	private JMenuItem mntmGestisciAbbonamenti;
-	private JMenu mnWarehose;
-	private JMenuItem mntmOrdinaScorte;
+	private JMenuItem mntmSearchBook;
+	private JMenuItem mntmManageSubscriptions;
+	private JMenu mnWarehouse;
+	private JMenuItem mntmOrderStocks;
 	private JMenu mnFile;
 	private JMenuItem mntmAddEmployee;
 	private static final long serialVersionUID = 1L;
-	private JMenuItem mntmRelocateBooks;	
+	private JMenuItem mntmRelocateBooks;
+	private JPanel ImagePanel;
+	private JLabel lblImage;
 
 	public MainViewImpl() {
 		this.getContentPane().setBackground(Color.WHITE);
@@ -40,10 +49,6 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		this.setTitle("Library-Managment-System");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		/*
-		 * disabilitazione del ridimensionamento per evitare eventuali
-		 * problemi nella visualizzazione della GUI
-		 */
 		this.setResizable(false);
 		this.setSize(900, 700);
 
@@ -52,6 +57,18 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		Container c = this.getContentPane();
 		northPanel = new NorthPanelImpl();
 		c.add(northPanel, BorderLayout.NORTH);
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/book.png")));
+		ImagePanel = new JPanel();
+		ImagePanel.setBackground(SystemColor.activeCaption);
+		ImagePanel.setLayout(null);
+
+		c.add(ImagePanel, BorderLayout.CENTER);
+
+		lblImage = new JLabel("");
+		lblImage.setBounds(0, 0, 894, 550);
+		lblImage.setIcon(new ImageIcon(LoginPanel.class.getResource("/BookShop.png")));
+		lblImage.setHorizontalAlignment(SwingConstants.CENTER);
+		ImagePanel.add(lblImage);
 
 		this.setJMenuBar(menuBar);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,20 +80,6 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		mnFile = new JMenu("File");
 		menuBar_1.add(mnFile);
 
-		/*
-		 * mntmSalva = new JMenuItem("Salva");
-		 * mntmSalva.addActionListener(this);
-		 * 
-		 * mntmSalva = new JMenuItem("Salva");
-		 * mntmSalva.addActionListener(this); mnFile.add(mntmSalva);
-		 * 
-		 * mntmApri = new JMenuItem("Apri");
-		 * mntmApri.addActionListener(this);
-		 * 
-		 * mntmApri = new JMenuItem("Apri");
-		 * mntmApri.addActionListener(this); mnFile.add(mntmApri);
-		 */
-
 		mntmExit = new JMenuItem("Esci");
 		mnFile.add(mntmExit);
 		mntmExit.addActionListener(this);
@@ -85,28 +88,28 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 		mnShop.setEnabled(false);
 		menuBar_1.add(mnShop);
 
-		mntmCercaLibro = new JMenuItem("Cerca libro");
-		mnShop.add(mntmCercaLibro);
-		mntmCercaLibro.addActionListener(this);
+		mntmSearchBook = new JMenuItem("Cerca libro");
+		mnShop.add(mntmSearchBook);
+		mntmSearchBook.addActionListener(this);
 
-		mntmGestisciAbbonamenti = new JMenuItem("Gestisci abbonamenti");
-		mnShop.add(mntmGestisciAbbonamenti);
-		
-				mntmAddEmployee = new JMenuItem("Aggiungi dipendente");
-				mnShop.add(mntmAddEmployee);
-				mntmAddEmployee.addActionListener(this);
-		mntmGestisciAbbonamenti.addActionListener(this);
+		mntmManageSubscriptions = new JMenuItem("Gestisci abbonamenti");
+		mnShop.add(mntmManageSubscriptions);
 
-		mnWarehose = new JMenu("Magazzino");
-		mnWarehose.setEnabled(false);
-		menuBar_1.add(mnWarehose);
+		mntmAddEmployee = new JMenuItem("Aggiungi dipendente");
+		mnShop.add(mntmAddEmployee);
+		mntmAddEmployee.addActionListener(this);
+		mntmManageSubscriptions.addActionListener(this);
 
-		mntmOrdinaScorte = new JMenuItem("Ordina scorte");
-		mnWarehose.add(mntmOrdinaScorte);
-		mntmOrdinaScorte.addActionListener(this);
+		mnWarehouse = new JMenu("Magazzino");
+		mnWarehouse.setEnabled(false);
+		menuBar_1.add(mnWarehouse);
+
+		mntmOrderStocks = new JMenuItem("Ordina scorte");
+		mnWarehouse.add(mntmOrderStocks);
+		mntmOrderStocks.addActionListener(this);
 
 		mntmRelocateBooks = new JMenuItem("Tasferisci libri");
-		mnWarehose.add(mntmRelocateBooks);
+		mnWarehouse.add(mntmRelocateBooks);
 		mntmRelocateBooks.addActionListener(this);
 
 		this.setVisible(true);
@@ -148,14 +151,14 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
-		
+
 		if (isPressed == mntmExit) {
 			this.observer.exitCommand();
-		} else if (isPressed == mntmCercaLibro) {
+		} else if (isPressed == mntmSearchBook) {
 			this.observer.bookShopClicked();
-		} else if (isPressed == mntmGestisciAbbonamenti) {
+		} else if (isPressed == mntmManageSubscriptions) {
 			this.observer.addSubscriptionClicked();
-		} else if (isPressed == mntmOrdinaScorte) {
+		} else if (isPressed == mntmOrderStocks) {
 			this.observer.addBooksClicked();
 		} else if (isPressed == mntmAddEmployee) {
 			this.observer.addEmployeeClicked();
@@ -198,13 +201,13 @@ public class MainViewImpl extends JFrame implements MainView, ActionListener, Wi
 
 	@Override
 	public void changeLogStatus(Boolean logged) {
-		if(logged == true){
+		if (logged == true) {
 			mnShop.setEnabled(true);
-			mnWarehose.setEnabled(true);
-		}else {
+			mnWarehouse.setEnabled(true);
+		} else {
 			mnShop.setEnabled(false);
-			mnWarehose.setEnabled(false);
+			mnWarehouse.setEnabled(false);
 		}
-		
+
 	}
 }
