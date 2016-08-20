@@ -25,7 +25,7 @@ public interface BookshopPanel {
 	 */
 	void setAllBooks();
 	
-	void addSelectedBook();
+	void moveBooks();
 
 		
 }

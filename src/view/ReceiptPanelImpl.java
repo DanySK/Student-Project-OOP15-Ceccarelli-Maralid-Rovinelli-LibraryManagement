@@ -9,10 +9,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,10 +23,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import model.BookModel;
 import view.observer.RecepitObserver;
 
-public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListener {
-	
+public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionListener {
+
 	private static final long serialVersionUID = 1L;
 	private JTable tblReport;
 	private DefaultTableModel modelReport;
@@ -36,6 +39,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 	private JTextField txtTotalPrice;
 	private JLabel lblTotalPrice;
 	private JTextField txtSubscriptionCode;
+	private JLabel lblSubscription;
 
 	/**
 	 * Create the panel.
@@ -43,7 +47,8 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 	public ReceiptPanelImpl() {
 		setBackground(SystemColor.inactiveCaption);
 		this.setLayout(null);
-		modelReport = new DefaultTableModel(new Object[][] {}, new String[] { "Titolo", "Prezzo" });
+		modelReport = new DefaultTableModel(new Object[][] {},
+				new String[] { "Titolo", "Quantita'", "Prezzo" });
 
 		scpReport = new JScrollPane();
 		scpReport.setEnabled(false);
@@ -82,11 +87,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 
 		txtTotalPrice = new JTextField();
 		txtTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
-		txtTotalPrice.setEnabled(false);
-		txtTotalPrice.setEditable(false);
 		txtTotalPrice.setBounds(20, 523, 161, 20);
-		// calcolo del totale tramite i dati presi dalla view
-		// BookShopImpl
 		add(txtTotalPrice);
 		txtTotalPrice.setColumns(10);
 
@@ -94,13 +95,13 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 		lblTotalPrice.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 14));
 		lblTotalPrice.setBounds(20, 509, 161, 14);
 		add(lblTotalPrice);
-		
+
 		txtSubscriptionCode = new JTextField();
 		txtSubscriptionCode.setBounds(421, 523, 161, 20);
 		add(txtSubscriptionCode);
 		txtSubscriptionCode.setColumns(10);
-		
-		JLabel lblSubscription = new JLabel("Codice abbonamento");
+
+		lblSubscription = new JLabel("Codice abbonamento");
 		lblSubscription.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 13));
 		lblSubscription.setBounds(421, 503, 161, 14);
 		add(lblSubscription);
@@ -116,9 +117,8 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 			try {
 				this.observer.saveAccountingClicked(
 						(Date) dateFormat.parse((dateFormat.format(currentDate))),
-						cmbTypeOfPayment.getSelectedIndex()
-						/*Double.parseDouble(txtTotalPrice.getText()),
-						cmbTypeOfPayment.getSelectedItem().toString()*/);
+						cmbTypeOfPayment.getSelectedIndex(),
+						Integer.parseInt(txtSubscriptionCode.getText()));
 			} catch (NumberFormatException | ParseException e1) {
 
 				e1.printStackTrace();
@@ -127,14 +127,42 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel,ActionListe
 	}
 
 	@Override
-	public void WriteList() {
-		// da capire come portare i dati dalla view BookShopImpl
+	public void attachObserver(RecepitObserver observer) {
+		this.observer = observer;
+		this.setRecepit();
 
 	}
 
 	@Override
-	public void attachObserver(RecepitObserver observer) {
-		this.observer = observer;
+	public void setRecepit() {
+		clearTable(modelReport);
+		Map<BookModel, Integer> tmp = this.observer.getPurchaseRecap();
+		int i = 0;
 
+		for (BookModel entry : tmp.keySet()) {
+			if (entry.getTitle() == null) {
+
+			} else {
+				Object[] obj = { entry.getTitle(), tmp.values().toArray()[i],
+						entry.getPrice() * (Integer) tmp.values().toArray()[i] };
+				((DefaultTableModel) modelReport).addRow(obj);
+				tblReport.repaint();
+				i++;
+			}
+		}
+		if (tblReport.getRowCount() > 0) {
+			tblReport.setRowSelectionInterval(0, 0);
+		}
+	}
+
+	private void clearTable(DefaultTableModel model) {
+		for (int i = model.getRowCount() - 1; i >= 0; i--) {
+			model.removeRow(i);
+		}
+	}
+
+	@Override
+	public void displayMessage(String message) {
+		JOptionPane.showMessageDialog(null, message, "Attenzione", JOptionPane.PLAIN_MESSAGE);
 	}
 }

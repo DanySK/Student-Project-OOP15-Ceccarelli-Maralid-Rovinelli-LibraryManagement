@@ -45,6 +45,12 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	private JLabel lblTotalPriceAmount;
 	private JLabel lblCurrencies;
 	private Map<BookModel, Integer> purchaseList;
+	private final int titleCell = 0;
+	private final int authorCell = 1;
+	private final int genreCell = 2;
+	private final int yearCell = 3;
+	private final int priceCell = 4;
+	private final int amountCell = 5;
 
 	public BookshopPanelImpl() {
 		setBackground(SystemColor.inactiveCaption);
@@ -181,35 +187,10 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 
 	public void actionPerformed(ActionEvent e) {
 		Object isPressed = e.getSource();
-		int selectedAmount = (int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5);
+		int selectedAmount = (int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), amountCell);
 		int newAmount = Integer.parseInt(txtAmount.getText());
-		if (isPressed == btnAddBook) {
-
-			String title = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString();
-			String author = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString();
-			String literaryGenre = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 2).toString();
-			String publicationYear = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3).toString();
-			String price = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4).toString();
-			String ammount = txtAmount.getText();
-
-			String[] str = { title, author, literaryGenre, publicationYear, price, ammount };
-			((DefaultTableModel) modelSelectedBooks).addRow(str);
-
-			lblTotalPriceAmount
-					.setText(setTotalPrice(Integer.parseInt(txtAmount.getText()),
-							(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(),
-									4),
-							Double.parseDouble(lblTotalPriceAmount.getText())));
-
-			modelAllBooks.setValueAt(
-					(Integer) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5)
-							- Integer.parseInt(txtAmount.getText()),
-					tblAllBooks.getSelectedRow(), 5);
-			tblSelectedBooks.repaint();
-			txtAmount.setText("1");
-			if (tblSelectedBooks.getRowCount() > 0) {
-				tblSelectedBooks.setRowSelectionInterval(0, 0);
-			}
+		if (isPressed == btnAddBook) {			
+			this.moveBooks();
 		} else {
 			if (isPressed == btnAdd) {
 				if (selectedAmount > newAmount)
@@ -228,7 +209,7 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			}
 		}
 		if (isPressed == btnPurchaseIt) {
-			
+
 			this.observer.shopPurchaseItClicked(purchase());
 
 		} else if (isPressed == btnRemoveBook) {
@@ -239,22 +220,24 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	@Override
 	public void clearSelectedBooks() {
 		for (int i = 0; i < modelAllBooks.getRowCount(); i++) {
-			if (modelAllBooks.getValueAt(i, 0)
-					.equals(modelSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 0))
-					&& modelAllBooks.getValueAt(i, 1)
+			if (modelAllBooks.getValueAt(i, titleCell)
+					.equals(modelSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(),
+							titleCell))
+					&& modelAllBooks.getValueAt(i, authorCell)
 							.equals(modelSelectedBooks.getValueAt(
-									tblSelectedBooks.getSelectedRow(), 1))
-					&& modelAllBooks.getValueAt(i, 3).toString().equals(modelSelectedBooks
-							.getValueAt(tblSelectedBooks.getSelectedRow(), 3).toString())) {
+									tblSelectedBooks.getSelectedRow(), authorCell))
+					&& modelAllBooks.getValueAt(i, yearCell).toString().equals(modelSelectedBooks
+							.getValueAt(tblSelectedBooks.getSelectedRow(), yearCell)
+							.toString())) {
 
-				int oldValue = (Integer) modelAllBooks.getValueAt(i, 5);
-				int newValue = Integer.parseInt((String) modelSelectedBooks
-						.getValueAt(tblSelectedBooks.getSelectedRow(), 5));
-				modelAllBooks.setValueAt(newValue + oldValue, i, 5);
+				int oldValue = (Integer) modelAllBooks.getValueAt(i, amountCell);
+				int newValue = Integer.parseInt(modelSelectedBooks
+						.getValueAt(tblSelectedBooks.getSelectedRow(), amountCell).toString());
+				modelAllBooks.setValueAt(newValue + oldValue, i, amountCell);
 				modelSelectedBooks.removeRow(tblSelectedBooks.getSelectedRow());
-				lblTotalPriceAmount.setText(
-						setTotalPrice(-newValue, (Double) modelAllBooks.getValueAt(i, 4),
-								Double.parseDouble(lblTotalPriceAmount.getText())));
+				lblTotalPriceAmount.setText(setTotalPrice(-newValue,
+						(Double) modelAllBooks.getValueAt(i, priceCell),
+						Double.parseDouble(lblTotalPriceAmount.getText())));
 				break;
 			}
 		}
@@ -264,63 +247,59 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 	}
 
 	@Override
-	public void addSelectedBook() {
-		for (int i = 0; i < modelAllBooks.getRowCount(); i++) {
-			if (modelAllBooks.getValueAt(i, 0)
-					.equals(modelSelectedBooks.getValueAt(tblSelectedBooks.getSelectedRow(), 0))
-					&& modelAllBooks.getValueAt(i, 1)
-							.equals(modelSelectedBooks.getValueAt(
-									tblSelectedBooks.getSelectedRow(), 1))
-					&& modelAllBooks.getValueAt(i, 3).toString().equals(modelSelectedBooks
-							.getValueAt(tblSelectedBooks.getSelectedRow(), 3).toString())) {
+	public void moveBooks() {
+		boolean flag = false;
+		if (modelSelectedBooks.getRowCount() == 0) {
+			this.uploadBooks();
+		} else if (modelSelectedBooks.getRowCount() > 0) {
 
-				int oldValue = (Integer) modelAllBooks.getValueAt(i, 5);
-				int newValue = Integer.parseInt((String) modelSelectedBooks
-						.getValueAt(tblSelectedBooks.getSelectedRow(), 5));
-				modelAllBooks.setValueAt(newValue + oldValue, i, 5);
-				
-				lblTotalPriceAmount.setText(
-						setTotalPrice(-newValue, (Double) modelAllBooks.getValueAt(i, 4),
+			for (int i = 0; i < modelSelectedBooks.getRowCount(); i++) {
+				if (modelSelectedBooks.getValueAt(i, titleCell).toString().equals(modelAllBooks
+						.getValueAt(tblAllBooks.getSelectedRow(), titleCell).toString())
+
+						&& modelSelectedBooks.getValueAt(i, authorCell).equals(modelAllBooks
+								.getValueAt(tblAllBooks.getSelectedRow(), authorCell))
+						&& modelSelectedBooks.getValueAt(i, yearCell).toString()
+								.equals(modelAllBooks.getValueAt(
+										tblAllBooks.getSelectedRow(), yearCell)
+										.toString())) {
+
+					if (Integer.parseInt(txtAmount.getText()) <= (int) modelAllBooks
+							.getValueAt(tblAllBooks.getSelectedRow(), amountCell)) {
+						modelSelectedBooks.setValueAt(
+								Integer.parseInt(txtAmount.getText())
+										+ Integer.parseInt(modelSelectedBooks
+												.getValueAt(i, amountCell)
+												.toString()),
+								i, amountCell);
+						modelAllBooks.setValueAt(Integer.parseInt(modelAllBooks
+								.getValueAt(tblAllBooks.getSelectedRow(), amountCell)
+								.toString()) - Integer.parseInt(txtAmount.getText()),
+								tblAllBooks.getSelectedRow(), amountCell);
+
+						lblTotalPriceAmount.setText(setTotalPrice(
+								Integer.parseInt(modelSelectedBooks.getValueAt(
+										tblSelectedBooks.getSelectedRow(),
+										amountCell).toString()),
+								(Double) modelAllBooks.getValueAt(i, priceCell),
 								Double.parseDouble(lblTotalPriceAmount.getText())));
-				break;
-			}/*else{
-			
-			String title =
-			 tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(),
-			 0).toString(); String author =
-			 tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(),
-			 1).toString(); String literaryGenre =
-			tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(),
-			2).toString(); String publicationYear =
-			 tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(),
-			 3).toString(); String price =
-			 tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(),
-			 4).toString(); String ammount = txtAmount.getText();
-			 
-			 String[] str = { title, author, literaryGenre,
-			 publicationYear, price, ammount };
-			 ((DefaultTableModel) modelSelectedBooks).addRow(str);
-			 
-			 lblTotalPriceAmount
-			 .setText(setTotalPrice(Integer.parseInt(txtAmount.
-			 getText()), (double)
-			 modelAllBooks.getValueAt(tblAllBooks.getSelectedRow()
-			 , 4),
-			 Double.parseDouble(lblTotalPriceAmount.getText())));
-			 
-			 modelAllBooks.setValueAt( (Integer)
-			  modelAllBooks.getValueAt(tblAllBooks.getSelectedRow()
-			 , 5) - Integer.parseInt(txtAmount.getText()),
-			 tblAllBooks.getSelectedRow(), 5);
-			  tblSelectedBooks.repaint(); txtAmount.setText("1");
-			  if (tblSelectedBooks.getRowCount() > 0) {
-			  tblSelectedBooks.setRowSelectionInterval(0, 0); } }
-			 if (tblSelectedBooks.getRowCount() > 0) {
-			 tblSelectedBooks.setRowSelectionInterval(0, 0);
-			 }*/}
+						txtAmount.setText("1");
+						flag = true;
+						break;
+					}
+				}
+
+			}
+			if (!flag) {
+				if (Integer.parseInt(txtAmount.getText()) <= (int) modelAllBooks
+						.getValueAt(tblAllBooks.getSelectedRow(), amountCell)) {
+					this.uploadBooks();
+				}
+			}
+		}
 
 	}
-
+        @Override
 	public void setAllBooks() {
 		clearTable(modelAllBooks);
 		Map<BookModel, Integer> tmp = this.observer.getBookInShop();
@@ -363,19 +342,52 @@ public class BookshopPanelImpl extends JPanel implements BookshopPanel, ActionLi
 			model.removeRow(i);
 		}
 	}
-	private Map<BookModel, Integer> purchase (){
-		purchaseList =new HashMap<BookModel, Integer>();
+
+	private Map<BookModel, Integer> purchase() {
+		purchaseList = new HashMap<BookModel, Integer>();
 		for (int i = 0; i < tblSelectedBooks.getRowCount(); i++) {
 			BookModel book = new BookImpl();
 			book.setTitle(tblSelectedBooks.getValueAt(i, 0).toString());
 			book.setAuthor(tblSelectedBooks.getValueAt(i, 1).toString());
 			book.setLiteraryGenre(tblSelectedBooks.getValueAt(i, 2).toString());
-			System.out.println("step 1");
 			book.setYearOfPublication(Integer.parseInt(tblSelectedBooks.getValueAt(i, 3).toString()));
 			book.setPrice(Double.parseDouble(tblSelectedBooks.getValueAt(i, 4).toString()));
-			purchaseList.put(book,Integer.parseInt(tblSelectedBooks.getValueAt(i, 5).toString()));
+			purchaseList.put(book, Integer.parseInt(tblSelectedBooks.getValueAt(i, 5).toString()));
 		}
-		return  purchaseList;
+		return purchaseList;
+	}
+
+	/**
+	 * Add new book in the table tblselectedbooks
+	 * 
+	 */
+	private void uploadBooks() {
+		String title = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 0).toString();
+		String author = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 1).toString();
+		String literaryGenre = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 2).toString();
+		String publicationYear = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 3).toString();
+		String price = tblAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4).toString();
+		String ammount = txtAmount.getText();
+
+		String[] str = { title, author, literaryGenre, publicationYear, price, ammount };
+		((DefaultTableModel) modelSelectedBooks).addRow(str);
+
+		lblTotalPriceAmount.setText(setTotalPrice(Integer.parseInt(txtAmount.getText()),
+				(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 4),
+				Double.parseDouble(lblTotalPriceAmount.getText())));
+
+		modelAllBooks.setValueAt(
+				(Integer) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5)
+						- Integer.parseInt(txtAmount.getText()),
+				tblAllBooks.getSelectedRow(), 5);
+		tblSelectedBooks.repaint();
+		txtAmount.setText("1");
+		if (tblSelectedBooks.getRowCount() > 0) {
+			tblSelectedBooks.setRowSelectionInterval(0, 0);
+		}
+		if (tblSelectedBooks.getRowCount() > 0) {
+			tblSelectedBooks.setRowSelectionInterval(0, 0);
+		}
 	}
 
 }

@@ -15,7 +15,7 @@ public interface RecepitObserver {
 	 * @param money
 	 * @param type
 	 **/
-	void saveAccountingClicked(Date today, int payment);
+	void saveAccountingClicked(Date today, int payment, int subscriptionId);
 	
 	/**
 	 * get total of sale
