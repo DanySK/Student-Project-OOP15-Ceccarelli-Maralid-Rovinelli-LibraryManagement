@@ -131,7 +131,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 						txtSubscriptionCode.getText().toString());
 			} catch (NumberFormatException | ParseException e1) {
 
-				e1.printStackTrace();
+				
 			}
 		}
 	}
