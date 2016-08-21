@@ -174,18 +174,14 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 			lblAmount.setText(String.valueOf(Integer.parseInt(lblAmount.getText()) + 10));
 
 		} else if (isPressed == btnAddToBookShop) {
-			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) > Integer
+			if ((int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), 5) >= Integer
 					.parseInt(lblAmount.getText())) {
 				this.observer.addBooksInBookShopClicked(
-						modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), titleCell)
-								.toString(),
-						modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), authorCell)
-								.toString(),
-						modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), genreCell)
-								.toString(),
+						modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), titleCell).toString(),
+						modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), authorCell).toString(),
+						modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), genreCell).toString(),
 						(int) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), yearCell),
-						(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(),
-								priceCell),
+						(double) modelAllBooks.getValueAt(tblAllBooks.getSelectedRow(), priceCell),
 						Integer.parseInt(lblAmount.getText()));
 				lblAmount.setText("1");
 			} else
@@ -223,8 +219,7 @@ public class WarehousePanelImpl extends JPanel implements WarehousePanel, Action
 			if (entry.getTitle() == null) {
 			} else {
 				Object[] obj = { entry.getTitle(), entry.getAuthor(), entry.getLiteraryGenre(),
-						entry.getyearOfPublication(), entry.getPrice(),
-						tmp.values().toArray()[i] };
+						entry.getyearOfPublication(), entry.getPrice(), tmp.values().toArray()[i] };
 				((DefaultTableModel) modelAllBooks).addRow(obj);
 
 				tblAllBooks.repaint();
