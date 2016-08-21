@@ -3,20 +3,18 @@
  */
 package view;
 import view.observer.LoginObserver;
-/**
- * @author Ceccarelli
- * */
+
 public interface LoginPanel {
 
 	/**
 	 * cleans all textField in the panel
-	 * */
+	 */
 	void clearLogin();
 	/**
 	 * set for the LoginObserver
 	 * 
 	 * @param observer
-	 * */
+	 */
 	void attachObserver (LoginObserver observer);
 	
 	/**

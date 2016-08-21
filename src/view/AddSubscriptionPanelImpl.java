@@ -57,11 +57,11 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 		setBackground(SystemColor.activeCaption);
 
 		modelAllSubscription = new DefaultTableModel(new Object[][] {},
-				new String[] { "Nome", "Cognome", "Tipo abbonamento", "Numero acquisti" });
+				new String[] { "Nome", "Cognome", "Tipo abbonamento", "Numero acquisti", "Codice abbonamento" });
 
 		
 		scpAllSubscription = new JScrollPane();
-		scpAllSubscription.setBounds(493, 73, 381, 420);
+		scpAllSubscription.setBounds(400, 73, 474, 420);
 		add(scpAllSubscription);
 
 		tblAllSubscription = new JTable() {			
@@ -198,15 +198,16 @@ public class AddSubscriptionPanelImpl extends JPanel implements AddSubscriptionP
 	public void setAllSubscriptions() {
 		clearTable(modelAllSubscription);
 		Map<Integer, SubscriptionModel> tmp = this.observer.getAllSubscriptions();
-
+		int i = 0;
 		for (Integer entry : tmp.keySet()) {
 			if (tmp.get(entry) == null) {
 			} else {
 				Object[] obj = { tmp.get(entry).getName(), tmp.get(entry).getSurname(),
-						tmp.get(entry).getType(), tmp.get(entry).getBook() };
+						tmp.get(entry).getType(), tmp.get(entry).getBook(),tmp.keySet().toArray()[i]};
 				((DefaultTableModel) modelAllSubscription).addRow(obj);
 
 				tblAllSubscription.repaint();
+				i++;
 			}
 		}
 		if (tblAllSubscription.getRowCount() > 0) {

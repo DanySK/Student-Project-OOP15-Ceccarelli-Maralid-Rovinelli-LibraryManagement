@@ -81,7 +81,7 @@ public class ReceiptPanelImpl extends JPanel implements ReceiptPanel, ActionList
 		lblNewLabel.setBounds(10, 11, 880, 52);
 		add(lblNewLabel);
 
-		btnMakePurchase = new JButton("Effettua acquisto");
+		btnMakePurchase = new JButton("Effettua vendita");
 		btnMakePurchase.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 15));
 		btnMakePurchase.setBounds(709, 512, 161, 31);
 		btnMakePurchase.addActionListener(this);
