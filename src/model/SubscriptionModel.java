@@ -1,12 +1,7 @@
 package model;
 
 public interface SubscriptionModel {
-	/**
-	 * this method return the id of subscription
-	 * 
-	 * @return long id
-	 */
-	public Long getId();
+	
 
 	/**
 	 * this method return a name in subscription

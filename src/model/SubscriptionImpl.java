@@ -24,10 +24,7 @@ public class SubscriptionImpl implements SubscriptionModel, Serializable {
 		this.books = books;
 	}
 
-	@Override
-	public Long getId() {
-		return SubscriptionImpl.serialVersionUID;
-	}
+	
 
 	@Override
 	public String getName() {
