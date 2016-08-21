@@ -29,7 +29,7 @@ public class InsertSubscriptionController implements AddSubscriptionObserver {
 
 	@Override
 	public void addNewSubcriptionClicked(String name, String surname) {
-		subscription = new SubscriptionImpl(name, surname, "Bronze", 0);
+		subscription = new SubscriptionImpl(name, surname, "Bronzo", 0);
 		model.subscriptions().addSubscription(subscription);
 		this.view.setAllSubscriptions();
 		this.view.displayMessage("Abbonamento aggiunto con successo");

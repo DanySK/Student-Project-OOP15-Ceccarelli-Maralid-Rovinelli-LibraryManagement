@@ -39,7 +39,7 @@ public class InsertEmployeeController implements AddEmployeeObserver {
 					password);
 			model.employees().addNewEmployee(employee);
 			LoginPanelImpl li = new LoginPanelImpl();
-			LoginPanelController lp = new LoginPanelController(this.mainView, model);
+			LoginController lp = new LoginController(this.mainView, model);
 			lp.setView(li);
 			this.mainView.replaceMainPanel(li);
 			this.view.displayMessage("Dipendente registrato con successo");

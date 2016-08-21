@@ -107,14 +107,12 @@ public class NorthPanelImpl extends JPanel implements NorthPanel, ActionListener
 			btnHome.setEnabled(true);
 			btnLogout.setEnabled(true);
 			btnLogout.setVisible(true);
-			System.out.println("loggato");
 		} else {
 			btnLogin.setEnabled(true);
 			btnLogin.setVisible(true);
 			btnHome.setEnabled(false);
 			btnLogout.setEnabled(false);
 			btnLogout.setVisible(false);
-			System.out.println("sloggato");
 		}
 
 	}

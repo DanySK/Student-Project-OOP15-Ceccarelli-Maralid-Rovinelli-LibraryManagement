@@ -60,7 +60,7 @@ public class Controller implements NorthPanelObserver, ViewObserver {
 	@Override
 	public void buttonLoginClicked() {
 		LoginPanelImpl lp = new LoginPanelImpl();
-		LoginPanelController lpc = new LoginPanelController(this.mainView, model);
+		LoginController lpc = new LoginController(this.mainView, model);
 		lpc.setView(lp);
 		this.mainView.replaceMainPanel(lp);
 	}
@@ -68,7 +68,7 @@ public class Controller implements NorthPanelObserver, ViewObserver {
 	@Override
 	public void buttonLogoutClicked() {
 		LoginPanelImpl lp = new LoginPanelImpl();
-		LoginPanelController lpc = new LoginPanelController(this.mainView, model);
+		LoginController lpc = new LoginController(this.mainView, model);
 		lpc.setView(lp);
 		this.mainView.replaceMainPanel(lp);
 		this.mainView.changeLogStatus(false);

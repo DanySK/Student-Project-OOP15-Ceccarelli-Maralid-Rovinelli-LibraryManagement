@@ -55,7 +55,6 @@ public class StreamImpl<T, X> implements StreamModel<T, X> {
 
 			oos.close();
 			fos.close();
-			System.out.println("Serialized data is saved in " + path);
 		} catch (IOException i) {
 			i.printStackTrace();
 		}

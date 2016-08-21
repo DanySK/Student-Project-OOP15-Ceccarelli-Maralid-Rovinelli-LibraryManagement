@@ -36,7 +36,6 @@ public class EmployeesImpl implements EmployeesModel {
 		Iterator<Entry<Integer, EmployeeModel>> it = employees.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry<Integer, EmployeeModel> pair = (Entry<Integer, EmployeeModel>) it.next();
-			System.out.println(pair.getValue().getUsername() + username);
 			if (pair.getValue().getUsername().equals(username)
 					&& String.valueOf(pair.getValue().getPassword()).equals(String.valueOf(password)))
 				exist = true;

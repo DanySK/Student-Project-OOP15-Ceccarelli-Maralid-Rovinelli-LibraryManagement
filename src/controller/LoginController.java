@@ -15,13 +15,13 @@ import view.observer.LoginObserver;
  *
  */
 @SuppressWarnings("serial")
-public class LoginPanelController implements LoginObserver, Serializable {
+public class LoginController implements LoginObserver, Serializable {
 
 	private Model model;
 	public MainView mainView;
 	private LoginPanel view;
 
-	public LoginPanelController(MainView mainView, Model model) {
+	public LoginController(MainView mainView, Model model) {
 		this.mainView = mainView;
 		this.model = model;
 	}
